@@ -1,0 +1,35 @@
+import { useReveal, useCounter } from '../hooks/useReveal';
+import { FiUsers, FiPackage, FiAward, FiSmile } from 'react-icons/fi';
+
+const stats = [
+  { icon: <FiUsers />,   target: 5200,  suffix: '+', label: 'Happy Customers' },
+  { icon: <FiPackage />, target: 850,   suffix: '+', label: 'Toys in Catalog' },
+  { icon: <FiAward />,   target: 20,    suffix: '+', label: 'Top Brands' },
+  { icon: <FiSmile />,   target: 99,    suffix: '%', label: 'Satisfaction' },
+];
+
+export default function StatsCounter() {
+  const [ref, visible] = useReveal();
+  return (
+    <section ref={ref} className="bg-gradient-to-r from-primary-500 via-pink-500 to-purple-600 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stats.map((s, i) => (
+          <Stat key={s.label} {...s} start={visible} delay={i * 120} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Stat({ icon, target, suffix, label, start, delay }) {
+  const value = useCounter(target, { start });
+  return (
+    <div className="text-center" style={{ transitionDelay: `${delay}ms` }}>
+      <div className="inline-flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur rounded-full text-2xl mb-2 animate-float">
+        {icon}
+      </div>
+      <p className="text-3xl md:text-4xl font-extrabold">{value.toLocaleString()}{suffix}</p>
+      <p className="text-sm opacity-90">{label}</p>
+    </div>
+  );
+}

@@ -1,0 +1,163 @@
+const { sendEmail } = require('./email');
+
+const STATUS_TEMPLATES = {
+  pending: {
+    emoji: '⏰',
+    color: '#ca8a04',
+    subject: (o) => `Order ${o.orderNumber} received — Toy Mall`,
+    headline: 'Order Received!',
+    message: 'Thanks for your order! We\'ve received it and will confirm shortly.',
+  },
+  confirmed: {
+    emoji: '✅',
+    color: '#2563eb',
+    subject: (o) => `Order ${o.orderNumber} confirmed — Toy Mall`,
+    headline: 'Order Confirmed',
+    message: 'Great news — your order has been confirmed and is now being prepared. We\'ll let you know once it\'s packed.',
+  },
+  packed: {
+    emoji: '📦',
+    color: '#7c3aed',
+    subject: (o) => `Order ${o.orderNumber} is packed — Toy Mall`,
+    headline: 'Your Order is Packed',
+    message: 'Your items have been carefully packed and are ready for shipping. Expect a shipping update within 24 hours.',
+  },
+  shipped: {
+    emoji: '🚚',
+    color: '#0891b2',
+    subject: (o) => `Order ${o.orderNumber} shipped — Toy Mall`,
+    headline: 'Your Order is On The Way',
+    message: 'Your order is in transit and on its way to you. Track its journey using the link below.',
+  },
+  out_for_delivery: {
+    emoji: '🏃',
+    color: '#ea580c',
+    subject: (o) => `Out for delivery: Order ${o.orderNumber} arriving today!`,
+    headline: 'Out for Delivery Today!',
+    message: 'Exciting! Your order is out for delivery and should arrive today. Please ensure someone is available to receive it.',
+  },
+  delivered: {
+    emoji: '🎉',
+    color: '#16a34a',
+    subject: (o) => `Order ${o.orderNumber} delivered — Enjoy!`,
+    headline: 'Delivered Successfully!',
+    message: 'Your order has been delivered. We hope you love your new toys! Don\'t forget to leave a review.',
+  },
+  cancelled: {
+    emoji: '❌',
+    color: '#dc2626',
+    subject: (o) => `Order ${o.orderNumber} cancelled — Toy Mall`,
+    headline: 'Order Cancelled',
+    message: 'Your order has been cancelled. If you paid online, the refund will be processed within 5-7 business days.',
+  },
+};
+
+function buildHtml(order, template, customerName, adminNote, clientUrl) {
+  const orderUrl = `${clientUrl}/order/${order._id}`;
+  const trackingBlock = (order.status === 'shipped' || order.status === 'out_for_delivery') && order.trackingNumber
+    ? `
+      <div style="background:#f3f4f6;border-radius:8px;padding:12px;margin:16px 0;">
+        <p style="margin:0;font-size:12px;color:#6b7280;">TRACKING NUMBER</p>
+        <p style="margin:4px 0 0 0;font-family:monospace;font-size:16px;font-weight:bold;color:#111827;">${order.trackingNumber}</p>
+      </div>
+    ` : '';
+
+  const noteBlock = adminNote ? `
+    <div style="background:#fffbeb;border:1px solid #fde68a;padding:12px;border-radius:8px;margin:16px 0;">
+      <p style="margin:0;font-size:12px;color:#92400e;font-weight:600;">📝 NOTE FROM TOY MALL</p>
+      <p style="margin:4px 0 0 0;color:#78350f;font-size:14px;">${adminNote}</p>
+    </div>
+  ` : '';
+
+  const itemsList = order.items.slice(0, 4).map((it) => `
+    <tr>
+      <td style="padding:6px 0;font-size:13px;">${it.name}</td>
+      <td style="padding:6px 0;font-size:13px;text-align:right;">×${it.qty}</td>
+    </tr>
+  `).join('');
+  const moreItems = order.items.length > 4 ? `<p style="text-align:center;color:#6b7280;font-size:12px;margin:4px 0 0 0;">+${order.items.length - 4} more item(s)</p>` : '';
+
+  return `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <div style="max-width:560px;margin:0 auto;background:#ffffff;">
+    <!-- Header -->
+    <div style="background:#111827;padding:20px;text-align:center;">
+      <h1 style="margin:0;color:#ffffff;font-size:28px;font-weight:800;">
+        <span style="color:#e53935;">Toy</span>Mall
+      </h1>
+    </div>
+
+    <!-- Status banner -->
+    <div style="background:${template.color};padding:32px 20px;text-align:center;color:#ffffff;">
+      <div style="font-size:48px;margin-bottom:8px;">${template.emoji}</div>
+      <h2 style="margin:0;font-size:24px;font-weight:bold;">${template.headline}</h2>
+      <p style="margin:8px 0 0 0;opacity:0.95;font-size:14px;">Order ${order.orderNumber}</p>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:24px 20px;">
+      <p style="margin:0 0 16px 0;font-size:15px;color:#111827;">Hi <strong>${customerName}</strong>,</p>
+      <p style="margin:0 0 16px 0;color:#374151;line-height:1.6;">${template.message}</p>
+
+      ${trackingBlock}
+      ${noteBlock}
+
+      <!-- Items summary -->
+      <div style="border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin:16px 0;">
+        <p style="margin:0 0 8px 0;font-size:12px;color:#6b7280;font-weight:600;">YOUR ITEMS</p>
+        <table style="width:100%;border-collapse:collapse;">
+          ${itemsList}
+        </table>
+        ${moreItems}
+        <hr style="border:none;border-top:1px solid #e5e7eb;margin:12px 0;">
+        <p style="margin:0;text-align:right;font-weight:bold;font-size:16px;color:#e53935;">Total: ₹${order.totalPrice.toFixed(2)}</p>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center;margin:24px 0;">
+        <a href="${orderUrl}" style="display:inline-block;background:#e53935;color:#ffffff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:14px;">View Order Details →</a>
+      </div>
+
+      <p style="color:#6b7280;font-size:13px;line-height:1.6;text-align:center;margin:16px 0 0 0;">
+        Questions? Reply to this email or call <a href="tel:+919800000000" style="color:#e53935;">+91 98000 00000</a>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#f9fafb;padding:20px;text-align:center;border-top:1px solid #e5e7eb;">
+      <p style="margin:0;font-size:12px;color:#6b7280;">Toy Mall</p>
+      <p style="margin:4px 0 0 0;font-size:11px;color:#9ca3af;">Near Dargah Gate, Amrut Nagar, Mumbra, Thane — 400612</p>
+      <p style="margin:8px 0 0 0;font-size:11px;color:#9ca3af;">© ${new Date().getFullYear()} Toy Mall. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+}
+
+function buildText(order, template, customerName, adminNote) {
+  let text = `Hi ${customerName},\n\n${template.headline}\n\n${template.message}\n\nOrder Number: ${order.orderNumber}\n`;
+  if (order.trackingNumber && (order.status === 'shipped' || order.status === 'out_for_delivery')) {
+    text += `Tracking Number: ${order.trackingNumber}\n`;
+  }
+  if (adminNote) text += `\nNote: ${adminNote}\n`;
+  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Toy Mall\nNear Dargah Gate, Amrut Nagar, Mumbra, Thane`;
+  return text;
+}
+
+async function sendStatusEmail(order, customerEmail, customerName, adminNote = '') {
+  const template = STATUS_TEMPLATES[order.status];
+  if (!template) return { sent: false, reason: 'No template for status' };
+  const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+  return sendEmail({
+    to: customerEmail,
+    subject: template.subject(order),
+    html: buildHtml(order, template, customerName || 'Customer', adminNote, clientUrl),
+    text: buildText(order, template, customerName || 'Customer', adminNote),
+  });
+}
+
+module.exports = { sendStatusEmail, STATUS_TEMPLATES };

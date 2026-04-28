@@ -1,0 +1,193 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import PageHeader from '../components/PageHeader';
+import { FiSearch, FiShoppingBag, FiTruck, FiCreditCard, FiUser, FiPackage, FiMail, FiPhone, FiMessageCircle, FiChevronDown } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
+
+const categories = [
+  {
+    icon: <FiShoppingBag />, color: 'bg-blue-100 text-blue-600',
+    title: 'Orders &amp; Shopping',
+    questions: [
+      { q: 'How do I place an order?',
+        a: 'Browse the shop, add items to your cart, click checkout, fill in your shipping address, choose a payment method, and confirm. You\'ll get an email confirmation right away.' },
+      { q: 'Can I cancel my order?',
+        a: 'Yes — open My Orders, find the order, and request cancellation. You can cancel any time before it ships. Once shipped, you can refuse the delivery for a refund.' },
+      { q: 'How do I apply a discount code?',
+        a: 'Discount codes can be entered at checkout in the "Promo code" field. Many products also have automatic discounts applied at the product page.' },
+    ],
+  },
+  {
+    icon: <FiTruck />, color: 'bg-green-100 text-green-600',
+    title: 'Shipping &amp; Delivery',
+    questions: [
+      { q: 'When will my order arrive?',
+        a: 'Metro cities: 2–4 business days. Non-metros: 4–7 days. Remote areas: up to 10 days. You\'ll get email updates at every stage and can track from My Orders.' },
+      { q: 'How much is shipping?',
+        a: 'FREE on orders above ₹999. A flat ₹50 fee for smaller orders. See the full Shipping Policy.' },
+      { q: 'Can I track my package?',
+        a: 'Yes — once shipped, your tracking number appears in My Orders and in the shipping email we send.' },
+      { q: 'Do you ship internationally?',
+        a: 'Not yet — we currently only deliver within India.' },
+    ],
+  },
+  {
+    icon: <FiCreditCard />, color: 'bg-purple-100 text-purple-600',
+    title: 'Payments &amp; Pricing',
+    questions: [
+      { q: 'What payment methods do you accept?',
+        a: 'Cash on Delivery, Credit/Debit cards (via Stripe), UPI, Netbanking and Wallets via Razorpay.' },
+      { q: 'Is my card information safe?',
+        a: 'Absolutely. We never store your full card details — payments are securely processed by Stripe. Our site uses HTTPS and JWT authentication.' },
+      { q: 'When am I charged?',
+        a: 'For prepaid orders (card/UPI), at the time you place the order. For COD, you pay the delivery person in cash when your order arrives.' },
+    ],
+  },
+  {
+    icon: <FiPackage />, color: 'bg-orange-100 text-orange-600',
+    title: 'Returns &amp; Refunds',
+    questions: [
+      { q: 'What is your return policy?',
+        a: 'You have 7 days from delivery to request a return on most items. They must be unused and in original packaging. See full Refund Policy.' },
+      { q: 'How long do refunds take?',
+        a: 'Once we receive the returned item: 1–2 business days to process, then 5–7 business days for the refund to reach your account/card.' },
+      { q: 'My order arrived damaged — what do I do?',
+        a: 'Email hello@toymall.com the same day with photos of the damage. We\'ll dispatch a replacement at no extra cost.' },
+    ],
+  },
+  {
+    icon: <FiUser />, color: 'bg-pink-100 text-pink-600',
+    title: 'Account &amp; Security',
+    questions: [
+      { q: 'How do I create an account?',
+        a: 'Click the user icon in the top right, then "Create Account". You\'ll get a 6-digit verification code by email — enter it to activate.' },
+      { q: 'I didn\'t get my verification email.',
+        a: 'Check spam, then click "Resend OTP" on the verify page. The code is valid for 10 minutes.' },
+      { q: 'I forgot my password.',
+        a: 'Use "Forgot Password" on the login page (coming soon — for now contact support and we\'ll reset it).' },
+      { q: 'How do I become a wholesale customer?',
+        a: 'On the registration page, choose "Wholesale" and enter your business name + GST number. Or visit our Wholesale page to learn more.' },
+    ],
+  },
+];
+
+export default function Help() {
+  const [search, setSearch] = useState('');
+  const [openKey, setOpenKey] = useState(null);
+
+  const matches = (q, a) => {
+    if (!search.trim()) return true;
+    const s = search.toLowerCase();
+    return q.toLowerCase().includes(s) || a.toLowerCase().includes(s);
+  };
+
+  const filteredCategories = categories.map((c) => ({
+    ...c,
+    questions: c.questions.filter(({ q, a }) => matches(q, a)),
+  })).filter((c) => c.questions.length > 0);
+
+  return (
+    <div>
+      <PageHeader
+        title="Help Center"
+        subtitle="Quick answers to common questions. Can't find what you need? Reach us anytime."
+        breadcrumbs={[{ label: 'Help' }]}
+      />
+
+      {/* Search */}
+      <div className="max-w-3xl mx-auto px-4 -mt-8 relative z-10">
+        <div className="bg-white rounded-2xl shadow-xl p-2 border">
+          <div className="relative">
+            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search help articles..."
+              className="w-full pl-12 pr-4 py-3 rounded-xl text-base focus:outline-none"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Quick contact cards */}
+      <section className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <ContactCard icon={<FaWhatsapp />} title="WhatsApp" desc="Chat with us instantly" cta="Open chat" link="https://wa.me/919800000000" color="bg-gradient-to-br from-green-500 to-emerald-600" />
+        <ContactCard icon={<FiPhone />} title="Call Us" desc="+91 98000 00000" cta="Call now" link="tel:+919800000000" color="bg-gradient-to-br from-blue-500 to-indigo-600" />
+        <ContactCard icon={<FiMail />} title="Email Us" desc="hello@toymall.com" cta="Send email" link="mailto:hello@toymall.com" color="bg-gradient-to-br from-primary-500 to-pink-600" />
+      </section>
+
+      {/* FAQ categories */}
+      <section className="max-w-5xl mx-auto px-4 pb-12">
+        {filteredCategories.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-gray-500">No results for "{search}"</p>
+            <Link to="/contact" className="btn-primary inline-block mt-4">Ask us directly</Link>
+          </div>
+        ) : (
+          filteredCategories.map((cat, ci) => (
+            <div key={cat.title} className="mb-8">
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`${cat.color} w-10 h-10 rounded-xl flex items-center justify-center text-lg`}>
+                  {cat.icon}
+                </div>
+                <h2 className="text-xl font-bold" dangerouslySetInnerHTML={{ __html: cat.title }} />
+              </div>
+              <div className="space-y-2">
+                {cat.questions.map((qa, qi) => {
+                  const key = `${ci}-${qi}`;
+                  const isOpen = openKey === key;
+                  return (
+                    <div key={key} className="border rounded-lg overflow-hidden bg-white">
+                      <button
+                        onClick={() => setOpenKey(isOpen ? null : key)}
+                        className="w-full text-left px-4 py-3 flex justify-between items-center font-semibold hover:bg-gray-50"
+                      >
+                        <span className="pr-4">{qa.q}</span>
+                        <FiChevronDown className={`flex-shrink-0 transition ${isOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isOpen && (
+                        <div className="px-4 pb-4 text-gray-700 text-sm leading-relaxed border-t bg-gray-50 animate-fadeIn">
+                          {qa.a}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))
+        )}
+      </section>
+
+      {/* Still need help */}
+      <section className="bg-gradient-to-r from-primary-500 to-pink-500 text-white">
+        <div className="max-w-3xl mx-auto px-4 py-10 text-center">
+          <FiMessageCircle className="mx-auto mb-3" size={40} />
+          <h2 className="text-2xl md:text-3xl font-extrabold">Still need help?</h2>
+          <p className="mt-2 opacity-95">Our team usually replies within one business day.</p>
+          <Link to="/contact" className="inline-block mt-5 bg-white text-primary-500 hover:bg-yellow-300 hover:text-gray-900 font-bold px-6 py-3 rounded-lg shadow-lg transition">
+            Contact Support
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+const ContactCard = ({ icon, title, desc, cta, link, color }) => {
+  const isExternal = link.startsWith('http') || link.startsWith('mailto:') || link.startsWith('tel:');
+  const Wrapper = isExternal ? 'a' : Link;
+  const props = isExternal ? { href: link, target: link.startsWith('http') ? '_blank' : undefined, rel: 'noopener noreferrer' } : { to: link };
+  return (
+    <Wrapper {...props} className={`${color} text-white rounded-2xl p-5 shadow-lg hover:shadow-xl hover:scale-105 transition flex items-center gap-4`}>
+      <div className="bg-white/20 backdrop-blur w-12 h-12 rounded-full flex items-center justify-center text-2xl flex-shrink-0">
+        {icon}
+      </div>
+      <div className="flex-1">
+        <p className="font-bold">{title}</p>
+        <p className="text-xs opacity-90">{desc}</p>
+        <p className="text-xs font-semibold mt-1">{cta} →</p>
+      </div>
+    </Wrapper>
+  );
+};

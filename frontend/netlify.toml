@@ -1,0 +1,22 @@
+# Netlify config for the Toy Mall frontend.
+# When you connect this repo on Netlify, set these in the dashboard:
+#   Base directory:  frontend
+#   Build command:   npm run build
+#   Publish dir:     dist   (Netlify resolves it relative to base dir, so → frontend/dist)
+#
+# In Netlify → Site → Settings → Environment variables, add:
+#   VITE_API_URL = https://YOUR-BACKEND.onrender.com/api
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback — every unknown URL serves index.html so React Router can handle it.
+# Without this, refreshing /shop, /admin, /product/123, etc. would return 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
