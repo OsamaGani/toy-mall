@@ -329,22 +329,68 @@ async function ensureDefaults() {
   }
 }
 
+// Idempotent helpers — each one only inserts what's missing. Safe to run on
+// every server startup, even on a partially-seeded database.
+
+async function seedDefaultUsersIfMissing() {
+  const adminEmail = 'admin@toymall.com';
+  const customerEmail = 'customer@toymall.com';
+  if (!(await User.findOne({ email: adminEmail }))) {
+    await User.create({ name: 'Admin', email: adminEmail, password: 'admin123', isAdmin: true, emailVerified: true });
+    console.log('🌱 Created admin user (admin@toymall.com / admin123)');
+  }
+  if (!(await User.findOne({ email: customerEmail }))) {
+    await User.create({ name: 'Demo Customer', email: customerEmail, password: 'customer123', emailVerified: true });
+    console.log('🌱 Created demo customer (customer@toymall.com / customer123)');
+  }
+}
+
+async function seedCategoriesIfMissing() {
+  const existingNames = new Set((await Category.find().select('name')).map((c) => c.name));
+  let added = 0;
+  for (const c of categories) {
+    if (!existingNames.has(c.name)) {
+      try { await Category.create(c); added++; } catch (err) {
+        console.warn(`⚠️  Could not insert category "${c.name}": ${err.message}`);
+      }
+    }
+  }
+  if (added) console.log(`🌱 Added ${added} legacy categories`);
+}
+
+async function seedBrandsIfMissing() {
+  const existingNames = new Set((await Brand.find().select('name')).map((b) => b.name));
+  let added = 0;
+  for (const b of brands) {
+    if (!existingNames.has(b.name)) {
+      try { await Brand.create(b); added++; } catch (err) {
+        console.warn(`⚠️  Could not insert brand "${b.name}": ${err.message}`);
+      }
+    }
+  }
+  if (added) console.log(`🌱 Added ${added} brands`);
+}
+
+async function seedProductsIfMissing() {
+  const productCount = await Product.countDocuments();
+  if (productCount > 0) return;
+  console.log(`🌱 No products found — seeding ${products.length} demo products...`);
+  let added = 0;
+  for (const p of products) {
+    try { await Product.create(p); added++; } catch (err) {
+      console.warn(`⚠️  Could not insert product "${p.name}": ${err.message}`);
+    }
+  }
+  console.log(`🌱 Added ${added}/${products.length} demo products`);
+}
+
 async function seedIfEmpty() {
   await ensureDefaults();
-  const userCount = await User.countDocuments();
-  if (userCount > 0) return false;
-
-  console.log('🌱 Seeding initial data...');
-  await User.create({ name: 'Admin', email: 'admin@toymall.com', password: 'admin123', isAdmin: true, emailVerified: true });
-  await User.create({ name: 'Demo Customer', email: 'customer@toymall.com', password: 'customer123', emailVerified: true });
-
-  for (const c of categories) await Category.create(c);
-  for (const b of brands) await Brand.create(b);
-  for (const p of products) await Product.create(p);
-
-  console.log('✅ Seed complete:');
-  console.log('   Admin    -> admin@toymall.com / admin123');
-  console.log('   Customer -> customer@toymall.com / customer123');
+  await seedDefaultUsersIfMissing();
+  await seedCategoriesIfMissing();
+  await seedBrandsIfMissing();
+  await seedProductsIfMissing();
+  console.log('✅ Seed checks complete');
   return true;
 }
 
