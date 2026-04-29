@@ -36,7 +36,16 @@ router.post(
     const emailCheck = validateEmailFormat(email);
     if (!emailCheck.ok) return res.status(400).json({ message: emailCheck.reason });
 
-    if (password.length < 6) return res.status(400).json({ message: 'Password must be at least 6 characters' });
+    // Strong password — keep aligned with the frontend strength meter (PasswordInput.jsx).
+    if (password.length < 8) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters' });
+    }
+    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) {
+      return res.status(400).json({ message: 'Password must contain both upper and lower case letters' });
+    }
+    if (!/\d/.test(password)) {
+      return res.status(400).json({ message: 'Password must contain at least one number' });
+    }
 
     const exists = await User.findOne({ email: emailCheck.email });
     if (exists) return res.status(400).json({ message: 'Email already registered' });

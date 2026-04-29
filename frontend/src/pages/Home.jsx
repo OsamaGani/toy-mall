@@ -165,11 +165,11 @@ export default function Home() {
               </div>
             ))}
 
-            {/* Arrows — always visible on touch devices, hover-only on desktop */}
-            <button onClick={prev} className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition">
+            {/* Arrows — hidden on mobile (use swipe + dots), hover-only on desktop. */}
+            <button onClick={prev} className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 w-11 h-11 rounded-full items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition">
               <FiChevronLeft size={20} />
             </button>
-            <button onClick={next} className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition">
+            <button onClick={next} className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 w-11 h-11 rounded-full items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition">
               <FiChevronRight size={20} />
             </button>
 
@@ -350,9 +350,13 @@ export default function Home() {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-2">Join our Toy Family</h2>
             <p className="text-gray-600 mb-4">Subscribe and get 10% off your first order plus exclusive deals.</p>
-            <form className="flex max-w-md gap-2">
-              <input className="flex-1 px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Your email" />
-              <button type="submit" className="btn-primary">Subscribe</button>
+            <form className="flex flex-col sm:flex-row gap-2 max-w-md">
+              <input
+                type="email"
+                className="flex-1 min-w-0 px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                placeholder="Your email"
+              />
+              <button type="submit" className="btn-primary whitespace-nowrap">Subscribe</button>
             </form>
           </div>
           <div>

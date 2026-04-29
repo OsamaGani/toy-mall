@@ -114,6 +114,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Close the user dropdown the moment the user starts scrolling — feels right
+  // on mobile where the menu floats below the navbar and isn't position:fixed.
+  useEffect(() => {
+    if (!openUser) return;
+    const onScrollClose = () => setOpenUser(false);
+    window.addEventListener('scroll', onScrollClose, { passive: true });
+    return () => window.removeEventListener('scroll', onScrollClose);
+  }, [openUser]);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (keyword.trim()) navigate(`/shop?keyword=${encodeURIComponent(keyword.trim())}`);
@@ -202,39 +211,87 @@ export default function Navbar() {
                 <span>{user ? user.name.split(' ')[0] : 'Login'}</span>
               </button>
               {openUser && (
-                <div className="absolute right-0 mt-2 w-60 bg-white border border-gray-100 rounded-xl shadow-2xl py-2 z-50 animate-fadeIn ring-1 ring-black/5 overflow-hidden">
+                <>
+                  {/* Mobile-only backdrop so tapping outside closes the menu */}
+                  <div
+                    className="sm:hidden fixed inset-0 z-40 bg-black/40 backdrop-blur-sm animate-fadeIn"
+                    onClick={() => setOpenUser(false)}
+                  />
+                  <div className="fixed sm:absolute right-2 sm:right-0 top-16 sm:top-auto sm:mt-2 w-[calc(100vw-1rem)] sm:w-72 max-w-sm bg-white rounded-2xl shadow-2xl z-50 animate-fadeIn ring-1 ring-black/5 overflow-hidden">
                   {user ? (
                     <>
-                      <div className="px-4 py-3 bg-gradient-to-br from-primary-50 to-pink-50 border-b">
-                        <p className="font-semibold text-sm text-gray-900 truncate">{user.name}</p>
-                        <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                        {user.accountType === 'wholesale' && (
-                          <span className="inline-block mt-1 text-[10px] font-bold bg-purple-100 text-purple-700 px-2 py-0.5 rounded">WHOLESALE</span>
-                        )}
+                      {/* Logged-in header with avatar circle */}
+                      <div className="px-5 py-4 bg-gradient-to-br from-primary-500 via-pink-500 to-fuchsia-600 text-white">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-full bg-white/25 backdrop-blur ring-2 ring-white/40 flex items-center justify-center text-xl font-extrabold flex-shrink-0">
+                            {user.name?.[0]?.toUpperCase() || '👤'}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-bold text-sm truncate">{user.name}</p>
+                            <p className="text-xs text-white/85 truncate">{user.email}</p>
+                            {user.accountType === 'wholesale' && (
+                              <span className="inline-block mt-1 text-[10px] font-extrabold bg-yellow-300 text-gray-900 px-2 py-0.5 rounded-full">WHOLESALE</span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <Link to="/profile" onClick={() => setOpenUser(false)} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm transition">👤 <span>My Profile</span></Link>
-                      <Link to="/orders" onClick={() => setOpenUser(false)} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm transition">📦 <span>My Orders</span></Link>
-                      <Link to="/wishlist" onClick={() => setOpenUser(false)} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm transition">❤ <span>My Wishlist</span></Link>
-                      {user.isAdmin && (
-                        <>
-                          <div className="my-1 border-t" />
-                          <Link to="/admin" onClick={() => setOpenUser(false)} className="flex items-center gap-2 px-4 py-2 hover:bg-primary-50 text-sm font-semibold text-primary-500 transition">⚙ <span>Admin Dashboard</span></Link>
-                        </>
-                      )}
-                      <div className="my-1 border-t" />
-                      <button onClick={() => { logout(); setOpenUser(false); }} className="flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-red-50 text-sm text-red-600 transition">🚪 <span>Logout</span></button>
+
+                      <div className="p-2">
+                        <DropdownLink to="/profile" onClick={() => setOpenUser(false)} icon="👤" label="My Profile" />
+                        <DropdownLink to="/orders"  onClick={() => setOpenUser(false)} icon="📦" label="My Orders" />
+                        <DropdownLink to="/wishlist" onClick={() => setOpenUser(false)} icon="❤" label="My Wishlist" />
+                        {user.isAdmin && (
+                          <>
+                            <div className="my-1.5 border-t border-gray-100" />
+                            <DropdownLink
+                              to="/admin"
+                              onClick={() => setOpenUser(false)}
+                              icon="⚙"
+                              label="Admin Dashboard"
+                              accent
+                            />
+                          </>
+                        )}
+                        <div className="my-1.5 border-t border-gray-100" />
+                        <button
+                          onClick={() => { logout(); setOpenUser(false); }}
+                          className="flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg hover:bg-red-50 text-sm font-medium text-red-600 transition active:scale-[0.98]"
+                        >
+                          <span className="text-lg">🚪</span>
+                          <span>Logout</span>
+                        </button>
+                      </div>
                     </>
                   ) : (
                     <>
-                      <div className="px-4 py-3 border-b">
-                        <p className="font-semibold text-sm text-gray-900">Welcome to Toy Mall</p>
-                        <p className="text-xs text-gray-500">Sign in to continue</p>
+                      {/* Logged-out header */}
+                      <div className="px-5 py-5 bg-gradient-to-br from-primary-500 via-pink-500 to-fuchsia-600 text-white text-center">
+                        <div className="w-14 h-14 mx-auto rounded-full bg-white/25 backdrop-blur ring-2 ring-white/40 flex items-center justify-center text-2xl mb-2">
+                          👋
+                        </div>
+                        <p className="font-bold text-base">Welcome to Toy Mall</p>
+                        <p className="text-xs text-white/85 mt-0.5">Sign in for orders, wishlist & deals</p>
                       </div>
-                      <Link to="/login" onClick={() => setOpenUser(false)} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm transition">🔑 <span>Login</span></Link>
-                      <Link to="/register" onClick={() => setOpenUser(false)} className="flex items-center gap-2 px-4 py-2 hover:bg-gray-50 text-sm transition">✨ <span>Create Account</span></Link>
+                      <div className="p-3 space-y-2">
+                        <Link
+                          to="/login"
+                          onClick={() => setOpenUser(false)}
+                          className="block w-full text-center bg-gradient-to-r from-primary-500 to-pink-500 hover:from-primary-600 hover:to-pink-600 text-white font-bold py-2.5 rounded-lg shadow-md hover:shadow-lg transition active:scale-[0.98]"
+                        >
+                          Sign In
+                        </Link>
+                        <Link
+                          to="/register"
+                          onClick={() => setOpenUser(false)}
+                          className="block w-full text-center border-2 border-gray-200 hover:border-primary-500 hover:text-primary-500 font-semibold py-2.5 rounded-lg transition active:scale-[0.98]"
+                        >
+                          Create Account
+                        </Link>
+                      </div>
                     </>
                   )}
-                </div>
+                  </div>
+                </>
               )}
             </div>
 
@@ -559,5 +616,29 @@ function DropdownTrigger({ label, active, onHover }) {
         {label} <FiChevronDown size={14} className={`transition ${active ? 'rotate-180' : ''}`} />
       </button>
     </li>
+  );
+}
+
+// Single row inside the user dropdown — bigger tap target, hover lift,
+// chevron on the right that subtly nudges on hover. `accent` styles it as
+// the admin entry-point.
+function DropdownLink({ to, onClick, icon, label, accent }) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition active:scale-[0.98] ${
+        accent
+          ? 'text-primary-600 bg-primary-50/70 hover:bg-primary-100'
+          : 'text-gray-700 hover:bg-gray-50'
+      }`}
+    >
+      <span className="text-lg w-6 text-center">{icon}</span>
+      <span className="flex-1">{label}</span>
+      <FiChevronDown
+        size={14}
+        className="-rotate-90 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition"
+      />
+    </Link>
   );
 }
