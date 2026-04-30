@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import FollowUs from './FollowUs';
+import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
   return (
@@ -42,20 +43,7 @@ export default function Footer() {
         <div className="col-span-2 md:col-span-1">
           <h3 className="font-bold text-white mb-3">Subscribe</h3>
           <p className="text-sm mb-3">Get latest deals and offers in your inbox.</p>
-          {/* Stacked on mobile, joined input + button on sm+ */}
-          <form className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-            <input
-              type="email"
-              className="flex-1 min-w-0 px-3 py-2 rounded-md sm:rounded-l-md sm:rounded-r-none bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
-              placeholder="Email address"
-            />
-            <button
-              type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-white font-semibold px-4 py-2 rounded-md sm:rounded-l-none sm:rounded-r-md text-sm transition whitespace-nowrap"
-            >
-              Subscribe
-            </button>
-          </form>
+          <NewsletterForm variant="dark" source="footer" />
           <ul className="mt-4 space-y-2 text-sm">
             <li className="flex items-center gap-2"><FiPhone /> +91 86557 87075</li>
             <li className="flex items-center gap-2"><FiMail /> Huraira735@gmail.com</li>

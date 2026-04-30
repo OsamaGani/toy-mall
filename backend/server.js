@@ -47,6 +47,7 @@ app.use('/api/payment', require('./routes/payment'));
 app.use('/api/wishlist', require('./routes/wishlist'));
 app.use('/api/wholesale-categories', require('./routes/wholesaleCategories'));
 app.use('/api/contact', require('./routes/contact'));
+app.use('/api/newsletter', require('./routes/newsletter'));
 
 app.use((err, req, res, next) => {
   console.error(err);

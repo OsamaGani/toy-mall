@@ -4,6 +4,7 @@ import API from '../api/axios';
 import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import FollowUs from '../components/FollowUs';
+import NewsletterForm from '../components/NewsletterForm';
 import StatsCounter from '../components/StatsCounter';
 import BrandMarquee from '../components/BrandMarquee';
 import VideoShowcase from '../components/VideoShowcase';
@@ -350,14 +351,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl md:text-3xl font-bold mb-2">Join our Toy Family</h2>
             <p className="text-gray-600 mb-4">Subscribe and get 10% off your first order plus exclusive deals.</p>
-            <form className="flex flex-col sm:flex-row gap-2 max-w-md">
-              <input
-                type="email"
-                className="flex-1 min-w-0 px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                placeholder="Your email"
-              />
-              <button type="submit" className="btn-primary whitespace-nowrap">Subscribe</button>
-            </form>
+            <NewsletterForm variant="light" source="home" />
           </div>
           <div>
             <FollowUs />
