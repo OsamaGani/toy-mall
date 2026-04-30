@@ -190,7 +190,7 @@ export default function Home() {
       <section className="border-b">
         <div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           <PromoStrip icon={<FiTruck />} title="Free Shipping" desc="On orders above ₹999" link="/shop" cta="Shop Now" color="bg-blue-50 text-blue-600" />
-          <PromoStrip icon={<FiPhone />} title="Give Us A Call" desc="+91 98000 00000" link="tel:+919800000000" cta="Talk to us" color="bg-green-50 text-green-600" />
+          <PromoStrip icon={<FiPhone />} title="Give Us A Call" desc="+91 86557 87075" link="tel:+918655787075" cta="Talk to us" color="bg-green-50 text-green-600" />
           <PromoStrip icon={<FiPackage />} title="Bulk Inquiry" desc="Wholesale prices for shops" link="/wholesale" cta="Learn more" color="bg-purple-50 text-purple-600" />
         </div>
       </section>

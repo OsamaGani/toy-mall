@@ -143,7 +143,7 @@ function buildHtml(order, template, customerName, adminNote, clientUrl) {
       </div>
 
       <p style="color:#6b7280;font-size:13px;line-height:1.6;text-align:center;margin:16px 0 0 0;">
-        Questions? Reply to this email or call <a href="tel:+919800000000" style="color:#e53935;">+91 98000 00000</a>
+        Questions? Reply to this email or call <a href="tel:+918655787075" style="color:#e53935;">+91 86557 87075</a>
       </p>
     </div>
 
@@ -151,7 +151,7 @@ function buildHtml(order, template, customerName, adminNote, clientUrl) {
     <div style="background:#f9fafb;padding:20px;text-align:center;border-top:1px solid #e5e7eb;">
       <p style="margin:0;font-size:12px;color:#6b7280;">Toy Mall</p>
       <p style="margin:4px 0 0 0;font-size:11px;color:#9ca3af;">Toy Mall · Mobin Apartment A Wing, Shop No. 4, Amrut Nagar, Near Dargah Road, Mumbra, Thane — 400612</p>
-      <p style="margin:2px 0 0 0;font-size:11px;color:#9ca3af;">📞 +91 98000 00000 · ✉ Huraira735@gmail.com</p>
+      <p style="margin:2px 0 0 0;font-size:11px;color:#9ca3af;">📞 +91 86557 87075 · ✉ Huraira735@gmail.com</p>
       <p style="margin:8px 0 0 0;font-size:11px;color:#9ca3af;">© ${new Date().getFullYear()} Toy Mall. All rights reserved.</p>
     </div>
   </div>

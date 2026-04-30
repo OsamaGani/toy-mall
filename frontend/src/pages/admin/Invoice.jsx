@@ -42,7 +42,7 @@ export default function Invoice() {
             <p className="text-xs text-gray-600 mt-1">Mobin Apartment A Wing, Shop No. 4</p>
             <p className="text-xs text-gray-600">Amrut Nagar, Near Dargah Road</p>
             <p className="text-xs text-gray-600">Mumbra, Thane — 400612, Maharashtra, India</p>
-            <p className="text-xs text-gray-600">+91 98000 00000 · Huraira735@gmail.com</p>
+            <p className="text-xs text-gray-600">+91 86557 87075 · Huraira735@gmail.com</p>
             <p className="text-xs text-gray-600">Owner: Abu Huraira Khan · GSTIN: 27AAAAA0000A1Z5</p>
           </div>
           <div className="text-right">

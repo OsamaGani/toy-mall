@@ -1,23 +1,28 @@
 import { useState } from 'react';
 import PageHeader from '../components/PageHeader';
 import toast from 'react-hot-toast';
-import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiMessageCircle } from 'react-icons/fi';
+import API from '../api/axios';
+import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiMessageCircle, FiCheckCircle } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
     setSending(true);
-    // No backend route for contact yet — this opens a mailto fallback
-    setTimeout(() => {
-      const body = encodeURIComponent(`Name: ${form.name}\nPhone: ${form.phone}\n\n${form.message}`);
-      window.location.href = `mailto:Huraira735@gmail.com?subject=${encodeURIComponent(form.subject || 'Toy Mall enquiry')}&body=${body}`;
-      toast.success('Opening your email client...');
+    try {
+      const { data } = await API.post('/contact', form);
+      toast.success(data.message || 'Message sent — we\'ll be in touch soon.');
+      setSent(true);
+      setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Could not send your message. Please try again.');
+    } finally {
       setSending(false);
-    }, 400);
+    }
   };
 
   return (
@@ -51,7 +56,7 @@ export default function Contact() {
           <InfoCard
             icon={<FiPhone />}
             title="Call Us"
-            lines={[<a href="tel:+919800000000" className="hover:text-primary-500">+91 98000 00000</a>]}
+            lines={[<a href="tel:+918655787075" className="hover:text-primary-500">+91 86557 87075</a>]}
             color="text-blue-500 bg-blue-50"
           />
           <InfoCard
@@ -75,7 +80,7 @@ export default function Contact() {
               <p className="font-bold flex items-center gap-2"><FaWhatsapp /> WhatsApp us</p>
               <p className="text-sm opacity-90 mt-1">Quickest way to reach us</p>
             </div>
-            <a href="https://wa.me/919800000000" target="_blank" rel="noopener noreferrer" className="bg-white text-green-600 font-bold px-4 py-2 rounded-md hover:bg-gray-100">Chat now</a>
+            <a href="https://wa.me/918655787075" target="_blank" rel="noopener noreferrer" className="bg-white text-green-600 font-bold px-4 py-2 rounded-md hover:bg-gray-100">Chat now</a>
           </div>
         </div>
 
@@ -83,6 +88,19 @@ export default function Contact() {
         <div className="bg-white border rounded-2xl shadow-sm p-6 md:p-8">
           <h2 className="text-2xl font-bold flex items-center gap-2 mb-1"><FiMessageCircle /> Send us a message</h2>
           <p className="text-sm text-gray-600 mb-5">We typically reply within one working day.</p>
+
+          {sent && (
+            <div className="mb-5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg p-4 flex items-start gap-3 animate-fadeIn">
+              <FiCheckCircle className="text-emerald-500 mt-0.5 flex-shrink-0" size={20} />
+              <div className="flex-1">
+                <p className="font-bold text-sm">Message sent!</p>
+                <p className="text-xs mt-0.5">Thanks for reaching out — Abu Huraira will get back to you soon at the email you provided.</p>
+              </div>
+              <button type="button" onClick={() => setSent(false)} className="text-emerald-700 hover:text-emerald-900 text-xs font-semibold underline">
+                Send another
+              </button>
+            </div>
+          )}
 
           <form onSubmit={submit} className="space-y-4">
             <div className="grid md:grid-cols-2 gap-3">

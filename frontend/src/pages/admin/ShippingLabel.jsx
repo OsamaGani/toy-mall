@@ -59,7 +59,7 @@ export default function ShippingLabel() {
           <p>Mobin Apartment A Wing, Shop No. 4</p>
           <p>Amrut Nagar, Near Dargah Road</p>
           <p>Mumbra, Thane — 400612</p>
-          <p>📞 +91 98000 00000</p>
+          <p>📞 +91 86557 87075</p>
         </div>
 
         {/* TO - the most prominent */}

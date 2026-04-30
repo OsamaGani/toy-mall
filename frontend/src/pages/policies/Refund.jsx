@@ -54,7 +54,7 @@ export default function Refund() {
 
       <h2 className="text-xl font-bold mt-6 mb-2">Need help?</h2>
       <p className="text-gray-700">
-        We're here to help — email <a href="mailto:Huraira735@gmail.com" className="text-primary-500 hover:underline">Huraira735@gmail.com</a> or WhatsApp us at <a href="https://wa.me/919800000000" className="text-primary-500 hover:underline">+91 98000 00000</a>.
+        We're here to help — email <a href="mailto:Huraira735@gmail.com" className="text-primary-500 hover:underline">Huraira735@gmail.com</a> or WhatsApp us at <a href="https://wa.me/918655787075" className="text-primary-500 hover:underline">+91 86557 87075</a>.
       </p>
     </PolicyLayout>
   );

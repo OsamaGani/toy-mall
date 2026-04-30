@@ -6,7 +6,7 @@ const socials = [
   { Icon: FiFacebook,   href: 'https://facebook.com',     label: 'Facebook' },
   { Icon: FiInstagram,  href: 'https://instagram.com',    label: 'Instagram' },
   { Icon: FiLinkedin,   href: 'https://linkedin.com',     label: 'LinkedIn' },
-  { Icon: FaWhatsapp,   href: 'https://wa.me/919800000000', label: 'WhatsApp' },
+  { Icon: FaWhatsapp,   href: 'https://wa.me/918655787075', label: 'WhatsApp' },
   { Icon: FiYoutube,    href: 'https://youtube.com',      label: 'YouTube' },
 ];
 

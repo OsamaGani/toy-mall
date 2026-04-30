@@ -111,8 +111,8 @@ export default function Help() {
 
       {/* Quick contact cards */}
       <section className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <ContactCard icon={<FaWhatsapp />} title="WhatsApp" desc="Chat with us instantly" cta="Open chat" link="https://wa.me/919800000000" color="bg-gradient-to-br from-green-500 to-emerald-600" />
-        <ContactCard icon={<FiPhone />} title="Call Us" desc="+91 98000 00000" cta="Call now" link="tel:+919800000000" color="bg-gradient-to-br from-blue-500 to-indigo-600" />
+        <ContactCard icon={<FaWhatsapp />} title="WhatsApp" desc="Chat with us instantly" cta="Open chat" link="https://wa.me/918655787075" color="bg-gradient-to-br from-green-500 to-emerald-600" />
+        <ContactCard icon={<FiPhone />} title="Call Us" desc="+91 86557 87075" cta="Call now" link="tel:+918655787075" color="bg-gradient-to-br from-blue-500 to-indigo-600" />
         <ContactCard icon={<FiMail />} title="Email Us" desc="Huraira735@gmail.com" cta="Send email" link="mailto:Huraira735@gmail.com" color="bg-gradient-to-br from-primary-500 to-pink-600" />
       </section>
 

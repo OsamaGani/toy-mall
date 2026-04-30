@@ -31,7 +31,7 @@ function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-async function sendEmail({ to, subject, html, text }) {
+async function sendEmail({ to, subject, html, text, replyTo }) {
   // If real SMTP is configured (SMTP_HOST), use nodemailer
   if (process.env.SMTP_HOST && process.env.SMTP_USER) {
     try {
@@ -45,6 +45,7 @@ async function sendEmail({ to, subject, html, text }) {
       await transporter.sendMail({
         from: process.env.SMTP_FROM || `"Toy Mall" <${process.env.SMTP_USER}>`,
         to, subject, html, text,
+        ...(replyTo ? { replyTo } : {}),
       });
       return { sent: true };
     } catch (err) {
