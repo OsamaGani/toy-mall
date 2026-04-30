@@ -55,6 +55,7 @@ const orderSchema = new mongoose.Schema(
     statusHistory: [statusEvent],
     estimatedDelivery: Date,
     trackingNumber: String,
+    carrier: { type: String, default: '' }, // e.g. 'Bluedart', 'FedEx', 'Self Delivery'
   },
   { timestamps: true }
 );

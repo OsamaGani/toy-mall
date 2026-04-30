@@ -9,7 +9,7 @@ const STEPS = [
   { key: 'delivered',        label: 'Delivered',        icon: <FiHome />,        desc: 'Successfully delivered' },
 ];
 
-export default function OrderTimeline({ status, history = [], estimatedDelivery, trackingNumber }) {
+export default function OrderTimeline({ status, history = [], estimatedDelivery, trackingNumber, carrier }) {
   if (status === 'cancelled') {
     return (
       <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
@@ -32,8 +32,22 @@ export default function OrderTimeline({ status, history = [], estimatedDelivery,
               Estimated delivery: <span className="font-semibold">{new Date(estimatedDelivery).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</span>
             </p>
           )}
-          {trackingNumber && (
-            <p className="text-sm text-gray-600 mt-1">Tracking: <span className="font-mono font-semibold">{trackingNumber}</span></p>
+          {(carrier || trackingNumber) && (
+            <div className="mt-2 inline-flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+              {carrier && (
+                <span className="inline-flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-md text-gray-700">
+                  <FiTruck size={14} className="text-gray-500" />
+                  <span className="text-xs text-gray-500">Delivery via</span>
+                  <span className="font-semibold">{carrier}</span>
+                </span>
+              )}
+              {trackingNumber && (
+                <span className="inline-flex items-center gap-1 bg-gray-100 px-2 py-1 rounded-md text-gray-700">
+                  <span className="text-xs text-gray-500">Tracking</span>
+                  <span className="font-mono font-semibold">{trackingNumber}</span>
+                </span>
+              )}
+            </div>
           )}
         </div>
       </div>

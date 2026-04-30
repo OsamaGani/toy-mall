@@ -16,6 +16,7 @@ export default function AdminOrderDetail() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [trackingNumber, setTrackingNumber] = useState('');
+  const [carrier, setCarrier] = useState('');
   const [note, setNote] = useState('');
 
   const load = async () => {
@@ -24,6 +25,7 @@ export default function AdminOrderDetail() {
       const { data } = await API.get(`/orders/${id}`);
       setOrder(data);
       setTrackingNumber(data.trackingNumber || '');
+      setCarrier(data.carrier || '');
     } catch (e) { toast.error('Order not found'); }
     finally { setLoading(false); }
   };
@@ -33,8 +35,7 @@ export default function AdminOrderDetail() {
   const updateStatus = async (newStatus) => {
     setUpdating(true);
     try {
-      const payload = { status: newStatus, note };
-      if (trackingNumber) payload.trackingNumber = trackingNumber;
+      const payload = { status: newStatus, note, trackingNumber, carrier };
       const { data } = await API.put(`/orders/${id}/status`, payload);
       toast.success(`Status updated to ${newStatus.replace(/_/g, ' ')}`);
       if (data.emailSent) {
@@ -76,20 +77,42 @@ export default function AdminOrderDetail() {
         </div>
       </div>
 
-      <OrderTimeline status={order.status} history={order.statusHistory} estimatedDelivery={order.estimatedDelivery} trackingNumber={order.trackingNumber} />
+      <OrderTimeline status={order.status} history={order.statusHistory} estimatedDelivery={order.estimatedDelivery} trackingNumber={order.trackingNumber} carrier={order.carrier} />
 
       {/* Status update controls */}
       <div className="bg-white border rounded-lg p-5 mt-4">
         <h2 className="font-bold mb-1 flex items-center gap-2"><FiTruck /> Update Order Status</h2>
         <p className="text-xs text-gray-500 mb-3">📧 Customer is automatically emailed on every status change</p>
-        <div className="grid md:grid-cols-2 gap-3 mb-3">
+        <div className="grid md:grid-cols-3 gap-3 mb-3">
+          <div>
+            <label className="label">Delivery via (optional)</label>
+            <input
+              list="carriers"
+              className="input"
+              value={carrier}
+              onChange={(e) => setCarrier(e.target.value)}
+              placeholder="e.g. Bluedart"
+            />
+            <datalist id="carriers">
+              <option value="Bluedart" />
+              <option value="FedEx" />
+              <option value="DTDC" />
+              <option value="Delhivery" />
+              <option value="DHL" />
+              <option value="Ekart" />
+              <option value="India Post" />
+              <option value="Shadowfax" />
+              <option value="Xpressbees" />
+              <option value="Self Delivery" />
+            </datalist>
+          </div>
           <div>
             <label className="label">Tracking Number (optional)</label>
             <input className="input" value={trackingNumber} onChange={(e) => setTrackingNumber(e.target.value)} placeholder="e.g. TRK1234567890" />
           </div>
           <div>
             <label className="label">Note (optional)</label>
-            <input className="input" value={note} onChange={(e) => setNote(e.target.value)} placeholder="e.g. Out for delivery via FedEx" />
+            <input className="input" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Any extra info for the customer" />
           </div>
         </div>
         <div className="flex flex-wrap gap-2">

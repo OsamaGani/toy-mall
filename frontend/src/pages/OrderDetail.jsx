@@ -115,6 +115,7 @@ export default function OrderDetail() {
         history={order.statusHistory}
         estimatedDelivery={order.estimatedDelivery}
         trackingNumber={order.trackingNumber}
+        carrier={order.carrier}
       />
 
       {/* Retry-payment banner for unpaid online orders (Stripe or Razorpay). */}

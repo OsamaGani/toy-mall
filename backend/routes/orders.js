@@ -83,8 +83,11 @@ router.put('/:id/status', protect, admin, asyncHandler(async (req, res) => {
   const oldStatus = order.status;
   order.status = newStatus;
   order.statusHistory.push({ status: newStatus, note, at: new Date() });
-  if (req.body.trackingNumber) {
+  if (req.body.trackingNumber !== undefined) {
     order.trackingNumber = req.body.trackingNumber;
+  }
+  if (req.body.carrier !== undefined) {
+    order.carrier = req.body.carrier;
   }
   if (newStatus === 'delivered') {
     order.isDelivered = true;

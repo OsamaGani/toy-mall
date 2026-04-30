@@ -65,14 +65,23 @@ function absoluteImage(image, apiBase) {
 function buildHtml(order, template, customerName, adminNote, clientUrl) {
   const orderUrl = `${clientUrl}/order/${order._id}`;
   const apiBase = process.env.API_BASE_URL || `http://localhost:${process.env.PORT || 5000}`;
-  // Show tracking whenever it's set on the order — admin may fill it on
-  // 'confirmed' or 'packed' status updates, and customers want to see it
-  // in every status email going forward, not only on shipped/out_for_delivery.
-  const trackingBlock = order.trackingNumber
+  // Tracking + carrier — shown on every status email once they're set.
+  const hasTracking = !!order.trackingNumber;
+  const hasCarrier  = !!order.carrier;
+  const trackingBlock = (hasTracking || hasCarrier)
     ? `
       <div style="background:#f3f4f6;border-radius:8px;padding:14px;margin:16px 0;">
-        <p style="margin:0;font-size:11px;color:#6b7280;font-weight:600;letter-spacing:0.5px;">📦 TRACKING NUMBER</p>
-        <p style="margin:6px 0 0 0;font-family:monospace;font-size:18px;font-weight:bold;color:#111827;letter-spacing:1px;">${order.trackingNumber}</p>
+        <p style="margin:0;font-size:11px;color:#6b7280;font-weight:600;letter-spacing:0.5px;">📦 SHIPMENT DETAILS</p>
+        ${hasCarrier ? `
+          <p style="margin:8px 0 0 0;font-size:13px;color:#374151;">
+            <span style="color:#6b7280;">Delivery via</span>
+            <strong style="color:#111827;">${order.carrier}</strong>
+          </p>
+        ` : ''}
+        ${hasTracking ? `
+          <p style="margin:6px 0 0 0;font-size:13px;color:#6b7280;">Tracking #</p>
+          <p style="margin:2px 0 0 0;font-family:monospace;font-size:18px;font-weight:bold;color:#111827;letter-spacing:1px;">${order.trackingNumber}</p>
+        ` : ''}
       </div>
     ` : '';
 
@@ -165,6 +174,9 @@ function buildHtml(order, template, customerName, adminNote, clientUrl) {
 
 function buildText(order, template, customerName, adminNote) {
   let text = `Hi ${customerName},\n\n${template.headline}\n\n${template.message}\n\nOrder Number: ${order.orderNumber}\n`;
+  if (order.carrier) {
+    text += `Delivery via: ${order.carrier}\n`;
+  }
   if (order.trackingNumber) {
     text += `Tracking Number: ${order.trackingNumber}\n`;
   }
