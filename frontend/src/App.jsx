@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import MobileBackBar from './components/MobileBackBar';
 import Footer from './components/Footer';
 import VerifyEmailBanner from './components/VerifyEmailBanner';
 import ScrollToTop from './components/ScrollToTop';
@@ -66,6 +67,7 @@ export default function App() {
       <ScrollToTop />
       {!isInvoice && <RouteLoader duration={700} />}
       {!isInvoice && <Navbar />}
+      {!isInvoice && <MobileBackBar />}
       {!isInvoice && <VerifyEmailBanner />}
       {/* `key={pathname}` re-mounts the wrapper on each route change so the
            CSS keyframe restarts and every page gets a soft fade-in instead
