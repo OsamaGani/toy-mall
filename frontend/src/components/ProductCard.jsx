@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
   const stars = Math.max(0, Math.min(5, product.rating || 0));
 
   return (
-    <div className="card group relative bg-white rounded-lg border hover:border-primary-300 hover:shadow-lg transition-all duration-200 overflow-hidden flex flex-col">
+    <div className="card group relative bg-white rounded-lg border hover:border-primary-300 hover:shadow-lg transition-all duration-200 overflow-hidden self-start">
       {/* Top-left badges */}
       <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
         {product.discount > 0 && (
@@ -53,11 +53,10 @@ export default function ProductCard({ product }) {
         <FiHeart size={15} className={wished ? 'fill-current' : ''} />
       </button>
 
-      {/* Image — square aspect so the photo dominates the card without
-          changing the overall card width set by the parent grid. */}
+      {/* Image — portrait aspect so the photo is the hero of the card. */}
       <Link
         to={`/product/${product._id}`}
-        className="block aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-white p-2 sm:p-3 relative"
+        className="block aspect-[4/5] overflow-hidden bg-gradient-to-br from-gray-50 to-white p-1.5 sm:p-2 relative"
       >
         <img
           src={resolveImage(product.image || product.images?.[0])}
@@ -75,7 +74,7 @@ export default function ProductCard({ product }) {
       </Link>
 
       {/* Body — compact info column, image stays the hero */}
-      <div className="px-2 py-1.5 sm:px-2.5 sm:py-2 flex flex-col flex-1">
+      <div className="px-2 py-1.5 sm:px-2.5 sm:py-2">
         <p className="text-[8px] sm:text-[9px] uppercase tracking-wide text-gray-400 truncate font-semibold">
           {product.brand}
         </p>
@@ -120,9 +119,6 @@ export default function ProductCard({ product }) {
               : <span className="text-emerald-600 font-semibold inline-flex items-center gap-0.5"><FiTruck size={9} /> Free delivery</span>}
           </p>
         )}
-
-        {/* Spacer pushes buttons to bottom for grid alignment */}
-        <div className="flex-1" />
 
         {/* Mobile: single full-width Add button */}
         <button
