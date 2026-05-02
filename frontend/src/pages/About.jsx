@@ -2,6 +2,7 @@ import PageHeader from '../components/PageHeader';
 import Reveal from '../components/Reveal';
 import { Link } from 'react-router-dom';
 import { FiAward, FiHeart, FiTruck, FiShield, FiUsers, FiPackage, FiArrowRight } from 'react-icons/fi';
+import SEO from '../components/SEO';
 
 const values = [
   { icon: <FiAward />, title: 'Authentic Brands', desc: 'Every toy is sourced directly from authorized distributors. No fakes, ever.' },
@@ -20,6 +21,11 @@ const stats = [
 export default function About() {
   return (
     <div>
+      <SEO
+        title="About Toy Mall — Authentic Toys, Trusted Brands, Pan-India Delivery"
+        description="Toy Mall is a Mumbra-based online toy store delivering authentic LEGO, Hot Wheels, Barbie, Nerf and more across India. BIS/EN71 certified, fast shipping, COD available."
+        path="/about"
+      />
       <PageHeader
         title="About Toy Mall"
         subtitle="A neighbourhood toy store from Mumbra reaching kids across India — one smile at a time."

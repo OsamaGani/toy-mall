@@ -9,9 +9,12 @@ import { FiShoppingCart, FiHeart, FiStar, FiTruck, FiShield, FiRefreshCw, FiChev
 import { useWishlist } from '../context/WishlistContext';
 import { resolveImage } from '../utils/imageUrl';
 import toast from 'react-hot-toast';
+import SEO, { SITE_URL, SITE_NAME } from '../components/SEO';
 
 export default function ProductDetail() {
-  const { id } = useParams();
+  // Route param is "slug" but we accept any product identifier (slug or
+  // legacy ObjectId) — the backend route resolves either.
+  const { slug: id } = useParams();
   const { addToCart } = useCart();
   const { isInWishlist, toggle: toggleWishlist } = useWishlist();
   const { user } = useAuth();
@@ -127,8 +130,57 @@ export default function ProductDetail() {
     }
   };
 
+  // ----- SEO + Product structured data -----
+  // Strip HTML and trim to a meta-description-friendly length so the
+  // snippet Google shows isn't a wall of marketing copy.
+  const cleanDesc = String(product.description || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const metaDesc = (cleanDesc || `Buy ${product.name} online at ${SITE_NAME} — best price in India, fast delivery, COD available.`).slice(0, 160);
+  const productImages = (product.images && product.images.length ? product.images : [product.image])
+    .filter(Boolean)
+    .map((img) => resolveImage(img));
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: cleanDesc.slice(0, 5000) || product.name,
+    image: productImages,
+    sku: product._id,
+    brand: product.brand ? { '@type': 'Brand', name: product.brand } : undefined,
+    category: product.category,
+    offers: {
+      '@type': 'Offer',
+      url: `${SITE_URL}/product/${product.slug || product._id}`,
+      priceCurrency: 'INR',
+      price: final.toFixed(2),
+      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+      availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: { '@type': 'Organization', name: SITE_NAME },
+    },
+    ...(product.numReviews > 0 && product.rating > 0 ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: Number(product.rating).toFixed(1),
+        reviewCount: product.numReviews,
+        bestRating: '5',
+        worstRating: '1',
+      },
+    } : {}),
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
+      <SEO
+        title={`${product.name}${product.brand ? ` — ${product.brand}` : ''} | Buy Online in India`}
+        description={metaDesc}
+        image={productImages[0]}
+        path={`/product/${product.slug || product._id}`}
+        type="product"
+        jsonLd={productJsonLd}
+      />
       <nav className="text-xs sm:text-sm text-gray-500 mb-4 flex items-center gap-1.5 flex-wrap">
         <Link to="/" className="hover:text-primary-500">Home</Link>
         <span>›</span>

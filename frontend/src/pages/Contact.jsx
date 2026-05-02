@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import API from '../api/axios';
 import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiMessageCircle, FiCheckCircle } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -27,6 +28,11 @@ export default function Contact() {
 
   return (
     <div>
+      <SEO
+        title="Contact Toy Mall — Mumbra, Thane | +91 86557 87075"
+        description="Get in touch with Toy Mall for orders, bulk wholesale enquiries, or product questions. Visit our store in Mumbra, Thane or call +91 86557 87075."
+        path="/contact"
+      />
       <PageHeader
         title="Contact Us"
         subtitle="Questions, bulk enquiries, partnership ideas — we'd love to hear from you."

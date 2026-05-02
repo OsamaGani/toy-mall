@@ -5,6 +5,7 @@ import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import { FiFilter, FiX } from 'react-icons/fi';
 import { allSubCategoryNames } from '../config/departments';
+import SEO from '../components/SEO';
 
 const legacyCategories = ['Construction', 'Games', 'Pretend Play', 'Learning & Education', 'Vehicles', 'Active Play', 'Wooden Toys', 'Dolls', 'Action Figures', 'Ride Ons', 'Outdoor Toys', 'Books', 'Baby & Toddler'];
 const categories = Array.from(new Set([...legacyCategories, ...allSubCategoryNames])).sort();
@@ -65,6 +66,19 @@ export default function Shop() {
     category || brand || ageGroup || (featured && 'Featured Toys') ||
     (bestSeller && 'Best Sellers') || (newArrival && 'New Arrivals') || 'All Toys';
 
+  // Build a search-friendly title from whichever filters are active so each
+  // permutation of the shop URL gets its own indexable page in Google.
+  const seoTitle = keyword
+    ? `${keyword} — Shop Toys Online`
+    : (brand && category) ? `${brand} ${category} — Shop Online India`
+    : brand ? `${brand} Toys — Buy Online in India`
+    : category ? `${category} — Buy Online in India`
+    : ageGroup ? `Toys for ${ageGroup} — Shop Online`
+    : 'Shop All Toys Online — Best Prices in India';
+  const seoDescription = keyword
+    ? `Shop ${keyword} at Toy Mall. Best prices on toys in India with fast delivery and Cash on Delivery.`
+    : `Browse ${headerLabel.toLowerCase()} at Toy Mall — top brands, age-appropriate toys, fast pan-India delivery, COD available, easy returns.`;
+
   const FilterPanel = (
     <div className="space-y-6 text-sm">
       <FilterGroup title="Category" items={categories} active={category} onChange={(v) => updateParam('category', v)} />
@@ -76,6 +90,7 @@ export default function Shop() {
 
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <SEO title={seoTitle} description={seoDescription} path="/shop" />
       <div className="flex flex-wrap justify-between items-center gap-3 mb-4 sm:mb-6 border-b pb-3 sm:pb-4">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold truncate max-w-full">{headerLabel}</h1>
         <div className="flex items-center gap-2 sm:gap-3">

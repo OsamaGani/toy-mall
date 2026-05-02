@@ -56,7 +56,7 @@ export default function ProductCard({ product }) {
       {/* Image — square aspect matches most product photos so they fill the area
           without letterboxing. No inner padding so the photo runs edge-to-edge. */}
       <Link
-        to={`/product/${product._id}`}
+        to={`/product/${product.slug || product._id}`}
         className="block aspect-square overflow-hidden bg-white relative"
       >
         <img
@@ -80,7 +80,7 @@ export default function ProductCard({ product }) {
           {product.brand}
         </p>
 
-        <Link to={`/product/${product._id}`}>
+        <Link to={`/product/${product.slug || product._id}`}>
           <h3 className="font-medium text-[11px] sm:text-xs text-gray-800 line-clamp-2 hover:text-primary-500 leading-snug">
             {product.name}
           </h3>
@@ -134,7 +134,7 @@ export default function ProductCard({ product }) {
         {/* Desktop: View + Add side by side */}
         <div className="hidden sm:flex gap-1.5 mt-1.5">
           <Link
-            to={`/product/${product._id}`}
+            to={`/product/${product.slug || product._id}`}
             className="flex-1 border border-gray-200 hover:border-primary-500 hover:text-primary-500 text-[10px] font-semibold py-1 rounded text-center inline-flex items-center justify-center gap-1 transition"
           >
             <FiEye size={10} /> View

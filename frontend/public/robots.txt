@@ -1,0 +1,23 @@
+# Toy Mall — robots.txt
+# Allow all crawlers everywhere except admin / auth / cart paths that
+# leak no public-search value and waste crawl budget.
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /checkout
+Disallow: /profile
+Disallow: /orders
+Disallow: /order/
+Disallow: /cart
+Disallow: /wishlist
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /verify-email
+
+# Sitemap is generated dynamically by the API so freshly added products
+# are picked up by Google without a manual rebuild.
+Sitemap: https://toy-mall.pages.dev/sitemap.xml

@@ -10,6 +10,7 @@ import BrandMarquee from '../components/BrandMarquee';
 import VideoShowcase from '../components/VideoShowcase';
 import Reveal from '../components/Reveal';
 import { FiTruck, FiShield, FiRefreshCw, FiHeadphones, FiArrowRight, FiPhone, FiPackage, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import SEO from '../components/SEO';
 // FiShield, FiRefreshCw, FiHeadphones used in the USP trust strip below
 
 const heroSlides = [
@@ -123,6 +124,12 @@ export default function Home() {
 
   return (
     <div>
+      <SEO
+        title="Buy Toys Online in India — LEGO, Hot Wheels, Barbie, Nerf & More"
+        description="Shop kids toys online at Toy Mall. LEGO sets, Hot Wheels cars, Barbie dolls, Nerf blasters, action figures, building blocks, board games, soft toys & remote control cars. Fast delivery across India, COD available, wholesale prices for retailers."
+        path="/"
+        keywords="buy toys online India, kids toys, LEGO India, Hot Wheels, Barbie dolls, Nerf guns, remote control car, action figures, educational toys, board games, soft toys, wholesale toys, toys under 500"
+      />
       {/* Hero carousel */}
       <section className="bg-gray-50">
         <div className="w-full">

@@ -1,9 +1,20 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
 const Product = require('../models/Product');
 const { protect, admin } = require('../middleware/auth');
 
 const router = express.Router();
+
+// Look up a product by either Mongo ObjectId or its SEO slug.
+// Old links like /product/65f1...  keep working; new links use /product/lego-classic-bricks.
+async function findProductByIdOrSlug(idOrSlug) {
+  if (mongoose.isValidObjectId(idOrSlug)) {
+    const byId = await Product.findById(idOrSlug);
+    if (byId) return byId;
+  }
+  return Product.findOne({ slug: idOrSlug });
+}
 
 router.get(
   '/',
@@ -44,10 +55,11 @@ router.get(
 );
 
 router.get(
-  '/:id',
+  '/:idOrSlug',
   asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id).populate('reviews.user', 'name');
+    const product = await findProductByIdOrSlug(req.params.idOrSlug);
     if (!product) return res.status(404).json({ message: 'Product not found' });
+    await product.populate('reviews.user', 'name');
     res.json(product);
   })
 );
@@ -55,9 +67,9 @@ router.get(
 // Related products: items in the same category and items from the same brand,
 // excluding the product the customer is currently viewing.
 router.get(
-  '/:id/related',
+  '/:idOrSlug/related',
   asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
+    const product = await findProductByIdOrSlug(req.params.idOrSlug);
     if (!product) return res.status(404).json({ message: 'Product not found' });
 
     const limit = Math.min(Number(req.query.limit) || 12, 24);

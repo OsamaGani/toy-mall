@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import Reveal from '../components/Reveal';
 import { getCategory, getDepartment } from '../config/departments';
 import { FiFilter, FiX, FiArrowRight, FiZap } from 'react-icons/fi';
+import SEO from '../components/SEO';
 
 const ages = ['2-4 Years', '4-6 Years', '6-8 Years', '8 Years+'];
 const priceBuckets = [
@@ -133,6 +134,11 @@ export default function Category() {
 
   return (
     <div className="bg-white">
+      <SEO
+        title={`${cat.name} — Buy ${cat.name} Online in India`}
+        description={`Shop ${cat.name.toLowerCase()} at Toy Mall. ${cat.tagline || ''} Best prices, top brands, fast delivery across India, Cash on Delivery available, easy returns.`.trim()}
+        path={`/category/${slug}`}
+      />
       {/* Hero */}
       <section className={`relative overflow-hidden bg-gradient-to-br ${dept?.color || 'from-primary-500 to-pink-600'} text-white`}>
         <div className="absolute -top-20 -right-10 w-72 h-72 bg-white/15 rounded-full blur-3xl animate-float" />

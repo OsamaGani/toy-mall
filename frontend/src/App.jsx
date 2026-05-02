@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -7,48 +8,55 @@ import RouteLoader from './components/RouteLoader';
 import FloatingActions from './components/FloatingActions';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
+import Loader from './components/Loader';
 
+// Eager — these are the high-traffic public pages every visitor hits.
 import Home from './pages/Home';
 import Shop from './pages/Shop';
-import ActionToys from './pages/ActionToys';
 import Department from './pages/Department';
 import Category from './pages/Category';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import VerifyEmail from './pages/VerifyEmail';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
-import Profile from './pages/Profile';
-import MyOrders from './pages/MyOrders';
-import OrderDetail from './pages/OrderDetail';
-import Wholesale from './pages/Wholesale';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Franchise from './pages/Franchise';
-import Help from './pages/Help';
-import Wishlist from './pages/Wishlist';
-import ShippingPolicy from './pages/policies/Shipping';
-import PrivacyPolicy from './pages/policies/Privacy';
-import TermsOfService from './pages/policies/Terms';
-import RefundPolicy from './pages/policies/Refund';
 import NotFound from './pages/NotFound';
 
-import AdminDashboard from './pages/admin/Dashboard';
-import AdminProducts from './pages/admin/Products';
-import AdminActionToys from './pages/admin/ActionToys';
-import AdminProductForm from './pages/admin/ProductForm';
-import AdminBulkAdd from './pages/admin/BulkAdd';
-import AdminOrders from './pages/admin/Orders';
-import AdminOrderDetail from './pages/admin/OrderDetail';
-import AdminInvoice from './pages/admin/Invoice';
-import AdminShippingLabel from './pages/admin/ShippingLabel';
-import AdminUsers from './pages/admin/Users';
-import AdminCategories from './pages/admin/Categories';
-import AdminBrands from './pages/admin/Brands';
-import AdminWholesaleCategories from './pages/admin/WholesaleCategories';
+// Lazy — split into separate chunks so the initial bundle stays small.
+// Casual shoppers never download admin or account-management code.
+const ActionToys      = lazy(() => import('./pages/ActionToys'));
+const Checkout        = lazy(() => import('./pages/Checkout'));
+const VerifyEmail     = lazy(() => import('./pages/VerifyEmail'));
+const ForgotPassword  = lazy(() => import('./pages/ForgotPassword'));
+const ResetPassword   = lazy(() => import('./pages/ResetPassword'));
+const Profile         = lazy(() => import('./pages/Profile'));
+const MyOrders        = lazy(() => import('./pages/MyOrders'));
+const OrderDetail     = lazy(() => import('./pages/OrderDetail'));
+const Wholesale       = lazy(() => import('./pages/Wholesale'));
+const About           = lazy(() => import('./pages/About'));
+const Contact         = lazy(() => import('./pages/Contact'));
+const Franchise       = lazy(() => import('./pages/Franchise'));
+const Help            = lazy(() => import('./pages/Help'));
+const Wishlist        = lazy(() => import('./pages/Wishlist'));
+const ShippingPolicy  = lazy(() => import('./pages/policies/Shipping'));
+const PrivacyPolicy   = lazy(() => import('./pages/policies/Privacy'));
+const TermsOfService  = lazy(() => import('./pages/policies/Terms'));
+const RefundPolicy    = lazy(() => import('./pages/policies/Refund'));
+
+// Admin section — heavy + only ever used by store owner. Every page is
+// lazy-loaded so the initial JS bundle for shoppers is dramatically smaller.
+const AdminDashboard          = lazy(() => import('./pages/admin/Dashboard'));
+const AdminProducts           = lazy(() => import('./pages/admin/Products'));
+const AdminActionToys         = lazy(() => import('./pages/admin/ActionToys'));
+const AdminProductForm        = lazy(() => import('./pages/admin/ProductForm'));
+const AdminBulkAdd            = lazy(() => import('./pages/admin/BulkAdd'));
+const AdminOrders             = lazy(() => import('./pages/admin/Orders'));
+const AdminOrderDetail        = lazy(() => import('./pages/admin/OrderDetail'));
+const AdminInvoice            = lazy(() => import('./pages/admin/Invoice'));
+const AdminShippingLabel      = lazy(() => import('./pages/admin/ShippingLabel'));
+const AdminUsers              = lazy(() => import('./pages/admin/Users'));
+const AdminCategories         = lazy(() => import('./pages/admin/Categories'));
+const AdminBrands             = lazy(() => import('./pages/admin/Brands'));
+const AdminWholesaleCategories = lazy(() => import('./pages/admin/WholesaleCategories'));
 
 export default function App() {
   const { pathname } = useLocation();
@@ -63,13 +71,14 @@ export default function App() {
            CSS keyframe restarts and every page gets a soft fade-in instead
            of popping in instantly. */}
       <main key={pathname} className="flex-1 animate-pageEnter">
+        <Suspense fallback={<Loader size="lg" />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/action-toys" element={<ActionToys />} />
           <Route path="/dept/:slug" element={<Department />} />
           <Route path="/category/:slug" element={<Category />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -115,6 +124,7 @@ export default function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       {!isInvoice && <Footer />}
       {!isInvoice && <FloatingActions />}

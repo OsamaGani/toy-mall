@@ -118,6 +118,10 @@ app.use('/api/', limiterGlobal); // safety net for everything else
 
 app.get('/', (req, res) => res.json({ message: 'Toy Mall API is running' }));
 
+// Sitemap mounted at the root (not /api) so its public URL is clean.
+// Cloudflare Pages proxies /sitemap.xml on the frontend domain to here.
+app.use('/sitemap.xml', require('./routes/sitemap'));
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));
 app.use('/api/categories', require('./routes/categories'));

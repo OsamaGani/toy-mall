@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import Reveal from '../components/Reveal';
 import { getDepartment } from '../config/departments';
 import { FiFilter, FiX, FiArrowRight, FiZap } from 'react-icons/fi';
+import SEO from '../components/SEO';
 
 const ages = ['2-4 Years', '4-6 Years', '6-8 Years', '8 Years+'];
 const priceBuckets = [
@@ -144,8 +145,18 @@ export default function Department() {
 
   const activeSub = sub ? dept.items.find((i) => i.slug === sub) : null;
 
+  const seoTitle = activeSub
+    ? `${activeSub.name} — Buy Online in India`
+    : `${dept.title} — Shop ${dept.title} Online India`;
+  const seoDescription = `Shop ${dept.title.toLowerCase()} at Toy Mall. ${dept.subtitle || ''} Top brands, best prices, fast delivery across India, Cash on Delivery available.`.trim();
+
   return (
     <div className="bg-white">
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        path={`/dept/${slug}${activeSub ? `?sub=${activeSub.slug}` : ''}`}
+      />
       {/* Hero */}
       <section className={`relative overflow-hidden bg-gradient-to-br ${dept.color} text-white`}>
         <div className="absolute -top-20 -right-10 w-80 h-80 bg-white/15 rounded-full blur-3xl animate-float" />
