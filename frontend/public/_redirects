@@ -5,8 +5,7 @@
 # Proxy the sitemap from the backend so search engines see it on the
 # canonical frontend domain. The 200 status makes this a rewrite, not a
 # redirect — Google fetches it from toy-mall.pages.dev/sitemap.xml directly.
-# IMPORTANT: replace YOUR-BACKEND with your real Render API host before deploy.
-/sitemap.xml  https://YOUR-BACKEND.onrender.com/sitemap.xml  200
+/sitemap.xml  https://toy-mall.onrender.com/sitemap.xml  200
 
 # Single-page-app fallback. Every other URL serves index.html so the
 # React router can handle it (otherwise refreshing /product/foo 404s).

@@ -165,7 +165,11 @@ function cancelledMessage(order) {
     `;
   }
 
-  const reasonLine = reason ? `<p style="margin:14px 0 0 0;font-size:13px;color:#6b7280;">Reason on record: <em>${reason}</em>.</p>` : '';
+  // Reason is user-supplied (typed into the cancel modal) — must be HTML-
+  // escaped before going into email markup. Without escape, a customer
+  // could include <script> or event handlers and have them rendered by
+  // any email client that honours HTML.
+  const reasonLine = reason ? `<p style="margin:14px 0 0 0;font-size:13px;color:#6b7280;">Reason on record: <em>${escape(reason)}</em>.</p>` : '';
 
   return `<p style="margin:0 0 12px 0;">${intro}</p>${refundCallout}${timeline}${reasonLine}`;
 }
