@@ -56,11 +56,14 @@ export default function MyOrders() {
 
   if (loading) return <Loader />;
 
+  // Two label variants — short ones on phones so all four chips fit on a
+  // single row without horizontal scrolling. Tablet/desktop gets the full
+  // descriptive labels.
   const FILTERS = [
-    { id: 'all',       label: 'All Orders',  icon: <FiPackage />,    count: counts.all },
-    { id: 'active',    label: 'Active',      icon: <FiTruck />,      count: counts.active },
-    { id: 'delivered', label: 'Delivered',   icon: <FiCheckCircle />,count: counts.delivered },
-    { id: 'cancelled', label: 'Cancelled',   icon: <FiXCircle />,    count: counts.cancelled },
+    { id: 'all',       short: 'All',       full: 'All Orders', icon: <FiPackage />,    count: counts.all },
+    { id: 'active',    short: 'Active',    full: 'Active',     icon: <FiTruck />,      count: counts.active },
+    { id: 'delivered', short: 'Delivered', full: 'Delivered',  icon: <FiCheckCircle />,count: counts.delivered },
+    { id: 'cancelled', short: 'Cancelled', full: 'Cancelled',  icon: <FiXCircle />,    count: counts.cancelled },
   ];
 
   return (
@@ -77,22 +80,27 @@ export default function MyOrders() {
         </div>
       ) : (
         <>
-          {/* Filter tabs */}
-          <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4 -mx-1 px-1">
+          {/* Filter tabs — sized to fit four chips on phone width. Each chip
+              gets equal flex share on mobile so they line up cleanly; on
+              sm+ they revert to natural width so they hug their content. */}
+          <div className="flex gap-1.5 sm:gap-2 mb-4">
             {FILTERS.map(f => (
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}
-                className={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-semibold border-2 transition ${
+                className={`flex-1 sm:flex-initial whitespace-nowrap inline-flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-4 py-2 rounded-full text-[11px] sm:text-sm font-semibold border-2 transition ${
                   filter === f.id
                     ? 'bg-primary-500 text-white border-primary-500 shadow'
                     : 'bg-white text-gray-700 border-gray-200 hover:border-primary-400 hover:text-primary-500'
                 }`}
               >
-                {f.icon}
-                {f.label}
+                {/* Icon hidden on phones to save horizontal space */}
+                <span className="hidden sm:inline-flex">{f.icon}</span>
+                {/* Short label on phones, descriptive label on sm+ */}
+                <span className="sm:hidden">{f.short}</span>
+                <span className="hidden sm:inline">{f.full}</span>
                 {f.count > 0 && (
-                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                  <span className={`text-[9px] sm:text-[10px] font-bold px-1 sm:px-1.5 py-0.5 rounded-full ${
                     filter === f.id ? 'bg-white/30' : 'bg-gray-100'
                   }`}>
                     {f.count}
