@@ -746,7 +746,7 @@ function AddressForm({ form, setForm, validation, showError, markTouched, pinLoo
 
 function Stepper({ steps }) {
   return (
-    <ol className="flex items-center gap-1 sm:gap-2 overflow-x-auto pb-2">
+    <ol className="flex items-center gap-1 sm:gap-2 overflow-x-auto no-scrollbar pb-2">
       {steps.map((s, i) => (
         <li key={s.id} className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
           <div className={`flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold ${

@@ -222,7 +222,7 @@ export default function ActionToys() {
 
       {/* Sub-category chips — quick filters */}
       <section className="border-b sticky top-[57px] md:top-0 z-30 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 overflow-x-auto">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 overflow-x-auto no-scrollbar">
           <div className="flex gap-2 sm:gap-3 min-w-max">
             {subCategories.map((c) => {
               const active = sub === c.key;

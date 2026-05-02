@@ -33,7 +33,7 @@ export default function RecentlyViewed() {
         </div>
 
         {/* Horizontal scroll strip — Amazon/FirstCry pattern. */}
-        <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-3 -mx-3 sm:-mx-4 px-3 sm:px-4 snap-x">
+        <div className="flex gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-3 -mx-3 sm:-mx-4 px-3 sm:px-4 snap-x">
           {items.map((p) => {
             const final = p.discount > 0
               ? +(p.price - (p.price * p.discount) / 100).toFixed(2)

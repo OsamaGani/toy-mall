@@ -204,7 +204,7 @@ export default function ProductDetail() {
             <img src={resolveImage(activeImg)} alt={product.name} className="max-w-full max-h-full object-contain" />
           </div>
           {product.images?.length > 1 && (
-            <div className="flex gap-2 mt-3 overflow-x-auto">
+            <div className="flex gap-2 mt-3 overflow-x-auto no-scrollbar">
               {product.images.map((img, i) => (
                 <button key={i} onClick={() => setActiveImg(img)} className={`w-20 h-20 border-2 rounded-lg overflow-hidden flex-shrink-0 bg-white ${activeImg === img ? 'border-primary-500' : 'border-gray-200'}`}>
                   <img src={resolveImage(img)} className="w-full h-full object-contain p-1" alt="" />

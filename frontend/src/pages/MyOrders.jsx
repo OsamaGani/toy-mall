@@ -78,7 +78,7 @@ export default function MyOrders() {
       ) : (
         <>
           {/* Filter tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-2 mb-4 -mx-1 px-1">
+          <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-4 -mx-1 px-1">
             {FILTERS.map(f => (
               <button
                 key={f.id}
@@ -119,7 +119,7 @@ export default function MyOrders() {
                   {statusLabel[o.status] || o.status}
                 </span>
               </div>
-              <div className="flex gap-2 overflow-x-auto pb-2">
+              <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2">
                 {o.items.slice(0, 4).map((it) => (
                   <img key={it._id} src={resolveImage(it.image)} alt={it.name} className="w-14 h-14 rounded border bg-gray-50 object-contain p-1 flex-shrink-0" />
                 ))}

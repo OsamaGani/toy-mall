@@ -127,7 +127,7 @@ export default function AdminActionToys() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-3">
+      <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-3">
         {FLAG_TABS.map((t) => (
           <button
             key={t.id}
