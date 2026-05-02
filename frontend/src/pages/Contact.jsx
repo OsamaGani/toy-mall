@@ -52,8 +52,8 @@ export default function Contact() {
         path="/contact"
       />
       <PageHeader
-        title="Contact Us"
-        subtitle="Questions, bulk enquiries, partnership ideas — we'd love to hear from you."
+        title="We're Here to Help"
+        subtitle="Place an order, ask about a product, plan a bulk purchase, or just say hi — we read every message and reply within a working day."
         breadcrumbs={[{ label: 'Contact' }]}
       />
 
@@ -114,7 +114,7 @@ export default function Contact() {
         {/* Form */}
         <div className="bg-white border rounded-2xl shadow-sm p-6 md:p-8">
           <h2 className="text-2xl font-bold flex items-center gap-2 mb-1"><FiMessageCircle /> Send us a message</h2>
-          <p className="text-sm text-gray-600 mb-5">We typically reply within one working day.</p>
+          <p className="text-sm text-gray-600 mb-5">Tell us what you're looking for — a specific toy, a custom bulk order, gift advice for a particular age. We'll get back to you within a working day.</p>
 
           {sent && (
             <div className="mb-5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg p-4 flex items-start gap-3 animate-fadeIn">

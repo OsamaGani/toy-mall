@@ -47,8 +47,8 @@ export default function Franchise() {
   return (
     <div>
       <PageHeader
-        title="Open a Toy Mall Franchise"
-        subtitle="Bring the joy of toys to your city. Join a brand families already trust."
+        title="Open a Toy Mall Store in Your City"
+        subtitle="Run your own toy shop with the brand, catalogue, and supplier network already built. Lower setup costs, proven concept, ongoing support."
         breadcrumbs={[{ label: 'Franchise' }]}
       />
 

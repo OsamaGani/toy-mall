@@ -93,8 +93,8 @@ export default function Help() {
   return (
     <div>
       <PageHeader
-        title="Help Center"
-        subtitle="Quick answers to common questions. Can't find what you need? Reach us anytime."
+        title="How Can We Help?"
+        subtitle="Most questions about orders, delivery, payments, and returns are answered below. Still stuck? Tap any of the contact options at the bottom — we reply within a working day."
         breadcrumbs={[{ label: 'Help' }]}
       />
 

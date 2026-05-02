@@ -5,10 +5,10 @@ import { FiAward, FiHeart, FiTruck, FiShield, FiUsers, FiPackage, FiArrowRight }
 import SEO from '../components/SEO';
 
 const values = [
-  { icon: <FiAward />, title: 'Authentic Brands', desc: 'Every toy is sourced directly from authorized distributors. No fakes, ever.' },
-  { icon: <FiHeart />, title: 'Made to Delight', desc: 'We hand-pick toys that spark joy, learning and imagination in kids of every age.' },
-  { icon: <FiShield />, title: 'Safety First', desc: 'BIS / EN71 certified products that meet the strictest child-safety standards.' },
-  { icon: <FiTruck />, title: 'Fast Delivery', desc: 'Free shipping over ₹999 across India. Most orders reach you within 5 days.' },
+  { icon: <FiAward />, title: '100% Authentic', desc: 'Sourced directly from LEGO, Hot Wheels, Barbie, Nerf and other authorised brand distributors. No knock-offs ever leave our shelves.' },
+  { icon: <FiHeart />, title: 'Picked by Parents', desc: 'Every product is reviewed by our team — many of us are parents too — for play value, durability, and how much joy it actually brings home.' },
+  { icon: <FiShield />, title: 'Safety You Can Trust', desc: 'We only stock toys that meet BIS / EN71 child-safety standards. Non-toxic, age-appropriate, and tested.' },
+  { icon: <FiTruck />, title: 'India-wide Delivery', desc: 'Free shipping above ₹999. Orders reach most cities in 4–7 days. Cash on Delivery available everywhere.' },
 ];
 
 const stats = [
@@ -27,8 +27,8 @@ export default function About() {
         path="/about"
       />
       <PageHeader
-        title="About Toy Mall"
-        subtitle="A neighbourhood toy store from Mumbra reaching kids across India — one smile at a time."
+        title="From a Mumbra Storefront to Homes Across India"
+        subtitle="Toy Mall started as a neighbourhood shop families trusted for genuine toys. Today we ship that same hand-picked selection to kids in every state — without losing the small-shop care."
         breadcrumbs={[{ label: 'About Us' }]}
       />
 
@@ -39,16 +39,21 @@ export default function About() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extrabold mb-4">Our Story</h2>
               <p className="text-gray-700 leading-relaxed">
-                Toy Mall began as a small storefront in Mobin Apartment, Amrut Nagar, Mumbra — founded by
-                <strong> Abu Huraira Khan</strong> as a place where parents could discover quality toys
-                without travelling all the way to the city. What started with a few shelves of building
-                blocks and dolls has grown into an online catalogue of hundreds of carefully chosen toys
-                from brands kids love around the world.
+                Toy Mall opened in Mobin Apartment, Amrut Nagar, Mumbra with one
+                simple goal: give local parents a place to buy real, brand-name
+                toys without making a trip into the city. Founded by
+                <strong> Abu Huraira Khan</strong>, the shop quickly became
+                the spot families came to for birthday gifts, festive surprises, and
+                "just-because" treats.
               </p>
               <p className="text-gray-700 leading-relaxed mt-3">
-                We&apos;re still the same family-run shop at heart. Every order — big or small — is packed with the same
-                care, whether it&apos;s a single toy car for a birthday gift or a wholesale carton headed for a partner
-                shop in another city.
+                Word spread, and parents from neighbouring areas started asking
+                if we could ship. So we built this online store — the same
+                hand-picked toys, now reaching kids in every Indian state. But
+                whether you walk into our shop or order from across the
+                country, the promise is the same: <strong>genuine brands, fair
+                prices, and a shop owner who actually cares whether your
+                child enjoys what arrives.</strong>
               </p>
               <div className="mt-5 inline-flex items-center gap-3 bg-primary-50 border border-primary-200 rounded-xl px-4 py-3">
                 <span className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-pink-500 text-white font-extrabold flex items-center justify-center">A</span>
@@ -81,8 +86,8 @@ export default function About() {
       <section className="max-w-7xl mx-auto px-4 py-14">
         <Reveal>
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-extrabold">What we believe</h2>
-            <p className="text-gray-600 mt-2">The values guiding every toy we stock and every box we ship.</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold">How We Run the Shop</h2>
+            <p className="text-gray-600 mt-2">Four standards we don't compromise on — for every toy that goes home with a child.</p>
           </div>
         </Reveal>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">

@@ -18,9 +18,9 @@ import { ProductRowSkeleton } from '../components/ProductCardSkeleton';
 
 const heroSlides = [
   {
-    eyebrow: '🎁 NEW ARRIVAL',
-    title: 'Big Fun on Wheels',
-    subtitle: 'Ride-on cars, bikes & scooters for little explorers',
+    eyebrow: '🎁 NEW IN STORE',
+    title: 'Ride-Ons That Steal the Show',
+    subtitle: 'Battery cars, scooters and tricycles your kid will pick over the iPad.',
     cta: 'Shop Ride-Ons',
     link: '/shop?category=Ride Ons',
     image: 'https://images.unsplash.com/photo-1597007051304-15387f9e0a18?w=1400',
@@ -28,8 +28,8 @@ const heroSlides = [
   },
   {
     eyebrow: '⭐ BEST SELLER',
-    title: 'Build. Stack. Imagine.',
-    subtitle: 'Wooden &amp; magnetic building sets crafted to last',
+    title: 'Build. Stack. Create.',
+    subtitle: 'Wooden &amp; magnetic building sets that survive years of play and spark hours of imagination.',
     cta: 'Shop Building',
     link: '/shop?category=Construction',
     image: 'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=1400',
@@ -37,8 +37,8 @@ const heroSlides = [
   },
   {
     eyebrow: '🔥 UP TO 70% OFF',
-    title: 'Mega LEGO Sale',
-    subtitle: 'Hundreds of LEGO sets — biggest discounts of the year',
+    title: 'Mega LEGO Sale Is Live',
+    subtitle: 'Hundreds of authentic LEGO sets at the lowest prices we offer all year. While stocks last.',
     cta: 'Shop LEGO',
     link: '/shop?brand=LEGO',
     image: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=1400',

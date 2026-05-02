@@ -6,12 +6,12 @@ import { FiCheck, FiPackage, FiTrendingDown, FiTruck, FiAward, FiShield, FiPhone
 import { PLACEHOLDER } from '../utils/imageUrl';
 
 const benefits = [
-  { icon: <FiTrendingDown />, title: 'Save up to 40%', desc: 'Special wholesale pricing on bulk orders' },
-  { icon: <FiTruck />, title: 'Free Bulk Shipping', desc: 'Free delivery across India on orders over ₹999' },
-  { icon: <FiPackage />, title: 'Stock for Your Shop', desc: 'Re-stock your store with top toy brands' },
-  { icon: <FiAward />, title: 'Authentic Brands', desc: 'Direct from manufacturers — 100% genuine' },
-  { icon: <FiShield />, title: 'Easy GST Invoice', desc: 'Proper GST invoices for input credit' },
-  { icon: <FiBriefcase />, title: 'Dedicated Support', desc: 'Account manager for wholesale buyers' },
+  { icon: <FiTrendingDown />, title: 'Margins up to 40%', desc: 'Tier-based wholesale pricing on bulk packs — the more you order, the lower the per-unit cost.' },
+  { icon: <FiTruck />, title: 'Free Pan-India Shipping', desc: 'Free delivery on every wholesale order above ₹999. No minimum carton size.' },
+  { icon: <FiPackage />, title: 'Catalogue You Can Resell', desc: 'LEGO, Hot Wheels, Barbie, Nerf and 20+ brands kids actually ask for at the counter.' },
+  { icon: <FiAward />, title: 'Authentic Stock Only', desc: 'Sourced direct from authorised distributors. Every box arrives factory-sealed with proper barcodes.' },
+  { icon: <FiShield />, title: 'GST Invoices, Always', desc: 'Proper tax invoices with your shop GSTIN for full input credit. Bookkeeping stays clean.' },
+  { icon: <FiBriefcase />, title: 'Direct Owner Contact', desc: 'No call centre. WhatsApp the founder for stock checks, custom orders, or delivery updates.' },
 ];
 
 // Fallback used only if the API call fails (offline / first load)
@@ -56,8 +56,9 @@ export default function Wholesale() {
               <span className="text-yellow-300">Wholesale</span>
             </h1>
             <p className="mt-4 text-lg md:text-xl opacity-95">
-              Stock your shop with India's biggest toy collection.<br />
-              <span className="font-bold">Save up to 40%</span> on bulk orders. Free shipping over ₹999.
+              Authentic LEGO, Hot Wheels, Barbie, Nerf and 20+ top brands —
+              at margins that actually let your shop grow.<br />
+              <span className="font-bold">Up to 40% off retail</span> · Free shipping above ₹999 · GST invoices
             </p>
             {isWholesaleUser ? (
               <div className="mt-6 bg-white/20 backdrop-blur border border-white/30 rounded-lg p-4 inline-block">
@@ -89,8 +90,8 @@ export default function Wholesale() {
       {/* Benefits */}
       <section className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold">Why Buy Wholesale from Toy Mall?</h2>
-          <p className="text-gray-600 mt-2">Everything your toy shop needs in one place</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold">Why Shop Owners Choose Toy Mall Wholesale</h2>
+          <p className="text-gray-600 mt-2">Built for retailers who want better margins, faster restocking, and zero hassle.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((b) => (
@@ -173,8 +174,8 @@ export default function Wholesale() {
       {/* CTA bottom */}
       <section className="bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold">Ready to Save Big on Toy Inventory?</h2>
-          <p className="mt-3 text-lg text-gray-300">Join hundreds of shop owners across India sourcing from Toy Mall.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold">Stock Smarter. Earn More.</h2>
+          <p className="mt-3 text-lg text-gray-300">Join 500+ shop owners across India who restock from Toy Mall every month. Free to register, no minimum order to start.</p>
           {!isWholesaleUser && (
             <Link to="/register" className="inline-flex items-center gap-2 mt-6 bg-primary-500 hover:bg-primary-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg text-lg transition">
               Open Free Wholesale Account <FiArrowRight />
