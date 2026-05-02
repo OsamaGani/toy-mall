@@ -28,6 +28,10 @@ const productSchema = new mongoose.Schema(
     featured: { type: Boolean, default: false },
     bestSeller: { type: Boolean, default: false },
     newArrival: { type: Boolean, default: false },
+    // Admin-curated flag for the homepage "Today's Deals" rail. Use this
+    // for hand-picked promo items rather than relying on a discount-based
+    // heuristic — gives the store owner full control over what shows.
+    onDeal: { type: Boolean, default: false },
     rating: { type: Number, default: 0 },
     numReviews: { type: Number, default: 0 },
     reviews: [reviewSchema],

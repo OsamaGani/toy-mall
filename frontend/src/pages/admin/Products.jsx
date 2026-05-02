@@ -12,6 +12,7 @@ const TAB_TO_COLLECTION = {
   newArrival: { key: 'newArrival', label: 'New Arrivals' },
   bestSeller: { key: 'bestSeller', label: 'Best Sellers' },
   featured:   { key: 'featured',   label: 'Featured' },
+  onDeal:     { key: 'onDeal',     label: "Today's Deals" },
   all:        { key: 'newArrival', label: 'New Arrivals' }, // default for "all" tab
 };
 
@@ -20,6 +21,7 @@ const COLLECTION_TABS = [
   { id: 'newArrival',  label: 'New Arrivals',  emoji: '✨' },
   { id: 'bestSeller',  label: 'Best Sellers',  emoji: '⭐' },
   { id: 'featured',    label: 'Featured',      emoji: '🌟' },
+  { id: 'onDeal',      label: "Today's Deals", emoji: '⚡' },
 ];
 
 const LEGACY_CATEGORIES = ['Books', 'Construction', 'Vehicles', 'Dolls', 'Action Figures', 'Wooden Toys', 'Outdoor Toys', 'Games'];
@@ -31,7 +33,7 @@ export default function AdminProducts() {
   const [keyword, setKeyword] = useState('');
   const [tab, setTab] = useState('all');
   const [category, setCategory] = useState('');
-  const [counts, setCounts] = useState({ all: 0, newArrival: 0, bestSeller: 0, featured: 0 });
+  const [counts, setCounts] = useState({ all: 0, newArrival: 0, bestSeller: 0, featured: 0, onDeal: 0 });
   const [quickOpen, setQuickOpen] = useState(false);
 
   const load = async () => {
@@ -43,22 +45,25 @@ export default function AdminProducts() {
       if (tab === 'newArrival') params.set('newArrival', 'true');
       if (tab === 'bestSeller') params.set('bestSeller', 'true');
       if (tab === 'featured')   params.set('featured', 'true');
+      if (tab === 'onDeal')     params.set('onDeal', 'true');
 
       const { data } = await API.get(`/products?${params.toString()}`);
       setProducts(data.products);
 
       // Load counts in parallel for tab badges
-      const [allRes, newRes, bestRes, featRes] = await Promise.all([
+      const [allRes, newRes, bestRes, featRes, dealRes] = await Promise.all([
         API.get('/products?limit=1'),
         API.get('/products?newArrival=true&limit=1'),
         API.get('/products?bestSeller=true&limit=1'),
         API.get('/products?featured=true&limit=1'),
+        API.get('/products?onDeal=true&limit=1'),
       ]);
       setCounts({
         all: allRes.data.total,
         newArrival: newRes.data.total,
         bestSeller: bestRes.data.total,
         featured: featRes.data.total,
+        onDeal: dealRes.data.total,
       });
     } catch (e) { console.error(e); }
     finally { setLoading(false); }
@@ -77,10 +82,17 @@ export default function AdminProducts() {
     }
   };
 
+  const FLAG_LABELS = {
+    newArrival: 'New Arrival',
+    bestSeller: 'Best Seller',
+    featured: 'Featured',
+    onDeal: "Today's Deal",
+  };
+
   const toggleFlag = async (product, field) => {
     try {
       await API.put(`/products/${product._id}`, { [field]: !product[field] });
-      toast.success(`${field === 'newArrival' ? 'New Arrival' : field === 'bestSeller' ? 'Best Seller' : 'Featured'} ${!product[field] ? 'added' : 'removed'}`);
+      toast.success(`${FLAG_LABELS[field] || field} ${!product[field] ? 'added' : 'removed'}`);
       load();
     } catch (err) {
       toast.error('Failed');
@@ -191,6 +203,7 @@ export default function AdminProducts() {
                       <FlagPill active={p.newArrival} label="✨ New" onClick={() => toggleFlag(p, 'newArrival')} activeColor="bg-yellow-400 text-gray-900" />
                       <FlagPill active={p.bestSeller} label="⭐ Best" onClick={() => toggleFlag(p, 'bestSeller')} activeColor="bg-orange-500 text-white" />
                       <FlagPill active={p.featured}   label="🌟 Feat" onClick={() => toggleFlag(p, 'featured')}   activeColor="bg-purple-500 text-white" />
+                      <FlagPill active={p.onDeal}     label="⚡ Deal" onClick={() => toggleFlag(p, 'onDeal')}     activeColor="bg-red-500 text-white" />
                     </div>
                   </td>
 

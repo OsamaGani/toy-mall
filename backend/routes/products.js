@@ -33,8 +33,8 @@ router.get(
     if (featured === 'true') filter.featured = true;
     if (bestSeller === 'true') filter.bestSeller = true;
     if (newArrival === 'true') filter.newArrival = true;
-    // ?onDeal=true → discount ≥ 25%, used for the homepage "Today's Deals" rail.
-    if (req.query.onDeal === 'true') filter.discount = { $gte: 25 };
+    // ?onDeal=true → admin-curated "Today's Deals" rail on the homepage.
+    if (req.query.onDeal === 'true') filter.onDeal = true;
     if (minPrice || maxPrice) {
       filter.price = {};
       if (minPrice) filter.price.$gte = +minPrice;

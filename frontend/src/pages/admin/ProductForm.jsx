@@ -33,7 +33,7 @@ export default function ProductForm() {
     name: '', description: '', brand: '', category: prefillCategory, ageGroup: '',
     price: 0, discount: 0, wholesalePrice: 0, wholesaleMinQty: 0,
     stock: 0, image: '', images: [],
-    featured: false, bestSeller: false, newArrival: false,
+    featured: false, bestSeller: false, newArrival: false, onDeal: false,
   });
 
   const loadCategories = async () => {
@@ -63,7 +63,7 @@ export default function ProductForm() {
             wholesalePrice: data.wholesalePrice || 0, wholesaleMinQty: data.wholesaleMinQty || 0,
             stock: data.stock,
             image: data.image || '', images: data.images || [],
-            featured: data.featured, bestSeller: data.bestSeller, newArrival: data.newArrival,
+            featured: data.featured, bestSeller: data.bestSeller, newArrival: data.newArrival, onDeal: !!data.onDeal,
           });
           // If the saved brand isn't in the loaded brand list, open custom-input mode
           // so the existing value is editable instead of silently disappearing.
@@ -322,10 +322,14 @@ export default function ProductForm() {
           onMainChange={(img) => setForm({ ...form, image: img })}
         />
 
-        <div className="flex flex-wrap gap-6 pt-2">
+        <div className="flex flex-wrap gap-x-6 gap-y-3 pt-2">
           <label className="flex items-center gap-2"><input type="checkbox" checked={form.featured} onChange={(e) => setForm({ ...form, featured: e.target.checked })} className="accent-primary-500" /> Featured</label>
           <label className="flex items-center gap-2"><input type="checkbox" checked={form.bestSeller} onChange={(e) => setForm({ ...form, bestSeller: e.target.checked })} className="accent-primary-500" /> Best Seller</label>
           <label className="flex items-center gap-2"><input type="checkbox" checked={form.newArrival} onChange={(e) => setForm({ ...form, newArrival: e.target.checked })} className="accent-primary-500" /> New Arrival</label>
+          <label className="flex items-center gap-2 text-orange-700">
+            <input type="checkbox" checked={form.onDeal} onChange={(e) => setForm({ ...form, onDeal: e.target.checked })} className="accent-orange-500" />
+            ⚡ Today's Deal
+          </label>
         </div>
 
         <div className="flex gap-3 pt-4">
