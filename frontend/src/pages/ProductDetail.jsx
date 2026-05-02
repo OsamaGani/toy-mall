@@ -32,6 +32,22 @@ export default function ProductDetail() {
   const [pinCheck, setPinCheck] = useState(null); // { city, state, etaText } | { error }
   const [pinChecking, setPinChecking] = useState(false);
 
+  // The sticky bottom Add-to-Cart bar should only appear once the user has
+  // scrolled past the main CTA — otherwise it's a duplicate when the page
+  // first opens. mainCtaRef points to the inline buttons; an
+  // IntersectionObserver flips showStickyCta when they leave the viewport.
+  const mainCtaRef = useRef(null);
+  const [showStickyCta, setShowStickyCta] = useState(false);
+  useEffect(() => {
+    if (!mainCtaRef.current) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setShowStickyCta(!entry.isIntersecting),
+      { threshold: 0, rootMargin: '0px 0px -10% 0px' }
+    );
+    obs.observe(mainCtaRef.current);
+    return () => obs.disconnect();
+  }, [product]); // re-attach after product loads (the ref target is conditional)
+
   const load = async () => {
     setLoading(true);
     try {
@@ -371,7 +387,7 @@ export default function ProductDetail() {
           </div>
 
           {product.stock > 0 ? (
-            <div className="mt-5 flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
+            <div ref={mainCtaRef} className="mt-5 flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
               <div className="flex items-center border border-gray-300 rounded h-8 text-xs">
                 <button onClick={() => setQty(Math.max(1, qty - 1))} className="px-2 hover:bg-gray-50 h-full">−</button>
                 <span className="px-2 font-semibold">{qty}</span>
@@ -471,10 +487,17 @@ export default function ProductDetail() {
         />
       )}
 
-      {/* Sticky bottom CTA on mobile — Amazon/Flipkart-style. Sits above
-          the BottomNav (which is 56px tall, hence the bottom-14 offset). */}
-      <div className="sm:hidden fixed bottom-14 inset-x-0 z-30 bg-white border-t shadow-[0_-2px_10px_rgba(0,0,0,0.08)]"
-           style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      {/* Sticky bottom CTA on mobile — Amazon/Flipkart-style. Only appears
+          AFTER the user has scrolled past the inline Add-to-Cart row, so
+          there's no awkward duplication while both are on screen. Sits
+          above the BottomNav (56px tall, hence the bottom-14 offset). */}
+      <div
+        className={`sm:hidden fixed bottom-14 inset-x-0 z-30 bg-white border-t shadow-[0_-2px_10px_rgba(0,0,0,0.08)] transition-transform duration-200 ${
+          showStickyCta ? 'translate-y-0' : 'translate-y-full pointer-events-none'
+        }`}
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+        aria-hidden={!showStickyCta}
+      >
         <div className="flex items-stretch">
           <button
             type="button"
@@ -496,7 +519,8 @@ export default function ProductDetail() {
       </div>
 
       {/* Spacer so the page's natural bottom isn't hidden behind the
-          sticky CTA + BottomNav stack on mobile. */}
+          sticky CTA + BottomNav stack on mobile. Always reserved (even when
+          the sticky bar is hidden) to avoid layout jumps as it slides in. */}
       <div className="sm:hidden h-28" aria-hidden />
     </div>
   );
