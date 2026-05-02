@@ -10,9 +10,9 @@
 
     <!-- Default SEO — overridden per-page by react-helmet-async. Crawlers
          that don't execute JS still see this baseline. -->
-    <title>Toy Mall — Buy Toys, Games & Action Figures Online in India</title>
-    <meta name="description" content="Shop kids toys online in India. LEGO, Hot Wheels, Barbie, Nerf, action figures, soft toys, board games & more. Fast delivery, COD available, wholesale prices for retailers." />
-    <meta name="keywords" content="buy toys online India, kids toys, action figures India, LEGO India, Hot Wheels, Barbie dolls, remote control cars, educational toys, board games, soft toys, wholesale toys, toy shop Mumbra Thane" />
+    <title>Toy Mall — Buy Toys Online in India · Wholesale Toys Mumbai · Toy Shop Mumbra Thane</title>
+    <meta name="description" content="Toy Mall — buy authentic toys online in India. LEGO, Hot Wheels, Barbie, Nerf, action figures, building blocks, soft toys, board games. Wholesale toys for shop owners in Mumbai, Thane and across India. Free delivery over ₹999, COD available, GST invoices for retailers." />
+    <meta name="keywords" content="buy toys online india, kids toys online, toy shop in mumbra, toy shop in thane, toy shop in mumbai, wholesale toys mumbai, wholesale toys thane, wholesale toys india, bulk toys for shop owners, toy distributor mumbai, toy wholesaler thane, lego india online, hot wheels india, barbie dolls online india, nerf guns india, remote control car for kids, educational toys india, learning toys for toddlers, soft toys for babies, building blocks for kids, action figures india, board games india, toys for 1 year old, toys for 2 year old, toys for 3 year old, toys for 5 year old, birthday gift for kids, diwali gifts for kids, christmas toys india, ride on cars for kids, kids cycle online, gst invoice wholesale toys, toy shop near me, kids store mumbra, online toy store india" />
     <meta name="author" content="Toy Mall" />
     <link rel="canonical" href="https://toy-mall.pages.dev/" />
     <!-- Tell ethical AI crawlers NOT to use this content for model training,
@@ -38,30 +38,55 @@
     <meta name="twitter:description" content="Shop kids toys online in India. LEGO, Hot Wheels, Barbie, Nerf, action figures and more." />
     <meta name="twitter:image" content="https://toy-mall.pages.dev/og-default.jpg" />
 
-    <!-- Organization JSON-LD — helps Google build a knowledge panel and the
-         site-name in search results. -->
+    <!-- LocalBusiness JSON-LD — drives "toy shop near me" / "toy shop in
+         Mumbra/Thane" results in Google Maps + the local pack. ToyStore is
+         a more specific @type than Store, which Google prefers for ranking
+         physical retail. The geo coordinates come from the verified Google
+         Business Profile pin (same lat/lng used in the Contact page map). -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Store",
+      "@type": "ToyStore",
+      "@id": "https://toy-mall.pages.dev/#localbusiness",
       "name": "Toy Mall",
       "url": "https://toy-mall.pages.dev",
       "logo": "https://toy-mall.pages.dev/favicon.svg",
       "image": "https://toy-mall.pages.dev/og-default.jpg",
-      "description": "Online toy store in India. LEGO, Hot Wheels, Barbie, Nerf, educational toys and more.",
+      "description": "Toy store in Mumbra, Thane offering authentic toys from LEGO, Hot Wheels, Barbie, Nerf and more. Retail and wholesale orders shipped across India.",
       "telephone": "+91-77380-28750",
       "email": "support@toymall.in",
+      "priceRange": "₹₹",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Mobin Apartment A Wing, Shop No. 4, Amrut Nagar, Near Dargah Road",
         "addressLocality": "Mumbra",
-        "addressRegion": "Thane, Maharashtra",
+        "addressRegion": "Maharashtra",
         "postalCode": "400612",
         "addressCountry": "IN"
       },
-      "areaServed": "IN",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.175107,
+        "longitude": 73.020168
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "10:00",
+        "closes": "23:30"
+      }],
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "India" },
+        { "@type": "City", "name": "Mumbai" },
+        { "@type": "City", "name": "Thane" },
+        { "@type": "City", "name": "Mumbra" }
+      ],
       "currenciesAccepted": "INR",
-      "paymentAccepted": "Cash on Delivery, Razorpay, UPI, Cards, Net Banking"
+      "paymentAccepted": "Cash on Delivery, Razorpay, UPI, Cards, Net Banking",
+      "sameAs": [
+        "https://www.instagram.com/toy_malll",
+        "https://www.justdial.com/Mumbai/Toy-Mall-Mumbra"
+      ]
     }
     </script>
 

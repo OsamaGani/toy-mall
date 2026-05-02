@@ -166,10 +166,10 @@ export default function Home() {
   return (
     <div>
       <SEO
-        title="Buy Toys Online in India — LEGO, Hot Wheels, Barbie, Nerf & More"
-        description="Shop kids toys online at Toy Mall. LEGO sets, Hot Wheels cars, Barbie dolls, Nerf blasters, action figures, building blocks, board games, soft toys & remote control cars. Fast delivery across India, COD available, wholesale prices for retailers."
+        title="Buy Toys Online in India · Toy Shop Mumbra Thane · Wholesale Toys Mumbai"
+        description="Toy Mall — buy authentic LEGO, Hot Wheels, Barbie, Nerf, action figures, building blocks, soft toys, board games and remote control cars online in India. Wholesale prices for shop owners in Mumbai and Thane. Free delivery over ₹999, Cash on Delivery, GST invoices."
         path="/"
-        keywords="buy toys online India, kids toys, LEGO India, Hot Wheels, Barbie dolls, Nerf guns, remote control car, action figures, educational toys, board games, soft toys, wholesale toys, toys under 500"
+        keywords="buy toys online india, kids toys online, toy shop in mumbra, toy shop in thane, toy shop in mumbai, wholesale toys mumbai, wholesale toys thane, wholesale toys india, lego india online, hot wheels india, barbie dolls online india, nerf guns india, remote control car for kids, educational toys india, learning toys for toddlers, soft toys for babies, building blocks for kids, action figures india, board games india, toys for 1 year old, toys for 2 year old, toys for 3 year old, toys for 5 year old, birthday gift for kids, diwali gifts for kids, christmas toys india, ride on cars for kids, kids cycle online, online toy store india, kids store mumbra"
       />
       {/* Hero carousel */}
       <section className="bg-gray-50">

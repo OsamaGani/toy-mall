@@ -4,6 +4,7 @@ import API from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 import { FiCheck, FiPackage, FiTrendingDown, FiTruck, FiAward, FiShield, FiPhone, FiMail, FiArrowRight, FiBriefcase } from 'react-icons/fi';
 import { PLACEHOLDER } from '../utils/imageUrl';
+import SEO from '../components/SEO';
 
 const benefits = [
   { icon: <FiTrendingDown />, title: 'Margins up to 40%', desc: 'Tier-based wholesale pricing on bulk packs — the more you order, the lower the per-unit cost.' },
@@ -46,6 +47,12 @@ export default function Wholesale() {
 
   return (
     <div>
+      <SEO
+        title="Wholesale Toys Mumbai · Wholesale Toys Thane · Bulk Pricing for Shop Owners"
+        description="Wholesale toys for retailers across India. Authentic LEGO, Hot Wheels, Barbie, Nerf and 20+ top brands at up to 40% off retail. Free pan-India shipping over ₹999, GST invoices, direct WhatsApp to the founder. Trusted by 500+ shop owners in Mumbai, Thane, Pune, Nashik."
+        path="/wholesale"
+        keywords="wholesale toys mumbai, wholesale toys thane, wholesale toys india, bulk toys for shop owners, toy distributor mumbai, toy wholesaler thane, toy importer india, toy reseller india, wholesale toy market mumbai, crawford market toys alternative, kalbadevi toys wholesale, gst invoice wholesale toys, bulk lego india, bulk hot wheels, b2b toys india, wholesale barbie dolls, wholesale nerf guns, wholesale soft toys, retail shop supplier toys, toy shop owner supplier"
+      />
       {/* Hero */}
       <section className="bg-gradient-to-br from-purple-700 via-pink-600 to-primary-500 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-8 items-center">

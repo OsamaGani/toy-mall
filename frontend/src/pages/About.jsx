@@ -22,9 +22,10 @@ export default function About() {
   return (
     <div>
       <SEO
-        title="About Toy Mall — Authentic Toys, Trusted Brands, Pan-India Delivery"
-        description="Toy Mall is a Mumbra-based online toy store delivering authentic LEGO, Hot Wheels, Barbie, Nerf and more across India. BIS/EN71 certified, fast shipping, COD available."
+        title="About Toy Mall — Toy Shop in Mumbra Thane · Online Toy Store Across India"
+        description="Toy Mall is a family-run toy store in Mumbra, Thane, founded by Abu Huraira Khan. Authentic LEGO, Hot Wheels, Barbie, Nerf, soft toys and educational toys for kids of every age. Walk into our shop or order online for delivery anywhere in India. BIS / EN71 safety certified."
         path="/about"
+        keywords="toy mall mumbra, toy shop in mumbra, toy shop in thane, kids store thane, kids store mumbra, online toy store india, family run toy shop mumbra, authentic toys india, BIS certified toys, EN71 certified toys, abu huraira khan toy mall, toy mall founder, indian toy store, neighbourhood toy shop mumbra"
       />
       <PageHeader
         title="From a Mumbra Storefront to Homes Across India"
