@@ -53,16 +53,17 @@ export default function ProductCard({ product }) {
         <FiHeart size={15} className={wished ? 'fill-current' : ''} />
       </button>
 
-      {/* Image — portrait aspect so the photo is the hero of the card. */}
+      {/* Image — square aspect matches most product photos so they fill the area
+          without letterboxing. No inner padding so the photo runs edge-to-edge. */}
       <Link
         to={`/product/${product._id}`}
-        className="block aspect-[4/5] overflow-hidden bg-gradient-to-br from-gray-50 to-white p-1.5 sm:p-2 relative"
+        className="block aspect-square overflow-hidden bg-white relative"
       >
         <img
           src={resolveImage(product.image || product.images?.[0])}
           alt={product.name}
           loading="lazy"
-          className="w-full h-full object-contain group-hover:scale-110 transition duration-500"
+          className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
           onError={(e) => { e.target.src = 'https://via.placeholder.com/400?text=Toy'; }}
         />
         {/* Out of stock overlay */}
