@@ -432,13 +432,13 @@ export default function ProductDetail() {
                 <button onClick={() => setQty(Math.min(product.stock, qty + 1))} className="px-2 hover:bg-gray-50 h-full">+</button>
               </div>
               <button
-                onClick={() => addToCart(product, qty)}
+                onClick={() => addToCart(product, qty, selectedColor || product.colors?.[0] || '')}
                 className="flex items-center justify-center gap-1 border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white text-xs font-semibold px-3 h-8 rounded transition"
               >
                 <FiShoppingCart size={12} /> Add to Cart
               </button>
               <button
-                onClick={() => { addToCart(product, qty); navigate('/checkout'); }}
+                onClick={() => { addToCart(product, qty, selectedColor || product.colors?.[0] || ''); navigate('/checkout'); }}
                 className="flex items-center justify-center gap-1 bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold px-3 h-8 rounded transition"
               >
                 ⚡ Buy Now

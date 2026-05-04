@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import { FiTrash2, FiShoppingBag, FiTruck } from 'react-icons/fi';
 import { resolveImage } from '../utils/imageUrl';
 import { PHONE_PRIMARY_DISPLAY, PHONE_PRIMARY_TEL, EMAIL_PRIMARY } from '../config/contact';
+import { colorToBackground, isLightColor } from '../utils/colors';
 
 export default function Cart() {
   const { items, removeFromCart, updateQty, subtotal, shipping, tax, total, amountToFreeShipping, FREE_SHIPPING_THRESHOLD, isWholesale } = useCart();
@@ -51,13 +52,24 @@ export default function Cart() {
           {items.map((it) => {
             const eligibleForWholesale = isWholesale && it.wholesalePrice > 0 && it.wholesaleMinQty > 0;
             const qtyToUnlockWholesale = eligibleForWholesale && !it.isWholesalePrice ? it.wholesaleMinQty - it.qty : 0;
+            const colorBg = it.color ? colorToBackground(it.color) : null;
             return (
-              <div key={it.product} className="bg-white border rounded-lg p-3 sm:p-4 flex gap-3 sm:gap-4">
+              <div key={it.lineId || it.product} className="bg-white border rounded-lg p-3 sm:p-4 flex gap-3 sm:gap-4">
                 <Link to={`/product/${it.product}`} className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 bg-gray-50 border rounded overflow-hidden p-1.5 sm:p-2">
                   <img src={resolveImage(it.image)} alt={it.name} className="w-full h-full object-contain" />
                 </Link>
                 <div className="flex-1 min-w-0">
                   <Link to={`/product/${it.product}`} className="font-medium text-sm sm:text-base hover:text-primary-500 line-clamp-2">{it.name}</Link>
+                  {/* Colour pill — only renders when the customer picked one */}
+                  {it.color && (
+                    <span className="inline-flex items-center gap-1.5 mt-1 bg-gray-50 border rounded-full pl-1 pr-2 py-0.5 text-xs">
+                      <span
+                        className={`w-3.5 h-3.5 rounded-full border ${isLightColor(it.color) ? 'border-gray-300' : 'border-white'}`}
+                        style={colorBg ? { background: colorBg } : { background: 'repeating-linear-gradient(45deg,#e5e7eb 0 3px,#fff 3px 6px)' }}
+                      />
+                      <span className="font-medium">{it.color}</span>
+                    </span>
+                  )}
                   <div className="flex items-baseline gap-2 mt-1 flex-wrap">
                     <p className="text-primary-600 font-bold text-sm sm:text-base">₹{it.price.toFixed(2)}</p>
                     {it.isWholesalePrice && <span className="bg-purple-100 text-purple-700 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-semibold">WHOLESALE</span>}
@@ -67,11 +79,11 @@ export default function Cart() {
                   </div>
                   <div className="flex items-center gap-2 sm:gap-3 mt-2">
                     <div className="flex items-center border rounded text-sm">
-                      <button onClick={() => updateQty(it.product, it.qty - 1)} className="px-2.5 sm:px-3 py-1">-</button>
+                      <button onClick={() => updateQty(it.lineId || it.product, it.qty - 1)} className="px-2.5 sm:px-3 py-1">-</button>
                       <span className="px-3 sm:px-4">{it.qty}</span>
-                      <button onClick={() => updateQty(it.product, it.qty + 1)} className="px-2.5 sm:px-3 py-1">+</button>
+                      <button onClick={() => updateQty(it.lineId || it.product, it.qty + 1)} className="px-2.5 sm:px-3 py-1">+</button>
                     </div>
-                    <button onClick={() => removeFromCart(it.product)} className="text-red-500 hover:text-red-700 text-xs sm:text-sm flex items-center gap-1">
+                    <button onClick={() => removeFromCart(it.lineId || it.product)} className="text-red-500 hover:text-red-700 text-xs sm:text-sm flex items-center gap-1">
                       <FiTrash2 size={14} /> <span className="hidden sm:inline">Remove</span>
                     </button>
                   </div>

@@ -266,7 +266,9 @@ function buildHtml(order, template, customerName, adminNote, clientUrl) {
       </td>
       <td style="padding:10px 12px;vertical-align:middle;">
         <p style="margin:0;font-size:13px;font-weight:600;color:#111827;line-height:1.4;">${escape(it.name || 'Product')}</p>
-        <p style="margin:2px 0 0 0;font-size:12px;color:#6b7280;">Qty ${it.qty} × ₹${(Number(it.price) || 0).toFixed(2)}</p>
+        <p style="margin:2px 0 0 0;font-size:12px;color:#6b7280;">
+          Qty ${it.qty} × ₹${(Number(it.price) || 0).toFixed(2)}${it.color ? ` &middot; Colour: <strong style="color:#374151;">${escape(it.color)}</strong>` : ''}
+        </p>
       </td>
       <td style="padding:10px 0;font-size:13px;font-weight:600;color:#111827;text-align:right;vertical-align:middle;white-space:nowrap;">₹${lineTotal.toFixed(2)}</td>
     </tr>

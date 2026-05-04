@@ -132,6 +132,7 @@ export default function Invoice() {
                 <td className="p-2">
                   {it.name}
                   {it.isWholesalePrice && <span className="ml-2 text-[10px] text-purple-600 font-bold">(wholesale)</span>}
+                  {it.color && <span className="ml-2 text-[10px] text-gray-600">· Colour: <strong>{it.color}</strong></span>}
                 </td>
                 <td className="p-2 text-center">{it.qty}</td>
                 <td className="p-2 text-right">₹{it.price.toFixed(2)}</td>
@@ -152,7 +153,10 @@ export default function Invoice() {
                 </p>
                 <p className="font-bold text-primary-600 whitespace-nowrap">₹{(it.qty * it.price).toFixed(2)}</p>
               </div>
-              <p className="text-xs text-gray-600 mt-1">Qty: {it.qty} × ₹{it.price.toFixed(2)}</p>
+              <p className="text-xs text-gray-600 mt-1">
+                Qty: {it.qty} × ₹{it.price.toFixed(2)}
+                {it.color && <> · Colour: <strong className="text-gray-800">{it.color}</strong></>}
+              </p>
             </div>
           ))}
         </div>

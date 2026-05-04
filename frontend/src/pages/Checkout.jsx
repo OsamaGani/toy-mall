@@ -314,7 +314,7 @@ export default function Checkout() {
     setSubmitting(true);
     try {
       const { data: order } = await API.post('/orders', {
-        items: items.map((i) => ({ product: i.product, name: i.name, image: i.image, price: i.price, qty: i.qty, isWholesalePrice: i.isWholesalePrice })),
+        items: items.map((i) => ({ product: i.product, name: i.name, image: i.image, price: i.price, qty: i.qty, isWholesalePrice: i.isWholesalePrice, color: i.color || '' })),
         shippingAddress,
         paymentMethod,
       });
@@ -479,11 +479,14 @@ export default function Checkout() {
 
               <div className="px-4 py-3 max-h-60 overflow-y-auto space-y-3 border-b">
                 {items.map((i) => (
-                  <div key={i.product} className="flex gap-3 text-sm">
+                  <div key={i.lineId || i.product} className="flex gap-3 text-sm">
                     <img src={resolveImage(i.image)} className="w-12 h-12 rounded border object-contain p-1 bg-gray-50 flex-shrink-0" alt={i.name} />
                     <div className="flex-1 min-w-0">
                       <p className="line-clamp-2 leading-snug">{i.name}</p>
-                      <p className="text-gray-500 text-xs mt-0.5">Qty {i.qty} × ₹{i.price}</p>
+                      <p className="text-gray-500 text-xs mt-0.5">
+                        Qty {i.qty} × ₹{i.price}
+                        {i.color && <> · <span className="text-gray-700 font-medium">{i.color}</span></>}
+                      </p>
                     </div>
                     <p className="font-semibold whitespace-nowrap">₹{(i.price * i.qty).toFixed(2)}</p>
                   </div>

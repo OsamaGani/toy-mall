@@ -24,6 +24,14 @@ const computeUnitPrice = (product, qty, isWholesaleAccount) => {
   };
 };
 
+// Build a stable unique line identifier so the same product in two
+// different colours stays as two cart lines. Colour is normalised to lower
+// case so "Red" and "red" don't create duplicate lines from typos.
+const lineIdFor = (productId, color) => {
+  const c = (color || '').trim().toLowerCase();
+  return c ? `${productId}__${c}` : String(productId);
+};
+
 export function CartProvider({ children }) {
   const { user } = useAuth();
   const isWholesale = user?.accountType === 'wholesale';
@@ -31,7 +39,13 @@ export function CartProvider({ children }) {
   const [items, setItems] = useState(() => {
     try {
       const stored = localStorage.getItem('cart');
-      return stored ? JSON.parse(stored) : [];
+      const parsed = stored ? JSON.parse(stored) : [];
+      // Backfill lineId on items saved before the colour feature shipped.
+      return Array.isArray(parsed) ? parsed.map((it) => ({
+        ...it,
+        lineId: it.lineId || lineIdFor(it.product, it.color),
+        color: it.color || '',
+      })) : [];
     } catch {
       return [];
     }
@@ -60,9 +74,10 @@ export function CartProvider({ children }) {
     );
   }, [isWholesale]);
 
-  const addToCart = (product, qty = 1) => {
+  const addToCart = (product, qty = 1, color = '') => {
+    const targetLineId = lineIdFor(product._id, color);
     setItems((prev) => {
-      const existing = prev.find((p) => p.product === product._id);
+      const existing = prev.find((p) => p.lineId === targetLineId);
       const newQty = (existing?.qty || 0) + qty;
       const { price, isWholesalePrice } = computeUnitPrice(product, newQty, isWholesale);
       const basePrice = product.discount > 0
@@ -71,15 +86,17 @@ export function CartProvider({ children }) {
 
       if (existing) {
         return prev.map((p) =>
-          p.product === product._id ? { ...p, qty: newQty, price, isWholesalePrice } : p
+          p.lineId === targetLineId ? { ...p, qty: newQty, price, isWholesalePrice } : p
         );
       }
       return [
         ...prev,
         {
+          lineId: targetLineId,
           product: product._id,
           name: product.name,
           image: product.image || product.images?.[0] || '',
+          color: color || '',
           basePrice,
           price,
           qty: newQty,
@@ -89,14 +106,17 @@ export function CartProvider({ children }) {
         },
       ];
     });
-    toast.success('Added to cart');
+    toast.success(color ? `Added (${color}) to cart` : 'Added to cart');
   };
 
-  const updateQty = (productId, qty) => {
-    if (qty < 1) return removeFromCart(productId);
+  // Both updateQty and removeFromCart accept either a lineId or, for
+  // backward compatibility, a raw productId (which only matches the
+  // colour-less line for that product).
+  const updateQty = (lineId, qty) => {
+    if (qty < 1) return removeFromCart(lineId);
     setItems((prev) =>
       prev.map((it) => {
-        if (it.product !== productId) return it;
+        if (it.lineId !== lineId && it.product !== lineId) return it;
         const { price, isWholesalePrice } = computeUnitPrice(
           {
             price: it.basePrice ?? it.price,
@@ -112,8 +132,8 @@ export function CartProvider({ children }) {
     );
   };
 
-  const removeFromCart = (productId) => {
-    setItems((prev) => prev.filter((it) => it.product !== productId));
+  const removeFromCart = (lineId) => {
+    setItems((prev) => prev.filter((it) => it.lineId !== lineId && it.product !== lineId));
   };
 
   const clearCart = () => setItems([]);

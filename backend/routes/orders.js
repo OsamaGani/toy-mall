@@ -80,6 +80,18 @@ router.post('/', protect, asyncHandler(async (req, res) => {
         updated.wholesalePrice > 0 &&
         qty >= updated.wholesaleMinQty;
 
+      // Validate the colour the customer picked: must be one the product
+      // actually offers (case-insensitive match). Falls back to '' silently
+      // for products without colour options or if the client sent an
+      // unrecognised value, so the order still completes.
+      let color = String(it?.color || '').trim().slice(0, 40);
+      if (color && Array.isArray(updated.colors) && updated.colors.length > 0) {
+        const match = updated.colors.find((c) => c.toLowerCase() === color.toLowerCase());
+        color = match || '';
+      } else if (color && (!updated.colors || updated.colors.length === 0)) {
+        color = '';
+      }
+
       safeItems.push({
         product: updated._id,
         name: updated.name,
@@ -87,6 +99,7 @@ router.post('/', protect, asyncHandler(async (req, res) => {
         price: unit,
         qty,
         isWholesalePrice,
+        color,
       });
       itemsPrice += unit * qty;
     }

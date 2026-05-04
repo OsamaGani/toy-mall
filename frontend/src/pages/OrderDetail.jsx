@@ -154,8 +154,13 @@ export default function OrderDetail() {
                 </Link>
                 <div className="flex-1">
                   <Link to={`/product/${it.product}`} className="font-medium hover:text-primary-500">{it.name}</Link>
-                  <div className="flex items-center gap-2 mt-1">
+                  <div className="flex items-center gap-2 mt-1 flex-wrap">
                     <p className="text-sm text-gray-500">Qty: {it.qty} × ₹{it.price}</p>
+                    {it.color && (
+                      <span className="bg-gray-100 text-gray-700 text-[11px] px-2 py-0.5 rounded-full font-semibold inline-flex items-center gap-1">
+                        Color: <span className="text-gray-900">{it.color}</span>
+                      </span>
+                    )}
                     {it.isWholesalePrice && <span className="bg-purple-100 text-purple-700 text-[10px] px-1.5 py-0.5 rounded font-bold">WHOLESALE</span>}
                   </div>
                 </div>

@@ -109,7 +109,10 @@ export default function ShippingLabel() {
                   <td className="py-1 w-6">{i + 1}.</td>
                   <td className="py-1 pr-2">
                     <p className="truncate max-w-[180px] font-medium">{it.name}</p>
-                    <p className="text-[10px] text-gray-600">×{it.qty} @ ₹{it.price.toFixed(2)}</p>
+                    <p className="text-[10px] text-gray-600">
+                      ×{it.qty} @ ₹{it.price.toFixed(2)}
+                      {it.color && <> · <strong className="text-gray-900">{it.color}</strong></>}
+                    </p>
                   </td>
                   <td className="py-1 text-right font-bold whitespace-nowrap">₹{(it.qty * it.price).toFixed(2)}</td>
                 </tr>

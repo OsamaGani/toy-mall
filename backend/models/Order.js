@@ -7,6 +7,11 @@ const orderItemSchema = new mongoose.Schema({
   price: Number,
   qty: { type: Number, required: true, min: 1 },
   isWholesalePrice: { type: Boolean, default: false },
+  // Customer-selected colour at time of order. Stored verbatim (e.g.
+  // "Red", "Pastel Blue") so emails / invoices / shipping labels can
+  // print the exact name shown on the product page. Empty string when
+  // the product has no colour options configured.
+  color: { type: String, default: '' },
 });
 
 const statusEvent = new mongoose.Schema({

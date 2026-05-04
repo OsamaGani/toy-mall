@@ -223,10 +223,19 @@ export default function AdminOrderDetail() {
                       <td className="py-2">
                         <div className="flex items-center gap-2">
                           <img src={resolveImage(it.image)} className="w-10 h-10 rounded border bg-gray-50 object-contain p-1" alt="" />
-                          <Link to={`/product/${it.product}`} className="hover:text-primary-500">
-                            {it.name}
-                            {it.isWholesalePrice && <span className="ml-2 bg-purple-100 text-purple-700 text-[10px] px-1 py-0.5 rounded font-bold">W</span>}
-                          </Link>
+                          <div className="min-w-0">
+                            <Link to={`/product/${it.product}`} className="hover:text-primary-500 block truncate">
+                              {it.name}
+                              {it.isWholesalePrice && <span className="ml-2 bg-purple-100 text-purple-700 text-[10px] px-1 py-0.5 rounded font-bold">W</span>}
+                            </Link>
+                            {/* Colour the customer chose — must be visible to
+                                whoever physically packs the order */}
+                            {it.color && (
+                              <p className="text-[11px] text-gray-700 mt-0.5">
+                                Colour: <strong className="text-gray-900">{it.color}</strong>
+                              </p>
+                            )}
+                          </div>
                         </div>
                       </td>
                       <td className="text-center">{it.qty}</td>
