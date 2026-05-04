@@ -297,9 +297,19 @@ export default function ProductDetail() {
         {/* Info */}
         <div>
           <div className="flex items-start justify-between gap-3">
-            <div>
+            <div className="min-w-0 flex-1">
               <p className="text-xs sm:text-sm text-gray-500 uppercase">{product.brand}</p>
               <h1 className="text-base sm:text-lg md:text-xl font-bold mt-1">{product.name}</h1>
+              {/* Short description preview right under the title — gives
+                  customers the gist of the product without scrolling.
+                  Capped at 3 lines so it doesn't push the price down on
+                  small screens; the full description is still rendered
+                  in its own section further down. */}
+              {product.description && (
+                <p className="text-sm text-gray-700 mt-2 leading-relaxed line-clamp-3">
+                  {product.description.replace(/<[^>]+>/g, '')}
+                </p>
+              )}
             </div>
             <button
               onClick={() => toggleWishlist(product)}
