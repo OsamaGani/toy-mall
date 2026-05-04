@@ -40,22 +40,18 @@ export default function ProductDetail() {
     try {
       const { data } = await API.get(`/products/${id}`);
       setProduct(data);
-      // Pre-select the first colour variant if any. The image swap effect
-      // below will then pick that variant's first image automatically.
-      const firstVariant = data.colorVariants?.[0];
-      const firstColor = firstVariant?.color || data.colors?.[0] || '';
-      setSelectedColor(firstColor);
-      // Default the gallery to the main "hero" image — that's the first
-      // thumbnail customers see on load. If the product has no main image
-      // we fall back, in order, to: the first multi-image gallery entry,
-      // the pre-selected variant's first image, and finally any variant
-      // that has at least one image (so a variants-only product never
-      // shows empty).
+      // Don't auto-pick a colour. The customer should explicitly choose
+      // their colour — that way the gallery starts clean (main images
+      // only) and the variant photos only appear AFTER they tap a swatch.
+      setSelectedColor('');
+      // Default to the main hero image. If the product has no main image
+      // (variants-only catalogue entry) fall back to product.images, then
+      // any variant that has at least one image — so the gallery never
+      // renders empty.
       const anyVariantImg = (data.colorVariants || []).find((v) => v.images?.length)?.images[0];
       setActiveImg(
         data.image ||
         data.images?.[0] ||
-        (firstVariant?.images && firstVariant.images[0]) ||
         anyVariantImg ||
         ''
       );
@@ -101,20 +97,23 @@ export default function ProductDetail() {
 
   // Gallery resolution — main image(s) come first, then the selected
   // variant's images appended after. Customers always see the hero shot
-  // as the leading thumbnail AND can flip through the colour-specific
-  // photos. Set-dedupe handles the case where admin uploaded the same
-  // file in both the main slot and a variant slot.
-  const mainImages = (product.images && product.images.length > 0)
-    ? product.images
-    : (product.image ? [product.image] : []);
+  // as the leading thumbnail; variant-specific photos ONLY appear once
+  // a colour swatch is tapped. Both product.image and product.images
+  // contribute to the main set so the hero shot survives even when admin
+  // also filled the multi-gallery field.
+  const mainImages = [
+    ...(product.image ? [product.image] : []),
+    ...(product.images || []),
+  ];
   const variantImages = (activeVariant?.images && activeVariant.images.length > 0)
     ? activeVariant.images
     : [];
+  // Set-dedupe in case the same URL appears in main + variant (admin
+  // uploaded the same file twice).
   let displayImages = [...new Set([...mainImages, ...variantImages])];
-  // Final safety net: if a product somehow has no main image AND the
-  // active variant has no images (admin only uploaded photos to OTHER
-  // variants), borrow the first photo we can find so the gallery
-  // never renders empty.
+  // Final safety net: if a product somehow has no main image AND no
+  // active variant images (admin only filled OTHER colour variants),
+  // borrow the first photo we can find so the gallery never renders empty.
   if (displayImages.length === 0) {
     const anyVariantImg = (product.colorVariants || []).find((v) => v.images?.length)?.images[0];
     if (anyVariantImg) displayImages = [anyVariantImg];
@@ -521,13 +520,29 @@ export default function ProductDetail() {
                 <button onClick={() => setQty(Math.min(product.stock, qty + 1))} className="px-2 hover:bg-gray-50 h-full">+</button>
               </div>
               <button
-                onClick={() => addToCart(product, qty, selectedColor || availableColors[0] || '')}
+                onClick={() => {
+                  // Require an explicit colour pick when the product has options —
+                  // we no longer auto-select the first colour, so a missing pick
+                  // means the customer didn't decide. Toast + abort.
+                  if (availableColors.length > 0 && !selectedColor) {
+                    toast.error('Please select a colour first');
+                    return;
+                  }
+                  addToCart(product, qty, selectedColor || '');
+                }}
                 className="flex items-center justify-center gap-1 border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white text-xs font-semibold px-3 h-8 rounded transition"
               >
                 <FiShoppingCart size={12} /> Add to Cart
               </button>
               <button
-                onClick={() => { addToCart(product, qty, selectedColor || availableColors[0] || ''); navigate('/checkout'); }}
+                onClick={() => {
+                  if (availableColors.length > 0 && !selectedColor) {
+                    toast.error('Please select a colour first');
+                    return;
+                  }
+                  addToCart(product, qty, selectedColor || '');
+                  navigate('/checkout');
+                }}
                 className="flex items-center justify-center gap-1 bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold px-3 h-8 rounded transition"
               >
                 ⚡ Buy Now
@@ -706,19 +721,23 @@ const Info = ({ label, value }) => (
 // in info column). Identical UI, just controlled by parent state so both
 // instances stay in sync.
 function ColorSwatchPanel({ colors, selectedColor, onSelect }) {
-  const current = selectedColor || colors[0];
+  // selectedColor stays empty until the customer explicitly picks one.
+  // We DON'T fall back to colors[0] here — the heading should read
+  // "Select a colour" so it's obvious a choice is required.
   return (
     <>
       <div className="flex items-center justify-between mb-1.5">
         <p className="text-xs font-bold">
-          Color: <span className="font-medium text-primary-600">{current}</span>
+          {selectedColor
+            ? <>Color: <span className="font-medium text-primary-600">{selectedColor}</span></>
+            : <span className="text-gray-700">Select a colour</span>}
         </p>
         <p className="text-[10px] text-gray-500">{colors.length} option{colors.length === 1 ? '' : 's'}</p>
       </div>
       <div className="flex flex-wrap gap-1.5">
         {colors.map((c) => {
           const bg = colorToBackground(c);
-          const isPicked = current.toLowerCase() === c.toLowerCase();
+          const isPicked = (selectedColor || '').toLowerCase() === c.toLowerCase();
           return (
             <button
               key={c}
