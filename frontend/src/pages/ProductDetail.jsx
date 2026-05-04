@@ -5,13 +5,16 @@ import Loader from '../components/Loader';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { FiShoppingCart, FiHeart, FiStar, FiTruck, FiShield, FiRefreshCw, FiChevronLeft, FiChevronRight, FiMapPin, FiCheckCircle, FiShare2, FiCheck, FiZap } from 'react-icons/fi';
+import { FiShoppingCart, FiHeart, FiStar, FiTruck, FiShield, FiRefreshCw, FiChevronLeft, FiChevronRight, FiMapPin, FiCheckCircle, FiShare2, FiCheck, FiZap, FiMessageCircle, FiClock } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { useWishlist } from '../context/WishlistContext';
 import { resolveImage } from '../utils/imageUrl';
 import toast from 'react-hot-toast';
 import SEO, { SITE_URL, SITE_NAME } from '../components/SEO';
 import { addRecentlyViewed } from '../utils/recentlyViewed';
 import { colorToBackground, isLightColor } from '../utils/colors';
+import StickyBuyBar from '../components/StickyBuyBar';
+import { waLink } from '../config/contact';
 
 export default function ProductDetail() {
   // Route param is "slug" but we accept any product identifier (slug or
@@ -34,6 +37,9 @@ export default function ProductDetail() {
   const [pinCheck, setPinCheck] = useState(null); // { city, state, etaText } | { error }
   const [pinChecking, setPinChecking] = useState(false);
 
+  // Anchor for the StickyBuyBar — points to the in-page Add-to-Cart /
+  // Buy Now block. The bar shows once this anchor scrolls out of view.
+  const buyAnchorRef = useRef(null);
 
   const load = async () => {
     setLoading(true);
@@ -525,8 +531,21 @@ export default function ProductDetail() {
             </table>
           </div>
 
+          {/* Order ETA — shows a default delivery window even before the
+              customer enters a PIN. Three working days out gives a safe
+              estimate; the PIN check below refines it for their pincode. */}
+          {product.stock > 0 && !pinCheck?.etaText && (
+            <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 font-semibold">
+              <FiClock size={12} />
+              <span>
+                Order today · Delivery by{' '}
+                {new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+              </span>
+            </div>
+          )}
+
           {product.stock > 0 ? (
-            <div className="mt-5 flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
+            <div ref={buyAnchorRef} className="mt-5 flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
               <div className="flex items-center border border-gray-300 rounded h-8 text-xs">
                 <button onClick={() => setQty(Math.max(1, qty - 1))} className="px-2 hover:bg-gray-50 h-full">−</button>
                 <span className="px-2 font-semibold">{qty}</span>
@@ -546,10 +565,25 @@ export default function ProductDetail() {
               </button>
             </div>
           ) : (
-            <button disabled className="mt-6 bg-gray-300 text-gray-500 text-xs font-bold px-4 py-2 rounded cursor-not-allowed">
+            <button ref={buyAnchorRef} disabled className="mt-6 bg-gray-300 text-gray-500 text-xs font-bold px-4 py-2 rounded cursor-not-allowed">
               Out of Stock
             </button>
           )}
+
+          {/* Ask on WhatsApp — Indian customers are 10× more likely to
+              ping a store on WhatsApp than fill a contact form. The link
+              pre-fills a message with the product name and URL so the
+              shop team knows exactly what the customer is asking about. */}
+          <a
+            href={waLink(`Hi Toy Mall! I'm interested in *${product.name}* (${typeof window !== 'undefined' ? window.location.href : ''}). Can you help me?`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 px-3 py-2 rounded-lg transition"
+          >
+            <FaWhatsapp size={16} className="text-green-600" />
+            <span>Ask about this toy on WhatsApp</span>
+            <span className="text-[10px] text-green-600 hidden sm:inline">· typically replies within an hour</span>
+          </a>
 
           <div className="mt-6 grid grid-cols-3 gap-3 text-xs text-center pt-6 border-t">
             <Perk icon={<FiTruck />} text="Free Shipping over ₹999" />
@@ -626,6 +660,23 @@ export default function ProductDetail() {
         />
       )}
 
+      {/* Sticky Buy Bar — slides up from the bottom once the customer
+          scrolls past the in-page Add to Cart / Buy Now block. Keeps
+          the buy action one tap away no matter how far down they
+          scroll (gallery → price → description → specs → reviews →
+          related products is a long page on mobile). */}
+      <StickyBuyBar
+        anchorRef={buyAnchorRef}
+        image={activeImg || displayImages[0]}
+        name={product.name}
+        price={final}
+        originalPrice={effectiveBasePrice}
+        discount={effectiveDiscount}
+        stock={product.stock}
+        priceLabel={hasVariantOverride && selectedColor ? `Price for ${selectedColor}` : ''}
+        onAddToCart={() => addToCart(product, qty, selectedColor || '')}
+        onBuyNow={() => { addToCart(product, qty, selectedColor || ''); navigate('/checkout'); }}
+      />
     </div>
   );
 }
