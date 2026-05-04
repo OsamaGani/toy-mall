@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { FiCheck, FiPackage, FiTrendingDown, FiTruck, FiAward, FiShield, FiPhone, FiMail, FiArrowRight, FiBriefcase } from 'react-icons/fi';
 import { PLACEHOLDER } from '../utils/imageUrl';
 import SEO from '../components/SEO';
+import Reveal from '../components/Reveal';
 
 const benefits = [
   { icon: <FiTrendingDown />, title: 'Margins up to 40%', desc: 'Tier-based wholesale pricing on bulk packs — the more you order, the lower the per-unit cost.' },
@@ -101,14 +102,16 @@ export default function Wholesale() {
           <p className="text-gray-600 mt-2">Built for retailers who want better margins, faster restocking, and zero hassle.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {benefits.map((b) => (
-            <div key={b.title} className="bg-white border-2 border-gray-100 hover:border-purple-500 rounded-xl p-6 transition hover:shadow-lg group">
-              <div className="bg-purple-100 group-hover:bg-purple-500 group-hover:text-white text-purple-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-3 transition">
-                {b.icon}
+          {benefits.map((b, i) => (
+            <Reveal key={b.title} direction="up" delay={i * 100}>
+              <div className="bg-white border-2 border-gray-100 hover:border-purple-500 rounded-xl p-6 transition hover:shadow-lg group h-full">
+                <div className="bg-purple-100 group-hover:bg-purple-500 group-hover:text-white text-purple-600 w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-3 transition">
+                  {b.icon}
+                </div>
+                <h3 className="font-bold text-lg">{b.title}</h3>
+                <p className="text-gray-600 text-sm mt-1">{b.desc}</p>
               </div>
-              <h3 className="font-bold text-lg">{b.title}</h3>
-              <p className="text-gray-600 text-sm mt-1">{b.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -123,12 +126,14 @@ export default function Wholesale() {
               { step: 2, title: 'Browse Catalog', desc: 'See special wholesale prices on minimum-quantity packs' },
               { step: 3, title: 'Place Bulk Order', desc: 'Add to cart — wholesale price applies automatically' },
               { step: 4, title: 'Get Delivered', desc: 'Free delivery + GST invoice — restock your shop' },
-            ].map((s) => (
-              <div key={s.step} className="text-center">
-                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-600 to-primary-500 text-white rounded-full flex items-center justify-center text-2xl font-extrabold shadow-lg mb-3">{s.step}</div>
-                <h3 className="font-bold">{s.title}</h3>
-                <p className="text-gray-600 text-sm mt-1">{s.desc}</p>
-              </div>
+            ].map((s, i) => (
+              <Reveal key={s.step} direction="up" delay={i * 120}>
+                <div className="text-center">
+                  <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-600 to-primary-500 text-white rounded-full flex items-center justify-center text-2xl font-extrabold shadow-lg mb-3">{s.step}</div>
+                  <h3 className="font-bold">{s.title}</h3>
+                  <p className="text-gray-600 text-sm mt-1">{s.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -138,13 +143,13 @@ export default function Wholesale() {
       <section className="max-w-7xl mx-auto px-4 py-16">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">Hot Wholesale Categories</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {popularCategories.map((c) => {
+          {popularCategories.map((c, i) => {
             const href = c.link?.trim() || `/shop?category=${encodeURIComponent(c.name)}`;
             return (
+              <Reveal key={c._id || c.name} direction="scale" delay={i * 80}>
               <Link
-                key={c._id || c.name}
                 to={href}
-                className="group relative aspect-square rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-gray-100"
+                className="group relative aspect-square rounded-xl overflow-hidden shadow hover:shadow-xl transition bg-gray-100 block"
               >
                 <img
                   src={c.image || c.img || PLACEHOLDER}
@@ -156,6 +161,7 @@ export default function Wholesale() {
                   <h3 className="text-white font-bold text-lg drop-shadow">{c.name}</h3>
                 </div>
               </Link>
+              </Reveal>
             );
           })}
         </div>
@@ -166,13 +172,15 @@ export default function Wholesale() {
         <div className="max-w-7xl mx-auto px-4 py-16">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">Trusted by 500+ Shop Owners</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-6">
-                <div className="text-yellow-300 mb-2">{'★'.repeat(t.rating)}</div>
-                <p className="text-white/95">"{t.text}"</p>
-                <p className="mt-3 font-bold">{t.name}</p>
-                <p className="text-sm opacity-80">{t.city}</p>
-              </div>
+            {testimonials.map((t, i) => (
+              <Reveal key={t.name} direction={i === 0 ? 'left' : i === 2 ? 'right' : 'up'} delay={i * 100}>
+                <div className="bg-white/10 backdrop-blur border border-white/20 rounded-xl p-6 h-full">
+                  <div className="text-yellow-300 mb-2">{'★'.repeat(t.rating)}</div>
+                  <p className="text-white/95">"{t.text}"</p>
+                  <p className="mt-3 font-bold">{t.name}</p>
+                  <p className="text-sm opacity-80">{t.city}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>

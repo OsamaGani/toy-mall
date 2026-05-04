@@ -239,11 +239,21 @@ export default function Home() {
       {/* USP strip — Amazon/Flipkart style trust signals right under hero */}
       <section className="border-b bg-gradient-to-r from-gray-50 via-white to-gray-50">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-5 grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-3">
-          <UspBadge icon={<FiTruck />}      title="Free Pan-India Delivery" desc="On every order over ₹999"  color="bg-blue-50 text-blue-600" />
-          <UspBadge icon={<FiShield />}     title="100% Genuine Brands"     desc="Direct from authorised dealers" color="bg-emerald-50 text-emerald-600" />
-          <UspBadge icon={<FiRefreshCw />}  title="7-Day Easy Returns"      desc="No questions asked"        color="bg-orange-50 text-orange-600" />
-          <UspBadge icon={<FiHeadphones />} title="Talk to a Human"         desc="Call +91 77380 28750"      color="bg-purple-50 text-purple-600" link="/contact" />
-          <UspBadge icon={<FiPackage />}    title="Wholesale Pricing"       desc="40% off for shop owners"   color="bg-pink-50 text-pink-600" link="/wholesale" />
+          <Reveal direction="up" delay={0}>
+            <UspBadge icon={<FiTruck />}      title="Free Pan-India Delivery" desc="On every order over ₹999"  color="bg-blue-50 text-blue-600" />
+          </Reveal>
+          <Reveal direction="up" delay={80}>
+            <UspBadge icon={<FiShield />}     title="100% Genuine Brands"     desc="Direct from authorised dealers" color="bg-emerald-50 text-emerald-600" />
+          </Reveal>
+          <Reveal direction="up" delay={160}>
+            <UspBadge icon={<FiRefreshCw />}  title="7-Day Easy Returns"      desc="No questions asked"        color="bg-orange-50 text-orange-600" />
+          </Reveal>
+          <Reveal direction="up" delay={240}>
+            <UspBadge icon={<FiHeadphones />} title="Talk to a Human"         desc="Call +91 77380 28750"      color="bg-purple-50 text-purple-600" link="/contact" />
+          </Reveal>
+          <Reveal direction="up" delay={320}>
+            <UspBadge icon={<FiPackage />}    title="Wholesale Pricing"       desc="40% off for shop owners"   color="bg-pink-50 text-pink-600" link="/wholesale" />
+          </Reveal>
         </div>
       </section>
 
@@ -335,9 +345,10 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-3 sm:px-4 py-8 sm:py-12">
         <div className="grid lg:grid-cols-3 gap-3 sm:gap-4">
           {/* Main big card */}
+          <Reveal direction="left" className="lg:col-span-2">
           <Link
             to="/shop?discount=true"
-            className="lg:col-span-2 relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group min-h-[260px] sm:min-h-[320px] md:min-h-[380px] bg-gradient-to-br from-primary-500 via-pink-500 to-purple-600 text-white"
+            className="block relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group min-h-[260px] sm:min-h-[320px] md:min-h-[380px] bg-gradient-to-br from-primary-500 via-pink-500 to-purple-600 text-white"
           >
             <img src="https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=1600" className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-30 group-hover:scale-105 transition duration-500" alt="" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>
@@ -350,14 +361,15 @@ export default function Home() {
               </span>
             </div>
           </Link>
+          </Reveal>
 
           {/* Two side cards */}
           <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4">
-            {sideCards.map((card) => (
+            {sideCards.map((card, i) => (
+              <Reveal key={card.title} direction="right" delay={i * 120}>
               <Link
-                key={card.title}
                 to={card.link}
-                className={`${card.bg} text-white rounded-xl sm:rounded-2xl overflow-hidden relative group shadow-lg hover:shadow-2xl transition min-h-[140px] sm:min-h-[160px] lg:min-h-[182px]`}
+                className={`block ${card.bg} text-white rounded-xl sm:rounded-2xl overflow-hidden relative group shadow-lg hover:shadow-2xl transition min-h-[140px] sm:min-h-[160px] lg:min-h-[182px]`}
               >
                 <img src={card.image} className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-35 group-hover:scale-110 transition duration-500" alt="" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -372,6 +384,7 @@ export default function Home() {
                   </span>
                 </div>
               </Link>
+              </Reveal>
             ))}
           </div>
         </div>

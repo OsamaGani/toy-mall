@@ -5,6 +5,7 @@ import API from '../api/axios';
 import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiMessageCircle, FiCheckCircle, FiNavigation, FiExternalLink } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import SEO from '../components/SEO';
+import Reveal from '../components/Reveal';
 import {
   PHONE_PRIMARY_DISPLAY, PHONE_PRIMARY_TEL,
   PHONE_SECONDARY_DISPLAY, PHONE_SECONDARY_TEL,
@@ -58,60 +59,74 @@ export default function Contact() {
       />
 
       <div className="max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-[1fr_1.2fr] gap-8">
-        {/* Info */}
+        {/* Info — each card slides in from the left, staggered, as it
+            scrolls into view. The form (right column) slides from the right. */}
         <div className="space-y-4">
-          <InfoCard
-            icon={<FiMapPin />}
-            title="Visit Us"
-            lines={[
-              'Toy Mall',
-              'Mobin Apartment, A Wing, Shop No. 4',
-              'Amrut Nagar, Near Dargah Road',
-              'Mumbra, Thane — 400612, Maharashtra',
-            ]}
-            color="text-red-500 bg-red-50"
-          />
-          <InfoCard
-            icon={<FiMail />}
-            title="Owner"
-            lines={['Abu Huraira Khan', <span className="text-sm text-gray-600">Founder, Toy Mall</span>]}
-            color="text-amber-500 bg-amber-50"
-          />
-          <InfoCard
-            icon={<FiPhone />}
-            title="Call Us"
-            lines={[
-              <a href={`tel:${PHONE_PRIMARY_TEL}`} className="hover:text-primary-500">{PHONE_PRIMARY_DISPLAY}</a>,
-              <a href={`tel:${PHONE_SECONDARY_TEL}`} className="hover:text-primary-500 text-sm text-gray-600">{PHONE_SECONDARY_DISPLAY}</a>,
-            ]}
-            color="text-blue-500 bg-blue-50"
-          />
-          <InfoCard
-            icon={<FiMail />}
-            title="Email Us"
-            lines={[
-              <a href={`mailto:${EMAIL_PRIMARY}`} className="hover:text-primary-500">{EMAIL_PRIMARY}</a>,
-              <a href={`mailto:${EMAIL_GMAIL}`} className="hover:text-primary-500 text-sm text-gray-600">{EMAIL_GMAIL}</a>,
-            ]}
-            color="text-purple-500 bg-purple-50"
-          />
-          <InfoCard
-            icon={<FiClock />}
-            title="Store Hours"
-            lines={['Monday – Saturday: 10:00 AM – 9:00 PM', 'Sunday: 11:00 AM – 8:00 PM']}
-            color="text-green-500 bg-green-50"
-          />
+          <Reveal direction="left" delay={0}>
+            <InfoCard
+              icon={<FiMapPin />}
+              title="Visit Us"
+              lines={[
+                'Toy Mall',
+                'Mobin Apartment, A Wing, Shop No. 4',
+                'Amrut Nagar, Near Dargah Road',
+                'Mumbra, Thane — 400612, Maharashtra',
+              ]}
+              color="text-red-500 bg-red-50"
+            />
+          </Reveal>
+          <Reveal direction="left" delay={80}>
+            <InfoCard
+              icon={<FiMail />}
+              title="Owner"
+              lines={['Abu Huraira Khan', <span className="text-sm text-gray-600">Founder, Toy Mall</span>]}
+              color="text-amber-500 bg-amber-50"
+            />
+          </Reveal>
+          <Reveal direction="left" delay={160}>
+            <InfoCard
+              icon={<FiPhone />}
+              title="Call Us"
+              lines={[
+                <a href={`tel:${PHONE_PRIMARY_TEL}`} className="hover:text-primary-500">{PHONE_PRIMARY_DISPLAY}</a>,
+                <a href={`tel:${PHONE_SECONDARY_TEL}`} className="hover:text-primary-500 text-sm text-gray-600">{PHONE_SECONDARY_DISPLAY}</a>,
+              ]}
+              color="text-blue-500 bg-blue-50"
+            />
+          </Reveal>
+          <Reveal direction="left" delay={240}>
+            <InfoCard
+              icon={<FiMail />}
+              title="Email Us"
+              lines={[
+                <a href={`mailto:${EMAIL_PRIMARY}`} className="hover:text-primary-500">{EMAIL_PRIMARY}</a>,
+                <a href={`mailto:${EMAIL_GMAIL}`} className="hover:text-primary-500 text-sm text-gray-600">{EMAIL_GMAIL}</a>,
+              ]}
+              color="text-purple-500 bg-purple-50"
+            />
+          </Reveal>
+          <Reveal direction="left" delay={320}>
+            <InfoCard
+              icon={<FiClock />}
+              title="Store Hours"
+              lines={['Monday – Saturday: 10:00 AM – 9:00 PM', 'Sunday: 11:00 AM – 8:00 PM']}
+              color="text-green-500 bg-green-50"
+            />
+          </Reveal>
 
-          <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl p-5 flex items-center justify-between gap-3">
-            <div>
-              <p className="font-bold flex items-center gap-2"><FaWhatsapp /> WhatsApp us</p>
-              <p className="text-sm opacity-90 mt-1">Quickest way to reach us</p>
+          <Reveal direction="left" delay={400}>
+            <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl p-5 flex items-center justify-between gap-3">
+              <div>
+                <p className="font-bold flex items-center gap-2"><FaWhatsapp /> WhatsApp us</p>
+                <p className="text-sm opacity-90 mt-1">Quickest way to reach us</p>
+              </div>
+              <a href={waLink()} target="_blank" rel="noopener noreferrer" className="bg-white text-green-600 font-bold px-4 py-2 rounded-md hover:bg-gray-100">Chat now</a>
             </div>
-            <a href={waLink()} target="_blank" rel="noopener noreferrer" className="bg-white text-green-600 font-bold px-4 py-2 rounded-md hover:bg-gray-100">Chat now</a>
-          </div>
+          </Reveal>
         </div>
 
         {/* Form */}
+        <Reveal direction="right" delay={120}>
         <div className="bg-white border rounded-2xl shadow-sm p-6 md:p-8">
           <h2 className="text-2xl font-bold flex items-center gap-2 mb-1"><FiMessageCircle /> Send us a message</h2>
           <p className="text-sm text-gray-600 mb-5">Tell us what you're looking for — a specific toy, a custom bulk order, gift advice for a particular age. We'll get back to you within a working day.</p>
@@ -157,10 +172,12 @@ export default function Contact() {
             </button>
           </form>
         </div>
+        </Reveal>
       </div>
 
       {/* Map — embedded Google Maps centered on the Toy Mall pin, with
           quick-action buttons for directions and full Maps view. */}
+      <Reveal direction="scale">
       <section className="max-w-7xl mx-auto px-4 pb-12">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-3">
           <div>
@@ -201,6 +218,7 @@ export default function Contact() {
           ></iframe>
         </div>
       </section>
+      </Reveal>
     </div>
   );
 }

@@ -109,20 +109,24 @@ export default function About() {
       {/* CTAs */}
       <section className="bg-gray-50 border-y">
         <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-6">
-          <Link to="/wholesale" className="bg-gradient-to-r from-purple-600 to-primary-500 text-white rounded-xl p-8 hover:shadow-xl transition flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-extrabold">Run a shop?</h3>
-              <p className="opacity-90 mt-1">Open a wholesale account and save up to 40%</p>
-            </div>
-            <FiArrowRight size={28} />
-          </Link>
-          <Link to="/contact" className="bg-gray-900 text-white rounded-xl p-8 hover:shadow-xl transition flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-extrabold">Get in touch</h3>
-              <p className="opacity-90 mt-1">Visit our store in Mumbra or call +91 77380 28750</p>
-            </div>
-            <FiArrowRight size={28} />
-          </Link>
+          <Reveal direction="left">
+            <Link to="/wholesale" className="bg-gradient-to-r from-purple-600 to-primary-500 text-white rounded-xl p-8 hover:shadow-xl transition flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-extrabold">Run a shop?</h3>
+                <p className="opacity-90 mt-1">Open a wholesale account and save up to 40%</p>
+              </div>
+              <FiArrowRight size={28} />
+            </Link>
+          </Reveal>
+          <Reveal direction="right" delay={150}>
+            <Link to="/contact" className="bg-gray-900 text-white rounded-xl p-8 hover:shadow-xl transition flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-extrabold">Get in touch</h3>
+                <p className="opacity-90 mt-1">Visit our store in Mumbra or call +91 77380 28750</p>
+              </div>
+              <FiArrowRight size={28} />
+            </Link>
+          </Reveal>
         </div>
       </section>
     </div>
