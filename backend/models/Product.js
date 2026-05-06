@@ -44,6 +44,14 @@ const productSchema = new mongoose.Schema(
       // listing into two products.
       price: { type: Number, default: 0, min: 0 },
       discount: { type: Number, default: 0, min: 0, max: 100 },
+      // Optional per-colour name + description overrides. Empty string
+      // (default) falls back to the product-level name / description.
+      // Useful when each colour is essentially its own edition — e.g.
+      // "Hot Wheels Red Racer" vs "Hot Wheels Blue Cruiser" — without
+      // splitting the listing into two products and losing the shared
+      // SEO authority of one URL.
+      name: { type: String, default: '' },
+      description: { type: String, default: '' },
     }],
     featured: { type: Boolean, default: false },
     bestSeller: { type: Boolean, default: false },
@@ -71,13 +79,20 @@ productSchema.pre('save', function (next) {
     this.slug = this.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now().toString(36);
   }
   // Normalise colour variants — dedupe by colour name (case-insensitive),
-  // trim whitespace, drop empties, cap at 12.
+  // trim whitespace, drop empties, cap at 12. Preserves price, discount,
+  // name, and description overrides when the admin has set them.
   if (Array.isArray(this.colorVariants) && this.colorVariants.length > 0) {
     const seen = new Set();
     this.colorVariants = this.colorVariants
       .map((v) => ({
         color: String(v?.color || '').trim(),
         images: Array.isArray(v?.images) ? v.images.filter(Boolean) : [],
+        // Cast price + discount through Number() so empty-string form inputs
+        // become 0 instead of NaN, then clamp negatives to 0.
+        price: Math.max(0, Number(v?.price) || 0),
+        discount: Math.min(100, Math.max(0, Number(v?.discount) || 0)),
+        name: String(v?.name || '').trim(),
+        description: String(v?.description || '').trim(),
       }))
       .filter((v) => {
         if (!v.color) return false;

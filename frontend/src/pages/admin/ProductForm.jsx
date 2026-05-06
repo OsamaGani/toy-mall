@@ -76,8 +76,10 @@ export default function ProductForm() {
                   images: Array.isArray(v.images) ? v.images : [],
                   price: v.price || 0,
                   discount: v.discount || 0,
+                  name: v.name || '',
+                  description: v.description || '',
                 }))
-              : (Array.isArray(data.colors) ? data.colors.map((c) => ({ color: c, images: [], price: 0, discount: 0 })) : []),
+              : (Array.isArray(data.colors) ? data.colors.map((c) => ({ color: c, images: [], price: 0, discount: 0, name: '', description: '' })) : []),
           });
           // If the saved brand isn't in the loaded brand list, open custom-input mode
           // so the existing value is editable instead of silently disappearing.
@@ -165,6 +167,8 @@ export default function ProductForm() {
             images: Array.isArray(v.images) ? v.images.filter(Boolean) : [],
             price: +v.price || 0,
             discount: +v.discount || 0,
+            name: String(v.name || '').trim(),
+            description: String(v.description || '').trim(),
           }))
           .filter((v) => v.color),
       };
@@ -429,6 +433,44 @@ export default function ProductForm() {
                       Leave blank or 0 to use the product's main price (₹{(+form.price || 0).toFixed(2)}{form.discount > 0 ? `, ${form.discount}% off` : ''}).
                     </p>
 
+                    {/* Optional name + description per variant. When the
+                        customer picks this colour, these strings replace
+                        the product-level name / description on the detail
+                        page. Leave blank to keep the canonical text. */}
+                    <div className="mb-3">
+                      <label className="text-[11px] font-semibold text-gray-600 uppercase tracking-wide block mb-1">
+                        Name for {v.color} <span className="font-normal text-gray-400">(optional)</span>
+                      </label>
+                      <input
+                        type="text"
+                        className="input"
+                        value={v.name || ''}
+                        onChange={(e) => {
+                          const next = [...form.colorVariants];
+                          next[idx] = { ...next[idx], name: e.target.value };
+                          setForm({ ...form, colorVariants: next });
+                        }}
+                        placeholder={`Default: ${form.name || 'product name'}`}
+                      />
+                    </div>
+
+                    <div className="mb-3">
+                      <label className="text-[11px] font-semibold text-gray-600 uppercase tracking-wide block mb-1">
+                        Description for {v.color} <span className="font-normal text-gray-400">(optional)</span>
+                      </label>
+                      <textarea
+                        rows={3}
+                        className="input"
+                        value={v.description || ''}
+                        onChange={(e) => {
+                          const next = [...form.colorVariants];
+                          next[idx] = { ...next[idx], description: e.target.value };
+                          setForm({ ...form, colorVariants: next });
+                        }}
+                        placeholder="Leave blank to use the main product description"
+                      />
+                    </div>
+
                     <ImageUploader
                       label={`Photos for ${v.color}`}
                       multiple
@@ -457,7 +499,7 @@ export default function ProductForm() {
                   e.preventDefault();
                   const v = colorInput.trim();
                   if (v && !form.colorVariants.find((cv) => cv.color.toLowerCase() === v.toLowerCase())) {
-                    setForm({ ...form, colorVariants: [...form.colorVariants, { color: v, images: [] }] });
+                    setForm({ ...form, colorVariants: [...form.colorVariants, { color: v, images: [], price: 0, discount: 0, name: '', description: '' }] });
                   }
                   setColorInput('');
                 }
@@ -469,7 +511,7 @@ export default function ProductForm() {
               onClick={() => {
                 const v = colorInput.trim();
                 if (v && !form.colorVariants.find((cv) => cv.color.toLowerCase() === v.toLowerCase())) {
-                  setForm({ ...form, colorVariants: [...form.colorVariants, { color: v, images: [] }] });
+                  setForm({ ...form, colorVariants: [...form.colorVariants, { color: v, images: [], price: 0, discount: 0, name: '', description: '' }] });
                 }
                 setColorInput('');
               }}
@@ -493,7 +535,7 @@ export default function ProductForm() {
                     if (already) {
                       setForm({ ...form, colorVariants: form.colorVariants.filter((cv) => cv.color.toLowerCase() !== c.toLowerCase()) });
                     } else {
-                      setForm({ ...form, colorVariants: [...form.colorVariants, { color: c, images: [] }] });
+                      setForm({ ...form, colorVariants: [...form.colorVariants, { color: c, images: [], price: 0, discount: 0, name: '', description: '' }] });
                     }
                   }}
                   className={`inline-flex items-center gap-1.5 border rounded-full px-2 py-1 text-xs transition ${

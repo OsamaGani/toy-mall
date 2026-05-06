@@ -101,6 +101,13 @@ export default function ProductDetail() {
     : effectiveBasePrice;
   const hasVariantOverride = !!(activeVariant && (activeVariant.price > 0 || activeVariant.discount > 0));
 
+  // Variant name + description overrides — swap in the colour-specific
+  // copy when a customer picks a colour AND the admin filled out those
+  // fields for that variant. Otherwise fall back to the product-level
+  // name / description so unconfigured variants don't go blank.
+  const effectiveName        = (activeVariant && activeVariant.name)        ? activeVariant.name        : product.name;
+  const effectiveDescription = (activeVariant && activeVariant.description) ? activeVariant.description : product.description;
+
   // Gallery resolution — exclusive switch:
   //   • No colour picked → show main images (product.image + product.images)
   //   • Colour picked    → show ONLY that variant's images
@@ -159,7 +166,7 @@ export default function ProductDetail() {
   const sharePage = async () => {
     const url = window.location.href;
     if (navigator.share) {
-      try { await navigator.share({ title: product.name, text: product.description, url }); }
+      try { await navigator.share({ title: effectiveName, text: effectiveDescription, url }); }
       catch {}
       return;
     }
@@ -258,7 +265,7 @@ export default function ProductDetail() {
           <Link to={`/shop?category=${encodeURIComponent(product.category)}`} className="hover:text-primary-500">{product.category}</Link>
         </>}
         <span>›</span>
-        <span className="text-gray-900 font-medium truncate max-w-[200px] sm:max-w-md">{product.name}</span>
+        <span className="text-gray-900 font-medium truncate max-w-[200px] sm:max-w-md">{effectiveName}</span>
       </nav>
 
       <div className="grid md:grid-cols-2 gap-5 md:gap-8">
@@ -335,15 +342,16 @@ export default function ProductDetail() {
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0 flex-1">
               <p className="text-xs sm:text-sm text-gray-500 uppercase">{product.brand}</p>
-              <h1 className="text-base sm:text-lg md:text-xl font-bold mt-1">{product.name}</h1>
+              <h1 className="text-base sm:text-lg md:text-xl font-bold mt-1">{effectiveName}</h1>
               {/* Short description preview right under the title — gives
                   customers the gist of the product without scrolling.
                   Capped at 3 lines so it doesn't push the price down on
                   small screens; the full description is still rendered
-                  in its own section further down. */}
-              {product.description && (
+                  in its own section further down. Switches to the active
+                  variant's description when the customer picks a colour. */}
+              {effectiveDescription && (
                 <p className="text-sm text-gray-700 mt-2 leading-relaxed line-clamp-3">
-                  {product.description.replace(/<[^>]+>/g, '')}
+                  {effectiveDescription.replace(/<[^>]+>/g, '')}
                 </p>
               )}
             </div>
@@ -509,10 +517,13 @@ export default function ProductDetail() {
             </div>
           )}
 
-          {/* Description */}
+          {/* Description — swaps to the active colour's description when
+              the customer picks a variant; falls back to the canonical
+              product description when no variant is selected or the
+              variant has no description override. */}
           <div className="mt-4">
             <p className="text-sm font-bold mb-1.5">Description</p>
-            <p className="text-gray-700 leading-relaxed text-sm">{product.description}</p>
+            <p className="text-gray-700 leading-relaxed text-sm">{effectiveDescription}</p>
           </div>
 
           {/* Specifications */}
@@ -577,7 +588,7 @@ export default function ProductDetail() {
               shop team knows exactly what the customer is asking about.
               Two text variants — tight on small phones, fuller on tablet+. */}
           <a
-            href={waLink(`Hi Toy Mall! I'm interested in *${product.name}* (${typeof window !== 'undefined' ? window.location.href : ''}). Can you help me?`)}
+            href={waLink(`Hi Toy Mall! I'm interested in *${effectiveName}*${selectedColor ? ` (${selectedColor})` : ''} (${typeof window !== 'undefined' ? window.location.href : ''}). Can you help me?`)}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-3 inline-flex max-w-full items-center gap-2 text-xs sm:text-sm font-semibold text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 px-3 py-2 rounded-lg transition"
@@ -673,7 +684,7 @@ export default function ProductDetail() {
       <StickyBuyBar
         anchorRef={buyAnchorRef}
         image={activeImg || displayImages[0]}
-        name={product.name}
+        name={effectiveName}
         price={final}
         originalPrice={effectiveBasePrice}
         discount={effectiveDiscount}
