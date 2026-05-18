@@ -4,11 +4,62 @@ import API from '../api/axios';
 import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import Reveal from '../components/Reveal';
+import SEO from '../components/SEO';
 import {
   FiFilter, FiX, FiArrowRight, FiShield, FiTruck, FiAward, FiTool,
-  FiZap, FiStar, FiPhone,
+  FiZap, FiStar, FiPhone, FiMapPin, FiHelpCircle, FiChevronDown,
 } from 'react-icons/fi';
 import { PHONE_PRIMARY_DISPLAY, PHONE_PRIMARY_TEL, waLink } from '../config/contact';
+
+// Areas we serve — fuel for "chair repair in <neighborhood>" searches.
+// Google reads these neighborhood names from the rendered DOM AND from the
+// Service JSON-LD's areaServed field below, so it knows to surface this
+// page when someone searches "chair repair in Sakinaka" or "office chair
+// shop in Powai". Order: closest to workshop first, then by office density.
+const AREAS_SERVED = [
+  'Saki Naka', 'Andheri East', 'Andheri West', 'Marol', 'Chakala',
+  'Powai', 'Vikhroli', 'Kurla', 'Ghatkopar', 'Mulund',
+  'Jogeshwari', 'Goregaon', 'Malad', 'BKC (Bandra Kurla Complex)',
+  'Bandra', 'Lower Parel', 'Worli', 'Thane', 'Navi Mumbai', 'Mira Road',
+];
+
+// FAQ — every question is phrased the way real customers actually Google it.
+// Each entry is also written into the FAQPage JSON-LD so Google can use
+// them as 'People Also Ask' rich snippets in SERP.
+const FAQS = [
+  {
+    q: 'Where is the best chair repair shop in Sakinaka, Mumbai?',
+    a: `Talle Furniture Mart at Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Saki Naka, Mumbai — open 24×7, 4.9★ on Google with 213+ reviews. Mumbai's longest-running chair-only workshop, established 2009. Call ${PHONE_PRIMARY_DISPLAY} for a quote.`,
+  },
+  {
+    q: 'Do you offer doorstep chair repair in Mumbai?',
+    a: `Yes — door-to-door (D2D) chair pickup, repair and return across Mumbai and nearby areas. We cover Saki Naka, Andheri, Powai, Kurla, BKC, Bandra, Lower Parel, Thane and beyond. WhatsApp a photo of your chair on ${PHONE_PRIMARY_DISPLAY} for a same-day quote.`,
+  },
+  {
+    q: 'How much does it cost to repair an office chair?',
+    a: 'It depends on the part. Hydraulic cylinder replacement starts at ₹1,299. Caster wheel set (5 pcs) ₹799. Full reupholstery starts at ₹1,999. We send a transparent quote on WhatsApp before starting any work — no surprise charges.',
+  },
+  {
+    q: 'Can you replace the hydraulic cylinder of my office chair?',
+    a: 'Yes. We stock BIFMA-grade class-4 gas-lift cylinders that fit 95% of office and gaming chairs. Replacement takes 15 minutes, can be done at your office or at our Saki Naka workshop, includes 6-month warranty.',
+  },
+  {
+    q: 'How long does chair reupholstery take?',
+    a: 'Most chair reupholstery jobs are returned within 7 days. Same-day turnaround for minor cushion-top swaps. For bulk orders (10+ chairs from a single office), we schedule a workshop visit and turn the lot in 3–5 working days.',
+  },
+  {
+    q: 'Do you repair branded office chairs like Featherlite, Godrej or Green Soul?',
+    a: 'Yes — we service every major office-chair brand including Featherlite, Godrej Interio, Green Soul, Wakefit, Boss, HOF, Durian, Herman Miller, Steelcase and more. Branded parts available as well as cost-effective universal alternatives.',
+  },
+  {
+    q: 'What warranty do you give on chair repairs?',
+    a: '6-month workmanship warranty on every repair. If the same part fails within 6 months, we fix it free of charge. Talle-brand new chairs ship with a 5-year structural warranty.',
+  },
+  {
+    q: 'Do you manufacture office chairs in Mumbai?',
+    a: 'Yes — Talle is an own-manufactured brand. We make executive, ergonomic, banquet, restaurant, tandem-seating, custom office chairs, sofas and wooden dining sets out of our Saki Naka workshop. Trusted by WeWork, Roller Bearing, Upstep Academy and 300+ Mumbai businesses for bulk orders.',
+  },
+];
 
 // Sub-category chips — `match` is a list of keywords, ANY match passes.
 // Filters the catalog down to chair-service-adjacent listings (repair packs,
@@ -184,8 +235,48 @@ export default function ActionToys() {
     </div>
   );
 
+  // Combined JSON-LD: Service (drives local pack) + FAQPage (drives 'People
+  // Also Ask' rich snippets). Bundled as @graph so we ship one <script>
+  // block instead of two.
+  const seoJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': 'https://tallefurnituremart.com/chair-repair#chair-repair-service',
+        'name': 'Chair Repair & Reupholstery — Mumbai',
+        'description': 'Doorstep office chair repair, hydraulic replacement, reupholstery, wheel & base fix across Mumbai. 6-month warranty.',
+        'serviceType': 'Furniture repair service',
+        'provider': { '@id': 'https://tallefurnituremart.com/#localbusiness' },
+        'areaServed': AREAS_SERVED.map((a) => ({ '@type': 'Place', 'name': `${a}, Mumbai` })),
+        'offers': {
+          '@type': 'AggregateOffer',
+          'lowPrice': '799',
+          'highPrice': '4999',
+          'priceCurrency': 'INR',
+          'offerCount': '5',
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        'mainEntity': FAQS.map((f) => ({
+          '@type': 'Question',
+          'name': f.q,
+          'acceptedAnswer': { '@type': 'Answer', 'text': f.a },
+        })),
+      },
+    ],
+  };
+
   return (
     <div className="bg-white">
+      <SEO
+        title="Chair Repair Near Me · Saki Naka, Andheri, Powai · Talle Mumbai"
+        description="Doorstep chair repair across Mumbai — hydraulic replacement, reupholstery, wheel & cushion fix. Saki Naka workshop, 4.9★ Google, 213+ reviews, 6-month warranty. Call +91 93261 66875."
+        path="/chair-repair"
+        keywords="chair repair near me, chair repair sakinaka, chair repair andheri, chair repair powai, chair repair mumbai, office chair repair shop sakinaka, hydraulic chair replacement mumbai, chair reupholstery mumbai, doorstep chair repair, revolving chair repair sakinaka, gas lift replacement chair, chair workshop mumbai, talle furniture mart repair, abdul rab chair repair"
+        jsonLd={seoJsonLd}
+      />
       {/* Hero banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-amber-600 via-orange-700 to-red-800 text-white">
         <img
@@ -205,14 +296,15 @@ export default function ActionToys() {
           </nav>
 
           <span className="inline-block w-fit bg-yellow-300 text-gray-900 text-[10px] sm:text-xs font-extrabold px-3 py-1.5 rounded-full mb-3 tracking-wide shadow">
-            🔧 TALLE SPECIALTY
+            🔧 #1 CHAIR REPAIR SHOP · SAKI NAKA, MUMBAI
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg max-w-3xl">
-            Expert Chair Repair & Refurbishing
+            Chair Repair Near You — Saki Naka, Andheri, Powai & all Mumbai
           </h1>
           <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl text-white/95 max-w-2xl">
-            Mumbai's go-to workshop for hydraulic replacement, reupholstery, wheel & base fix
-            and full chair refurbishing. Bring it in — or we'll come pick it up.
+            Mumbai's go-to chair repair shop since 2009 — hydraulic replacement,
+            reupholstery, wheel & base fix and full chair refurbishing. Doorstep pickup
+            across Saki Naka, Andheri, Powai, Kurla, BKC, Bandra, Lower Parel and Thane.
           </p>
 
           <div className="flex flex-wrap gap-2 sm:gap-3 mt-5 sm:mt-7 text-xs sm:text-sm">
@@ -279,6 +371,42 @@ export default function ActionToys() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Areas We Serve — drives "chair repair in <neighborhood>" SEO.
+          Each pill is a static text node so Google can read it. Mobile
+          horizontal scroll, desktop wraps to grid. */}
+      <section className="border-b bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-8 sm:py-10">
+          <div className="text-center mb-5">
+            <span className="inline-flex items-center gap-1.5 bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full mb-2">
+              <FiMapPin size={12} /> AREAS WE SERVE
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold">
+              Doorstep Chair Repair Across Mumbai
+            </h2>
+            <p className="text-gray-600 mt-1 text-sm sm:text-base max-w-2xl mx-auto">
+              We pick up, repair and return chairs in 20+ Mumbai neighbourhoods —
+              same-day in Saki Naka, Andheri and Powai.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-2">
+            {AREAS_SERVED.map((area) => (
+              <span
+                key={area}
+                className="inline-flex items-center gap-1 bg-gray-50 hover:bg-amber-50 border border-gray-200 hover:border-amber-300 text-gray-800 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full transition cursor-default"
+              >
+                <FiMapPin size={11} className="text-amber-600" /> {area}
+              </span>
+            ))}
+            <span className="inline-flex items-center gap-1 bg-amber-500 text-white text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full">
+              + Your area?{' '}
+              <a href={waLink('Hi Talle! Do you cover my area for chair repair?')} target="_blank" rel="noopener noreferrer" className="underline ml-1">
+                WhatsApp us
+              </a>
+            </span>
+          </div>
         </div>
       </section>
 
@@ -359,6 +487,48 @@ export default function ActionToys() {
                 ))}
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ section — every question is the literal phrasing customers
+          Google. Combined with the FAQPage JSON-LD above, this is what
+          drives 'People Also Ask' rich snippets on SERP. Each answer
+          includes the phone number and key local terms (Sakinaka, Mumbai)
+          so neighborhood searches resolve to this page. */}
+      <section className="bg-gray-50 border-t">
+        <div className="max-w-4xl mx-auto px-4 py-12 sm:py-16">
+          <div className="text-center mb-8">
+            <span className="inline-flex items-center gap-1.5 bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full mb-2">
+              <FiHelpCircle size={12} /> COMMON QUESTIONS
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold">
+              Chair Repair FAQ
+            </h2>
+            <p className="text-gray-600 mt-1 text-sm sm:text-base">
+              The questions Mumbai customers ask us every day.
+            </p>
+          </div>
+          <div className="space-y-2">
+            {FAQS.map((f, i) => <FaqItem key={i} q={f.q} a={f.a} defaultOpen={i === 0} />)}
+          </div>
+          <div className="text-center mt-8">
+            <p className="text-sm text-gray-600 mb-3">Still have a question?</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              <a
+                href={`tel:${PHONE_PRIMARY_TEL}`}
+                className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold px-5 py-2.5 rounded-full shadow"
+              >
+                <FiPhone /> Call {PHONE_PRIMARY_DISPLAY}
+              </a>
+              <a
+                href={waLink('Hi Talle! I have a chair repair question.')}
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-5 py-2.5 rounded-full shadow"
+              >
+                💬 WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -454,6 +624,30 @@ function FilterGroup({ title, items, active, onChange }) {
         )}
       </ul>
     </div>
+  );
+}
+
+// Accordion item for the FAQ section. Each one is keyboard-accessible
+// (<details>/<summary>) so Google can render the closed answer text too —
+// this matters because the FAQPage JSON-LD only counts as valid if the
+// answer text is actually visible / parseable in the DOM.
+function FaqItem({ q, a, defaultOpen = false }) {
+  return (
+    <details
+      className="group bg-white border border-gray-200 hover:border-amber-300 rounded-xl overflow-hidden transition open:shadow-md"
+      open={defaultOpen}
+    >
+      <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-4 sm:px-5 py-3 sm:py-4 font-semibold text-gray-900 hover:bg-amber-50/50 transition">
+        <span className="text-sm sm:text-base">{q}</span>
+        <FiChevronDown
+          size={18}
+          className="flex-shrink-0 text-amber-600 transition-transform group-open:rotate-180"
+        />
+      </summary>
+      <div className="px-4 sm:px-5 pb-4 text-sm sm:text-[15px] text-gray-700 leading-relaxed border-t border-gray-100 pt-3">
+        {a}
+      </div>
+    </details>
   );
 }
 

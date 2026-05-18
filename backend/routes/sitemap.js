@@ -14,7 +14,8 @@ const xml = (s = '') => String(s).replace(/[<>&'"]/g, (c) => ({
 const STATIC_PATHS = [
   { path: '',                  changefreq: 'daily',   priority: '1.0' },
   { path: '/shop',             changefreq: 'daily',   priority: '0.9' },
-  { path: '/action-toys',      changefreq: 'weekly',  priority: '0.8' },
+  { path: '/chair-repair',     changefreq: 'weekly',  priority: '0.9' },
+  { path: '/action-toys',      changefreq: 'weekly',  priority: '0.6' }, // legacy alias
   { path: '/about',            changefreq: 'monthly', priority: '0.5' },
   { path: '/contact',          changefreq: 'monthly', priority: '0.5' },
   { path: '/wholesale',        changefreq: 'monthly', priority: '0.7' },

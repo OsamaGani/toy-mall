@@ -83,7 +83,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
+          {/* /action-toys is the legacy URL kept for back-compat with any
+              indexed link. /chair-repair is the SEO-friendly alias we now
+              promote everywhere — both render the same ActionToys page. */}
           <Route path="/action-toys" element={<ActionToys />} />
+          <Route path="/chair-repair" element={<ActionToys />} />
           <Route path="/dept/:slug" element={<Department />} />
           <Route path="/category/:slug" element={<Category />} />
           <Route path="/product/:slug" element={<ProductDetail />} />

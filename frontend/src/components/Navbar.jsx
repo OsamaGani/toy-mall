@@ -344,7 +344,7 @@ export default function Navbar() {
             <MobileChip to="/shop?discount=true" highlight>🔥 50% Off</MobileChip>
             <MobileChip to="/shop?bestSeller=true">⭐ Best Sellers</MobileChip>
             <MobileChip to="/shop?newArrival=true">✨ New</MobileChip>
-            <MobileChip to="/action-toys">🔧 Repair</MobileChip>
+            <MobileChip to="/chair-repair">🔧 Repair</MobileChip>
             <MobileChip to="/shop?category=Executive%20Chairs">💼 Office</MobileChip>
             <MobileChip to="/shop?category=Pro%20Gaming%20Chairs">🎮 Gaming</MobileChip>
             <MobileChip to="/shop?category=Recliners">🛋 Recliners</MobileChip>
@@ -359,7 +359,7 @@ export default function Navbar() {
           <ul className="flex items-center gap-1 text-sm font-semibold flex-nowrap">
             <NavItem to="/" label={<span className="inline-flex items-center gap-1"><FiHome size={14} /> Home</span>} end />
             <NavItem to="/shop" label="All Chairs" />
-            <NavItem to="/action-toys" label="🔧 Repair" />
+            <NavItem to="/chair-repair" label="🔧 Repair" />
             <NavItem to="/shop?discount=true" label="🔥 50% Off" highlight />
             <DropdownTrigger label="Clients" active={openDropdown === 'clients'} onHover={() => setOpenDropdown('clients')} />
             <DropdownTrigger label="Category" active={openDropdown === 'category'} onHover={() => setOpenDropdown('category')} />
@@ -508,7 +508,7 @@ export default function Navbar() {
             <ul className="px-4 py-3 space-y-1">
               <li><Link to="/" onClick={closeMobileMenu} className="flex items-center gap-2 py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition"><FiHome size={16} /> Home</Link></li>
               <li><Link to="/shop" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition">All Chairs</Link></li>
-              <li><Link to="/action-toys" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition">🔧 Repair Service</Link></li>
+              <li><Link to="/chair-repair" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition">🔧 Repair Service</Link></li>
               <li><Link to="/shop?discount=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded text-primary-500 font-semibold hover:bg-primary-50 transition">🔥 Up to 50% Off</Link></li>
               <li><Link to="/shop?bestSeller=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">⭐ Best Sellers</Link></li>
               <li><Link to="/shop?newArrival=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">✨ New Arrivals</Link></li>

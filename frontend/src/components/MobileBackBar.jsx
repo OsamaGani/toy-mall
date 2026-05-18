@@ -6,6 +6,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 const ROUTE_LABELS = {
   '/shop':           'All Chairs',
   '/action-toys':    'Chair Repair',
+  '/chair-repair':   'Chair Repair',
   '/cart':           'Your Cart',
   '/checkout':       'Checkout',
   '/wishlist':       'Wishlist',
