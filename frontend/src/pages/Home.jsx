@@ -16,33 +16,43 @@ import RecentlyViewed from '../components/RecentlyViewed';
 import { ProductRowSkeleton } from '../components/ProductCardSkeleton';
 // FiShield, FiRefreshCw, FiHeadphones used in the USP trust strip below
 
+// Product-first hero in the style of futuristicconcepts.in / Wakefit:
+// big crisp chair photography dominates one side, clean text + CTA panel
+// on the other. Light backgrounds (not heavy gradients) keep the product
+// the visual hero. Each slide is the same shape — split layout, same
+// typography, same CTA placement — so the carousel feels consistent.
 const heroSlides = [
   {
-    eyebrow: '💼 BUILT FOR LONG DAYS',
-    title: 'Ergonomic Chairs Your Spine Will Thank You For',
-    subtitle: 'Mesh-back, lumbar support, 4D armrests. Designed for 8+ hour work days.',
+    eyebrow: 'ERGONOMICS THAT WORK',
+    title: 'Built for 10-Hour Workdays',
+    subtitle: 'Premium mesh, 4D armrests, BIFMA-grade hydraulic. Our flagship ergonomic line designed for offices that respect your spine.',
     cta: 'Shop Office Chairs',
     link: '/shop?category=Ergonomic Chairs',
-    image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=1400',
-    gradient: 'from-slate-600 via-slate-800 to-zinc-900',
+    // High-contrast, well-lit single-chair photography for the split layout.
+    image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=1600&q=85',
+    // Light panel colour + accent strip — replaces the heavy gradient.
+    panel: 'bg-stone-50',
+    accent: 'bg-slate-900',
   },
   {
-    eyebrow: '🎮 LEVEL UP',
+    eyebrow: 'DESIGNED TO IMPRESS',
     title: 'Pro Gaming Chairs',
-    subtitle: 'Racing-style chairs with full recline, footrest and lumbar pillow — built for marathon sessions.',
+    subtitle: 'Racing-style recline, full footrest, lumbar pillow. Built for marathon streaming sessions and intense workdays alike.',
     cta: 'Shop Gaming',
     link: '/shop?category=Pro Gaming Chairs',
-    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400',
-    gradient: 'from-red-600 via-rose-600 to-fuchsia-700',
+    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1600&q=85',
+    panel: 'bg-rose-50',
+    accent: 'bg-rose-600',
   },
   {
-    eyebrow: '🔧 TALLE SPECIALTY',
-    title: 'Expert Chair Repair & Reupholstery',
-    subtitle: 'Hydraulic replacement, cushion redo, wheel & base fix. Doorstep service across Mumbai.',
+    eyebrow: 'TALLE SPECIALTY · SINCE 2009',
+    title: 'Expert Chair Repair, At Your Door',
+    subtitle: 'Hydraulic replacement, reupholstery, wheel & base fix. Doorstep pickup across Mumbai. 6-month warranty.',
     cta: 'Book Service',
-    link: '/contact',
-    image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=1400',
-    gradient: 'from-amber-500 via-orange-600 to-red-700',
+    link: '/chair-repair',
+    image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=1600&q=85',
+    panel: 'bg-amber-50',
+    accent: 'bg-amber-600',
   },
 ];
 
@@ -211,68 +221,112 @@ export default function Home() {
           },
         }}
       />
-      {/* Hero carousel */}
-      <section className="bg-gray-50">
-        <div className="w-full">
-          {/* Single full-width carousel — edge to edge */}
-          <div className="relative overflow-hidden shadow-lg group min-h-[300px] sm:min-h-[400px] md:min-h-[460px] lg:min-h-[520px]">
-            {/* Slides — fade between */}
-            {heroSlides.map((slide_, i) => (
-              <div
-                key={i}
-                className={`absolute inset-0 bg-gradient-to-br ${slide_.gradient} transition-opacity duration-700 ${i === slide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-              >
-                {/* Background image with overlay */}
-                <div className="absolute inset-0">
-                  <img src={slide_.image} className="w-full h-full object-cover opacity-40 mix-blend-overlay" alt="" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent"></div>
+      {/* Hero carousel — product-first split layout (futuristicconcepts /
+          Wakefit style). Text panel on the left dominates copy; big crisp
+          chair photo dominates the right. On mobile the photo stacks on
+          top of the text. Clean light backgrounds — no heavy gradients —
+          let the chair be the visual hero. */}
+      <section className="bg-white">
+        <div className="relative overflow-hidden group min-h-[480px] sm:min-h-[520px] md:min-h-[560px] lg:min-h-[600px]">
+          {heroSlides.map((slide_, i) => (
+            <div
+              key={i}
+              className={`absolute inset-0 transition-opacity duration-700 ${i === slide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              aria-hidden={i !== slide}
+            >
+              {/* Two-column split: text + image. On mobile collapses to a
+                  single column with image on top, text below. */}
+              <div className="h-full grid grid-cols-1 lg:grid-cols-2">
+                {/* IMAGE PANEL — order-first on mobile so the visual hits
+                    above the fold. Order-last on desktop so the natural
+                    reading flow (text → image → CTA → image) works. */}
+                <div className={`${slide_.panel} relative overflow-hidden order-first lg:order-last min-h-[240px] sm:min-h-[300px] lg:min-h-0`}>
+                  <img
+                    src={slide_.image}
+                    alt={slide_.title}
+                    className="w-full h-full object-cover lg:object-center"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                  />
+                  {/* Subtle decorative blob softens the panel edge without
+                      competing with the chair photography. */}
+                  <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-white/40 rounded-full blur-3xl pointer-events-none" />
                 </div>
 
-                {/* Decorative blobs */}
-                <div className="absolute -top-20 -right-10 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-float"></div>
-                <div className="absolute -bottom-20 -left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
-
-                {/* Content */}
-                <div className="relative z-10 h-full flex flex-col justify-center p-5 sm:p-8 md:p-10 lg:p-12 text-white max-w-xl">
-                  {i === slide && (
-                    <>
-                      <span className="inline-block w-fit bg-white text-gray-900 text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-4 tracking-wide animate-scaleIn shadow">
+                {/* TEXT PANEL — light background, accent rule above the
+                    eyebrow, sans-serif typography, single CTA. Same shape
+                    on every slide so the carousel reads as one product
+                    family, not three random posters. */}
+                <div className={`${slide_.panel} flex items-center px-6 sm:px-10 md:px-14 lg:px-16 py-10 sm:py-12 lg:py-0`}>
+                  <div className="max-w-xl">
+                    <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                      <span className={`block w-10 h-[3px] ${slide_.accent} rounded-full`} />
+                      <span className="text-[11px] sm:text-xs font-extrabold tracking-[0.18em] text-gray-700 uppercase">
                         {slide_.eyebrow}
                       </span>
-                      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight drop-shadow-lg animate-fadeUp">
-                        {slide_.title}
-                      </h1>
-                      <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg lg:text-xl text-white/95 max-w-md animate-fadeUp delay-100">{slide_.subtitle}</p>
+                    </div>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-gray-900">
+                      {slide_.title}
+                    </h1>
+                    <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed max-w-md">
+                      {slide_.subtitle}
+                    </p>
+                    <div className="mt-5 sm:mt-7 flex flex-wrap items-center gap-3">
                       <Link
                         to={slide_.link}
-                        className="inline-flex items-center gap-2 mt-4 sm:mt-6 w-fit bg-white text-gray-900 hover:bg-yellow-300 font-bold px-5 sm:px-7 py-2.5 sm:py-3.5 text-sm sm:text-base rounded-full transition shadow-xl hover:shadow-2xl hover:scale-105 animate-fadeUp delay-200"
+                        className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-bold px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base rounded-full transition shadow-lg hover:shadow-xl"
                       >
                         {slide_.cta} <FiArrowRight />
                       </Link>
-                    </>
-                  )}
+                      <Link
+                        to="/shop"
+                        className="inline-flex items-center gap-2 text-sm sm:text-base text-gray-700 hover:text-gray-900 font-semibold underline-offset-4 hover:underline"
+                      >
+                        Browse all chairs
+                      </Link>
+                    </div>
+                    {/* Trust micro-strip — same on every slide. Cheap but
+                        massively raises CRO on cold traffic landing here. */}
+                    <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-5 text-[11px] sm:text-xs text-gray-600 font-semibold">
+                      <span>✓ 6-Month Warranty</span>
+                      <span>✓ Free Mumbai Delivery</span>
+                      <span>✓ 4.9★ Google · 213 reviews</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            ))}
-
-            {/* Arrows — hidden on mobile (use swipe + dots), hover-only on desktop. */}
-            <button onClick={prev} className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 w-11 h-11 rounded-full items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition">
-              <FiChevronLeft size={20} />
-            </button>
-            <button onClick={next} className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 w-11 h-11 rounded-full items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition">
-              <FiChevronRight size={20} />
-            </button>
-
-            {/* Dot indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2 bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
-              {heroSlides.map((_, i) => (
-                <button key={i} onClick={() => setSlide(i)}
-                  className={`rounded-full transition-all ${i === slide ? 'bg-white w-8 h-2' : 'bg-white/50 hover:bg-white/80 w-2 h-2'}`}>
-                </button>
-              ))}
             </div>
-          </div>
+          ))}
 
+          {/* Arrows — visible on desktop hover, hidden on touch (use the
+              swipe gesture + dots there). Float as dark pills so they
+              don't fight the light hero panels. */}
+          <button
+            onClick={prev}
+            aria-label="Previous slide"
+            className="hidden sm:flex absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 bg-gray-900/85 hover:bg-gray-900 text-white w-11 h-11 rounded-full items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition"
+          >
+            <FiChevronLeft size={20} />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Next slide"
+            className="hidden sm:flex absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 bg-gray-900/85 hover:bg-gray-900 text-white w-11 h-11 rounded-full items-center justify-center shadow-lg lg:opacity-0 lg:group-hover:opacity-100 transition"
+          >
+            <FiChevronRight size={20} />
+          </button>
+
+          {/* Dot indicators — anchored to the text-panel side so they
+              never overlap a chair leg or armrest in the photo. */}
+          <div className="absolute bottom-4 left-1/2 lg:left-[25%] -translate-x-1/2 z-20 flex gap-2">
+            {heroSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`rounded-full transition-all ${i === slide ? 'bg-gray-900 w-8 h-2' : 'bg-gray-300 hover:bg-gray-500 w-2 h-2'}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
