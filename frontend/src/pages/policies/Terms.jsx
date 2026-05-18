@@ -33,7 +33,7 @@ export default function Terms() {
       <p className="text-gray-700 mb-4">See our <a href="/refund-policy" className="text-primary-500 hover:underline">Refund Policy</a> for how to return or exchange items.</p>
 
       <h2 className="text-xl font-bold mt-6 mb-2">6. Intellectual property</h2>
-      <p className="text-gray-700 mb-4">All photos, descriptions, logos and design on tallefurnituremart.com belong to Talle Furniture Mart or our brand partners. Brand names and logos (Featherlite, Godrej Interio, Green Soul, etc.) are trademarks of their respective owners and used here under retailer rights.</p>
+      <p className="text-gray-700 mb-4">All photos, descriptions, logos and design on tallefurnituremart.com belong to Talle Furniture Mart. Every chair is manufactured in-house under our own Talle brand — we do not resell any third-party brand. Client company names appearing on the site are referenced with permission and remain trademarks of their respective owners.</p>
 
       <h2 className="text-xl font-bold mt-6 mb-2">7. Acceptable use</h2>
       <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4">

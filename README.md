@@ -169,4 +169,4 @@ Serve `dist/` with any static host (Vercel, Netlify, Cloudflare Pages, Nginx) an
 
 ## License
 
-Built for educational/personal commercial use. Brand names (Featherlite, Godrej Interio, Green Soul, etc.) belong to their respective owners — replace seed data with your own product photos and SKUs before launching.
+Built for educational/personal commercial use. All chairs are seeded under the in-house Talle brand (own manufacturing — no resold third-party stock). Client company names shown in the "Our Clients" sections (WeWork, Roller Bearing, Upstep Academy, Respo Financial, etc.) should be replaced with the real customer list before going fully public.

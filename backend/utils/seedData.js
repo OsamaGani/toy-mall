@@ -1,4 +1,4 @@
-const User = require('../models/User');
+﻿const User = require('../models/User');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 const Brand = require('../models/Brand');
@@ -26,13 +26,17 @@ const categories = [
   { name: 'Bean Bags', image: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=600' },
 ];
 
+// Talle does its own manufacturing â€” no resold brands.
+// "Other" is kept as a fallback so the quick-add flow can still drop
+// products without forcing the admin to pick a brand.
 const brands = [
-  'Other', 'Talle', 'Featherlite', 'Godrej Interio', 'Nilkamal', 'Wakefit',
-  'Green Soul', 'Boss Chairs', 'Durian', 'HOF', 'Stellar', 'Herman Miller',
-  'Steelcase', 'Cellbell', 'AmazonBasics', 'Innowin', 'Kepler Brooks',
-  'Misuraa', 'Sleepyhead', 'Spacewood',
+  'Talle', 'Other',
 ].map((name) => ({ name, logo: '' }));
 
+// All products are own-manufactured under the Talle brand.
+// Naming convention: "Talle <Model> <Type>" so the brand reads as
+// in-house rather than the catch-all listing of resold competitor brands
+// the original seed used to carry.
 const products = [
   {
     name: 'Talle Aero Executive High-Back Office Chair',
@@ -44,18 +48,18 @@ const products = [
     featured: true, bestSeller: true, rating: 4.8, numReviews: 142,
   },
   {
-    name: 'Featherlite Optima Ergonomic Workstation Chair',
-    description: 'Mid-back ergonomic chair with synchro-tilt, adjustable lumbar, 3D armrests and class-4 hydraulic. BIFMA certified for office use.',
-    brand: 'Featherlite', category: 'Ergonomic Chairs', material: 'Mesh',
+    name: 'Talle Optima Ergonomic Workstation Chair',
+    description: 'Mid-back ergonomic chair with synchro-tilt, adjustable lumbar, 3D armrests and class-4 hydraulic. BIFMA-grade build for daily office use.',
+    brand: 'Talle', category: 'Ergonomic Chairs', material: 'Mesh',
     price: 16499, discount: 18, stock: 22,
     image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800',
     images: ['https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800'],
     featured: true, rating: 4.7, numReviews: 96,
   },
   {
-    name: 'Green Soul Monster Pro Gaming Chair',
-    description: 'Racing-style gaming chair with 4D armrests, lumbar pillow, retractable footrest, 180° recline and PU leather upholstery.',
-    brand: 'Green Soul', category: 'Pro Gaming Chairs', material: 'Faux Leather',
+    name: 'Talle Monster Pro Gaming Chair',
+    description: 'Racing-style gaming chair with 4D armrests, lumbar pillow, retractable footrest, 180° recline and PU leather upholstery. Built for marathon sessions.',
+    brand: 'Talle', category: 'Pro Gaming Chairs', material: 'Faux Leather',
     price: 21999, discount: 30, stock: 18,
     image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800',
     images: ['https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800'],
@@ -63,9 +67,9 @@ const products = [
     colors: ['Black', 'Red', 'Blue'],
   },
   {
-    name: 'Godrej Interio Spruce Manager Mid-Back Chair',
+    name: 'Talle Spruce Manager Mid-Back Chair',
     description: 'Sturdy manager chair with cushioned seat, fixed armrests, gas-lift height adjustment and durable nylon base.',
-    brand: 'Godrej Interio', category: 'Workstation Chairs', material: 'Fabric',
+    brand: 'Talle', category: 'Workstation Chairs', material: 'Fabric',
     price: 7499, discount: 12, stock: 55,
     image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
     images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800'],
@@ -81,36 +85,36 @@ const products = [
     featured: true, rating: 4.5, numReviews: 64,
   },
   {
-    name: 'Wakefit Athena Mesh Office Chair',
-    description: 'Breathable mesh back, contoured seat cushion, 2D adjustable armrests and smooth-glide nylon casters. Comes with 3-year warranty.',
-    brand: 'Wakefit', category: 'Mesh Chairs', material: 'Mesh',
+    name: 'Talle Athena Mesh Office Chair',
+    description: 'Breathable mesh back, contoured seat cushion, 2D adjustable armrests and smooth-glide nylon casters. Backed by our 3-year warranty.',
+    brand: 'Talle', category: 'Mesh Chairs', material: 'Mesh',
     price: 8999, discount: 22, stock: 60,
     image: 'https://images.unsplash.com/photo-1505797149-35ebcfa1c2bd?w=800',
     images: ['https://images.unsplash.com/photo-1505797149-35ebcfa1c2bd?w=800'],
     bestSeller: true, newArrival: true, rating: 4.5, numReviews: 187,
   },
   {
-    name: 'Boss Chairs Premium Leather Executive Chair',
+    name: 'Talle Boss Premium Leather Executive Chair',
     description: 'Top-grain bonded leather executive chair with thick padding, recline lock, padded armrests and chrome aluminium base.',
-    brand: 'Boss Chairs', category: 'Executive Chairs', material: 'Leather',
+    brand: 'Talle', category: 'Executive Chairs', material: 'Leather',
     price: 18999, discount: 15, stock: 14,
     image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800',
     images: ['https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800'],
     featured: true, rating: 4.7, numReviews: 53,
   },
   {
-    name: 'Durian Theater 1-Seater Recliner',
+    name: 'Talle Theater 1-Seater Recliner',
     description: 'Single-seater manual recliner with extra-deep cushion, footrest, and 160° recline. Premium fabric upholstery, lifetime mechanism warranty.',
-    brand: 'Durian', category: 'Recliners', material: 'Fabric',
+    brand: 'Talle', category: 'Recliners', material: 'Fabric',
     price: 28999, discount: 20, stock: 8,
     image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800',
     images: ['https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800'],
     featured: true, newArrival: true, rating: 4.8, numReviews: 34,
   },
   {
-    name: 'HOF Mid-Century Modern Accent Chair',
+    name: 'Talle Mid-Century Modern Accent Chair',
     description: 'Wooden-legged accent chair with velvet upholstery, button-tufted back. Perfect statement piece for living rooms.',
-    brand: 'HOF', category: 'Accent Chairs', material: 'Wood',
+    brand: 'Talle', category: 'Accent Chairs', material: 'Wood',
     price: 14999, discount: 25, stock: 12,
     image: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800',
     images: ['https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800'],
@@ -118,36 +122,36 @@ const products = [
     colors: ['Mustard', 'Emerald', 'Navy'],
   },
   {
-    name: 'Nilkamal CHR2189 Dining Chair (Set of 2)',
+    name: 'Talle Plastic Dining Chair (Set of 2)',
     description: 'Solid plastic dining chair, ergonomic curved back and broad seat. Stackable, weather-resistant, easy to clean.',
-    brand: 'Nilkamal', category: 'Dining Chairs', material: 'Plastic',
+    brand: 'Talle', category: 'Dining Chairs', material: 'Plastic',
     price: 2999, discount: 10, wholesalePrice: 2199, wholesaleMinQty: 20, stock: 120,
     image: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800',
     images: ['https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800'],
     bestSeller: true, rating: 4.3, numReviews: 156,
   },
   {
-    name: 'Stellar Industrial Bar Stool (Pack of 2)',
+    name: 'Talle Industrial Bar Stool (Pack of 2)',
     description: 'Industrial-style bar stool with metal frame, wooden seat, footrest and height-adjustable swivel. Perfect for kitchen islands & home bars.',
-    brand: 'Stellar', category: 'Bar Stools', material: 'Metal',
+    brand: 'Talle', category: 'Bar Stools', material: 'Metal',
     price: 6499, discount: 30, stock: 30,
     image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800',
     images: ['https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800'],
     rating: 4.4, numReviews: 41,
   },
   {
-    name: 'Spacewood Solid Sheesham Wood Cafe Chair',
+    name: 'Talle Solid Sheesham Wood Cafe Chair',
     description: 'Handcrafted solid sheesham wood cafe chair with natural finish. Sturdy, timeless and built to last decades.',
-    brand: 'Spacewood', category: 'Cafe Chairs', material: 'Wood',
+    brand: 'Talle', category: 'Cafe Chairs', material: 'Wood',
     price: 5499, discount: 0, stock: 24,
     image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
     images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800'],
     rating: 4.7, numReviews: 38,
   },
   {
-    name: 'AmazonBasics Folding Chair (Set of 4)',
+    name: 'Talle Steel Folding Chair (Set of 4)',
     description: 'Heavy-duty steel folding chair set with cushioned seat. Holds up to 113 kg. Folds flat for storage, ideal for events & extra guests.',
-    brand: 'AmazonBasics', category: 'Folding Chairs', material: 'Metal',
+    brand: 'Talle', category: 'Folding Chairs', material: 'Metal',
     price: 4499, discount: 35, wholesalePrice: 2999, wholesaleMinQty: 10, stock: 75,
     image: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=800',
     images: ['https://images.unsplash.com/photo-1503602642458-232111445657?w=800'],
@@ -164,18 +168,18 @@ const products = [
     colors: ['Gold', 'Silver', 'White'],
   },
   {
-    name: 'Cellbell C104 Ergonomic Office Chair — Compact',
-    description: 'Affordable mesh ergonomic chair with adjustable lumbar, height and tilt-lock. Best-in-class entry-level work-from-home chair.',
-    brand: 'Cellbell', category: 'Ergonomic Chairs', material: 'Mesh',
+    name: 'Talle Compact Ergonomic Office Chair',
+    description: 'Affordable mesh ergonomic chair with adjustable lumbar, height and tilt-lock. Our entry-level work-from-home pick.',
+    brand: 'Talle', category: 'Ergonomic Chairs', material: 'Mesh',
     price: 5999, discount: 40, stock: 65,
     image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800',
     images: ['https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800'],
     bestSeller: true, rating: 4.3, numReviews: 318,
   },
   {
-    name: 'Kepler Brooks XL Bean Bag with Beans',
+    name: 'Talle XL Bean Bag with Beans',
     description: 'XXL bean bag, pre-filled with high-density beans. Waterproof and tear-resistant outer cover. Perfect for kids rooms & casual lounging.',
-    brand: 'Kepler Brooks', category: 'Bean Bags', material: 'Fabric',
+    brand: 'Talle', category: 'Bean Bags', material: 'Fabric',
     price: 2499, discount: 50, stock: 90,
     image: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=800',
     images: ['https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=800'],
@@ -183,27 +187,27 @@ const products = [
     colors: ['Black', 'Brown', 'Red', 'Blue'],
   },
   {
-    name: 'Misuraa Salon Hydraulic Styling Chair',
+    name: 'Talle Salon Hydraulic Styling Chair',
     description: 'Heavy-duty salon chair with hydraulic lift, 360° swivel, footrest and PU leather upholstery. Suitable for unisex salons & spas.',
-    brand: 'Misuraa', category: 'Salon Chairs', material: 'Faux Leather',
+    brand: 'Talle', category: 'Salon Chairs', material: 'Faux Leather',
     price: 18999, discount: 22, stock: 6,
     image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800',
     images: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800'],
     featured: true, rating: 4.5, numReviews: 32,
   },
   {
-    name: 'Innowin Outdoor Patio Lounge Chair',
+    name: 'Talle Outdoor Patio Lounge Chair',
     description: 'All-weather rattan-style outdoor lounge chair with cushioned seat. UV-resistant and rust-proof aluminium frame.',
-    brand: 'Innowin', category: 'Garden Chairs', material: 'Plastic',
+    brand: 'Talle', category: 'Garden Chairs', material: 'Plastic',
     price: 8999, discount: 18, stock: 16,
     image: 'https://images.unsplash.com/photo-1595514535215-9a5e0e8e7d9c?w=800',
     images: ['https://images.unsplash.com/photo-1595514535215-9a5e0e8e7d9c?w=800'],
     newArrival: true, rating: 4.5, numReviews: 19,
   },
   {
-    name: 'Sleepyhead Lounge Reading Chair with Ottoman',
+    name: 'Talle Lounge Reading Chair with Ottoman',
     description: 'Mid-century scoop-back lounge chair with matching ottoman. Soft fabric upholstery and solid wood legs. Ideal reading nook companion.',
-    brand: 'Sleepyhead', category: 'Lounge Chairs', material: 'Fabric',
+    brand: 'Talle', category: 'Lounge Chairs', material: 'Fabric',
     price: 19999, discount: 15, stock: 11,
     image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
     images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800'],
@@ -220,7 +224,7 @@ const products = [
   },
   {
     name: 'Talle Hydraulic Cylinder Replacement (Class-4)',
-    description: 'Heavy-duty BIFMA-certified class-4 hydraulic gas-lift cylinder. Universal fit for office & gaming chairs. Includes professional installation in Mumbai.',
+    description: 'Heavy-duty BIFMA-grade class-4 hydraulic gas-lift cylinder. Universal fit for office & gaming chairs. Includes professional installation in Mumbai.',
     brand: 'Talle', category: 'General', material: 'Metal',
     price: 1299, discount: 10, wholesalePrice: 899, wholesaleMinQty: 25, stock: 300,
     image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
@@ -238,7 +242,7 @@ const products = [
   },
 ];
 
-// Chair-shop sub-categories — mirrors frontend/src/config/departments.js.
+// Chair-shop sub-categories â€” mirrors frontend/src/config/departments.js.
 // Each item is a sub-category Product.category can match. Kept here so the
 // backend can upsert them as Category records without importing frontend code.
 const CHAIR_SUBCATEGORIES = [
@@ -275,7 +279,7 @@ async function ensureDefaults() {
   // Upsert each chair-style sub-category so admin sees the full list in
   // /admin/categories and the dropdowns. Only inserts what's missing.
   // IMPORTANT: insertMany() skips pre('save') hooks, so we set slug explicitly
-  // — otherwise every new doc has slug=undefined and the unique index rejects
+  // â€” otherwise every new doc has slug=undefined and the unique index rejects
   // the second insert with E11000 (which crashes backend startup).
   const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -297,7 +301,7 @@ async function ensureDefaults() {
     }
     await Category.updateOne({ _id: doc._id }, { $set: { slug: unique } });
   }
-  if (broken.length) console.log(`🔧 Backfilled slugs on ${broken.length} category record(s)`);
+  if (broken.length) console.log(`ðŸ”§ Backfilled slugs on ${broken.length} category record(s)`);
 
   const existing = new Set(
     (await Category.find({ name: { $in: CHAIR_SUBCATEGORIES } }).select('name')).map((c) => c.name)
@@ -309,22 +313,22 @@ async function ensureDefaults() {
         toAdd.map((name) => ({ name, slug: slugify(name) })),
         { ordered: false } // keep going if a single doc collides on an existing slug
       );
-      console.log(`🌱 Added ${toAdd.length} new sub-categories`);
+      console.log(`ðŸŒ± Added ${toAdd.length} new sub-categories`);
     } catch (err) {
-      // Don't bring the server down for a seed hiccup — log and move on.
-      console.warn('⚠️  Sub-category seed had conflicts, continuing:', err.message);
+      // Don't bring the server down for a seed hiccup â€” log and move on.
+      console.warn('âš ï¸  Sub-category seed had conflicts, continuing:', err.message);
     }
   }
 
   // One-time backfill: any COD order that's already been marked delivered but
-  // somehow stayed isPaid=false should be flipped — without this the revenue
+  // somehow stayed isPaid=false should be flipped â€” without this the revenue
   // dashboard would forever underreport on existing orders.
   const codBackfill = await Order.updateMany(
     { paymentMethod: 'COD', status: 'delivered', isPaid: false },
     [{ $set: { isPaid: true, paidAt: { $ifNull: ['$deliveredAt', '$$NOW'] } } }]
   );
   if (codBackfill.modifiedCount > 0) {
-    console.log(`💰 Backfilled isPaid on ${codBackfill.modifiedCount} delivered COD order(s)`);
+    console.log(`ðŸ’° Backfilled isPaid on ${codBackfill.modifiedCount} delivered COD order(s)`);
   }
 
   // Seed default Hot Wholesale Categories tiles if none exist yet
@@ -336,11 +340,11 @@ async function ensureDefaults() {
       { name: 'Banquet Chairs',  image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400', link: '/shop?category=Banquet%20Chairs', order: 3 },
       { name: 'Recliners',       image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400', link: '/shop?category=Recliners', order: 4 },
     ]);
-    console.log('🌱 Seeded 4 wholesale category tiles');
+    console.log('ðŸŒ± Seeded 4 wholesale category tiles');
   }
 }
 
-// Idempotent helpers — each one only inserts what's missing. Safe to run on
+// Idempotent helpers â€” each one only inserts what's missing. Safe to run on
 // every server startup, even on a partially-seeded database.
 
 async function seedDefaultUsersIfMissing() {
@@ -348,11 +352,11 @@ async function seedDefaultUsersIfMissing() {
   const customerEmail = 'customer@tallefurnituremart.com';
   if (!(await User.findOne({ email: adminEmail }))) {
     await User.create({ name: 'Admin', email: adminEmail, password: 'admin123', isAdmin: true, emailVerified: true });
-    console.log('🌱 Created admin user (admin@tallefurnituremart.com / admin123)');
+    console.log('ðŸŒ± Created admin user (admin@tallefurnituremart.com / admin123)');
   }
   if (!(await User.findOne({ email: customerEmail }))) {
     await User.create({ name: 'Demo Customer', email: customerEmail, password: 'customer123', emailVerified: true });
-    console.log('🌱 Created demo customer (customer@tallefurnituremart.com / customer123)');
+    console.log('ðŸŒ± Created demo customer (customer@tallefurnituremart.com / customer123)');
   }
 }
 
@@ -362,11 +366,11 @@ async function seedCategoriesIfMissing() {
   for (const c of categories) {
     if (!existingNames.has(c.name)) {
       try { await Category.create(c); added++; } catch (err) {
-        console.warn(`⚠️  Could not insert category "${c.name}": ${err.message}`);
+        console.warn(`âš ï¸  Could not insert category "${c.name}": ${err.message}`);
       }
     }
   }
-  if (added) console.log(`🌱 Added ${added} legacy categories`);
+  if (added) console.log(`ðŸŒ± Added ${added} legacy categories`);
 }
 
 async function seedBrandsIfMissing() {
@@ -375,24 +379,24 @@ async function seedBrandsIfMissing() {
   for (const b of brands) {
     if (!existingNames.has(b.name)) {
       try { await Brand.create(b); added++; } catch (err) {
-        console.warn(`⚠️  Could not insert brand "${b.name}": ${err.message}`);
+        console.warn(`âš ï¸  Could not insert brand "${b.name}": ${err.message}`);
       }
     }
   }
-  if (added) console.log(`🌱 Added ${added} brands`);
+  if (added) console.log(`ðŸŒ± Added ${added} brands`);
 }
 
 async function seedProductsIfMissing() {
   const productCount = await Product.countDocuments();
   if (productCount > 0) return;
-  console.log(`🌱 No products found — seeding ${products.length} demo products...`);
+  console.log(`ðŸŒ± No products found â€” seeding ${products.length} demo products...`);
   let added = 0;
   for (const p of products) {
     try { await Product.create(p); added++; } catch (err) {
-      console.warn(`⚠️  Could not insert product "${p.name}": ${err.message}`);
+      console.warn(`âš ï¸  Could not insert product "${p.name}": ${err.message}`);
     }
   }
-  console.log(`🌱 Added ${added}/${products.length} demo products`);
+  console.log(`ðŸŒ± Added ${added}/${products.length} demo products`);
 }
 
 async function seedIfEmpty() {
@@ -401,7 +405,7 @@ async function seedIfEmpty() {
   await seedCategoriesIfMissing();
   await seedBrandsIfMissing();
   await seedProductsIfMissing();
-  console.log('✅ Seed checks complete');
+  console.log('âœ… Seed checks complete');
   return true;
 }
 

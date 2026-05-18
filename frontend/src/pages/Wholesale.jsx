@@ -10,7 +10,7 @@ import Reveal from '../components/Reveal';
 const benefits = [
   { icon: <FiTrendingDown />, title: 'Best Bulk Rates',          desc: 'Tier-based wholesale pricing on volume orders — the more chairs, the lower the per-unit cost.' },
   { icon: <FiTruck />,         title: 'Free Mumbai Delivery',      desc: 'Free white-glove delivery on every wholesale order above ₹2,999 inside Mumbai. Pan-India freight at cost.' },
-  { icon: <FiPackage />,       title: 'Catalogue You Can Resell',  desc: 'Featherlite, Godrej Interio, Green Soul, Boss, Nilkamal and our own Talle in-house line — proven sellers.' },
+  { icon: <FiPackage />,       title: 'Own Manufacturing',         desc: 'Every chair is made in our Saki Naka workshop under the Talle brand — no resold stock, no middleman markup, full quality control end-to-end.' },
   { icon: <FiAward />,         title: 'BIFMA-Grade Stock',         desc: 'Class-4 hydraulics, certified mesh, heavy-duty bases. Every chair tested before it leaves the workshop.' },
   { icon: <FiShield />,        title: 'GST Invoices, Always',      desc: 'Proper tax invoices with your business GSTIN for full input credit. Bookkeeping stays clean.' },
   { icon: <FiBriefcase />,     title: 'Direct Owner Contact',      desc: 'No call centre. WhatsApp the founder for stock checks, custom branding, or delivery updates.' },
@@ -50,7 +50,7 @@ export default function Wholesale() {
     <div>
       <SEO
         title="Wholesale Chairs Mumbai · Bulk Office, Banquet & Restaurant Chair Supplier"
-        description="Wholesale chairs for offices, banquet halls, restaurants and resellers across India. Featherlite, Godrej Interio, Green Soul, Boss and our in-house Talle line at the best bulk rates. Free Mumbai delivery on ₹2,999+, GST invoices, direct WhatsApp to the founder."
+        description="Wholesale chairs for offices, banquet halls, restaurants and resellers across India. Own-manufactured Talle seating — trusted by WeWork, Roller Bearing, Upstep Academy and 200+ Mumbai offices. Best bulk rates, free Mumbai delivery on ₹2,999+, GST invoices, direct WhatsApp to the founder."
         path="/wholesale"
         keywords="wholesale chairs mumbai, bulk office chairs supplier, bulk banquet chairs, restaurant chair wholesaler mumbai, tiffany chair wholesale, executive chair supplier india, gaming chair distributor, ergonomic chair bulk, chair manufacturer mumbai, b2b chair supplier, gst invoice wholesale chairs, office chair distributor sakinaka, banquet hall chair supplier, hotel chair manufacturer, cafe chair supplier mumbai"
       />
@@ -64,8 +64,9 @@ export default function Wholesale() {
               <span className="text-yellow-300">Wholesale</span>
             </h1>
             <p className="mt-4 text-lg md:text-xl opacity-95">
-              Featherlite, Godrej Interio, Green Soul, Boss and our in-house Talle
-              line — at rates that work for outfitting whole offices or banquet halls.<br />
+              Own-manufactured executive, ergonomic, banquet, restaurant and
+              wooden dining seating — at rates that work for outfitting whole
+              offices or banquet halls.<br />
               <span className="font-bold">Best bulk pricing</span> · Free Mumbai delivery on ₹2,999+ · GST invoices
             </p>
             {isWholesaleUser ? (

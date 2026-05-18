@@ -9,7 +9,11 @@ import SEO from '../components/SEO';
 import { COMMON_COLORS, colorToBackground, isLightColor } from '../utils/colors';
 
 const categories = Array.from(new Set(allSubCategoryNames)).sort();
-const brands = ['Talle', 'Featherlite', 'Godrej Interio', 'Nilkamal', 'Wakefit', 'Green Soul', 'Boss Chairs', 'Durian', 'HOF', 'Cellbell', 'Herman Miller', 'Steelcase'];
+// Talle is the only brand (own manufacturing) — kept for legacy products
+// only. The brand filter is hidden from the UI since there's effectively
+// nothing to filter; leaving the array here so anything that imports it
+// still resolves cleanly.
+const brands = ['Talle', 'Other'];
 
 export default function Shop() {
   const [params, setParams] = useSearchParams();
@@ -88,7 +92,9 @@ export default function Shop() {
   const FilterPanel = (
     <div className="space-y-6 text-sm">
       <FilterGroup title="Category" items={categories} active={category} onChange={(v) => updateParam('category', v)} />
-      <FilterGroup title="Brand" items={brands} active={brand} onChange={(v) => updateParam('brand', v)} />
+      {/* Brand filter intentionally hidden — Talle does its own manufacturing
+          so every product carries the same brand and the filter would always
+          collapse to one option. Re-enable if a second brand is ever added. */}
       <FilterGroup title="Material" items={materials} active={material} onChange={(v) => updateParam('material', v)} />
       <ColorFilter active={color} onChange={(v) => updateParam('color', v)} />
       <button onClick={clearAll} className="text-primary-500 hover:underline">Clear All Filters</button>

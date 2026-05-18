@@ -76,19 +76,20 @@ const homeCategories = [
   { name: 'Bean Bags',          img: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=400' },
 ];
 
-const homeBrands = [
-  { name: 'Talle',          color: 'from-amber-500 to-orange-600',    icon: '🛋', tag: 'In-House' },
-  { name: 'Featherlite',    color: 'from-blue-500 to-blue-700',       icon: '💼', tag: 'Office' },
-  { name: 'Godrej Interio', color: 'from-emerald-500 to-green-700',   icon: '🏛',  tag: 'Heritage' },
-  { name: 'Green Soul',     color: 'from-lime-500 to-green-600',      icon: '🎮', tag: 'Gaming' },
-  { name: 'Wakefit',        color: 'from-orange-400 to-amber-600',    icon: '🛏', tag: 'Comfort' },
-  { name: 'Nilkamal',       color: 'from-red-500 to-rose-700',        icon: '🪑', tag: 'Plastic' },
-  { name: 'Boss Chairs',    color: 'from-slate-600 to-slate-900',     icon: '🧥', tag: 'Executive' },
-  { name: 'Durian',         color: 'from-yellow-600 to-orange-700',   icon: '🛋', tag: 'Recliner' },
-  { name: 'HOF',            color: 'from-purple-500 to-fuchsia-700',  icon: '🪑', tag: 'Modern' },
-  { name: 'Cellbell',       color: 'from-indigo-500 to-purple-600',   icon: '🕸', tag: 'Mesh' },
-  { name: 'Herman Miller',  color: 'from-rose-600 to-pink-700',       icon: '⭐', tag: 'Premium' },
-  { name: 'Steelcase',      color: 'from-teal-500 to-cyan-700',       icon: '⚙', tag: 'Pro' },
+// Trusted-by client list — real B2B customers we've manufactured for.
+// (We do our own manufacturing under the Talle brand, so this section
+// showcases CUSTOMERS, not brands we resell.)
+const homeClients = [
+  { name: 'WeWork',           color: 'from-slate-800 to-slate-950',     icon: '🏢', tag: 'Coworking' },
+  { name: 'Roller Bearing',   color: 'from-amber-600 to-orange-800',    icon: '⚙',  tag: 'Industrial' },
+  { name: 'Upstep Academy',   color: 'from-blue-600 to-indigo-800',     icon: '🎓', tag: 'Education' },
+  { name: 'Respo Financial',  color: 'from-emerald-600 to-green-800',   icon: '💼', tag: 'Finance' },
+  { name: 'Coworking Spaces', color: 'from-purple-500 to-fuchsia-700',  icon: '🪑', tag: '50+ partners' },
+  { name: 'Coaching Hubs',    color: 'from-rose-500 to-pink-700',       icon: '📚', tag: '100+ centres' },
+  { name: 'Restaurants',      color: 'from-orange-500 to-red-700',      icon: '🍽',  tag: 'Mumbai-wide' },
+  { name: 'Banquet Halls',    color: 'from-yellow-500 to-amber-700',    icon: '🎉', tag: 'Event spaces' },
+  { name: 'Mumbai Offices',   color: 'from-cyan-600 to-teal-800',       icon: '🏛',  tag: '200+ sites' },
+  { name: '& Many More',      color: 'from-gray-600 to-gray-900',       icon: '✨', tag: 'Talk to us' },
 ];
 
 // Read homepage product cache from localStorage. Used to render the page
@@ -171,7 +172,7 @@ export default function Home() {
         title="Talle Furniture Mart · Chair Manufacturer & Repair in Mumbai · Office, Gaming, Banquet Chairs"
         description="Talle Furniture Mart — buy executive, ergonomic, gaming, dining, banquet and recliner chairs online. Trusted chair manufacturer & repair specialist in Sakinaka, Mumbai. Reupholstery, hydraulic & cushion replacement available. Free delivery over ₹2,999."
         path="/"
-        keywords="buy chairs online mumbai, office chair mumbai, ergonomic chair india, executive chair, gaming chair india, banquet chair manufacturer, tiffany chair wholesale, recliner sofa mumbai, dining chair set, chair repair sakinaka, chair reupholstery mumbai, hydraulic chair replacement, mesh office chair, featherlite chair, godrej interio chair, green soul gaming chair, talle furniture mart, chair shop sakinaka, wholesale chairs mumbai, banquet hall chairs, restaurant chairs supplier, salon chair mumbai, bar stool online india"
+        keywords="buy chairs online mumbai, office chair manufacturer mumbai, ergonomic chair india, executive chair, gaming chair india, banquet chair manufacturer, tiffany chair wholesale, recliner sofa mumbai, dining chair set, chair repair sakinaka, chair reupholstery mumbai, hydraulic chair replacement, mesh office chair, customised office chair, wooden dining chair manufacturer, restaurant chair supplier mumbai, talle furniture mart, chair shop sakinaka, wholesale chairs mumbai, banquet hall chair manufacturer, salon chair mumbai, bar stool online india, d2d chair service mumbai, coworking chair supplier"
       />
       {/* Hero carousel */}
       <section className="bg-gray-50">
@@ -395,31 +396,31 @@ export default function Home() {
       {/* New Arrivals */}
       <Section title="New Arrivals" subtitle="Fresh on the shelves" link="/shop?newArrival=true" products={newArrivals} loading={loading} />
 
-      {/* Brands */}
+      {/* Our Clients — companies we manufacture chairs for */}
       <section className="bg-gradient-to-b from-white to-gray-50 border-t">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-10 sm:py-14">
           <Reveal>
             <div className="text-center mb-8">
-              <span className="inline-block bg-primary-100 text-primary-600 text-xs font-bold px-3 py-1 rounded-full mb-2 tracking-wide">⭐ TOP BRANDS</span>
-              <h2 className="text-2xl md:text-4xl font-extrabold">Featured Brands</h2>
-              <p className="text-gray-600 mt-1 text-sm md:text-base">India's top chair brands — and our own Talle line — under one roof</p>
+              <span className="inline-block bg-primary-100 text-primary-600 text-xs font-bold px-3 py-1 rounded-full mb-2 tracking-wide">🤝 OUR CLIENTS</span>
+              <h2 className="text-2xl md:text-4xl font-extrabold">Trusted by Mumbai's Best</h2>
+              <p className="text-gray-600 mt-1 text-sm md:text-base">We manufacture seating for coworking giants, financial firms, academies and 200+ Mumbai offices.</p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-            {homeBrands.map((b, i) => (
-              <Reveal key={b.name} delay={i * 50}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+            {homeClients.map((c, i) => (
+              <Reveal key={c.name} delay={i * 50}>
                 <Link
-                  to={`/shop?brand=${encodeURIComponent(b.name)}`}
-                  className={`group relative bg-gradient-to-br ${b.color} rounded-2xl overflow-hidden p-4 sm:p-5 text-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 block aspect-square sm:aspect-[4/3]`}
+                  to="/about"
+                  className={`group relative bg-gradient-to-br ${c.color} rounded-2xl overflow-hidden p-4 sm:p-5 text-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-300 block aspect-square sm:aspect-[4/3]`}
                 >
                   {/* Decorative blob */}
                   <div className="absolute -top-6 -right-6 w-20 h-20 bg-white/20 rounded-full blur-xl group-hover:scale-150 transition duration-500"></div>
                   {/* Big icon */}
-                  <div className="text-3xl sm:text-4xl md:text-5xl drop-shadow-md group-hover:scale-110 transition">{b.icon}</div>
-                  {/* Brand name + tag */}
+                  <div className="text-3xl sm:text-4xl md:text-5xl drop-shadow-md group-hover:scale-110 transition">{c.icon}</div>
+                  {/* Client name + tag */}
                   <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                    <p className="font-extrabold text-sm sm:text-base md:text-lg drop-shadow leading-tight">{b.name}</p>
-                    <p className="text-[10px] sm:text-xs uppercase tracking-wider opacity-90">{b.tag}</p>
+                    <p className="font-extrabold text-sm sm:text-base md:text-lg drop-shadow leading-tight">{c.name}</p>
+                    <p className="text-[10px] sm:text-xs uppercase tracking-wider opacity-90">{c.tag}</p>
                   </div>
                 </Link>
               </Reveal>

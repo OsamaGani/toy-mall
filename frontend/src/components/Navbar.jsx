@@ -13,7 +13,7 @@ const announcements = [
   { text: '🔥 Up to 50% OFF — Mega Chair Sale',                                                 href: '/shop?discount=true' },
   { text: '🔧 Expert Chair Repair & Reupholstery — Doorstep Service in Mumbai',                 href: '/contact' },
   { text: '⭐ New Models every week — Office, Gaming, Banquet, Recliners',                      href: '/shop?newArrival=true' },
-  { text: '💯 BIFMA Certified — Featherlite, Godrej, Green Soul, Wakefit & more',               href: '/shop' },
+  { text: '💯 Own Manufacturing — Trusted by WeWork, Roller Bearing, Upstep Academy & more',     href: '/about' },
   { text: '🛡 5-Year Warranty on Talle-branded chairs',                                          href: '/refund-policy' },
   { text: '📞 Need help? Call +91 93261 66875 — we reply fast',                                  href: '/contact' },
 ];
@@ -30,19 +30,20 @@ const materialList = [
   { name: 'Cushion',      emoji: '🛋' },
 ];
 
-const brands = [
-  { name: 'Talle',          color: 'bg-amber-600' },
-  { name: 'Featherlite',    color: 'bg-blue-600' },
-  { name: 'Godrej Interio', color: 'bg-emerald-600' },
-  { name: 'Nilkamal',       color: 'bg-red-600' },
-  { name: 'Wakefit',        color: 'bg-orange-500' },
-  { name: 'Green Soul',     color: 'bg-green-600' },
-  { name: 'Boss Chairs',    color: 'bg-slate-700' },
-  { name: 'Durian',         color: 'bg-yellow-700' },
-  { name: 'HOF',            color: 'bg-purple-600' },
-  { name: 'Cellbell',       color: 'bg-indigo-500' },
-  { name: 'Herman Miller',  color: 'bg-rose-700' },
-  { name: 'Steelcase',      color: 'bg-teal-600' },
+// Clients — real B2B customers we manufacture chairs for. Talle is the only
+// brand (we do our own manufacturing), so this list is shown as "Clients"
+// in the navbar, not "Brands". Replace these with more real clients as
+// the list grows.
+const clients = [
+  { name: 'WeWork',           color: 'bg-slate-900' },
+  { name: 'Roller Bearing',   color: 'bg-amber-700' },
+  { name: 'Upstep Academy',   color: 'bg-blue-700' },
+  { name: 'Respo Financial',  color: 'bg-emerald-700' },
+  { name: 'Coworking Spaces', color: 'bg-purple-600' },
+  { name: 'Coaching Hubs',    color: 'bg-rose-600' },
+  { name: 'Restaurants',      color: 'bg-orange-600' },
+  { name: 'Banquet Halls',    color: 'bg-fuchsia-700' },
+  { name: 'Mumbai Offices',   color: 'bg-cyan-700' },
 ];
 
 export default function Navbar() {
@@ -360,7 +361,7 @@ export default function Navbar() {
             <NavItem to="/shop" label="All Chairs" />
             <NavItem to="/action-toys" label="🔧 Repair" />
             <NavItem to="/shop?discount=true" label="🔥 50% Off" highlight />
-            <DropdownTrigger label="Brands" active={openDropdown === 'brands'} onHover={() => setOpenDropdown('brands')} />
+            <DropdownTrigger label="Clients" active={openDropdown === 'clients'} onHover={() => setOpenDropdown('clients')} />
             <DropdownTrigger label="Category" active={openDropdown === 'category'} onHover={() => setOpenDropdown('category')} />
             <DropdownTrigger label="Material" active={openDropdown === 'material'} onHover={() => setOpenDropdown('material')} />
             <NavItem to="/shop?category=Recliners" label="Recliners" />
@@ -375,26 +376,26 @@ export default function Navbar() {
         </div>
 
         {/* Mega menus */}
-        {openDropdown === 'brands' && (
+        {openDropdown === 'clients' && (
           <div className="absolute left-0 right-0 top-full bg-white shadow-xl border-t z-40 animate-fadeIn">
             <div className="max-w-screen-2xl mx-auto px-4 py-6">
-              <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Top Brands</h3>
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-                {brands.map((b) => (
+              <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Companies We Manufacture For</h3>
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+                {clients.map((c) => (
                   <Link
-                    key={b.name}
-                    to={`/shop?brand=${encodeURIComponent(b.name)}`}
+                    key={c.name}
+                    to="/about"
                     onClick={() => setOpenDropdown(null)}
                     className="group flex flex-col items-center text-center"
                   >
-                    <div className={`${b.color} w-16 h-16 rounded-full flex items-center justify-center text-white font-extrabold text-lg shadow-md group-hover:scale-110 group-hover:shadow-lg transition`}>
-                      {b.name[0]}
+                    <div className={`${c.color} w-16 h-16 rounded-full flex items-center justify-center text-white font-extrabold text-lg shadow-md group-hover:scale-110 group-hover:shadow-lg transition`}>
+                      {c.name[0]}
                     </div>
-                    <span className="mt-2 text-xs font-medium group-hover:text-primary-500">{b.name}</span>
+                    <span className="mt-2 text-xs font-medium group-hover:text-primary-500">{c.name}</span>
                   </Link>
                 ))}
               </div>
-              <Link to="/shop" onClick={() => setOpenDropdown(null)} className="block text-center mt-4 text-primary-500 font-semibold hover:underline text-sm">Browse all brands →</Link>
+              <Link to="/about" onClick={() => setOpenDropdown(null)} className="block text-center mt-4 text-primary-500 font-semibold hover:underline text-sm">Read our story →</Link>
             </div>
           </div>
         )}
@@ -555,28 +556,28 @@ export default function Navbar() {
                 </div>
               </li>
 
-              {/* Collapsible: Brands */}
+              {/* Collapsible: Clients */}
               <li>
                 <button
                   type="button"
-                  onClick={() => toggleMobileSection('brands')}
-                  aria-expanded={openMobileSection === 'brands'}
+                  onClick={() => toggleMobileSection('clients')}
+                  aria-expanded={openMobileSection === 'clients'}
                   className="w-full flex items-center justify-between py-2.5 px-2 rounded font-semibold border-t hover:bg-gray-50 transition"
                 >
-                  <span>Brands</span>
-                  <FiChevronDown size={18} className={`transition-transform duration-300 ease-out ${openMobileSection === 'brands' ? 'rotate-180 text-primary-500' : 'text-gray-500'}`} />
+                  <span>Our Clients</span>
+                  <FiChevronDown size={18} className={`transition-transform duration-300 ease-out ${openMobileSection === 'clients' ? 'rotate-180 text-primary-500' : 'text-gray-500'}`} />
                 </button>
-                <div className={`grid transition-all duration-300 ease-out ${openMobileSection === 'brands' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className={`grid transition-all duration-300 ease-out ${openMobileSection === 'clients' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                   <ul className="overflow-hidden pl-2 grid grid-cols-2 gap-1">
-                    {brands.map((b) => (
-                      <li key={b.name}>
+                    {clients.map((c) => (
+                      <li key={c.name}>
                         <Link
-                          to={`/shop?brand=${encodeURIComponent(b.name)}`}
+                          to="/about"
                           onClick={closeMobileMenu}
                           className="flex items-center gap-2 py-2 px-2 rounded text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition"
                         >
-                          <span className={`${b.color} w-6 h-6 rounded-full text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0`}>{b.name[0]}</span>
-                          <span className="truncate">{b.name}</span>
+                          <span className={`${c.color} w-6 h-6 rounded-full text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0`}>{c.name[0]}</span>
+                          <span className="truncate">{c.name}</span>
                         </Link>
                       </li>
                     ))}
