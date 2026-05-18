@@ -16,10 +16,10 @@ export default function Footer() {
         {/* Brand column — full width on mobile, single column on desktop */}
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-1 mb-3">
-            <span className="text-2xl font-extrabold text-primary-500">Toy</span>
-            <span className="text-2xl font-extrabold text-white">Mall</span>
+            <span className="text-2xl font-extrabold text-primary-500">Talle</span>
+            <span className="text-2xl font-extrabold text-white">Furniture</span>
           </div>
-          <p className="text-sm">Your one-stop shop for the best toys from top global brands. Bringing smiles to children since day one.</p>
+          <p className="text-sm">Mumbai's trusted chair specialist — manufacturing, retail and expert repair. Comfort, durability and style in every seat.</p>
           <div className="mt-5">
             <FollowUs dark />
           </div>
@@ -77,7 +77,7 @@ export default function Footer() {
 
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4 text-sm text-center text-gray-400">
-          © {new Date().getFullYear()} Toy Mall. All rights reserved.
+          © {new Date().getFullYear()} Talle Furniture Mart. All rights reserved.
         </div>
       </div>
     </footer>

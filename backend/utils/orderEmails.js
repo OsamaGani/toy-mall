@@ -5,28 +5,28 @@ const STATUS_TEMPLATES = {
   pending: {
     emoji: '⏰',
     color: '#ca8a04',
-    subject: (o) => `Order ${o.orderNumber} received — Toy Mall`,
+    subject: (o) => `Order ${o.orderNumber} received — Talle Furniture Mart`,
     headline: 'Order Received!',
     message: 'Thanks for your order! We\'ve received it and will confirm shortly.',
   },
   confirmed: {
     emoji: '✅',
     color: '#2563eb',
-    subject: (o) => `Order ${o.orderNumber} confirmed — Toy Mall`,
+    subject: (o) => `Order ${o.orderNumber} confirmed — Talle Furniture Mart`,
     headline: 'Order Confirmed',
     message: 'Great news — your order has been confirmed and is now being prepared. We\'ll let you know once it\'s packed.',
   },
   packed: {
     emoji: '📦',
     color: '#7c3aed',
-    subject: (o) => `Order ${o.orderNumber} is packed — Toy Mall`,
+    subject: (o) => `Order ${o.orderNumber} is packed — Talle Furniture Mart`,
     headline: 'Your Order is Packed',
     message: 'Your items have been carefully packed and are ready for shipping. Expect a shipping update within 24 hours.',
   },
   shipped: {
     emoji: '🚚',
     color: '#0891b2',
-    subject: (o) => `Order ${o.orderNumber} shipped — Toy Mall`,
+    subject: (o) => `Order ${o.orderNumber} shipped — Talle Furniture Mart`,
     headline: 'Your Order is On The Way',
     message: 'Your order is in transit and on its way to you. Track its journey using the link below.',
   },
@@ -42,7 +42,7 @@ const STATUS_TEMPLATES = {
     color: '#16a34a',
     subject: (o) => `Order ${o.orderNumber} delivered — Enjoy!`,
     headline: 'Delivered Successfully!',
-    message: 'Your order has been delivered. We hope you love your new toys! Don\'t forget to leave a review.',
+    message: 'Your order has been delivered. We hope you love your new chair! Don\'t forget to leave a review.',
   },
   cancelled: {
     emoji: '❌',
@@ -51,7 +51,7 @@ const STATUS_TEMPLATES = {
     // who actually cancelled and what happens to the customer's money.
     subject: (o) => o.cancelledBy === 'customer'
       ? `Order ${o.orderNumber} cancelled — refund details inside`
-      : `Order ${o.orderNumber} cancelled — Toy Mall`,
+      : `Order ${o.orderNumber} cancelled — Talle Furniture Mart`,
     headline: 'Order Cancelled',
     message: '', // populated per-order in cancelledMessage()
   },
@@ -218,7 +218,7 @@ function cancelledTextBody(order) {
 // Email clients can't follow relative paths, so /uploads/foo.jpg must be made absolute.
 // Falls back to a reliable hosted placeholder if there's no image — note this
 // MUST be a remote URL (Gmail and others strip data: URIs from <img>).
-const PLACEHOLDER_IMG = 'https://placehold.co/64x64/f3f4f6/9ca3af?text=Toy';
+const PLACEHOLDER_IMG = 'https://placehold.co/64x64/f3f4f6/9ca3af?text=Chair';
 function absoluteImage(image, apiBase) {
   if (!image) return PLACEHOLDER_IMG;
   if (/^https?:\/\//i.test(image)) return image;
@@ -251,7 +251,7 @@ function buildHtml(order, template, customerName, adminNote, clientUrl) {
 
   const noteBlock = adminNote ? `
     <div style="background:#fffbeb;border:1px solid #fde68a;padding:12px 14px;border-radius:8px;margin:16px 0;">
-      <p style="margin:0;font-size:11px;color:#92400e;font-weight:600;letter-spacing:0.5px;">📝 NOTE FROM TOY MALL</p>
+      <p style="margin:0;font-size:11px;color:#92400e;font-weight:600;letter-spacing:0.5px;">📝 NOTE FROM TALLE FURNITURE MART</p>
       <p style="margin:4px 0 0 0;color:#78350f;font-size:14px;line-height:1.5;">${escape(adminNote)}</p>
     </div>
   ` : '';
@@ -328,7 +328,7 @@ function buildText(order, template, customerName, adminNote) {
     text += `Tracking Number: ${order.trackingNumber}\n`;
   }
   if (adminNote) text += `\nNote: ${adminNote}\n`;
-  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Toy Mall\nMobin Apartment A Wing, Shop No. 4, Amrut Nagar, Near Dargah Road, Mumbra, Thane — 400612\nsupport@toymall.in`;
+  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Talle Furniture Mart\nShop No. 4, Khairani Road, Sakinaka, Andheri East, Mumbai — 400072\nsupport@tallefurnituremart.com`;
   return text;
 }
 

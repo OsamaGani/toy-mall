@@ -4,13 +4,13 @@ import { useAuth } from './AuthContext';
 
 const CartContext = createContext();
 
-// Shipping: ₹50 flat below the free-shipping threshold; free above ₹999
-// (a common Indian D2C bar). GST: 18% — the standard rate for most toys
-// in India under HSN 9503. Educational/wooden toys can be 12% but using
-// the higher rate keeps you safe with tax filings; charge what's right
-// for your product mix.
-const SHIPPING_FEE = 50;
-const FREE_SHIPPING_THRESHOLD = 999;
+// Shipping: ₹200 flat below the free-shipping threshold; free above ₹2,999
+// (chairs are bulky so the threshold is higher than typical D2C). GST: 18%
+// — the standard rate for most furniture in India under HSN 9401 (seats).
+// Some plastic chairs can be 12% but using the higher rate keeps you safe
+// with tax filings; charge what's right for your product mix.
+const SHIPPING_FEE = 200;
+const FREE_SHIPPING_THRESHOLD = 2999;
 const TAX_RATE = 0.18;
 
 const computeUnitPrice = (product, qty, isWholesaleAccount) => {

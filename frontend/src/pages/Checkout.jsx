@@ -239,8 +239,8 @@ export default function Checkout() {
       <div className="max-w-md mx-auto py-20 px-4 text-center">
         <div className="text-6xl mb-3">🛒</div>
         <h2 className="text-xl font-bold mb-2">Your cart is empty</h2>
-        <p className="text-gray-600 text-sm mb-4">Add a few toys before checking out.</p>
-        <button onClick={() => navigate('/shop')} className="btn-primary">Browse toys →</button>
+        <p className="text-gray-600 text-sm mb-4">Add a few chairs before checking out.</p>
+        <button onClick={() => navigate('/shop')} className="btn-primary">Browse chairs →</button>
       </div>
     );
   }

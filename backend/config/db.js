@@ -15,7 +15,7 @@ const connectDB = async () => {
 
       memServer = await MongoMemoryServer.create({
         instance: {
-          dbName: 'toymall',
+          dbName: 'tallefurnituremart',
           dbPath,
           storageEngine: 'wiredTiger',
         },

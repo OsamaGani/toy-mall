@@ -8,38 +8,41 @@ import { departments } from '../config/departments';
 
 // Scrolling announcements shown in the top marquee strip.
 const announcements = [
-  { text: '🛍 BULK BUYING? Get Wholesale Prices for Your Shop — Register & Save Big', href: '/wholesale' },
-  { text: '🎉 FREE Shipping on all orders above ₹999 across India',                  href: '/shipping-policy' },
-  { text: '🔥 Up to 70% OFF — Limited Time Mega Toy Sale',                            href: '/shop?discount=true' },
-  { text: '🚚 Same-day Dispatch on orders placed before 3 PM',                        href: '/shop' },
-  { text: '⭐ New Arrivals every week — fresh toys, top brands',                      href: '/shop?newArrival=true' },
-  { text: '💯 100% Authentic — LEGO, Hot Wheels, Barbie, Nerf, Marvel & more',        href: '/shop' },
-  { text: '🎁 Easy 7-Day Returns on every purchase',                                  href: '/refund-policy' },
-  { text: '📞 Need help? Call +91 77380 28750 — we reply fast',                       href: '/contact' },
+  { text: '🛋 BULK BUYING? Get Wholesale Prices for Offices & Banquets — Register & Save Big', href: '/wholesale' },
+  { text: '🚚 FREE Delivery on all orders above ₹2,999 across Mumbai',                          href: '/shipping-policy' },
+  { text: '🔥 Up to 50% OFF — Mega Chair Sale',                                                 href: '/shop?discount=true' },
+  { text: '🔧 Expert Chair Repair & Reupholstery — Doorstep Service in Mumbai',                 href: '/contact' },
+  { text: '⭐ New Models every week — Office, Gaming, Banquet, Recliners',                      href: '/shop?newArrival=true' },
+  { text: '💯 BIFMA Certified — Featherlite, Godrej, Green Soul, Wakefit & more',               href: '/shop' },
+  { text: '🛡 5-Year Warranty on Talle-branded chairs',                                          href: '/refund-policy' },
+  { text: '📞 Need help? Call +91 77380 28750 — we reply fast',                                  href: '/contact' },
 ];
 
-const ageGroups = [
-  { name: '0-2 Years', emoji: '👶' },
-  { name: '2-4 Years', emoji: '🧒' },
-  { name: '4-6 Years', emoji: '🎈' },
-  { name: '6-8 Years', emoji: '🎨' },
-  { name: '8 Years+', emoji: '🚀' },
-  { name: '12 Years+', emoji: '🎮' },
+// Material filter — replaces the legacy "age group" facet for the chair business.
+const materialList = [
+  { name: 'Mesh',         emoji: '🕸' },
+  { name: 'Leather',      emoji: '🟫' },
+  { name: 'Faux Leather', emoji: '🪑' },
+  { name: 'Fabric',       emoji: '🧵' },
+  { name: 'Plastic',      emoji: '🧴' },
+  { name: 'Wood',         emoji: '🪵' },
+  { name: 'Metal',        emoji: '⚙' },
+  { name: 'Cushion',      emoji: '🛋' },
 ];
 
 const brands = [
-  { name: 'LEGO', color: 'bg-yellow-400' },
-  { name: 'Hot Wheels', color: 'bg-red-500' },
-  { name: 'Barbie', color: 'bg-pink-500' },
-  { name: 'Nerf', color: 'bg-orange-500' },
-  { name: 'Magna-Tiles', color: 'bg-purple-500' },
-  { name: 'Crayola', color: 'bg-green-500' },
-  { name: 'Marvel', color: 'bg-red-700' },
-  { name: 'Transformers', color: 'bg-blue-600' },
-  { name: 'Kinderkraft', color: 'bg-teal-500' },
-  { name: 'Skillmatics', color: 'bg-indigo-500' },
-  { name: 'Bburago', color: 'bg-yellow-600' },
-  { name: 'Funskool', color: 'bg-rose-500' },
+  { name: 'Talle',          color: 'bg-amber-600' },
+  { name: 'Featherlite',    color: 'bg-blue-600' },
+  { name: 'Godrej Interio', color: 'bg-emerald-600' },
+  { name: 'Nilkamal',       color: 'bg-red-600' },
+  { name: 'Wakefit',        color: 'bg-orange-500' },
+  { name: 'Green Soul',     color: 'bg-green-600' },
+  { name: 'Boss Chairs',    color: 'bg-slate-700' },
+  { name: 'Durian',         color: 'bg-yellow-700' },
+  { name: 'HOF',            color: 'bg-purple-600' },
+  { name: 'Cellbell',       color: 'bg-indigo-500' },
+  { name: 'Herman Miller',  color: 'bg-rose-700' },
+  { name: 'Steelcase',      color: 'bg-teal-600' },
 ];
 
 export default function Navbar() {
@@ -161,7 +164,7 @@ export default function Navbar() {
       <div className={`bg-gray-900 text-white text-xs overflow-hidden transition-all duration-300 ${scrolled ? 'max-h-0' : 'max-h-10'}`}>
         <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <span className="hidden sm:flex items-center gap-1"><FiTruck /> Free Shipping over ₹999</span>
+            <span className="hidden sm:flex items-center gap-1"><FiTruck /> Free Delivery over ₹2,999</span>
             <span className="hidden md:flex items-center gap-1"><FiPhone /> +91 77380 28750</span>
           </div>
           <div className="flex items-center gap-4">
@@ -178,15 +181,15 @@ export default function Navbar() {
       <div className="border-b">
         <div className={`max-w-7xl mx-auto px-3 sm:px-4 flex items-center gap-3 sm:gap-6 transition-all duration-300 ${scrolled ? 'py-2' : 'py-2.5 sm:py-3'}`}>
           <Link to="/" className="flex items-center gap-1 flex-shrink-0">
-            <span className={`font-extrabold text-primary-500 transition-all ${scrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`}>Toy</span>
-            <span className={`font-extrabold text-gray-900 transition-all ${scrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`}>Mall</span>
+            <span className={`font-extrabold text-primary-500 transition-all ${scrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`}>Talle</span>
+            <span className={`font-extrabold text-gray-900 transition-all ${scrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`}>Furniture</span>
           </Link>
 
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-2xl relative">
             <input
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
-              placeholder="Search for toys, brands and more..."
+              placeholder="Search chairs, brands, materials..."
               className="w-full border-2 border-primary-500 rounded-full pl-5 pr-14 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary-200"
             />
             <button type="submit" className="absolute right-1 top-1/2 -translate-y-1/2 bg-primary-500 hover:bg-primary-600 text-white p-2.5 rounded-full transition">
@@ -269,7 +272,7 @@ export default function Navbar() {
                         <div className="w-14 h-14 mx-auto rounded-full bg-white/25 backdrop-blur ring-2 ring-white/40 flex items-center justify-center text-2xl mb-2">
                           👋
                         </div>
-                        <p className="font-bold text-base">Welcome to Toy Mall</p>
+                        <p className="font-bold text-base">Welcome to Talle Furniture Mart</p>
                         <p className="text-xs text-white/85 mt-0.5">Sign in for orders, wishlist & deals</p>
                       </div>
                       <div className="p-3 space-y-2">
@@ -317,7 +320,7 @@ export default function Navbar() {
             <input
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
-              placeholder="Search toys..."
+              placeholder="Search chairs..."
               className="w-full border-2 border-primary-500 rounded-full pl-4 pr-12 py-2 focus:outline-none"
             />
             <button type="submit" className="absolute right-1 top-1/2 -translate-y-1/2 bg-primary-500 text-white p-2 rounded-full">
@@ -337,13 +340,13 @@ export default function Navbar() {
             style={{ scrollbarWidth: 'none' }}
             aria-label="Quick categories"
           >
-            <MobileChip to="/shop?discount=true" highlight>🔥 70% Off</MobileChip>
+            <MobileChip to="/shop?discount=true" highlight>🔥 50% Off</MobileChip>
             <MobileChip to="/shop?bestSeller=true">⭐ Best Sellers</MobileChip>
             <MobileChip to="/shop?newArrival=true">✨ New</MobileChip>
-            <MobileChip to="/action-toys">🎯 Action Toys</MobileChip>
-            <MobileChip to="/shop?category=Books">📚 Books</MobileChip>
-            <MobileChip to="/shop?category=Dolls">👗 Dolls</MobileChip>
-            <MobileChip to="/shop?category=Vehicles">🏎 Vehicles</MobileChip>
+            <MobileChip to="/action-toys">🔧 Repair</MobileChip>
+            <MobileChip to="/shop?category=Executive%20Chairs">💼 Office</MobileChip>
+            <MobileChip to="/shop?category=Pro%20Gaming%20Chairs">🎮 Gaming</MobileChip>
+            <MobileChip to="/shop?category=Recliners">🛋 Recliners</MobileChip>
             <MobileChip to="/wholesale" purple>🛍 Wholesale</MobileChip>
           </div>
         </nav>
@@ -354,13 +357,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4">
           <ul className="flex items-center gap-1 text-sm font-semibold">
             <NavItem to="/" label={<span className="inline-flex items-center gap-1"><FiHome size={14} /> Home</span>} end />
-            <NavItem to="/shop" label="All Toys" />
-            <NavItem to="/action-toys" label="🎯 Action Toys" />
-            <NavItem to="/shop?discount=true" label="🔥 Up to 70% Off" highlight />
+            <NavItem to="/shop" label="All Chairs" />
+            <NavItem to="/action-toys" label="🔧 Repair Service" />
+            <NavItem to="/shop?discount=true" label="🔥 Up to 50% Off" highlight />
             <DropdownTrigger label="Brands" active={openDropdown === 'brands'} onHover={() => setOpenDropdown('brands')} />
             <DropdownTrigger label="Category" active={openDropdown === 'category'} onHover={() => setOpenDropdown('category')} />
-            <DropdownTrigger label="Age" active={openDropdown === 'age'} onHover={() => setOpenDropdown('age')} />
-            <NavItem to="/shop?category=Books" label="Books" />
+            <DropdownTrigger label="Material" active={openDropdown === 'material'} onHover={() => setOpenDropdown('material')} />
+            <NavItem to="/shop?category=Recliners" label="Recliners" />
             <NavItem to="/shop?bestSeller=true" label="⭐ Best Sellers" />
             <NavItem to="/shop?newArrival=true" label="✨ New Arrivals" />
             <li className="ml-auto">
@@ -406,7 +409,7 @@ export default function Navbar() {
                   onClick={() => setOpenDropdown(null)}
                   className="text-primary-500 hover:underline text-sm font-medium"
                 >
-                  View all toys →
+                  View all chairs →
                 </Link>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-5">
@@ -440,20 +443,20 @@ export default function Navbar() {
           </div>
         )}
 
-        {openDropdown === 'age' && (
+        {openDropdown === 'material' && (
           <div className="absolute left-0 right-0 top-full bg-white shadow-xl border-t z-40 animate-fadeIn">
             <div className="max-w-7xl mx-auto px-4 py-6">
-              <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Shop by Age</h3>
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-                {ageGroups.map((a) => (
+              <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Shop by Material</h3>
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3">
+                {materialList.map((m) => (
                   <Link
-                    key={a.name}
-                    to={`/shop?ageGroup=${encodeURIComponent(a.name)}`}
+                    key={m.name}
+                    to={`/shop?material=${encodeURIComponent(m.name)}`}
                     onClick={() => setOpenDropdown(null)}
                     className="border-2 border-gray-200 hover:border-primary-500 rounded-lg p-4 text-center hover:shadow-md transition group"
                   >
-                    <div className="text-3xl mb-1 group-hover:scale-110 transition">{a.emoji}</div>
-                    <p className="text-sm font-semibold group-hover:text-primary-500">{a.name}</p>
+                    <div className="text-3xl mb-1 group-hover:scale-110 transition">{m.emoji}</div>
+                    <p className="text-sm font-semibold group-hover:text-primary-500">{m.name}</p>
                   </Link>
                 ))}
               </div>
@@ -488,7 +491,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between p-4 border-b shrink-0 bg-gradient-to-r from-primary-50 to-pink-50">
             <div>
               <p className="text-xs uppercase tracking-wider text-gray-500">Browse</p>
-              <p className="text-lg font-extrabold text-gray-900">Toy Mall Menu</p>
+              <p className="text-lg font-extrabold text-gray-900">Talle Furniture Menu</p>
             </div>
             <button
               onClick={closeMobileMenu}
@@ -503,12 +506,12 @@ export default function Navbar() {
           <div className="flex-1 overflow-y-auto overscroll-contain">
             <ul className="px-4 py-3 space-y-1">
               <li><Link to="/" onClick={closeMobileMenu} className="flex items-center gap-2 py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition"><FiHome size={16} /> Home</Link></li>
-              <li><Link to="/shop" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition">All Toys</Link></li>
-              <li><Link to="/action-toys" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition">🎯 Action Toys</Link></li>
-              <li><Link to="/shop?discount=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded text-primary-500 font-semibold hover:bg-primary-50 transition">🔥 Up to 70% Off</Link></li>
+              <li><Link to="/shop" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition">All Chairs</Link></li>
+              <li><Link to="/action-toys" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded font-semibold hover:bg-gray-50 transition">🔧 Repair Service</Link></li>
+              <li><Link to="/shop?discount=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded text-primary-500 font-semibold hover:bg-primary-50 transition">🔥 Up to 50% Off</Link></li>
               <li><Link to="/shop?bestSeller=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">⭐ Best Sellers</Link></li>
               <li><Link to="/shop?newArrival=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">✨ New Arrivals</Link></li>
-              <li><Link to="/shop?category=Books" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">📚 Books</Link></li>
+              <li><Link to="/shop?category=Recliners" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">🛋 Recliners</Link></li>
 
               {/* Collapsible: Categories */}
               <li className="pt-1">
@@ -581,28 +584,28 @@ export default function Navbar() {
                 </div>
               </li>
 
-              {/* Collapsible: Shop by Age */}
+              {/* Collapsible: Shop by Material */}
               <li>
                 <button
                   type="button"
-                  onClick={() => toggleMobileSection('ages')}
-                  aria-expanded={openMobileSection === 'ages'}
+                  onClick={() => toggleMobileSection('materials')}
+                  aria-expanded={openMobileSection === 'materials'}
                   className="w-full flex items-center justify-between py-2.5 px-2 rounded font-semibold border-t hover:bg-gray-50 transition"
                 >
-                  <span>Shop by Age</span>
-                  <FiChevronDown size={18} className={`transition-transform duration-300 ease-out ${openMobileSection === 'ages' ? 'rotate-180 text-primary-500' : 'text-gray-500'}`} />
+                  <span>Shop by Material</span>
+                  <FiChevronDown size={18} className={`transition-transform duration-300 ease-out ${openMobileSection === 'materials' ? 'rotate-180 text-primary-500' : 'text-gray-500'}`} />
                 </button>
-                <div className={`grid transition-all duration-300 ease-out ${openMobileSection === 'ages' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className={`grid transition-all duration-300 ease-out ${openMobileSection === 'materials' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                   <ul className="overflow-hidden pl-2 grid grid-cols-2 gap-1">
-                    {ageGroups.map((a) => (
-                      <li key={a.name}>
+                    {materialList.map((m) => (
+                      <li key={m.name}>
                         <Link
-                          to={`/shop?ageGroup=${encodeURIComponent(a.name)}`}
+                          to={`/shop?material=${encodeURIComponent(m.name)}`}
                           onClick={closeMobileMenu}
                           className="flex items-center gap-2 py-2 px-2 rounded text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition"
                         >
-                          <span className="text-base">{a.emoji}</span>
-                          <span>{a.name}</span>
+                          <span className="text-base">{m.emoji}</span>
+                          <span>{m.name}</span>
                         </Link>
                       </li>
                     ))}

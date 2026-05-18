@@ -64,7 +64,7 @@ export async function openRazorpayCheckout({
       key: keyId,
       amount,
       currency,
-      name: 'Toy Mall',
+      name: 'Talle Furniture Mart',
       description: `Order #${String(orderId).slice(-8).toUpperCase()}`,
       image: '/logo.png',
       order_id: razorpayOrderId,

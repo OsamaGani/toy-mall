@@ -4,14 +4,12 @@ import API from '../api/axios';
 import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import { FiFilter, FiX } from 'react-icons/fi';
-import { allSubCategoryNames } from '../config/departments';
+import { allSubCategoryNames, materials } from '../config/departments';
 import SEO from '../components/SEO';
 import { COMMON_COLORS, colorToBackground, isLightColor } from '../utils/colors';
 
-const legacyCategories = ['Construction', 'Games', 'Pretend Play', 'Learning & Education', 'Vehicles', 'Active Play', 'Wooden Toys', 'Dolls', 'Action Figures', 'Ride Ons', 'Outdoor Toys', 'Books', 'Baby & Toddler'];
-const categories = Array.from(new Set([...legacyCategories, ...allSubCategoryNames])).sort();
-const brands = ['LEGO', 'Hot Wheels', 'Barbie', 'Nerf', 'Magna-Tiles', 'Crayola', 'Marvel', 'Transformers', 'Kinderkraft', 'Skillmatics', 'Bburago', 'Funskool'];
-const ages = ['0-2 Years', '2-4 Years', '4-6 Years', '6-8 Years', '8 Years+'];
+const categories = Array.from(new Set(allSubCategoryNames)).sort();
+const brands = ['Talle', 'Featherlite', 'Godrej Interio', 'Nilkamal', 'Wakefit', 'Green Soul', 'Boss Chairs', 'Durian', 'HOF', 'Cellbell', 'Herman Miller', 'Steelcase'];
 
 export default function Shop() {
   const [params, setParams] = useSearchParams();
@@ -24,14 +22,14 @@ export default function Shop() {
   const keyword = params.get('keyword') || '';
   const category = params.get('category') || '';
   const brand = params.get('brand') || '';
-  const ageGroup = params.get('ageGroup') || '';
+  const material = params.get('material') || '';
   const sort = params.get('sort') || '';
   const featured = params.get('featured') || '';
   const bestSeller = params.get('bestSeller') || '';
   const newArrival = params.get('newArrival') || '';
   const color = params.get('color') || '';
 
-  useEffect(() => { setPage(1); }, [keyword, category, brand, ageGroup, sort, color]);
+  useEffect(() => { setPage(1); }, [keyword, category, brand, material, sort, color]);
 
   useEffect(() => {
     (async () => {
@@ -41,7 +39,7 @@ export default function Shop() {
         if (keyword) q.set('keyword', keyword);
         if (category) q.set('category', category);
         if (brand) q.set('brand', brand);
-        if (ageGroup) q.set('ageGroup', ageGroup);
+        if (material) q.set('material', material);
         if (sort) q.set('sort', sort);
         if (featured) q.set('featured', featured);
         if (bestSeller) q.set('bestSeller', bestSeller);
@@ -55,7 +53,7 @@ export default function Shop() {
       } catch (e) { console.error(e); }
       finally { setLoading(false); }
     })();
-  }, [keyword, category, brand, ageGroup, sort, featured, bestSeller, newArrival, color, page]);
+  }, [keyword, category, brand, material, sort, featured, bestSeller, newArrival, color, page]);
 
   const updateParam = (key, value) => {
     const np = new URLSearchParams(params);
@@ -71,27 +69,27 @@ export default function Shop() {
   const clearAll = () => { setParams({}); setShowFilter(false); };
 
   const headerLabel = keyword ? `Results for "${keyword}"` :
-    category || brand || ageGroup || (featured && 'Featured Toys') ||
-    (bestSeller && 'Best Sellers') || (newArrival && 'New Arrivals') || 'All Toys';
+    category || brand || material || (featured && 'Featured Chairs') ||
+    (bestSeller && 'Best Sellers') || (newArrival && 'New Arrivals') || 'All Chairs';
 
   // Build a search-friendly title from whichever filters are active so each
   // permutation of the shop URL gets its own indexable page in Google.
   const seoTitle = keyword
-    ? `${keyword} — Shop Toys Online`
+    ? `${keyword} — Shop Chairs Online`
     : (brand && category) ? `${brand} ${category} — Shop Online India`
-    : brand ? `${brand} Toys — Buy Online in India`
+    : brand ? `${brand} Chairs — Buy Online in India`
     : category ? `${category} — Buy Online in India`
-    : ageGroup ? `Toys for ${ageGroup} — Shop Online`
-    : 'Shop All Toys Online — Best Prices in India';
+    : material ? `${material} Chairs — Shop Online`
+    : 'Shop All Chairs Online — Best Prices in Mumbai';
   const seoDescription = keyword
-    ? `Shop ${keyword} at Toy Mall. Best prices on toys in India with fast delivery and Cash on Delivery.`
-    : `Browse ${headerLabel.toLowerCase()} at Toy Mall — top brands, age-appropriate toys, fast pan-India delivery, COD available, easy returns.`;
+    ? `Shop ${keyword} at Talle Furniture Mart. Best prices on chairs in Mumbai with fast delivery and Cash on Delivery.`
+    : `Browse ${headerLabel.toLowerCase()} at Talle Furniture Mart — top chair brands, free Mumbai delivery on ₹2,999+, COD available, expert repair service.`;
 
   const FilterPanel = (
     <div className="space-y-6 text-sm">
       <FilterGroup title="Category" items={categories} active={category} onChange={(v) => updateParam('category', v)} />
       <FilterGroup title="Brand" items={brands} active={brand} onChange={(v) => updateParam('brand', v)} />
-      <FilterGroup title="Age Group" items={ages} active={ageGroup} onChange={(v) => updateParam('ageGroup', v)} />
+      <FilterGroup title="Material" items={materials} active={material} onChange={(v) => updateParam('material', v)} />
       <ColorFilter active={color} onChange={(v) => updateParam('color', v)} />
       <button onClick={clearAll} className="text-primary-500 hover:underline">Clear All Filters</button>
     </div>

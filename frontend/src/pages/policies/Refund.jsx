@@ -20,16 +20,16 @@ export default function Refund() {
 
       <h2 className="text-xl font-bold mt-6 mb-2">What cannot be returned</h2>
       <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4">
-        <li>Items that have been opened, used, or visibly played with (unless faulty)</li>
-        <li>Soft toys, plush, and items in direct contact with skin (for hygiene reasons)</li>
-        <li>Personalised, custom, or made-to-order items</li>
+        <li>Chairs that have been heavily used or visibly damaged in use (unless faulty)</li>
+        <li>Custom-upholstered or made-to-order chairs (we cut fabric specifically for you)</li>
+        <li>Reupholstery, repair and other workshop services once started</li>
         <li>Sale or clearance items marked "Final Sale"</li>
-        <li>Wholesale orders (subject to your wholesale agreement)</li>
+        <li>Wholesale / bulk orders (subject to your wholesale agreement)</li>
       </ul>
 
       <h2 className="text-xl font-bold mt-6 mb-2">How to start a return</h2>
       <ol className="list-decimal list-inside text-gray-700 space-y-1 mb-4">
-        <li>Email us at <a href="mailto:support@toymall.in" className="text-primary-500 hover:underline">support@toymall.in</a> within 7 days of delivery.</li>
+        <li>Email us at <a href="mailto:support@tallefurnituremart.com" className="text-primary-500 hover:underline">support@tallefurnituremart.com</a> within 7 days of delivery.</li>
         <li>Mention your order number and what's wrong (a photo helps us approve fast).</li>
         <li>We'll arrange a courier pickup or share a return address.</li>
         <li>Pack the item securely with all original accessories.</li>
@@ -54,7 +54,7 @@ export default function Refund() {
 
       <h2 className="text-xl font-bold mt-6 mb-2">Need help?</h2>
       <p className="text-gray-700">
-        We're here to help — email <a href="mailto:support@toymall.in" className="text-primary-500 hover:underline">support@toymall.in</a> or WhatsApp us at <a href="https://wa.me/917738028750" className="text-primary-500 hover:underline">+91 77380 28750</a>.
+        We're here to help — email <a href="mailto:support@tallefurnituremart.com" className="text-primary-500 hover:underline">support@tallefurnituremart.com</a> or WhatsApp us at <a href="https://wa.me/917738028750" className="text-primary-500 hover:underline">+91 77380 28750</a>.
       </p>
     </PolicyLayout>
   );

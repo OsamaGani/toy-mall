@@ -5,42 +5,39 @@ import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import Reveal from '../components/Reveal';
 import {
-  FiFilter, FiX, FiArrowRight, FiShield, FiTruck, FiAward, FiTarget,
-  FiZap, FiStar,
+  FiFilter, FiX, FiArrowRight, FiShield, FiTruck, FiAward, FiTool,
+  FiZap, FiStar, FiPhone,
 } from 'react-icons/fi';
+import { PHONE_PRIMARY_DISPLAY, PHONE_PRIMARY_TEL, waLink } from '../config/contact';
 
 // Sub-category chips — `match` is a list of keywords, ANY match passes.
+// Filters the catalog down to chair-service-adjacent listings (repair packs,
+// spare parts, refurb-friendly base models).
 const subCategories = [
-  { key: '',         label: 'All Action Toys',     emoji: '🎯', match: [] },
-  { key: 'blasters', label: 'Dart Guns & Blasters', emoji: '🔫',
-    match: ['gun', 'blaster', 'dart', 'nerf', 'shoot', 'fire'] },
-  { key: 'robots',   label: 'Robot Toys',          emoji: '🤖',
-    match: ['robot', 'transformer', 'gear', 'mech'] },
-  { key: 'cars',     label: 'Die-Cast Cars',       emoji: '🏎',
-    match: ['car', 'racer', 'die-cast', 'diecast', 'ferrari', 'hot wheels', 'vehicle'] },
-  { key: 'heroes',   label: 'Action Figures',      emoji: '🦸',
-    match: ['figure', 'spider', 'marvel', 'hero', 'avenger', 'batman'] },
-  { key: 'launchers',label: 'Launchers',           emoji: '🚀',
-    match: ['launcher', 'rocket', 'pneumatic', 'explorer', 'space'] },
-  { key: 'sports',   label: 'Sports & Games',      emoji: '⚽',
-    match: ['football', 'soccer', 'flicker', 'ball', 'tabletop', 'bubble'] },
+  { key: '',           label: 'All Services & Parts',  emoji: '🔧', match: [] },
+  { key: 'hydraulic',  label: 'Hydraulic Repair',      emoji: '⛽',  match: ['hydraulic', 'cylinder', 'gas-lift', 'gaslift'] },
+  { key: 'reupholster',label: 'Reupholstery',          emoji: '🧵', match: ['reupholster', 'upholstery', 'cushion', 'fabric replace'] },
+  { key: 'wheels',     label: 'Wheels & Base',         emoji: '⚙',  match: ['wheel', 'caster', 'base', 'star base'] },
+  { key: 'armrest',    label: 'Armrest & Lumbar',      emoji: '💪', match: ['armrest', 'arm rest', 'lumbar', 'headrest'] },
+  { key: 'office',     label: 'Office Chair Service',  emoji: '💼', match: ['executive', 'ergonomic', 'workstation', 'office'] },
+  { key: 'gaming',     label: 'Gaming Chair Service',  emoji: '🎮', match: ['gaming', 'racing', 'pro gaming'] },
 ];
 
-const ages    = ['2-4 Years', '4-6 Years', '6-8 Years', '8 Years+'];
-const colors  = ['Blue', 'Red', 'Black', 'Green', 'Yellow', 'Orange'];
+const materials = ['Mesh', 'Leather', 'Faux Leather', 'Fabric', 'Plastic', 'Wood', 'Metal'];
+const colors    = ['Black', 'Brown', 'Grey', 'White', 'Red', 'Blue', 'Beige'];
 const priceBuckets = [
-  { label: 'Under ₹500',     min: 0,    max: 500 },
-  { label: '₹500 – ₹1,000',  min: 500,  max: 1000 },
-  { label: '₹1,000 – ₹2,000',min: 1000, max: 2000 },
-  { label: 'Above ₹2,000',   min: 2000, max: 999999 },
+  { label: 'Under ₹1,000',       min: 0,     max: 1000 },
+  { label: '₹1,000 – ₹3,000',    min: 1000,  max: 3000 },
+  { label: '₹3,000 – ₹10,000',   min: 3000,  max: 10000 },
+  { label: 'Above ₹10,000',      min: 10000, max: 9999999 },
 ];
 
-// Highlight cards rendered above the grid (chanak-style "why action toys" strip).
+// Highlight cards rendered above the grid — chair-care promise.
 const highlights = [
-  { icon: <FiShield />, title: 'BIS Approved & Safe', desc: 'Non-toxic ABS plastic, soft foam darts, no sharp edges.' },
-  { icon: <FiAward />,  title: 'Premium Quality',     desc: 'Long-lasting build, realistic detailing, kid-tested.' },
-  { icon: <FiTarget />, title: 'Skill Building',      desc: 'Hand-eye coordination, motor skills, target practice.' },
-  { icon: <FiTruck />,  title: 'Fast Delivery',       desc: 'Free shipping over ₹999, dispatch within 24 hours.' },
+  { icon: <FiShield />, title: 'BIFMA-Certified Parts', desc: 'Class-4 hydraulics, premium fabrics — same standards as new chairs.' },
+  { icon: <FiAward />,  title: '15+ Years Experience',  desc: 'Mumbai\'s trusted chair workshop, run by craftsmen since 2009.' },
+  { icon: <FiTool />,   title: 'Doorstep Service',      desc: 'Pickup, repair, return — no need to drag the chair down 5 floors.' },
+  { icon: <FiTruck />,  title: '7-Day Turnaround',      desc: 'Most repairs returned within a week. Same-day for minor fixes.' },
 ];
 
 export default function ActionToys() {
@@ -50,31 +47,40 @@ export default function ActionToys() {
   const [showFilter, setShowFilter] = useState(false);
 
   const sub        = params.get('sub')      || '';
-  const ageGroup   = params.get('ageGroup') || '';
+  const material   = params.get('material') || '';
   const color      = params.get('color')    || '';
   const priceIdx   = params.get('price')    || '';
   const sort       = params.get('sort')     || '';
   const inStock    = params.get('inStock')  === '1';
 
-  // Fetch the Action Figures category once — we filter client-side for chips/colors.
+  // Fetch everything that could plausibly be a repair-relevant listing: the
+  // "General" catch-all bucket (where the seed puts service line items) plus
+  // anything that mentions repair / spare keywords in name or description.
   useEffect(() => {
     (async () => {
       setLoading(true);
       try {
         const q = new URLSearchParams();
-        q.set('category', 'Action Figures');
-        if (ageGroup) q.set('ageGroup', ageGroup);
+        if (material) q.set('material', material);
         if (sort)     q.set('sort', sort);
         q.set('limit', 60);
         const { data } = await API.get(`/products?${q.toString()}`);
-        setProducts(data.products || []);
+        const all = data.products || [];
+        // Keep only listings that look service-adjacent: brand=Talle, or
+        // names containing repair / cushion / cylinder / wheel keywords.
+        const serviceKeywords = ['repair', 'cushion', 'cylinder', 'wheel', 'reupholster', 'service', 'replacement', 'caster', 'hydraulic'];
+        const filtered = all.filter((p) => {
+          const hay = `${p.name} ${p.description || ''} ${p.brand || ''}`.toLowerCase();
+          return p.brand === 'Talle' || serviceKeywords.some((kw) => hay.includes(kw));
+        });
+        setProducts(filtered);
       } catch (e) {
         console.error(e);
       } finally {
         setLoading(false);
       }
     })();
-  }, [ageGroup, sort]);
+  }, [material, sort]);
 
   const filtered = useMemo(() => {
     let list = products;
@@ -118,10 +124,10 @@ export default function ActionToys() {
   const FilterPanel = (
     <div className="space-y-6 text-sm">
       <FilterGroup
-        title="Age Group"
-        items={ages}
-        active={ageGroup}
-        onChange={(v) => updateParam('ageGroup', v === ageGroup ? '' : v)}
+        title="Material"
+        items={materials}
+        active={material}
+        onChange={(v) => updateParam('material', v === material ? '' : v)}
       />
       <FilterGroup
         title="Color"
@@ -181,9 +187,9 @@ export default function ActionToys() {
   return (
     <div className="bg-white">
       {/* Hero banner */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-600 to-rose-700 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-amber-600 via-orange-700 to-red-800 text-white">
         <img
-          src="https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?w=1600"
+          src="https://images.unsplash.com/photo-1592078615290-033ee584e267?w=1600"
           alt=""
           className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay"
         />
@@ -195,27 +201,42 @@ export default function ActionToys() {
           <nav className="text-xs sm:text-sm text-white/80 mb-3 sm:mb-4 flex items-center gap-2">
             <Link to="/" className="hover:underline">Home</Link>
             <span>/</span>
-            <Link to="/shop" className="hover:underline">Shop</Link>
-            <span>/</span>
-            <span className="text-white font-semibold">Action Toys</span>
+            <span className="text-white font-semibold">Chair Repair & Service</span>
           </nav>
 
           <span className="inline-block w-fit bg-yellow-300 text-gray-900 text-[10px] sm:text-xs font-extrabold px-3 py-1.5 rounded-full mb-3 tracking-wide shadow">
-            🎯 ACTION & ADVENTURE
+            🔧 TALLE SPECIALTY
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg max-w-3xl">
-            Action Toys for Kids
+            Expert Chair Repair & Refurbishing
           </h1>
           <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl text-white/95 max-w-2xl">
-            Discover the best action toys online — safe, durable & exciting. Dart guns, blasters,
-            die-cast cars, robots and more, built to combine adrenaline with safety.
+            Mumbai's go-to workshop for hydraulic replacement, reupholstery, wheel & base fix
+            and full chair refurbishing. Bring it in — or we'll come pick it up.
           </p>
 
           <div className="flex flex-wrap gap-2 sm:gap-3 mt-5 sm:mt-7 text-xs sm:text-sm">
-            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ BIS Approved</span>
-            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ Made for Kids 5+</span>
-            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ Up to 55% Off</span>
-            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ Free Shipping ₹999+</span>
+            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ BIFMA-Grade Parts</span>
+            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ Doorstep Pickup</span>
+            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ 7-Day Turnaround</span>
+            <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full font-semibold">✓ 6-Month Warranty</span>
+          </div>
+
+          <div className="flex flex-wrap gap-3 mt-6">
+            <a
+              href={`tel:${PHONE_PRIMARY_TEL}`}
+              className="inline-flex items-center gap-2 bg-white text-amber-700 hover:bg-yellow-300 font-bold px-6 py-3 rounded-full shadow-lg transition"
+            >
+              <FiPhone /> Call {PHONE_PRIMARY_DISPLAY}
+            </a>
+            <a
+              href={waLink('Hi Talle! I need a chair repair quote.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-full shadow-lg transition"
+            >
+              💬 WhatsApp Quote
+            </a>
           </div>
         </div>
       </section>
@@ -269,7 +290,7 @@ export default function ActionToys() {
               {(subCategories.find((c) => c.key === sub) || subCategories[0]).label}
             </h2>
             <p className="text-xs sm:text-sm text-gray-500">
-              {loading ? 'Loading…' : `${filtered.length} product${filtered.length === 1 ? '' : 's'}`}
+              {loading ? 'Loading…' : `${filtered.length} item${filtered.length === 1 ? '' : 's'}`}
             </p>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
@@ -320,12 +341,12 @@ export default function ActionToys() {
             ) : filtered.length === 0 ? (
               <div className="text-center py-20 border-2 border-dashed rounded-xl">
                 <FiZap className="mx-auto text-5xl text-primary-400 mb-3" />
-                <p className="text-gray-700 font-semibold text-lg">No action toys match these filters</p>
-                <p className="text-gray-500 text-sm mt-1">Try clearing some filters or browse the full shop.</p>
+                <p className="text-gray-700 font-semibold text-lg">No service items match these filters</p>
+                <p className="text-gray-500 text-sm mt-1">Try clearing some filters, or call us for a custom quote.</p>
                 <div className="flex justify-center gap-3 mt-5">
                   <button onClick={clearAll} className="btn-primary">Clear Filters</button>
-                  <Link to="/shop" className="border border-gray-300 hover:border-primary-500 hover:text-primary-500 font-semibold px-5 py-2 rounded transition">
-                    Browse All Toys
+                  <Link to="/contact" className="border border-gray-300 hover:border-primary-500 hover:text-primary-500 font-semibold px-5 py-2 rounded transition">
+                    Get a Custom Quote
                   </Link>
                 </div>
               </div>
@@ -342,50 +363,50 @@ export default function ActionToys() {
         </div>
       </section>
 
-      {/* SEO / category description content (chanak-style long-form) */}
+      {/* SEO / category description content */}
       <section className="bg-gray-50 border-t">
         <div className="max-w-5xl mx-auto px-4 py-12 prose prose-sm sm:prose-base">
           <Reveal>
             <h2 className="text-2xl sm:text-3xl font-extrabold mb-3 text-gray-900">
-              Buy Action Toys Online — Safe, Durable & Exciting
+              Chair Repair & Refurbishing in Mumbai
             </h2>
             <p className="text-gray-600">
-              Action toys turn ordinary afternoons into adventures. From soft-dart blasters and
-              motorized launchers to die-cast cars and remote-control robots, our action collection
-              is designed for kids who love movement, speed and a little friendly competition.
-              Every toy in this category is built around one promise — combine adrenaline with safety.
+              A good chair is worth saving. We rebuild executive, ergonomic, gaming and dining
+              chairs from the cushion up — replacing worn hydraulics, frayed mesh, broken wheels
+              and tired upholstery. Most of our customers spend a fraction of the cost of a new
+              chair and get another 5+ years out of one they already love.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-5 mt-8 not-prose">
               <BulletCard
-                icon={<FiTarget />}
-                title="Dart Guns & Blasters"
-                desc="Soft-foam darts, 30–60 ft firing range, rechargeable motorized models with rotating drums for non-stop play."
+                icon={<FiTool />}
+                title="Hydraulic Cylinder Replacement"
+                desc="Class-4 BIFMA-certified gas-lifts. Stop the chair from sinking. Same-day service for most models."
               />
               <BulletCard
                 icon={<FiZap />}
-                title="Pneumatic Launchers"
-                desc="Air-powered space-explorer guns and rocket launchers for outdoor target practice."
+                title="Full Reupholstery"
+                desc="Choose from premium mesh, fabric or PU leather. Cushion redo, foam replacement included."
               />
               <BulletCard
                 icon={<FiAward />}
-                title="Premium Die-Cast Cars"
-                desc="Metal-body sports cars with realistic engine sounds, LED lights, and opening doors."
+                title="Wheel & Base Fix"
+                desc="Replace cracked star bases, swap noisy wheels for smooth polyurethane casters."
               />
               <BulletCard
                 icon={<FiStar />}
-                title="Robots & Action Figures"
-                desc="Gear robots, transforming heroes and posable figures that bring imagination to life."
+                title="Complete Refurbishing"
+                desc="Bring in a tired chair, take home one that looks and feels brand new — for half the price."
               />
             </div>
 
-            <h3 className="mt-10 text-xl font-bold text-gray-900">Why parents choose our action toys</h3>
+            <h3 className="mt-10 text-xl font-bold text-gray-900">Why customers choose Talle</h3>
             <ul className="text-gray-600 list-disc pl-5 space-y-1">
-              <li>BIS-approved, non-toxic ABS plastic — no sharp edges, no harsh chemicals.</li>
-              <li>Designed for kids 5+, with age-appropriate complexity and safety features.</li>
-              <li>Develops hand-eye coordination, fine motor skills and strategic thinking.</li>
-              <li>Tested for indoor and outdoor play — durable enough to survive everyday adventure.</li>
-              <li>Authentic stock from leading brands like Nerf, Marvel, Transformers and Hot Wheels.</li>
+              <li>15+ years of chair-only craftsmanship — we don't dabble, we specialise.</li>
+              <li>Genuine spares: BIFMA-rated hydraulics, branded casters, original-fit cushions.</li>
+              <li>Doorstep pickup &amp; drop across Mumbai — no muscle work for you.</li>
+              <li>Transparent quote before we start. No surprise charges.</li>
+              <li>6-month workmanship warranty on every repair.</li>
             </ul>
 
             <div className="mt-10 not-prose">
@@ -393,7 +414,7 @@ export default function ActionToys() {
                 to="/shop"
                 className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition"
               >
-                Browse All Toys <FiArrowRight />
+                Browse All Chairs <FiArrowRight />
               </Link>
             </div>
           </Reveal>

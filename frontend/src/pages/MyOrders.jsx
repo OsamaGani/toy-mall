@@ -75,7 +75,7 @@ export default function MyOrders() {
         <div className="text-center py-16 bg-white border rounded-lg">
           <FiPackage size={56} className="mx-auto text-gray-300 mb-3" />
           <h2 className="text-lg font-bold mb-1">No orders yet</h2>
-          <p className="text-gray-600 text-sm mb-4">Looks like you haven't placed any orders. Browse our toy collection and find something special.</p>
+          <p className="text-gray-600 text-sm mb-4">Looks like you haven't placed any orders. Browse our chair collection and find your perfect seat.</p>
           <Link to="/shop" className="btn-primary inline-block">Start Shopping →</Link>
         </div>
       ) : (

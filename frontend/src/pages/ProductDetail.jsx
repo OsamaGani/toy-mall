@@ -183,7 +183,7 @@ export default function ProductDetail() {
     const out = [];
     if (product.brand) out.push(`Brand: ${product.brand}`);
     if (product.category) out.push(`Category: ${product.category}`);
-    if (product.ageGroup) out.push(`Recommended age: ${product.ageGroup}`);
+    if (product.material) out.push(`Material: ${product.material}`);
     // Pull first comma-separated phrase from description
     const desc = product.description || '';
     const phrase = desc.split(/[,;]|\.\s/)[0]?.trim();
@@ -534,8 +534,8 @@ export default function ProductDetail() {
               <tbody>
                 <SpecRow label="Brand" value={product.brand} />
                 <SpecRow label="Category" value={product.category} />
-                {product.ageGroup && <SpecRow label="Recommended Age" value={product.ageGroup} />}
-                <SpecRow label="Sold by" value="Toy Mall (verified seller)" />
+                {product.material && <SpecRow label="Material" value={product.material} />}
+                <SpecRow label="Sold by" value="Talle Furniture Mart (verified seller)" />
                 <SpecRow label="Country of Origin" value="India" />
               </tbody>
             </table>
@@ -587,7 +587,7 @@ export default function ProductDetail() {
               shop team knows exactly what the customer is asking about.
               Two text variants — tight on small phones, fuller on tablet+. */}
           <a
-            href={waLink(`Hi Toy Mall! I'm interested in *${effectiveName}*${selectedColor ? ` (${selectedColor})` : ''} (${typeof window !== 'undefined' ? window.location.href : ''}). Can you help me?`)}
+            href={waLink(`Hi Talle Furniture Mart! I'm interested in *${effectiveName}*${selectedColor ? ` (${selectedColor})` : ''} (${typeof window !== 'undefined' ? window.location.href : ''}). Can you help me?`)}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-3 inline-flex max-w-full items-center gap-2 text-xs sm:text-sm font-semibold text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 px-3 py-2 rounded-lg transition"
@@ -595,7 +595,7 @@ export default function ProductDetail() {
             <FaWhatsapp size={16} className="text-green-600 flex-shrink-0" />
             <span className="truncate">
               <span className="xs:hidden">Ask on WhatsApp</span>
-              <span className="hidden xs:inline">Ask about this toy on WhatsApp</span>
+              <span className="hidden xs:inline">Ask about this chair on WhatsApp</span>
             </span>
             <span className="text-[10px] text-green-600 hidden md:inline whitespace-nowrap">· replies within an hour</span>
           </a>
@@ -649,7 +649,7 @@ export default function ProductDetail() {
       {related.similar.length > 0 && (
         <ProductRow
           title="Similar Products You May Like"
-          subtitle={`More toys from the ${product.category} category`}
+          subtitle={`More chairs from the ${product.category} category`}
           products={related.similar}
           viewAllHref={`/shop?category=${encodeURIComponent(product.category)}`}
         />
@@ -667,7 +667,7 @@ export default function ProductDetail() {
 
       {related.similar.length === 0 && related.moreFromBrand.length === 0 && related.trending.length > 0 && (
         <ProductRow
-          title="Trending Toys"
+          title="Trending Chairs"
           subtitle="Top-rated picks customers love"
           products={related.trending}
           viewAllHref="/shop?bestSeller=true"

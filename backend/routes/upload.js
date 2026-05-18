@@ -85,7 +85,7 @@ function uploadBufferToCloudinary(buffer) {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
-        folder: 'toymall/products',
+        folder: 'tallefurnituremart/products',
         resource_type: 'image',
         // No public_id — Cloudinary auto-generates a unique one. Using a
         // unique id every upload means we never accidentally overwrite a

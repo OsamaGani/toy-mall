@@ -13,17 +13,14 @@ import {
   STORE_NAME, STORE_ADDRESS_FULL,
 } from '../config/contact';
 
-// Exact Google Maps embed for the Toy Mall storefront, pulled from
-// Google's "Share → Embed a map" tool — uses the verified Business
-// Profile place ID so the pin lands precisely on the shop with the
-// storefront photo + reviews, not on a generic address match.
-const MAP_LAT = '19.175107';
-const MAP_LNG = '73.020168';
-const MAP_EMBED_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.4598442616034!2d73.02016807425437!3d19.175107548855628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7bf103c1fd643%3A0xb2773c43eccde054!2sToy%20Mall!5e0!3m2!1sen!2sin!4v1777716002974!5m2!1sen!2sin';
-// Directions deep-link uses lat/lng so it works whether the user has
-// the Maps app installed (mobile) or opens it in a browser (desktop).
-const MAP_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${MAP_LAT},${MAP_LNG}`;
-const MAP_VIEW_URL = `https://www.google.com/maps/search/?api=1&query=Toy+Mall+Mumbra+Thane`;
+// Google Maps embed centred on Talle Furniture Mart, Sakinaka, Mumbai.
+// Uses a place-search URL since we don't yet have the verified place ID
+// — once the Google Business listing is claimed, replace with the exact
+// pb=!1m18 embed URL for a precise pin and the storefront photo.
+const MAP_VIEW_URL  = `https://www.google.com/maps/search/?api=1&query=Talle+Furniture+Mart+Sakinaka+Mumbai`;
+const MAP_EMBED_URL = `https://www.google.com/maps?q=Talle+Furniture+Mart+Sakinaka+Mumbai&output=embed`;
+// Directions deep-link works on mobile (opens Maps app) and desktop.
+const MAP_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=Talle+Furniture+Mart+Sakinaka+Mumbai`;
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -48,8 +45,8 @@ export default function Contact() {
   return (
     <div>
       <SEO
-        title={`Contact Toy Mall — Mumbra, Thane | ${PHONE_PRIMARY_DISPLAY}`}
-        description={`Get in touch with Toy Mall for orders, bulk wholesale enquiries, or product questions. Visit our store in Mumbra, Thane or call ${PHONE_PRIMARY_DISPLAY}.`}
+        title={`Contact Talle Furniture Mart — Sakinaka, Mumbai | ${PHONE_PRIMARY_DISPLAY}`}
+        description={`Get in touch with Talle Furniture Mart for chair orders, wholesale enquiries, or repair quotes. Visit our workshop in Sakinaka, Mumbai or call ${PHONE_PRIMARY_DISPLAY}.`}
         path="/contact"
       />
       <PageHeader
@@ -67,10 +64,10 @@ export default function Contact() {
               icon={<FiMapPin />}
               title="Visit Us"
               lines={[
-                'Toy Mall',
-                'Mobin Apartment, A Wing, Shop No. 4',
-                'Amrut Nagar, Near Dargah Road',
-                'Mumbra, Thane — 400612, Maharashtra',
+                'Talle Furniture Mart',
+                'Shop No. 4, Khairani Road',
+                'Sakinaka, Andheri East',
+                'Mumbai — 400072, Maharashtra',
               ]}
               color="text-red-500 bg-red-50"
             />
@@ -79,7 +76,7 @@ export default function Contact() {
             <InfoCard
               icon={<FiMail />}
               title="Owner"
-              lines={['Abu Huraira Khan', <span className="text-sm text-gray-600">Founder, Toy Mall</span>]}
+              lines={['Abdul Rab', <span className="text-sm text-gray-600">Founder, Talle Furniture Mart</span>]}
               color="text-amber-500 bg-amber-50"
             />
           </Reveal>
@@ -129,14 +126,14 @@ export default function Contact() {
         <Reveal direction="right" delay={120}>
         <div className="bg-white border rounded-2xl shadow-sm p-6 md:p-8">
           <h2 className="text-2xl font-bold flex items-center gap-2 mb-1"><FiMessageCircle /> Send us a message</h2>
-          <p className="text-sm text-gray-600 mb-5">Tell us what you're looking for — a specific toy, a custom bulk order, gift advice for a particular age. We'll get back to you within a working day.</p>
+          <p className="text-sm text-gray-600 mb-5">Tell us what you need — a specific chair, a custom bulk order for an office or banquet hall, or a repair quote. We'll get back to you within a working day.</p>
 
           {sent && (
             <div className="mb-5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg p-4 flex items-start gap-3 animate-fadeIn">
               <FiCheckCircle className="text-emerald-500 mt-0.5 flex-shrink-0" size={20} />
               <div className="flex-1">
                 <p className="font-bold text-sm">Message sent!</p>
-                <p className="text-xs mt-0.5">Thanks for reaching out — Abu Huraira will get back to you soon at the email you provided.</p>
+                <p className="text-xs mt-0.5">Thanks for reaching out — Abdul Rab will get back to you soon at the email you provided.</p>
               </div>
               <button type="button" onClick={() => setSent(false)} className="text-emerald-700 hover:text-emerald-900 text-xs font-semibold underline">
                 Send another
@@ -175,7 +172,7 @@ export default function Contact() {
         </Reveal>
       </div>
 
-      {/* Map — embedded Google Maps centered on the Toy Mall pin, with
+      {/* Map — embedded Google Maps centered on the Talle Furniture Mart pin, with
           quick-action buttons for directions and full Maps view. */}
       <Reveal direction="scale">
       <section className="max-w-7xl mx-auto px-4 pb-12">
@@ -207,7 +204,7 @@ export default function Contact() {
         </div>
         <div className="rounded-xl overflow-hidden border shadow-md bg-gray-100">
           <iframe
-            title="Toy Mall — Mumbra, Thane location"
+            title="Talle Furniture Mart — Sakinaka, Mumbai location"
             src={MAP_EMBED_URL}
             width="100%"
             height="420"

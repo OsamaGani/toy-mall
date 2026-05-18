@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <PolicyLayout title="Privacy Policy" lastUpdated="April 2026">
       <p className="text-gray-700 mb-4">
-        Toy Mall ("we", "our") respects your privacy. This page explains what we collect, why we collect it, and how we keep it safe.
+        Talle Furniture Mart ("we", "our") respects your privacy. This page explains what we collect, why we collect it, and how we keep it safe.
       </p>
 
       <h2 className="text-xl font-bold mt-6 mb-2">What we collect</h2>
@@ -20,7 +20,7 @@ export default function Privacy() {
         <li>To process your orders and send shipping updates.</li>
         <li>To verify your email address with a one-time code.</li>
         <li>To answer your support requests.</li>
-        <li>To improve our store and recommend toys you might like.</li>
+        <li>To improve our store and recommend chairs you might like.</li>
       </ul>
 
       <h2 className="text-xl font-bold mt-6 mb-2">What we don't do</h2>
@@ -49,7 +49,7 @@ export default function Privacy() {
       <p className="text-gray-700 mb-4">Our store is for parents and adult buyers. We don't knowingly collect data from children under 13. If you believe a child has signed up, please contact us and we'll remove the account.</p>
 
       <h2 className="text-xl font-bold mt-6 mb-2">Contact</h2>
-      <p className="text-gray-700">Privacy questions? Write to <a href="mailto:support@toymall.in" className="text-primary-500 hover:underline">support@toymall.in</a> or by post: Toy Mall, Mobin Apartment A Wing, Shop No. 4, Amrut Nagar, Near Dargah Road, Mumbra, Thane — 400612.</p>
+      <p className="text-gray-700">Privacy questions? Write to <a href="mailto:support@tallefurnituremart.com" className="text-primary-500 hover:underline">support@tallefurnituremart.com</a> or by post: Talle Furniture Mart, Shop No. 4, Khairani Road, Sakinaka, Andheri East, Mumbai — 400072.</p>
     </PolicyLayout>
   );
 }

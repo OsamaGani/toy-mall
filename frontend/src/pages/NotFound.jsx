@@ -12,21 +12,21 @@ import {
 } from 'react-icons/fi';
 
 const popularDestinations = [
-  { to: '/',         icon: <FiHome />,        label: 'Home',     desc: 'Toy land',                color: 'from-pink-500 to-rose-500' },
-  { to: '/shop',     icon: <FiShoppingBag />, label: 'Shop',     desc: 'All toys',                color: 'from-blue-500 to-indigo-500' },
+  { to: '/',         icon: <FiHome />,        label: 'Home',     desc: 'Talle home',              color: 'from-pink-500 to-rose-500' },
+  { to: '/shop',     icon: <FiShoppingBag />, label: 'Shop',     desc: 'All chairs',              color: 'from-blue-500 to-indigo-500' },
   { to: '/wishlist', icon: <FiHeart />,       label: 'Wishlist', desc: 'Saved favourites',        color: 'from-purple-500 to-fuchsia-500' },
   { to: '/help',     icon: <FiHelpCircle />,  label: 'Help',     desc: 'FAQs & support',          color: 'from-emerald-500 to-green-500' },
 ];
 
 const popularCategories = [
-  { name: 'Construction',  emoji: '🧱' },
-  { name: 'Vehicles',      emoji: '🏎' },
-  { name: 'Dolls',         emoji: '🪆' },
-  { name: 'Action Figures',emoji: '🦸' },
-  { name: 'Wooden Toys',   emoji: '🪵' },
-  { name: 'Outdoor Toys',  emoji: '🪁' },
-  { name: 'Games',         emoji: '🎲' },
-  { name: 'Books',         emoji: '📚' },
+  { name: 'Executive Chairs',  emoji: '💼' },
+  { name: 'Ergonomic Chairs',  emoji: '🪑' },
+  { name: 'Pro Gaming Chairs', emoji: '🎮' },
+  { name: 'Recliners',         emoji: '🛋' },
+  { name: 'Dining Chairs',     emoji: '🍽' },
+  { name: 'Bar Stools',        emoji: '🍸' },
+  { name: 'Banquet Chairs',    emoji: '🎉' },
+  { name: 'Bean Bags',         emoji: '🟤' },
 ];
 
 export default function NotFound() {
@@ -35,7 +35,7 @@ export default function NotFound() {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    document.title = '404 — Page Not Found · Toy Mall';
+    document.title = '404 — Page Not Found · Talle Furniture Mart';
   }, []);
 
   const onSearch = (e) => {
@@ -54,20 +54,20 @@ export default function NotFound() {
 
       {/* === HERO === */}
       <section className="max-w-5xl mx-auto px-4 pt-8 sm:pt-12 pb-6 sm:pb-10 text-center">
-        {/* Floating toy emojis */}
+        {/* Floating chair emojis */}
         <div className="flex justify-center gap-2 sm:gap-3 mb-4 sm:mb-6 text-2xl sm:text-3xl select-none" aria-hidden>
-          <span className="animate-bounce" style={{ animationDelay: '0s' }}>🧸</span>
-          <span className="animate-bounce" style={{ animationDelay: '0.15s' }}>🪀</span>
-          <span className="animate-bounce" style={{ animationDelay: '0.3s' }}>🚂</span>
-          <span className="animate-bounce" style={{ animationDelay: '0.45s' }}>🎈</span>
-          <span className="hidden sm:inline animate-bounce" style={{ animationDelay: '0.6s' }}>🪁</span>
+          <span className="animate-bounce" style={{ animationDelay: '0s' }}>🪑</span>
+          <span className="animate-bounce" style={{ animationDelay: '0.15s' }}>🛋</span>
+          <span className="animate-bounce" style={{ animationDelay: '0.3s' }}>💼</span>
+          <span className="animate-bounce" style={{ animationDelay: '0.45s' }}>🎮</span>
+          <span className="hidden sm:inline animate-bounce" style={{ animationDelay: '0.6s' }}>🍽</span>
         </div>
 
         <h1 className="text-7xl sm:text-[110px] md:text-[180px] leading-none font-black tracking-tighter bg-gradient-to-r from-primary-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
           404
         </h1>
         <p className="text-lg sm:text-2xl md:text-3xl font-extrabold text-gray-900 mt-2 px-2">
-          Oops! This toy rolled away.
+          Oops! This chair rolled away.
         </p>
         <p className="text-sm sm:text-base text-gray-600 mt-2 sm:mt-3 max-w-md sm:max-w-xl mx-auto px-4">
           The page you're looking for doesn't exist or may have been moved.
@@ -87,7 +87,7 @@ export default function NotFound() {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search toys, brands…"
+            placeholder="Search chairs, brands…"
             className="flex-1 px-2 sm:px-3 py-2.5 sm:py-3 outline-none text-sm md:text-base bg-transparent min-w-0"
             aria-label="Search products"
           />
@@ -167,7 +167,7 @@ export default function NotFound() {
         <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8 text-center">
           <p className="text-base sm:text-xl font-bold">Still can't find what you need?</p>
           <p className="opacity-95 text-xs sm:text-sm mt-1 px-4">
-            Our support team is happy to help you find the perfect toy.
+            Our support team is happy to help you find the perfect chair.
           </p>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4">
             <a
@@ -177,7 +177,7 @@ export default function NotFound() {
               <FiPhone size={14} /> Call us
             </a>
             <a
-              href="mailto:support@toymall.in"
+              href="mailto:support@tallefurnituremart.com"
               className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/15 hover:bg-white/25 backdrop-blur border border-white/30 font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition text-sm"
             >
               <FiMail size={14} /> Email

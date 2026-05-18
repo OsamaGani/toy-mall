@@ -59,7 +59,7 @@ export default function VerifyEmail() {
     setSubmitting(true);
     try {
       await API.post('/auth/verify-email', { otp });
-      toast.success('🎉 Email verified! Welcome to Toy Mall.');
+      toast.success('🎉 Email verified! Welcome to Talle Furniture Mart.');
       await refreshUser();
       setTimeout(() => navigate('/'), 600);
     } catch (err) {

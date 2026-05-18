@@ -35,8 +35,8 @@ export default function ForgotPassword() {
         <div className="bg-white rounded-2xl shadow-xl ring-1 ring-black/5 overflow-hidden">
           <div className="bg-gradient-to-r from-primary-500 to-pink-500 px-6 py-7 text-center text-white">
             <Link to="/" className="inline-flex items-center gap-1 mb-3">
-              <span className="text-2xl font-extrabold">Toy</span>
-              <span className="text-2xl font-extrabold">Mall</span>
+              <span className="text-2xl font-extrabold">Talle</span>
+              <span className="text-2xl font-extrabold">Furniture</span>
             </Link>
             <h1 className="text-2xl font-bold">Forgot password?</h1>
             <p className="text-sm text-white/85 mt-0.5">No worries — we'll send you a reset link</p>

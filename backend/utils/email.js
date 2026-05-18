@@ -43,7 +43,7 @@ async function sendEmail({ to, subject, html, text, replyTo, headers }) {
         auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
       });
       await transporter.sendMail({
-        from: process.env.SMTP_FROM || `"Toy Mall" <${process.env.SMTP_USER}>`,
+        from: process.env.SMTP_FROM || `"Talle Furniture Mart" <${process.env.SMTP_USER}>`,
         to, subject, html, text,
         ...(replyTo ? { replyTo } : {}),
         ...(headers ? { headers } : {}),
@@ -66,19 +66,19 @@ async function sendEmail({ to, subject, html, text, replyTo, headers }) {
 async function sendVerificationOTP(email, otp, name = '') {
   const { renderEmail, escape } = require('./emailLayout');
   const firstName = (name || 'there').split(' ')[0];
-  const subject = `${otp} is your Toy Mall verification code`;
+  const subject = `${otp} is your Talle Furniture Mart verification code`;
 
   const bodyHtml = `
     <p style="margin:0 0 14px 0;font-size:15px;">Hi <strong>${escape(firstName)}</strong>,</p>
     <p style="margin:0 0 18px 0;">
-      Welcome to Toy Mall! Use the code below to verify your email and finish creating your account.
+      Welcome to Talle Furniture Mart! Use the code below to verify your email and finish creating your account.
     </p>
     <div style="background:#fff5f5;border:2px dashed #e53935;padding:18px 16px;text-align:center;border-radius:10px;margin:18px 0;">
       <p style="margin:0;font-size:11px;font-weight:600;color:#9b2c2c;letter-spacing:1px;">VERIFICATION CODE</p>
       <p style="margin:8px 0 0 0;font-family:'Courier New',monospace;font-size:36px;font-weight:bold;color:#b71c1c;letter-spacing:10px;">${escape(otp)}</p>
     </div>
     <p style="margin:0;color:#6b7280;font-size:13px;">
-      This code expires in <strong>10 minutes</strong>. For security, never share it with anyone — Toy Mall staff will never ask for it.
+      This code expires in <strong>10 minutes</strong>. For security, never share it with anyone — Talle Furniture Mart staff will never ask for it.
     </p>
     <p style="margin:14px 0 0 0;color:#6b7280;font-size:13px;">
       Didn't sign up? You can safely ignore this email — no account will be created.
@@ -88,7 +88,7 @@ async function sendVerificationOTP(email, otp, name = '') {
   const text = [
     `Hi ${firstName},`,
     '',
-    'Welcome to Toy Mall! Use this code to verify your email:',
+    'Welcome to Talle Furniture Mart! Use this code to verify your email:',
     '',
     `   ${otp}`,
     '',
@@ -97,7 +97,7 @@ async function sendVerificationOTP(email, otp, name = '') {
     '',
     'Didn\'t sign up? You can safely ignore this email.',
     '',
-    '— Team Toy Mall',
+    '— Team Talle Furniture Mart',
   ].join('\n');
 
   const html = renderEmail({

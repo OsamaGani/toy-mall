@@ -32,7 +32,7 @@ export default function VideoShowcase() {
         <Reveal>
           <div className="text-center mb-10">
             <span className="inline-block bg-primary-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">▶ WATCH IN ACTION</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold">See the Toys Come Alive</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold">See the Chairs in Action</h2>
             <p className="text-gray-300 mt-2">Real product videos so you know exactly what you're getting</p>
           </div>
         </Reveal>

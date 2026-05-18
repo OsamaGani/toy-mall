@@ -18,82 +18,84 @@ import { ProductRowSkeleton } from '../components/ProductCardSkeleton';
 
 const heroSlides = [
   {
-    eyebrow: '🎁 NEW IN STORE',
-    title: 'Ride-Ons That Steal the Show',
-    subtitle: 'Battery cars, scooters and tricycles your kid will pick over the iPad.',
-    cta: 'Shop Ride-Ons',
-    link: '/shop?category=Ride Ons',
-    image: 'https://images.unsplash.com/photo-1597007051304-15387f9e0a18?w=1400',
-    gradient: 'from-amber-300 via-orange-400 to-pink-500',
+    eyebrow: '💼 BUILT FOR LONG DAYS',
+    title: 'Ergonomic Chairs Your Spine Will Thank You For',
+    subtitle: 'Mesh-back, lumbar support, 4D armrests. Designed for 8+ hour work days.',
+    cta: 'Shop Office Chairs',
+    link: '/shop?category=Ergonomic Chairs',
+    image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=1400',
+    gradient: 'from-slate-600 via-slate-800 to-zinc-900',
   },
   {
-    eyebrow: '⭐ BEST SELLER',
-    title: 'Build. Stack. Create.',
-    subtitle: 'Wooden &amp; magnetic building sets that survive years of play and spark hours of imagination.',
-    cta: 'Shop Building',
-    link: '/shop?category=Construction',
-    image: 'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=1400',
-    gradient: 'from-emerald-400 via-teal-500 to-cyan-600',
+    eyebrow: '🎮 LEVEL UP',
+    title: 'Pro Gaming Chairs',
+    subtitle: 'Racing-style chairs with full recline, footrest and lumbar pillow — built for marathon sessions.',
+    cta: 'Shop Gaming',
+    link: '/shop?category=Pro Gaming Chairs',
+    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1400',
+    gradient: 'from-red-600 via-rose-600 to-fuchsia-700',
   },
   {
-    eyebrow: '🔥 UP TO 70% OFF',
-    title: 'Mega LEGO Sale Is Live',
-    subtitle: 'Hundreds of authentic LEGO sets at the lowest prices we offer all year. While stocks last.',
-    cta: 'Shop LEGO',
-    link: '/shop?brand=LEGO',
-    image: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=1400',
-    gradient: 'from-red-500 via-rose-500 to-fuchsia-600',
+    eyebrow: '🔧 TALLE SPECIALTY',
+    title: 'Expert Chair Repair & Reupholstery',
+    subtitle: 'Hydraulic replacement, cushion redo, wheel & base fix. Doorstep service across Mumbai.',
+    cta: 'Book Service',
+    link: '/contact',
+    image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=1400',
+    gradient: 'from-amber-500 via-orange-600 to-red-700',
   },
 ];
 
 const sideCards = [
   {
     eyebrow: 'WEEKEND DEAL',
-    title: 'Vehicles up to 50% Off',
-    subtitle: 'Hot Wheels die-cast cars, remote-control beasts and racing tracks.',
-    link: '/shop?category=Vehicles',
-    image: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600',
-    bg: 'bg-gradient-to-br from-blue-500 to-indigo-700',
+    title: 'Recliners up to 30% Off',
+    subtitle: 'Single & multi-seater recliners with manual and electric mechanisms.',
+    link: '/shop?category=Recliners',
+    image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600',
+    bg: 'bg-gradient-to-br from-amber-600 to-orange-800',
   },
   {
     eyebrow: 'JUST LANDED',
-    title: 'Dolls & Pretend Play',
-    subtitle: 'Barbie, Disney princesses, kitchen sets and more — for the storytellers.',
-    link: '/shop?category=Dolls',
-    image: 'https://images.unsplash.com/photo-1606503153255-59d8b8b6a9ec?w=600',
-    bg: 'bg-gradient-to-br from-pink-500 to-rose-600',
+    title: 'Banquet & Event Chairs',
+    subtitle: 'Tiffany, Chiavari & stackable banquet chairs for weddings, halls and hotels.',
+    link: '/shop?category=Banquet Chairs',
+    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600',
+    bg: 'bg-gradient-to-br from-purple-500 to-fuchsia-700',
   },
 ];
 
 const homeCategories = [
-  { name: 'Construction', img: 'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=400' },
-  { name: 'Vehicles', img: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=400' },
-  { name: 'Dolls', img: 'https://images.unsplash.com/photo-1606503153255-59d8b8b6a9ec?w=400' },
-  { name: 'Action Figures', img: 'https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?w=400' },
-  { name: 'Wooden Toys', img: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400' },
-  { name: 'Outdoor Toys', img: 'https://images.unsplash.com/photo-1560859251-d563a49c5e4a?w=400' },
-  { name: 'Games', img: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400' },
-  { name: 'Books', img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400' },
+  { name: 'Executive Chairs',   img: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400' },
+  { name: 'Ergonomic Chairs',   img: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=400' },
+  { name: 'Pro Gaming Chairs',  img: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400' },
+  { name: 'Recliners',          img: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400' },
+  { name: 'Dining Chairs',      img: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=400' },
+  { name: 'Bar Stools',         img: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=400' },
+  { name: 'Banquet Chairs',     img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400' },
+  { name: 'Bean Bags',          img: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=400' },
 ];
 
 const homeBrands = [
-  { name: 'LEGO',         color: 'from-yellow-400 to-amber-500',        icon: '🧱', tag: 'Build' },
-  { name: 'Hot Wheels',   color: 'from-red-500 to-orange-600',          icon: '🏎',  tag: 'Race' },
-  { name: 'Barbie',       color: 'from-pink-400 to-rose-500',           icon: '👗', tag: 'Fashion' },
-  { name: 'Nerf',         color: 'from-orange-500 to-amber-600',        icon: '🎯', tag: 'Action' },
-  { name: 'Magna-Tiles',  color: 'from-purple-500 to-fuchsia-600',      icon: '🔷', tag: 'STEM' },
-  { name: 'Crayola',      color: 'from-emerald-500 to-green-600',       icon: '🖍', tag: 'Create' },
-  { name: 'Marvel',       color: 'from-red-600 to-red-800',             icon: '🦸', tag: 'Heroes' },
-  { name: 'Transformers', color: 'from-blue-600 to-indigo-700',         icon: '🤖', tag: 'Robots' },
-  { name: 'Kinderkraft',  color: 'from-teal-500 to-cyan-600',           icon: '👶', tag: 'Baby' },
-  { name: 'Skillmatics',  color: 'from-indigo-500 to-purple-600',       icon: '🧠', tag: 'Learn' },
-  { name: 'Bburago',      color: 'from-yellow-600 to-orange-700',       icon: '🚗', tag: 'Models' },
-  { name: 'Funskool',     color: 'from-rose-500 to-pink-600',           icon: '🎲', tag: 'Games' },
+  { name: 'Talle',          color: 'from-amber-500 to-orange-600',    icon: '🛋', tag: 'In-House' },
+  { name: 'Featherlite',    color: 'from-blue-500 to-blue-700',       icon: '💼', tag: 'Office' },
+  { name: 'Godrej Interio', color: 'from-emerald-500 to-green-700',   icon: '🏛',  tag: 'Heritage' },
+  { name: 'Green Soul',     color: 'from-lime-500 to-green-600',      icon: '🎮', tag: 'Gaming' },
+  { name: 'Wakefit',        color: 'from-orange-400 to-amber-600',    icon: '🛏', tag: 'Comfort' },
+  { name: 'Nilkamal',       color: 'from-red-500 to-rose-700',        icon: '🪑', tag: 'Plastic' },
+  { name: 'Boss Chairs',    color: 'from-slate-600 to-slate-900',     icon: '🧥', tag: 'Executive' },
+  { name: 'Durian',         color: 'from-yellow-600 to-orange-700',   icon: '🛋', tag: 'Recliner' },
+  { name: 'HOF',            color: 'from-purple-500 to-fuchsia-700',  icon: '🪑', tag: 'Modern' },
+  { name: 'Cellbell',       color: 'from-indigo-500 to-purple-600',   icon: '🕸', tag: 'Mesh' },
+  { name: 'Herman Miller',  color: 'from-rose-600 to-pink-700',       icon: '⭐', tag: 'Premium' },
+  { name: 'Steelcase',      color: 'from-teal-500 to-cyan-700',       icon: '⚙', tag: 'Pro' },
 ];
 
 // Read homepage product cache from localStorage. Used to render the page
 // instantly on repeat visits while a fresh fetch happens in the background.
-const HOME_CACHE_KEY = 'tm_home_v1';
+// v2 = post-rebrand to Talle Furniture Mart. Bumping the key invalidates
+// the previous toy-mall caches sitting in returning visitors' browsers.
+const HOME_CACHE_KEY = 'tfm_home_v2';
 const HOME_CACHE_TTL = 5 * 60 * 1000; // 5 min — long enough to feel instant, short enough to stay fresh
 
 function readHomeCache() {
@@ -166,10 +168,10 @@ export default function Home() {
   return (
     <div>
       <SEO
-        title="Buy Toys Online in India · Toy Shop Mumbra Thane · Wholesale Toys Mumbai"
-        description="Toy Mall — buy authentic LEGO, Hot Wheels, Barbie, Nerf, action figures, building blocks, soft toys, board games and remote control cars online in India. Wholesale prices for shop owners in Mumbai and Thane. Free delivery over ₹999, Cash on Delivery, GST invoices."
+        title="Talle Furniture Mart · Chair Manufacturer & Repair in Mumbai · Office, Gaming, Banquet Chairs"
+        description="Talle Furniture Mart — buy executive, ergonomic, gaming, dining, banquet and recliner chairs online. Trusted chair manufacturer & repair specialist in Sakinaka, Mumbai. Reupholstery, hydraulic & cushion replacement available. Free delivery over ₹2,999."
         path="/"
-        keywords="buy toys online india, kids toys online, toy shop in mumbra, toy shop in thane, toy shop in mumbai, wholesale toys mumbai, wholesale toys thane, wholesale toys india, lego india online, hot wheels india, barbie dolls online india, nerf guns india, remote control car for kids, educational toys india, learning toys for toddlers, soft toys for babies, building blocks for kids, action figures india, board games india, toys for 1 year old, toys for 2 year old, toys for 3 year old, toys for 5 year old, birthday gift for kids, diwali gifts for kids, christmas toys india, ride on cars for kids, kids cycle online, online toy store india, kids store mumbra"
+        keywords="buy chairs online mumbai, office chair mumbai, ergonomic chair india, executive chair, gaming chair india, banquet chair manufacturer, tiffany chair wholesale, recliner sofa mumbai, dining chair set, chair repair sakinaka, chair reupholstery mumbai, hydraulic chair replacement, mesh office chair, featherlite chair, godrej interio chair, green soul gaming chair, talle furniture mart, chair shop sakinaka, wholesale chairs mumbai, banquet hall chairs, restaurant chairs supplier, salon chair mumbai, bar stool online india"
       />
       {/* Hero carousel */}
       <section className="bg-gray-50">
@@ -240,19 +242,19 @@ export default function Home() {
       <section className="border-b bg-gradient-to-r from-gray-50 via-white to-gray-50">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-5 grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-3">
           <Reveal direction="up" delay={0}>
-            <UspBadge icon={<FiTruck />}      title="Free Pan-India Delivery" desc="On every order over ₹999"  color="bg-blue-50 text-blue-600" />
+            <UspBadge icon={<FiTruck />}      title="Free Mumbai Delivery"   desc="On orders over ₹2,999"          color="bg-blue-50 text-blue-600" />
           </Reveal>
           <Reveal direction="up" delay={80}>
-            <UspBadge icon={<FiShield />}     title="100% Genuine Brands"     desc="Direct from authorised dealers" color="bg-emerald-50 text-emerald-600" />
+            <UspBadge icon={<FiShield />}     title="5-Year Warranty"        desc="On all Talle-branded chairs"    color="bg-emerald-50 text-emerald-600" />
           </Reveal>
           <Reveal direction="up" delay={160}>
-            <UspBadge icon={<FiRefreshCw />}  title="7-Day Easy Returns"      desc="No questions asked"        color="bg-orange-50 text-orange-600" />
+            <UspBadge icon={<FiRefreshCw />}  title="Doorstep Repair"        desc="Pickup, fix, return in Mumbai"  color="bg-orange-50 text-orange-600" link="/contact" />
           </Reveal>
           <Reveal direction="up" delay={240}>
-            <UspBadge icon={<FiHeadphones />} title="Talk to a Human"         desc="Call +91 77380 28750"      color="bg-purple-50 text-purple-600" link="/contact" />
+            <UspBadge icon={<FiHeadphones />} title="Talk to a Human"        desc="Call +91 77380 28750"           color="bg-purple-50 text-purple-600" link="/contact" />
           </Reveal>
           <Reveal direction="up" delay={320}>
-            <UspBadge icon={<FiPackage />}    title="Wholesale Pricing"       desc="40% off for shop owners"   color="bg-pink-50 text-pink-600" link="/wholesale" />
+            <UspBadge icon={<FiPackage />}    title="Bulk / Wholesale"       desc="Best rates for offices & halls" color="bg-pink-50 text-pink-600" link="/wholesale" />
           </Reveal>
         </div>
       </section>
@@ -266,7 +268,7 @@ export default function Home() {
           <div className="flex justify-between items-end mb-6">
             <div>
               <h2 className="text-2xl md:text-3xl font-extrabold">Shop By Category</h2>
-              <p className="text-gray-600">Find the perfect toy for every kid</p>
+              <p className="text-gray-600">Find the perfect chair for every room, office and event</p>
             </div>
             <Link to="/shop" className="text-primary-500 hover:underline text-sm font-medium">View All →</Link>
           </div>
@@ -289,7 +291,7 @@ export default function Home() {
       <ShopByAge />
 
       {/* Featured */}
-      <Section title="Featured Toys" subtitle="Hand-picked favorites" link="/shop?featured=true" products={featured} loading={loading} />
+      <Section title="Featured Chairs" subtitle="Hand-picked favorites" link="/shop?featured=true" products={featured} loading={loading} />
 
       {/* Today's Deals — only renders if admin has flagged products onDeal */}
       {todaysDeals.length > 0 && (
@@ -323,11 +325,11 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-extrabold leading-tight">
                 Open a <span className="text-yellow-300">Wholesale</span> Account
               </h2>
-              <p className="mt-3 text-lg opacity-95">Save up to 40% on bulk toy orders. Free shipping over ₹999. Authentic brands. Easy GST invoices.</p>
+              <p className="mt-3 text-lg opacity-95">Best rates for offices, banquet halls, restaurants and resellers. Free Mumbai delivery on bulk orders. GST invoices. Custom branding available.</p>
               <div className="flex flex-wrap gap-3 mt-5">
                 <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full text-sm font-semibold">✓ Bulk pricing</span>
                 <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full text-sm font-semibold">✓ GST invoice</span>
-                <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full text-sm font-semibold">✓ Stock for shop</span>
+                <span className="bg-white/20 backdrop-blur px-3 py-1.5 rounded-full text-sm font-semibold">✓ Custom branding</span>
               </div>
               <span className="inline-flex items-center gap-2 mt-6 bg-white text-purple-700 group-hover:bg-yellow-300 group-hover:text-gray-900 font-bold px-6 py-3 rounded-lg transition">
                 Learn More <FiArrowRight />
@@ -353,9 +355,9 @@ export default function Home() {
             <img src="https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=1600" className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-30 group-hover:scale-105 transition duration-500" alt="" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>
             <div className="relative z-10 h-full flex flex-col justify-center p-6 sm:p-10 md:p-14 max-w-xl">
-              <span className="inline-block w-fit bg-yellow-300 text-gray-900 text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-4 tracking-wide">🔥 UP TO 70% OFF</span>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-lg leading-tight">Mega Toy Sale</h2>
-              <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg text-white/95">LEGO, Hot Wheels, Barbie &amp; more — biggest discounts of the year</p>
+              <span className="inline-block w-fit bg-yellow-300 text-gray-900 text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-4 tracking-wide">🔥 UP TO 50% OFF</span>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-lg leading-tight">Mega Chair Sale</h2>
+              <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg text-white/95">Office, Gaming, Banquet, Recliners — biggest discounts of the year</p>
               <span className="inline-flex items-center gap-2 mt-4 sm:mt-6 w-fit bg-white text-gray-900 hover:bg-yellow-300 font-bold px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-sm sm:text-base shadow-lg group-hover:scale-105 transition">
                 Shop the Sale <FiArrowRight />
               </span>
@@ -400,7 +402,7 @@ export default function Home() {
             <div className="text-center mb-8">
               <span className="inline-block bg-primary-100 text-primary-600 text-xs font-bold px-3 py-1 rounded-full mb-2 tracking-wide">⭐ TOP BRANDS</span>
               <h2 className="text-2xl md:text-4xl font-extrabold">Featured Brands</h2>
-              <p className="text-gray-600 mt-1 text-sm md:text-base">All your favorite toy brands under one roof</p>
+              <p className="text-gray-600 mt-1 text-sm md:text-base">India's top chair brands — and our own Talle line — under one roof</p>
             </div>
           </Reveal>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
@@ -430,13 +432,13 @@ export default function Home() {
       <section className="bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">Join our Toy Family</h2>
-            <p className="text-gray-600 mb-4">Subscribe and get 10% off your first order plus exclusive deals.</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Join the Talle Family</h2>
+            <p className="text-gray-600 mb-4">Subscribe and get 10% off your first order plus exclusive deals on chairs &amp; service.</p>
             <NewsletterForm variant="light" source="home" />
           </div>
           <div>
             <FollowUs />
-            <p className="text-sm text-gray-600 mt-3">Stay in the loop — daily toy drops, new arrivals, mega sales and more.</p>
+            <p className="text-sm text-gray-600 mt-3">Stay in the loop — new models, festive sales and chair-care tips.</p>
           </div>
         </div>
       </section>

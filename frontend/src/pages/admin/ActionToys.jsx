@@ -9,15 +9,16 @@ import {
 import { resolveImage } from '../../utils/imageUrl';
 import toast from 'react-hot-toast';
 
-// Locked to the "Action Figures" category — that's what the public /action-toys page reads.
-const ACTION_CATEGORY = 'Action Figures';
+// Locked to the Talle in-house brand — that's the service / repair / spare-parts
+// catalog the public /action-toys (Chair Repair) page surfaces.
+const SERVICE_BRAND = 'Talle';
 
 const FLAG_TABS = [
-  { id: 'all',         label: 'All Action Toys', emoji: '🎯' },
-  { id: 'newArrival',  label: 'New Arrivals',    emoji: '✨' },
-  { id: 'bestSeller',  label: 'Best Sellers',    emoji: '⭐' },
-  { id: 'featured',    label: 'Featured',        emoji: '🌟' },
-  { id: 'outOfStock',  label: 'Out of Stock',    emoji: '⚠' },
+  { id: 'all',         label: 'All Service Items', emoji: '🔧' },
+  { id: 'newArrival',  label: 'New Arrivals',      emoji: '✨' },
+  { id: 'bestSeller',  label: 'Best Sellers',      emoji: '⭐' },
+  { id: 'featured',    label: 'Featured',          emoji: '🌟' },
+  { id: 'outOfStock',  label: 'Out of Stock',      emoji: '⚠' },
 ];
 
 export default function AdminActionToys() {
@@ -29,7 +30,7 @@ export default function AdminActionToys() {
   const load = async () => {
     setLoading(true);
     try {
-      const params = new URLSearchParams({ limit: 200, category: ACTION_CATEGORY });
+      const params = new URLSearchParams({ limit: 200, brand: SERVICE_BRAND });
       if (keyword) params.set('keyword', keyword);
       if (tab === 'newArrival') params.set('newArrival', 'true');
       if (tab === 'bestSeller') params.set('bestSeller', 'true');
@@ -40,7 +41,7 @@ export default function AdminActionToys() {
       setProducts(list);
     } catch (e) {
       console.error(e);
-      toast.error('Failed to load action toys');
+      toast.error('Failed to load service items');
     } finally {
       setLoading(false);
     }
@@ -49,10 +50,10 @@ export default function AdminActionToys() {
   useEffect(() => { load(); }, [keyword, tab]);
 
   const remove = async (id) => {
-    if (!confirm('Delete this action toy? This cannot be undone.')) return;
+    if (!confirm('Delete this service item? This cannot be undone.')) return;
     try {
       await API.delete(`/products/${id}`);
-      toast.success('Action toy deleted');
+      toast.success('Service item deleted');
       load();
     } catch (err) {
       toast.error(err.response?.data?.message || 'Delete failed');
@@ -95,11 +96,11 @@ export default function AdminActionToys() {
       <div className="flex flex-wrap justify-between items-center gap-3 mb-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
-            🎯 Action Toys
+            🔧 Service & Spare Parts
           </h1>
           <p className="text-sm text-gray-500">
-            Manage products shown on the <Link to="/action-toys" className="text-primary-500 hover:underline">/action-toys</Link> page.
-            Category is locked to <span className="font-semibold">{ACTION_CATEGORY}</span>.
+            Manage Talle-branded repair, service and spare-part listings shown on the <Link to="/action-toys" className="text-primary-500 hover:underline">Chair Repair</Link> page.
+            Category is locked to <span className="font-semibold">{SERVICE_BRAND}</span>.
           </p>
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -110,10 +111,10 @@ export default function AdminActionToys() {
             <FiPackage /> Bulk Add
           </Link>
           <Link
-            to={`/admin/products/new?category=${encodeURIComponent(ACTION_CATEGORY)}&from=/admin/action-toys`}
+            to={`/admin/products/new?brand=${encodeURIComponent(SERVICE_BRAND)}&from=/admin/action-toys`}
             className="btn-primary inline-flex items-center gap-2"
           >
-            <FiPlus /> Add Action Toy
+            <FiPlus /> Add Service Item
           </Link>
         </div>
       </div>
@@ -149,7 +150,7 @@ export default function AdminActionToys() {
           <input
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            placeholder="Search action toys by name…"
+            placeholder="Search service items by name…"
             className="input pl-10"
           />
         </div>
@@ -191,7 +192,7 @@ export default function AdminActionToys() {
                   </td>
                   <td>
                     <p className="font-medium max-w-xs truncate">{p.name}</p>
-                    {p.ageGroup && <p className="text-xs text-gray-500">{p.ageGroup}</p>}
+                    {p.material && <p className="text-xs text-gray-500">{p.material}</p>}
                   </td>
                   <td className="text-xs text-gray-600">{p.brand}</td>
                   <td>
@@ -272,14 +273,14 @@ export default function AdminActionToys() {
                     <FiAlertCircle className="mx-auto text-3xl text-gray-300 mb-2" />
                     <p className="text-gray-500">
                       {keyword || tab !== 'all'
-                        ? 'No action toys match these filters.'
-                        : 'No action toys yet.'}
+                        ? 'No service items match these filters.'
+                        : 'No service items yet.'}
                     </p>
                     <Link
-                      to={`/admin/products/new?category=${encodeURIComponent(ACTION_CATEGORY)}&from=/admin/action-toys`}
+                      to={`/admin/products/new?brand=${encodeURIComponent(SERVICE_BRAND)}&from=/admin/action-toys`}
                       className="text-primary-500 hover:underline text-sm mt-2 inline-flex items-center gap-1"
                     >
-                      <FiZap /> Add your first action toy
+                      <FiZap /> Add your first service item
                     </Link>
                   </td>
                 </tr>

@@ -284,11 +284,11 @@ router.post(
     const { renderEmail, escape } = require('../utils/emailLayout');
     const firstName = user.name?.split(' ')[0] || 'there';
 
-    const subject = 'Reset your Toy Mall password';
+    const subject = 'Reset your Talle Furniture Mart password';
     const bodyHtml = `
       <p style="margin:0 0 14px 0;font-size:15px;">Hi <strong>${escape(firstName)}</strong>,</p>
       <p style="margin:0 0 16px 0;">
-        We received a request to reset the password on your Toy Mall account.
+        We received a request to reset the password on your Talle Furniture Mart account.
         Tap the button below to choose a new one — this link works for the next
         <strong>${PASSWORD_RESET_TTL_MIN} minutes</strong>.
       </p>
@@ -303,14 +303,14 @@ router.post(
     const text = [
       `Hi ${firstName},`,
       '',
-      'We received a request to reset the password on your Toy Mall account.',
+      'We received a request to reset the password on your Talle Furniture Mart account.',
       `Open this link to set a new one (valid for ${PASSWORD_RESET_TTL_MIN} minutes):`,
       '',
       resetUrl,
       '',
       'Didn\'t ask for a password reset? You can safely ignore this email — your password won\'t change unless you click the link.',
       '',
-      '— Team Toy Mall',
+      '— Team Talle Furniture Mart',
     ].join('\n');
 
     const html = renderEmail({

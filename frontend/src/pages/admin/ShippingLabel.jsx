@@ -41,8 +41,8 @@ export default function ShippingLabel() {
         {/* Header strip */}
         <div className="bg-black text-white px-3 py-2 flex items-center justify-between">
           <div className="flex items-center gap-1">
-            <span className="text-xl font-extrabold text-primary-500">Toy</span>
-            <span className="text-xl font-extrabold text-white">Mall</span>
+            <span className="text-xl font-extrabold text-primary-500">Talle</span>
+            <span className="text-xl font-extrabold text-white">Furniture</span>
           </div>
           {isCOD && (
             <span className="bg-yellow-400 text-black px-3 py-1 text-sm font-extrabold rounded">COD ₹{order.totalPrice.toFixed(2)}</span>
@@ -60,10 +60,10 @@ export default function ShippingLabel() {
         {/* FROM */}
         <div className="px-3 py-2 border-b-2 border-black text-xs">
           <p className="font-bold text-gray-500 uppercase text-[10px]">From / Pickup Address</p>
-          <p className="font-bold text-sm">Toy Mall</p>
-          <p>Mobin Apartment A Wing, Shop No. 4</p>
-          <p>Amrut Nagar, Near Dargah Road</p>
-          <p>Mumbra, Thane — 400612</p>
+          <p className="font-bold text-sm">Talle Furniture Mart</p>
+          <p>Shop No. 4, Khairani Road</p>
+          <p>Sakinaka, Andheri East</p>
+          <p>Mumbai — 400072</p>
           <p>📞 +91 77380 28750</p>
         </div>
 
@@ -156,8 +156,8 @@ export default function ShippingLabel() {
 
         {/* Footer */}
         <div className="px-3 py-2 text-[10px] text-center bg-gray-100">
-          <p className="font-semibold">📦 Handle with care · Fragile toys</p>
-          <p className="text-gray-600">Returns to: Toy Mall, Mobin Apartment A Wing, Shop No. 4, Mumbra, Thane — within 7 days</p>
+          <p className="font-semibold">📦 Handle with care · Furniture</p>
+          <p className="text-gray-600">Returns to: Talle Furniture Mart, Shop No. 4, Khairani Road, Sakinaka, Andheri East, Mumbai — within 7 days</p>
         </div>
       </div>
 

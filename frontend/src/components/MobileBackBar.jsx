@@ -4,8 +4,8 @@ import { FiArrowLeft } from 'react-icons/fi';
 // Friendly labels for the most-visited routes. Anything not listed shows
 // just the arrow + "Back".
 const ROUTE_LABELS = {
-  '/shop':           'All Toys',
-  '/action-toys':    'Action Toys',
+  '/shop':           'All Chairs',
+  '/action-toys':    'Chair Repair',
   '/cart':           'Your Cart',
   '/checkout':       'Checkout',
   '/wishlist':       'Wishlist',

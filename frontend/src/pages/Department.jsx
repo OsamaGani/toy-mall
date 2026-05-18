@@ -8,12 +8,12 @@ import { getDepartment } from '../config/departments';
 import { FiFilter, FiX, FiArrowRight, FiZap } from 'react-icons/fi';
 import SEO from '../components/SEO';
 
-const ages = ['2-4 Years', '4-6 Years', '6-8 Years', '8 Years+'];
+const materials = ['Mesh', 'Leather', 'Faux Leather', 'Fabric', 'Plastic', 'Wood', 'Metal'];
 const priceBuckets = [
-  { label: 'Under ₹500',     min: 0,    max: 500 },
-  { label: '₹500 – ₹1,000',  min: 500,  max: 1000 },
-  { label: '₹1,000 – ₹2,000',min: 1000, max: 2000 },
-  { label: 'Above ₹2,000',   min: 2000, max: 999999 },
+  { label: 'Under ₹2,000',       min: 0,     max: 2000 },
+  { label: '₹2,000 – ₹5,000',    min: 2000,  max: 5000 },
+  { label: '₹5,000 – ₹15,000',   min: 5000,  max: 15000 },
+  { label: 'Above ₹15,000',      min: 15000, max: 9999999 },
 ];
 
 export default function Department() {
@@ -27,7 +27,7 @@ export default function Department() {
   const [showFilter, setShowFilter] = useState(false);
 
   const sub      = params.get('sub')      || '';
-  const ageGroup = params.get('ageGroup') || '';
+  const material = params.get('material') || '';
   const priceIdx = params.get('price')    || '';
   const sort     = params.get('sort')     || '';
   const inStock  = params.get('inStock')  === '1';
@@ -43,7 +43,7 @@ export default function Department() {
         const requests = targetSubs.map((i) => {
           const q = new URLSearchParams();
           q.set('category', i.name);
-          if (ageGroup) q.set('ageGroup', ageGroup);
+          if (material) q.set('material', material);
           if (sort) q.set('sort', sort);
           q.set('limit', 60);
           return API.get(`/products?${q.toString()}`).then((r) => r.data.products || []);
@@ -66,7 +66,7 @@ export default function Department() {
       }
     })();
     return () => { cancelled = true; };
-  }, [slug, sub, ageGroup, sort]);
+  }, [slug, sub, material, sort]);
 
   const filtered = useMemo(() => {
     let list = products;
@@ -95,10 +95,10 @@ export default function Department() {
   const FilterPanel = (
     <div className="space-y-6 text-sm">
       <FilterGroup
-        title="Age Group"
-        items={ages}
-        active={ageGroup}
-        onChange={(v) => updateParam('ageGroup', v === ageGroup ? '' : v)}
+        title="Material"
+        items={materials}
+        active={material}
+        onChange={(v) => updateParam('material', v === material ? '' : v)}
       />
       <div>
         <h3 className="font-bold mb-2">Price</h3>
@@ -148,7 +148,7 @@ export default function Department() {
   const seoTitle = activeSub
     ? `${activeSub.name} — Buy Online in India`
     : `${dept.title} — Shop ${dept.title} Online India`;
-  const seoDescription = `Shop ${dept.title.toLowerCase()} at Toy Mall. ${dept.subtitle || ''} Top brands, best prices, fast delivery across India, Cash on Delivery available.`.trim();
+  const seoDescription = `Shop ${dept.title.toLowerCase()} at Talle Furniture Mart. ${dept.subtitle || ''} Top brands, best prices, fast delivery across Mumbai & India, Cash on Delivery and repair service available.`.trim();
 
   return (
     <div className="bg-white">
@@ -258,7 +258,7 @@ export default function Department() {
                 <div className="flex justify-center gap-3 mt-5 flex-wrap">
                   <button onClick={clearAll} className="btn-primary">Clear Filters</button>
                   <Link to="/shop" className="border border-gray-300 hover:border-primary-500 hover:text-primary-500 font-semibold px-5 py-2 rounded transition">
-                    Browse All Toys
+                    Browse All Chairs
                   </Link>
                 </div>
               </div>

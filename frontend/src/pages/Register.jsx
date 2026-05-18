@@ -60,16 +60,16 @@ export default function Register() {
         {/* Decorative blobs */}
         <div className="absolute -top-32 -left-20 w-96 h-96 bg-yellow-300/20 rounded-full blur-3xl animate-float" />
         <div className="absolute -bottom-32 -right-20 w-96 h-96 bg-white/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
-        {/* Floating toy emojis */}
-        <span className="absolute top-20 right-16 text-6xl opacity-30 animate-float" style={{ animationDelay: '0.5s' }}>🎁</span>
-        <span className="absolute bottom-32 left-20 text-7xl opacity-25 animate-float" style={{ animationDelay: '2s' }}>🪁</span>
-        <span className="absolute top-1/2 right-32 text-5xl opacity-30 animate-float" style={{ animationDelay: '1s' }}>🎨</span>
-        <span className="absolute top-1/3 left-12 text-5xl opacity-25 animate-float" style={{ animationDelay: '2.5s' }}>🚀</span>
+        {/* Floating chair emojis */}
+        <span className="absolute top-20 right-16 text-6xl opacity-30 animate-float" style={{ animationDelay: '0.5s' }}>🛋</span>
+        <span className="absolute bottom-32 left-20 text-7xl opacity-25 animate-float" style={{ animationDelay: '2s' }}>🪑</span>
+        <span className="absolute top-1/2 right-32 text-5xl opacity-30 animate-float" style={{ animationDelay: '1s' }}>💼</span>
+        <span className="absolute top-1/3 left-12 text-5xl opacity-25 animate-float" style={{ animationDelay: '2.5s' }}>🎮</span>
 
         <div className="relative z-10">
           <Link to="/" className="inline-flex items-center gap-1">
-            <span className="text-3xl font-extrabold">Toy</span>
-            <span className="text-3xl font-extrabold">Mall</span>
+            <span className="text-3xl font-extrabold">Talle</span>
+            <span className="text-3xl font-extrabold">Furniture</span>
           </Link>
         </div>
 
@@ -78,22 +78,22 @@ export default function Register() {
             🎉 Join free
           </span>
           <h2 className="text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-lg">
-            Where childhood dreams come to play.
+            Better seating. Built by craftsmen.
           </h2>
           <p className="mt-4 text-lg text-white/90 leading-relaxed">
-            Create your account and unlock special perks reserved for the Toy Mall family.
+            Create your account and unlock special perks reserved for the Talle family.
           </p>
 
           <div className="mt-10 space-y-4">
-            <Perk icon={<FiGift />} text="10% off your first order" />
-            <Perk icon={<FiTag />} text="Early access to new arrivals & sales" />
-            <Perk icon={<FiTruck />} text="Free shipping on orders ₹999+" />
-            <Perk icon={<FiZap />} text="Faster checkout — saved addresses" />
+            <Perk icon={<FiGift />}  text="10% off your first order" />
+            <Perk icon={<FiTag />}   text="Early access to new arrivals & sales" />
+            <Perk icon={<FiTruck />} text="Free Mumbai delivery on ₹2,999+" />
+            <Perk icon={<FiZap />}   text="Faster checkout — saved addresses" />
           </div>
         </div>
 
         <div className="relative z-10 text-sm text-white/75">
-          © {new Date().getFullYear()} Toy Mall · Mumbra, Thane
+          © {new Date().getFullYear()} Talle Furniture Mart · Sakinaka, Mumbai
         </div>
       </div>
 
@@ -102,8 +102,8 @@ export default function Register() {
         {/* Mobile-only brand bar */}
         <div className="lg:hidden text-center mb-6">
           <Link to="/" className="inline-flex items-center gap-1">
-            <span className="text-3xl font-extrabold text-primary-500">Toy</span>
-            <span className="text-3xl font-extrabold text-gray-900">Mall</span>
+            <span className="text-3xl font-extrabold text-primary-500">Talle</span>
+            <span className="text-3xl font-extrabold text-gray-900">Furniture</span>
           </Link>
         </div>
 
@@ -144,7 +144,7 @@ export default function Register() {
             >
               <FiBriefcase className="mb-1 text-purple-500" size={20} />
               <p className="font-semibold text-sm">Wholesale</p>
-              <p className="text-xs text-gray-500">Bulk pricing for shops</p>
+              <p className="text-xs text-gray-500">Bulk pricing for offices &amp; halls</p>
             </button>
           </div>
 
@@ -169,7 +169,7 @@ export default function Register() {
                     className="input py-3"
                     value={form.businessName}
                     onChange={(e) => setForm({ ...form, businessName: e.target.value })}
-                    placeholder="e.g. Sunshine Toys"
+                    placeholder="e.g. Sunrise Office Supplies"
                     required
                   />
                 </div>

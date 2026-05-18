@@ -24,8 +24,7 @@ const COLLECTION_TABS = [
   { id: 'onDeal',      label: "Today's Deals", emoji: '⚡' },
 ];
 
-const LEGACY_CATEGORIES = ['Books', 'Construction', 'Vehicles', 'Dolls', 'Action Figures', 'Wooden Toys', 'Outdoor Toys', 'Games'];
-const QUICK_CATEGORIES = Array.from(new Set([...LEGACY_CATEGORIES, ...allSubCategoryNames])).sort();
+const QUICK_CATEGORIES = Array.from(new Set(allSubCategoryNames)).sort();
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([]);

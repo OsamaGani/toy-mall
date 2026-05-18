@@ -1,4 +1,4 @@
-# Netlify config for the Toy Mall frontend.
+# Netlify config for the Talle Furniture Mart frontend.
 # When you connect this repo on Netlify, set these in the dashboard:
 #   Base directory:  frontend
 #   Build command:   npm run build

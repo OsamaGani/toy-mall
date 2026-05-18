@@ -36,14 +36,14 @@ export default function Invoice() {
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 border-b-4 border-primary-500 pb-4 mb-6 print:flex-row print:gap-0">
           <div>
             <div className="flex items-center gap-1">
-              <span className="text-2xl sm:text-3xl font-extrabold text-primary-500">Toy</span>
-              <span className="text-2xl sm:text-3xl font-extrabold text-gray-900">Mall</span>
+              <span className="text-2xl sm:text-3xl font-extrabold text-primary-500">Talle</span>
+              <span className="text-2xl sm:text-3xl font-extrabold text-gray-900">Furniture</span>
             </div>
-            <p className="text-xs text-gray-600 mt-1">Mobin Apartment A Wing, Shop No. 4</p>
-            <p className="text-xs text-gray-600">Amrut Nagar, Near Dargah Road</p>
-            <p className="text-xs text-gray-600">Mumbra, Thane — 400612, Maharashtra, India</p>
-            <p className="text-xs text-gray-600">+91 77380 28750 · support@toymall.in</p>
-            <p className="text-xs text-gray-600">Owner: Abu Huraira Khan · GSTIN: 27AAAAA0000A1Z5</p>
+            <p className="text-xs text-gray-600 mt-1">Shop No. 4, Khairani Road</p>
+            <p className="text-xs text-gray-600">Sakinaka, Andheri East</p>
+            <p className="text-xs text-gray-600">Mumbai — 400072, Maharashtra, India</p>
+            <p className="text-xs text-gray-600">+91 77380 28750 · support@tallefurnituremart.com</p>
+            <p className="text-xs text-gray-600">Proprietor: Abdul Rab · GSTIN: 27AAAAA0000A1Z5</p>
           </div>
           <div className="sm:text-right print:text-right">
             <h1 className="text-2xl sm:text-3xl font-extrabold uppercase text-gray-900">Invoice</h1>
@@ -176,8 +176,8 @@ export default function Invoice() {
 
         {/* Footer */}
         <div className="mt-10 pt-4 border-t text-center text-xs text-gray-500">
-          <p className="font-semibold">Thank you for shopping with Toy Mall!</p>
-          <p className="mt-1">For returns or questions, contact support@toymall.in within 7 days of delivery.</p>
+          <p className="font-semibold">Thank you for shopping with Talle Furniture Mart!</p>
+          <p className="mt-1">For returns or questions, contact support@tallefurnituremart.com within 7 days of delivery.</p>
           <p className="mt-2">This is a computer-generated invoice and does not require a signature.</p>
         </div>
       </div>

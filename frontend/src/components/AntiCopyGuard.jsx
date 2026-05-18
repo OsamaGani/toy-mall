@@ -67,19 +67,19 @@ export default function AntiCopyGuard() {
   // sets a clear paper trail for trademark / DMCA action later if needed.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (window.__toymallWarned) return;
-    window.__toymallWarned = true;
+    if (window.__talleWarned) return;
+    window.__talleWarned = true;
     const big = 'font-size:18px;font-weight:bold;color:#e53935;';
     const note = 'font-size:13px;color:#374151;';
     // eslint-disable-next-line no-console
     console.log('%c⚠ Stop!', big);
     // eslint-disable-next-line no-console
     console.log(
-      '%cThis is the developer console of Toy Mall (toymall.in).\n\n' +
-      'The frontend code, design, and content on this site are © Toy Mall and ' +
+      '%cThis is the developer console of Talle Furniture Mart (tallefurnituremart.com).\n\n' +
+      'The frontend code, design, and content on this site are © Talle Furniture Mart and ' +
       'protected under the Indian Copyright Act, 1957. Copying, scraping, or ' +
       'cloning the site is illegal and we will pursue trademark + DMCA action.\n\n' +
-      'If you found a bug or security issue: please email security@toymall.in.\n' +
+      'If you found a bug or security issue: please email security@tallefurnituremart.com.\n' +
       'We pay bug bounties for genuine reports.',
       note
     );

@@ -1,6 +1,6 @@
-// Shared email layout used by every transactional email Toy Mall sends —
-// OTP verification, password reset, order status, newsletter, contact-form
-// forwarding, etc.
+// Shared email layout used by every transactional email Talle Furniture Mart
+// sends — OTP verification, password reset, order status, newsletter,
+// contact-form forwarding, etc.
 //
 // Why a shared layout matters:
 //   * Consistent brand presence across every inbox the customer touches
@@ -11,12 +11,12 @@
 //     (the only thing email clients reliably honour)
 
 const STORE = {
-  name: 'Toy Mall',
-  url: process.env.CLIENT_URL?.split(',')[0] || 'https://toy-mall.pages.dev',
+  name: 'Talle Furniture Mart',
+  url: process.env.CLIENT_URL?.split(',')[0] || 'https://tallefurnituremart.com',
   phone: '+91 77380 28750',
   phoneTel: '+917738028750',
-  email: 'support@toymall.in',
-  addressLine: 'Mobin Apartment A Wing, Shop No. 4, Amrut Nagar, Near Dargah Road, Mumbra, Thane — 400612',
+  email: 'support@tallefurnituremart.com',
+  addressLine: 'Shop No. 4, Khairani Road, Sakinaka, Andheri East, Mumbai — 400072',
 };
 
 const escape = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({
@@ -75,7 +75,7 @@ function renderEmail({
           <tr>
             <td align="center" style="background:#111827;padding:22px 20px;">
               <a href="${STORE.url}" style="text-decoration:none;font-size:26px;font-weight:800;letter-spacing:-0.3px;color:#ffffff;">
-                <span style="color:#e53935;">Toy</span>Mall
+                <span style="color:#e53935;">Talle</span>Furniture
               </a>
             </td>
           </tr>

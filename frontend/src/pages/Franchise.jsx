@@ -5,8 +5,8 @@ import toast from 'react-hot-toast';
 import { FiTrendingUp, FiUsers, FiBookOpen, FiTruck, FiAward, FiHelpCircle, FiArrowRight } from 'react-icons/fi';
 
 const benefits = [
-  { icon: <FiTrendingUp />, title: 'Proven Business Model', desc: 'Built on years of running our own toy store — fewer surprises, better margins.' },
-  { icon: <FiAward />,      title: 'Established Brand',     desc: 'Open under the Toy Mall name with ready customer trust.' },
+  { icon: <FiTrendingUp />, title: 'Proven Business Model', desc: 'Built on 15+ years of running our own chair workshop and retail — fewer surprises, better margins.' },
+  { icon: <FiAward />,      title: 'Established Brand',     desc: 'Open under the Talle Furniture Mart name with the trust we\'ve built across Mumbai.' },
   { icon: <FiTruck />,      title: 'Wholesale Stock',        desc: 'Direct access to our wholesale catalogue at preferred franchise rates.' },
   { icon: <FiBookOpen />,   title: 'Training & Setup',       desc: 'We help with store layout, product mix, staff training and launch.' },
   { icon: <FiUsers />,      title: 'Marketing Support',      desc: 'Co-branded campaigns, social media kits and seasonal promo material.' },
@@ -38,7 +38,7 @@ export default function Franchise() {
     setSending(true);
     setTimeout(() => {
       const body = encodeURIComponent(`Name: ${form.name}\nPhone: ${form.phone}\nCity: ${form.city}\n\n${form.message}`);
-      window.location.href = `mailto:support@toymall.in?subject=Franchise%20enquiry%20from%20${encodeURIComponent(form.city)}&body=${body}`;
+      window.location.href = `mailto:support@tallefurnituremart.com?subject=Franchise%20enquiry%20from%20${encodeURIComponent(form.city)}&body=${body}`;
       toast.success('Opening your email client...');
       setSending(false);
     }, 400);
@@ -47,8 +47,8 @@ export default function Franchise() {
   return (
     <div>
       <PageHeader
-        title="Open a Toy Mall Store in Your City"
-        subtitle="Run your own toy shop with the brand, catalogue, and supplier network already built. Lower setup costs, proven concept, ongoing support."
+        title="Open a Talle Furniture Mart Store in Your City"
+        subtitle="Run your own chair retail + repair business with the brand, catalogue, supplier network and workshop know-how already built. Lower setup costs, proven concept, ongoing support."
         breadcrumbs={[{ label: 'Franchise' }]}
       />
 
@@ -56,7 +56,7 @@ export default function Franchise() {
       <section className="max-w-7xl mx-auto px-4 py-12">
         <Reveal>
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-extrabold">Why partner with Toy Mall?</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold">Why partner with Talle?</h2>
             <p className="text-gray-600 mt-2">Six reasons our franchise partners stay with us.</p>
           </div>
         </Reveal>

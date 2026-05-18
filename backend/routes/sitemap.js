@@ -30,7 +30,7 @@ router.get('/', asyncHandler(async (req, res) => {
   // SITE_URL is the public frontend origin — must be the same value the
   // frontend uses in its canonical / Open Graph tags or Google will dedupe
   // them against the wrong host.
-  const site = (process.env.SITE_URL || process.env.CLIENT_URL?.split(',')[0] || 'https://toy-mall.pages.dev').replace(/\/$/, '');
+  const site = (process.env.SITE_URL || process.env.CLIENT_URL?.split(',')[0] || 'https://tallefurnituremart.com').replace(/\/$/, '');
 
   const [products, categories] = await Promise.all([
     Product.find().select('slug _id updatedAt').lean(),

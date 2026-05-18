@@ -138,7 +138,7 @@ app.use('/api/newsletter', limiterEmail);
 app.use('/api/contact', limiterEmail);
 app.use('/api/', limiterGlobal); // safety net for everything else
 
-app.get('/', (req, res) => res.json({ message: 'Toy Mall API is running' }));
+app.get('/', (req, res) => res.json({ message: 'Talle Furniture Mart API is running' }));
 
 // Sitemap mounted at the root (not /api) so its public URL is clean.
 // Cloudflare Pages proxies /sitemap.xml on the frontend domain to here.
@@ -168,4 +168,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Toy Mall API running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Talle Furniture Mart API running on port ${PORT}`));

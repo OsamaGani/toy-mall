@@ -25,10 +25,10 @@ router.post(
       return res.status(400).json({ message: 'Message is too long (max 5000 characters).' });
     }
 
-    const TO = process.env.CONTACT_INBOX || 'support@toymall.in';
+    const TO = process.env.CONTACT_INBOX || 'support@tallefurnituremart.com';
     const subjectLine = subject?.trim()
-      ? `[Toy Mall Contact] ${subject.trim()}`
-      : `[Toy Mall Contact] New enquiry from ${name.trim()}`;
+      ? `[Talle Furniture Mart Contact] ${subject.trim()}`
+      : `[Talle Furniture Mart Contact] New enquiry from ${name.trim()}`;
 
     const { renderEmail } = require('../utils/emailLayout');
     const replyMailto = `mailto:${escape(email)}?subject=${encodeURIComponent('Re: ' + (subject || 'Your enquiry'))}`;
@@ -73,7 +73,7 @@ router.post(
       cta: { text: `Reply to ${name.split(' ')[0]}`, url: replyMailto, color: '#e53935' },
     });
 
-    const text = `New contact form message — Toy Mall
+    const text = `New contact form message — Talle Furniture Mart
 
 From: ${name}
 Email: ${email}
@@ -81,7 +81,7 @@ ${phone ? `Phone: ${phone}\n` : ''}${subject ? `Subject: ${subject}\n` : ''}
 Message:
 ${message}
 
-— Sent from the Contact page on toymall.com`;
+— Sent from the Contact page on tallefurnituremart.com`;
 
     const result = await sendEmail({
       to: TO,

@@ -2,10 +2,10 @@ import { useReveal, useCounter } from '../hooks/useReveal';
 import { FiUsers, FiPackage, FiAward, FiSmile } from 'react-icons/fi';
 
 const stats = [
-  { icon: <FiUsers />,   target: 5200,  suffix: '+', label: 'Happy Customers' },
-  { icon: <FiPackage />, target: 850,   suffix: '+', label: 'Toys in Catalog' },
-  { icon: <FiAward />,   target: 20,    suffix: '+', label: 'Top Brands' },
-  { icon: <FiSmile />,   target: 99,    suffix: '%', label: 'Satisfaction' },
+  { icon: <FiUsers />,   target: 8000,  suffix: '+', label: 'Chairs Sold' },
+  { icon: <FiPackage />, target: 400,   suffix: '+', label: 'Chairs in Catalog' },
+  { icon: <FiAward />,   target: 15,    suffix: '+', label: 'Top Chair Brands' },
+  { icon: <FiSmile />,   target: 98,    suffix: '%', label: 'Satisfaction' },
 ];
 
 export default function StatsCounter() {

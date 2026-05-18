@@ -17,7 +17,7 @@ export default function OrderTimeline({ status, history = [], estimatedDelivery,
     const when = cancelledAt || cancelEvent?.at;
     const whenLabel = when ? new Date(when).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : null;
     const whoIcon = cancelledBy === 'admin' ? <FiBriefcase size={12} /> : <FiUser size={12} />;
-    const whoLabel = cancelledBy === 'admin' ? 'by Toy Mall' : cancelledBy === 'customer' ? 'by you' : '';
+    const whoLabel = cancelledBy === 'admin' ? 'by Talle Furniture Mart' : cancelledBy === 'customer' ? 'by you' : '';
 
     return (
       <div className="bg-white border border-red-200 rounded-xl overflow-hidden shadow-sm">

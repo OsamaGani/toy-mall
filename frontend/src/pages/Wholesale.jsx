@@ -8,26 +8,26 @@ import SEO from '../components/SEO';
 import Reveal from '../components/Reveal';
 
 const benefits = [
-  { icon: <FiTrendingDown />, title: 'Margins up to 40%', desc: 'Tier-based wholesale pricing on bulk packs — the more you order, the lower the per-unit cost.' },
-  { icon: <FiTruck />, title: 'Free Pan-India Shipping', desc: 'Free delivery on every wholesale order above ₹999. No minimum carton size.' },
-  { icon: <FiPackage />, title: 'Catalogue You Can Resell', desc: 'LEGO, Hot Wheels, Barbie, Nerf and 20+ brands kids actually ask for at the counter.' },
-  { icon: <FiAward />, title: 'Authentic Stock Only', desc: 'Sourced direct from authorised distributors. Every box arrives factory-sealed with proper barcodes.' },
-  { icon: <FiShield />, title: 'GST Invoices, Always', desc: 'Proper tax invoices with your shop GSTIN for full input credit. Bookkeeping stays clean.' },
-  { icon: <FiBriefcase />, title: 'Direct Owner Contact', desc: 'No call centre. WhatsApp the founder for stock checks, custom orders, or delivery updates.' },
+  { icon: <FiTrendingDown />, title: 'Best Bulk Rates',          desc: 'Tier-based wholesale pricing on volume orders — the more chairs, the lower the per-unit cost.' },
+  { icon: <FiTruck />,         title: 'Free Mumbai Delivery',      desc: 'Free white-glove delivery on every wholesale order above ₹2,999 inside Mumbai. Pan-India freight at cost.' },
+  { icon: <FiPackage />,       title: 'Catalogue You Can Resell',  desc: 'Featherlite, Godrej Interio, Green Soul, Boss, Nilkamal and our own Talle in-house line — proven sellers.' },
+  { icon: <FiAward />,         title: 'BIFMA-Grade Stock',         desc: 'Class-4 hydraulics, certified mesh, heavy-duty bases. Every chair tested before it leaves the workshop.' },
+  { icon: <FiShield />,        title: 'GST Invoices, Always',      desc: 'Proper tax invoices with your business GSTIN for full input credit. Bookkeeping stays clean.' },
+  { icon: <FiBriefcase />,     title: 'Direct Owner Contact',      desc: 'No call centre. WhatsApp the founder for stock checks, custom branding, or delivery updates.' },
 ];
 
 // Fallback used only if the API call fails (offline / first load)
 const fallbackPopularCategories = [
-  { _id: 'fb1', name: 'LEGO Sets',  image: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=400', link: '/shop?brand=LEGO' },
-  { _id: 'fb2', name: 'Hot Wheels', image: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=400', link: '/shop?brand=Hot%20Wheels' },
-  { _id: 'fb3', name: 'Soft Toys',  image: 'https://images.unsplash.com/photo-1606503153255-59d8b8b6a9ec?w=400', link: '/shop?category=Dolls' },
-  { _id: 'fb4', name: 'Educational',image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400', link: '/shop?category=Learning%20%26%20Education' },
+  { _id: 'fb1', name: 'Office Chairs',  image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400', link: '/shop?category=Executive%20Chairs' },
+  { _id: 'fb2', name: 'Gaming Chairs',  image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400', link: '/shop?category=Pro%20Gaming%20Chairs' },
+  { _id: 'fb3', name: 'Banquet Chairs', image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400', link: '/shop?category=Banquet%20Chairs' },
+  { _id: 'fb4', name: 'Recliners',      image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400', link: '/shop?category=Recliners' },
 ];
 
 const testimonials = [
-  { name: 'Rajesh Toys', city: 'Mumbai', text: 'Best wholesale rates I\'ve found in years. Fast shipping to my shop in Dadar.', rating: 5 },
-  { name: 'Kids World Store', city: 'Pune', text: 'Authentic brands, on-time delivery, GST invoices — exactly what my business needs.', rating: 5 },
-  { name: 'Happy Toys', city: 'Nashik', text: 'My margins improved 30% after switching to Toy Mall wholesale.', rating: 5 },
+  { name: 'BlueChip Offices',     city: 'Bandra Kurla Complex', text: 'Outfitted 80 workstations with Talle ergonomic chairs. Zero complaints from staff, repair team on speed-dial.', rating: 5 },
+  { name: 'Royal Banquet Halls',  city: 'Andheri',              text: 'Tiffany chairs in gold finish — rock-solid build, stack neatly, withstand 200+ events. Best supplier we\'ve used.', rating: 5 },
+  { name: 'CafeBros Restaurants', city: 'Powai',                text: 'Switched our entire chain to Talle cafe chairs. Looks great, lasts longer, and they fix anything fast.', rating: 5 },
 ];
 
 export default function Wholesale() {
@@ -49,24 +49,24 @@ export default function Wholesale() {
   return (
     <div>
       <SEO
-        title="Wholesale Toys Mumbai · Wholesale Toys Thane · Bulk Pricing for Shop Owners"
-        description="Wholesale toys for retailers across India. Authentic LEGO, Hot Wheels, Barbie, Nerf and 20+ top brands at up to 40% off retail. Free pan-India shipping over ₹999, GST invoices, direct WhatsApp to the founder. Trusted by 500+ shop owners in Mumbai, Thane, Pune, Nashik."
+        title="Wholesale Chairs Mumbai · Bulk Office, Banquet & Restaurant Chair Supplier"
+        description="Wholesale chairs for offices, banquet halls, restaurants and resellers across India. Featherlite, Godrej Interio, Green Soul, Boss and our in-house Talle line at the best bulk rates. Free Mumbai delivery on ₹2,999+, GST invoices, direct WhatsApp to the founder."
         path="/wholesale"
-        keywords="wholesale toys mumbai, wholesale toys thane, wholesale toys india, bulk toys for shop owners, toy distributor mumbai, toy wholesaler thane, toy importer india, toy reseller india, wholesale toy market mumbai, crawford market toys alternative, kalbadevi toys wholesale, gst invoice wholesale toys, bulk lego india, bulk hot wheels, b2b toys india, wholesale barbie dolls, wholesale nerf guns, wholesale soft toys, retail shop supplier toys, toy shop owner supplier"
+        keywords="wholesale chairs mumbai, bulk office chairs supplier, bulk banquet chairs, restaurant chair wholesaler mumbai, tiffany chair wholesale, executive chair supplier india, gaming chair distributor, ergonomic chair bulk, chair manufacturer mumbai, b2b chair supplier, gst invoice wholesale chairs, office chair distributor sakinaka, banquet hall chair supplier, hotel chair manufacturer, cafe chair supplier mumbai"
       />
       {/* Hero */}
       <section className="bg-gradient-to-br from-purple-700 via-pink-600 to-primary-500 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <span className="inline-block bg-yellow-400 text-gray-900 text-xs font-extrabold px-3 py-1 rounded-full mb-4">FOR SHOP OWNERS &amp; RESELLERS</span>
+            <span className="inline-block bg-yellow-400 text-gray-900 text-xs font-extrabold px-3 py-1 rounded-full mb-4">FOR OFFICES, HALLS &amp; RESELLERS</span>
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-              Toy Mall <br />
+              Talle <br />
               <span className="text-yellow-300">Wholesale</span>
             </h1>
             <p className="mt-4 text-lg md:text-xl opacity-95">
-              Authentic LEGO, Hot Wheels, Barbie, Nerf and 20+ top brands —
-              at margins that actually let your shop grow.<br />
-              <span className="font-bold">Up to 40% off retail</span> · Free shipping above ₹999 · GST invoices
+              Featherlite, Godrej Interio, Green Soul, Boss and our in-house Talle
+              line — at rates that work for outfitting whole offices or banquet halls.<br />
+              <span className="font-bold">Best bulk pricing</span> · Free Mumbai delivery on ₹2,999+ · GST invoices
             </p>
             {isWholesaleUser ? (
               <div className="mt-6 bg-white/20 backdrop-blur border border-white/30 rounded-lg p-4 inline-block">
@@ -84,13 +84,13 @@ export default function Wholesale() {
               </div>
             )}
             <div className="flex gap-6 mt-8 text-sm">
-              <Stat number="500+" label="Shop Owners" />
-              <Stat number="20+" label="Top Brands" />
-              <Stat number="40%" label="Avg. Savings" />
+              <Stat number="300+" label="Business Buyers" />
+              <Stat number="15+"  label="Top Chair Brands" />
+              <Stat number="6-Mo" label="Repair Warranty" />
             </div>
           </div>
           <div className="hidden md:block">
-            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=900" alt="Wholesale toys" className="rounded-2xl shadow-2xl w-full max-h-96 object-cover" />
+            <img src="https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=900" alt="Wholesale chairs" className="rounded-2xl shadow-2xl w-full max-h-96 object-cover" />
           </div>
         </div>
       </section>
@@ -98,8 +98,8 @@ export default function Wholesale() {
       {/* Benefits */}
       <section className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold">Why Shop Owners Choose Toy Mall Wholesale</h2>
-          <p className="text-gray-600 mt-2">Built for retailers who want better margins, faster restocking, and zero hassle.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold">Why Businesses Choose Talle Wholesale</h2>
+          <p className="text-gray-600 mt-2">Built for offices, banquet halls, restaurants and resellers who want quality seating, the best rates, and a workshop that backs every order.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((b, i) => (
@@ -122,10 +122,10 @@ export default function Wholesale() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">How It Works</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { step: 1, title: 'Register Your Business', desc: 'Sign up as a wholesale customer with your shop name &amp; GST' },
-              { step: 2, title: 'Browse Catalog', desc: 'See special wholesale prices on minimum-quantity packs' },
+              { step: 1, title: 'Register Your Business', desc: 'Sign up as a wholesale customer with your business name &amp; GST' },
+              { step: 2, title: 'Browse Catalog', desc: 'See special wholesale prices on bulk-quantity orders' },
               { step: 3, title: 'Place Bulk Order', desc: 'Add to cart — wholesale price applies automatically' },
-              { step: 4, title: 'Get Delivered', desc: 'Free delivery + GST invoice — restock your shop' },
+              { step: 4, title: 'White-Glove Delivery', desc: 'Free delivery + assembly + GST invoice across Mumbai' },
             ].map((s, i) => (
               <Reveal key={s.step} direction="up" delay={i * 120}>
                 <div className="text-center">
@@ -170,7 +170,7 @@ export default function Wholesale() {
       {/* Testimonials */}
       <section className="bg-gradient-to-r from-purple-600 to-primary-500 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">Trusted by 500+ Shop Owners</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">Trusted by 300+ Mumbai Businesses</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
               <Reveal key={t.name} direction={i === 0 ? 'left' : i === 2 ? 'right' : 'up'} delay={i * 100}>
@@ -189,8 +189,8 @@ export default function Wholesale() {
       {/* CTA bottom */}
       <section className="bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold">Stock Smarter. Earn More.</h2>
-          <p className="mt-3 text-lg text-gray-300">Join 500+ shop owners across India who restock from Toy Mall every month. Free to register, no minimum order to start.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold">Seat Smarter. Save More.</h2>
+          <p className="mt-3 text-lg text-gray-300">Join 300+ Mumbai offices, banquet halls and restaurants who source seating from Talle. Free to register, no minimum order to start.</p>
           {!isWholesaleUser && (
             <Link to="/register" className="inline-flex items-center gap-2 mt-6 bg-primary-500 hover:bg-primary-600 text-white font-bold px-8 py-4 rounded-lg shadow-lg text-lg transition">
               Open Free Wholesale Account <FiArrowRight />
@@ -198,7 +198,7 @@ export default function Wholesale() {
           )}
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-300">
             <span className="flex items-center gap-2"><FiPhone /> +91 77380 28750</span>
-            <span className="flex items-center gap-2"><FiMail /> support@toymall.in</span>
+            <span className="flex items-center gap-2"><FiMail /> support@tallefurnituremart.com</span>
           </div>
         </div>
       </section>

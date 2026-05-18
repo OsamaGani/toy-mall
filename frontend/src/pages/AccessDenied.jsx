@@ -9,7 +9,7 @@ export default function AccessDenied() {
   const { user, logout } = useAuth();
 
   useEffect(() => {
-    document.title = '403 — Access Denied · Toy Mall';
+    document.title = '403 — Access Denied · Talle Furniture Mart';
   }, []);
 
   const handleSwitchAccount = () => {

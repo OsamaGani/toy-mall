@@ -14,7 +14,7 @@ export default function Cart() {
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
         <FiShoppingBag size={64} className="mx-auto text-gray-300" />
         <h2 className="text-2xl font-bold mt-4">Your cart is empty</h2>
-        <p className="text-gray-600 mt-2">Looks like you haven't added any toys yet.</p>
+        <p className="text-gray-600 mt-2">Looks like you haven't added any chairs yet.</p>
         <Link to="/shop" className="btn-primary inline-block mt-6">Continue Shopping</Link>
       </div>
     );

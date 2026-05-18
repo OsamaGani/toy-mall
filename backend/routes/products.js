@@ -20,7 +20,7 @@ async function findProductByIdOrSlug(idOrSlug) {
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const { keyword, category, brand, ageGroup, minPrice, maxPrice, sort, featured, bestSeller, newArrival, page = 1, limit = 24 } = req.query;
+    const { keyword, category, brand, material, minPrice, maxPrice, sort, featured, bestSeller, newArrival, page = 1, limit = 24 } = req.query;
     const filter = {};
     if (keyword) {
       // Escape regex metacharacters so a search for "a.*" doesn't become a
@@ -30,7 +30,7 @@ router.get(
     }
     if (category) filter.category = category;
     if (brand) filter.brand = brand;
-    if (ageGroup) filter.ageGroup = ageGroup;
+    if (material) filter.material = material;
     if (featured === 'true') filter.featured = true;
     if (bestSeller === 'true') filter.bestSeller = true;
     if (newArrival === 'true') filter.newArrival = true;
@@ -105,7 +105,7 @@ router.get(
       _id: { $ne: product._id },
       category: product.category,
     };
-    let similar = await Product.find({ ...similarFilter, ageGroup: product.ageGroup })
+    let similar = await Product.find({ ...similarFilter, material: product.material })
       .sort({ rating: -1, numReviews: -1, createdAt: -1 })
       .limit(limit);
     // backfill if not enough age-matched siblings

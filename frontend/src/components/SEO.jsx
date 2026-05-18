@@ -3,11 +3,11 @@ import { Helmet } from 'react-helmet-async';
 // Single source of truth for the public site URL — used in canonical links,
 // Open Graph tags, sitemap entries, etc. Falls back to the Cloudflare Pages
 // URL so SEO tags still work in dev / preview builds.
-export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://toy-mall.pages.dev').replace(/\/$/, '');
-export const SITE_NAME = 'Toy Mall';
+export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://tallefurnituremart.com').replace(/\/$/, '');
+export const SITE_NAME = 'Talle Furniture Mart';
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.jpg`;
 
-// Title is appended with the brand on every page — "<page> · Toy Mall" —
+// Title is appended with the brand on every page — "<page> · Talle Furniture Mart" —
 // so search results show the brand even on long-tail product pages.
 export default function SEO({
   title,
@@ -21,7 +21,7 @@ export default function SEO({
 }) {
   const fullTitle = title
     ? (title.includes(SITE_NAME) ? title : `${title} · ${SITE_NAME}`)
-    : `${SITE_NAME} — Buy Toys, Games, Action Figures Online in India`;
+    : `${SITE_NAME} — Buy Office, Gaming, Banquet & Recliner Chairs Online in Mumbai`;
   const fullUrl = `${SITE_URL}${path || ''}`;
   const ogImage = image || DEFAULT_OG_IMAGE;
 

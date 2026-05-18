@@ -5,8 +5,8 @@ import Loader from '../../components/Loader';
 import toast from 'react-hot-toast';
 import { FiPlus, FiTrash2, FiUpload, FiSave, FiPackage } from 'react-icons/fi';
 
-const categories = ['Construction', 'Games', 'Pretend Play', 'Learning & Education', 'Vehicles', 'Active Play', 'Wooden Toys', 'Dolls', 'Action Figures', 'Ride Ons', 'Outdoor Toys', 'Books', 'Baby & Toddler', 'Novelty Toys'];
-const ages = ['', '0-2 Years', '2-4 Years', '4-6 Years', '6-8 Years', '8 Years+', '12 Years+'];
+const categories = ['Executive Chairs', 'Ergonomic Chairs', 'Workstation Chairs', 'Visitor Chairs', 'Mesh Chairs', 'Pro Gaming Chairs', 'Recliners', 'Lounge Chairs', 'Accent Chairs', 'Dining Chairs', 'Bar Stools', 'Cafe Chairs', 'Folding Chairs', 'Garden Chairs', 'Banquet Chairs', 'Salon Chairs', 'Bean Bags', 'General'];
+const materialOptions = ['', 'Mesh', 'Leather', 'Faux Leather', 'Fabric', 'Plastic', 'Wood', 'Metal', 'Cushion'];
 
 const blankRow = () => ({
   name: '', description: '', price: '', discount: 0, wholesalePrice: 0, wholesaleMinQty: 0,
@@ -23,7 +23,7 @@ export default function BulkAdd() {
   const [shared, setShared] = useState({
     category: '',
     brand: '',
-    ageGroup: '',
+    material: '',
     featured: false,
     bestSeller: false,
     newArrival: true,
@@ -96,7 +96,7 @@ export default function BulkAdd() {
           description: r.description.trim() || `${r.name} - ${shared.brand} ${shared.category}`,
           brand: shared.brand,
           category: shared.category,
-          ageGroup: shared.ageGroup,
+          material: shared.material,
           price: +r.price,
           discount: +r.discount,
           wholesalePrice: +r.wholesalePrice,
@@ -155,9 +155,9 @@ export default function BulkAdd() {
             </select>
           </div>
           <div>
-            <label className="label">Age Group</label>
-            <select className="input" value={shared.ageGroup} onChange={(e) => setShared({ ...shared, ageGroup: e.target.value })}>
-              {ages.map((a) => <option key={a} value={a}>{a || '-- Any age --'}</option>)}
+            <label className="label">Material</label>
+            <select className="input" value={shared.material} onChange={(e) => setShared({ ...shared, material: e.target.value })}>
+              {materialOptions.map((m) => <option key={m} value={m}>{m || '-- Any material --'}</option>)}
             </select>
           </div>
         </div>

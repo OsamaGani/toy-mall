@@ -34,7 +34,7 @@ export default function FloatingActions() {
       )}
 
       <a
-        href={waLink('Hi Toy Mall! I have a question.')}
+        href={waLink('Hi Talle Furniture Mart! I have a question about your chairs.')}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"

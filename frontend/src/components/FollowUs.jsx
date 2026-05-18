@@ -2,11 +2,11 @@ import { FiMail, FiFacebook, FiInstagram, FiYoutube } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const socials = [
-  { Icon: FiMail,       href: 'mailto:support@toymall.in',  label: 'Email' },
-  { Icon: FiFacebook,   href: 'https://facebook.com',       label: 'Facebook' },
-  { Icon: FiInstagram,  href: 'https://instagram.com',      label: 'Instagram' },
-  { Icon: FaWhatsapp,   href: 'https://wa.me/917738028750', label: 'WhatsApp' },
-  { Icon: FiYoutube,    href: 'https://youtube.com',        label: 'YouTube' },
+  { Icon: FiMail,       href: 'mailto:support@tallefurnituremart.com',     label: 'Email' },
+  { Icon: FiFacebook,   href: 'https://facebook.com/tallefurnituremart',   label: 'Facebook' },
+  { Icon: FiInstagram,  href: 'https://instagram.com/talle_furniture_mart',label: 'Instagram' },
+  { Icon: FaWhatsapp,   href: 'https://wa.me/917738028750',                label: 'WhatsApp' },
+  { Icon: FiYoutube,    href: 'https://youtube.com',                       label: 'YouTube' },
 ];
 
 export default function FollowUs({ dark = false }) {

@@ -1,4 +1,4 @@
-# Toy Mall — robots.txt
+# Talle Furniture Mart — robots.txt
 # Allow public search engines everywhere except admin / auth / cart paths
 # that leak no public-search value and waste crawl budget.
 # But — block AI training crawlers entirely. We don't want our product
@@ -63,4 +63,4 @@ Disallow: /verify-email
 
 # Sitemap is generated dynamically by the API so freshly added products
 # are picked up by Google without a manual rebuild.
-Sitemap: https://toy-mall.pages.dev/sitemap.xml
+Sitemap: https://tallefurnituremart.com/sitemap.xml

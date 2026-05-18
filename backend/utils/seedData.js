@@ -6,274 +6,273 @@ const WholesaleCategory = require('../models/WholesaleCategory');
 const Order = require('../models/Order');
 
 const categories = [
-  { name: 'General', image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600' },
-  { name: 'Construction', image: 'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=600' },
-  { name: 'Games', image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=600' },
-  { name: 'Pretend Play', image: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600' },
-  { name: 'Learning & Education', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600' },
-  { name: 'Vehicles', image: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600' },
-  { name: 'Active Play', image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600' },
-  { name: 'Wooden Toys', image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600' },
-  { name: 'Dolls', image: 'https://images.unsplash.com/photo-1606503153255-59d8b8b6a9ec?w=600' },
-  { name: 'Action Figures', image: 'https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?w=600' },
-  { name: 'Ride Ons', image: 'https://images.unsplash.com/photo-1597007051304-15387f9e0a18?w=600' },
-  { name: 'Outdoor Toys', image: 'https://images.unsplash.com/photo-1560859251-d563a49c5e4a?w=600' },
-  { name: 'Novelty Toys', image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600' },
-  { name: 'Books', image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600' },
-  { name: 'Baby & Toddler', image: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600' },
+  { name: 'General', image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600' },
+  { name: 'Executive Chairs', image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=600' },
+  { name: 'Ergonomic Chairs', image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=600' },
+  { name: 'Workstation Chairs', image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600' },
+  { name: 'Visitor Chairs', image: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=600' },
+  { name: 'Mesh Chairs', image: 'https://images.unsplash.com/photo-1505797149-35ebcfa1c2bd?w=600' },
+  { name: 'Pro Gaming Chairs', image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600' },
+  { name: 'Recliners', image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600' },
+  { name: 'Lounge Chairs', image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600' },
+  { name: 'Accent Chairs', image: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=600' },
+  { name: 'Dining Chairs', image: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=600' },
+  { name: 'Bar Stools', image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600' },
+  { name: 'Cafe Chairs', image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600' },
+  { name: 'Folding Chairs', image: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=600' },
+  { name: 'Garden Chairs', image: 'https://images.unsplash.com/photo-1595514535215-9a5e0e8e7d9c?w=600' },
+  { name: 'Banquet Chairs', image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600' },
+  { name: 'Salon Chairs', image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600' },
+  { name: 'Bean Bags', image: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=600' },
 ];
 
 const brands = [
-  'Other', 'LEGO', 'Hot Wheels', 'Barbie', 'Nerf', 'Magna-Tiles', 'Funskool',
-  'Kinderkraft', 'Skillmatics', 'Crayola', 'Marvel', 'Transformers',
-  'Bburago', 'Majorette', 'Maisto', 'Jada', 'Mattel', 'Hasbro',
-  'Fisher-Price', 'Disney', 'Funko',
+  'Other', 'Talle', 'Featherlite', 'Godrej Interio', 'Nilkamal', 'Wakefit',
+  'Green Soul', 'Boss Chairs', 'Durian', 'HOF', 'Stellar', 'Herman Miller',
+  'Steelcase', 'Cellbell', 'AmazonBasics', 'Innowin', 'Kepler Brooks',
+  'Misuraa', 'Sleepyhead', 'Spacewood',
 ].map((name) => ({ name, logo: '' }));
 
 const products = [
   {
-    name: 'LEGO Classic Creative Bricks Box 11717',
-    description: 'A treasure trove of creative possibilities with 1500 colorful LEGO bricks for unlimited building.',
-    brand: 'LEGO', category: 'Construction', ageGroup: '4-6 Years',
-    price: 89.99, discount: 15, wholesalePrice: 65.00, wholesaleMinQty: 10, stock: 25,
-    image: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=800',
-    images: ['https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=800'],
-    featured: true, bestSeller: true, rating: 4.8, numReviews: 124,
+    name: 'Talle Aero Executive High-Back Office Chair',
+    description: 'Premium executive chair with high-back lumbar support, breathable mesh, adjustable armrests and reclining tilt mechanism. Built for 8+ hour workdays.',
+    brand: 'Talle', category: 'Executive Chairs', material: 'Mesh',
+    price: 12999, discount: 25, wholesalePrice: 8499, wholesaleMinQty: 5, stock: 40,
+    image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800',
+    images: ['https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800'],
+    featured: true, bestSeller: true, rating: 4.8, numReviews: 142,
   },
   {
-    name: 'Hot Wheels 20-Car Gift Pack',
-    description: 'A great selection of 20 die-cast vehicles in 1:64 scale. Perfect for collectors and racers.',
-    brand: 'Hot Wheels', category: 'Vehicles', ageGroup: '4-6 Years',
-    price: 24.99, discount: 20, stock: 50,
-    image: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800',
-    images: ['https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800'],
-    featured: true, bestSeller: true, rating: 4.7, numReviews: 89,
+    name: 'Featherlite Optima Ergonomic Workstation Chair',
+    description: 'Mid-back ergonomic chair with synchro-tilt, adjustable lumbar, 3D armrests and class-4 hydraulic. BIFMA certified for office use.',
+    brand: 'Featherlite', category: 'Ergonomic Chairs', material: 'Mesh',
+    price: 16499, discount: 18, stock: 22,
+    image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800',
+    images: ['https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800'],
+    featured: true, rating: 4.7, numReviews: 96,
   },
   {
-    name: 'Barbie Dreamhouse Adventures Doll',
-    description: 'Barbie doll with fashion accessories, ready for endless adventures and storytelling.',
-    brand: 'Barbie', category: 'Dolls', ageGroup: '4-6 Years',
-    price: 49.99, discount: 10, stock: 30,
-    image: 'https://images.unsplash.com/photo-1606503153255-59d8b8b6a9ec?w=800',
-    images: ['https://images.unsplash.com/photo-1606503153255-59d8b8b6a9ec?w=800'],
-    featured: true, newArrival: true, rating: 4.6, numReviews: 67,
+    name: 'Green Soul Monster Pro Gaming Chair',
+    description: 'Racing-style gaming chair with 4D armrests, lumbar pillow, retractable footrest, 180° recline and PU leather upholstery.',
+    brand: 'Green Soul', category: 'Pro Gaming Chairs', material: 'Faux Leather',
+    price: 21999, discount: 30, stock: 18,
+    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800',
+    images: ['https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800'],
+    featured: true, bestSeller: true, rating: 4.6, numReviews: 211,
+    colors: ['Black', 'Red', 'Blue'],
   },
   {
-    name: 'Nerf Elite 2.0 Commander Blaster',
-    description: 'Nerf blaster with 6-dart rotating drum, includes 12 Nerf Elite darts.',
-    brand: 'Nerf', category: 'Action Figures', ageGroup: '8 Years+',
-    price: 34.99, discount: 25, stock: 40,
-    image: 'https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?w=800',
-    images: ['https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?w=800'],
-    bestSeller: true, rating: 4.5, numReviews: 102,
+    name: 'Godrej Interio Spruce Manager Mid-Back Chair',
+    description: 'Sturdy manager chair with cushioned seat, fixed armrests, gas-lift height adjustment and durable nylon base.',
+    brand: 'Godrej Interio', category: 'Workstation Chairs', material: 'Fabric',
+    price: 7499, discount: 12, stock: 55,
+    image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
+    images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800'],
+    bestSeller: true, rating: 4.4, numReviews: 78,
   },
   {
-    name: 'Magna-Tiles Clear Colors 100 Piece Set',
-    description: 'Magnetic 3D building tiles in vibrant colors. STEM learning through play.',
-    brand: 'Magna-Tiles', category: 'Construction', ageGroup: '2-4 Years',
-    price: 119.99, discount: 0, stock: 20,
-    image: 'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=800',
-    images: ['https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=800'],
-    featured: true, newArrival: true, rating: 4.9, numReviews: 215,
+    name: 'Talle Visitor Chair (Set of 2) — Steel Frame',
+    description: 'Sturdy visitor / guest chair with cushioned seat & back, durable steel frame and stackable design. Pack of 2.',
+    brand: 'Talle', category: 'Visitor Chairs', material: 'Fabric',
+    price: 4999, discount: 20, wholesalePrice: 3299, wholesaleMinQty: 10, stock: 80,
+    image: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=800',
+    images: ['https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=800'],
+    featured: true, rating: 4.5, numReviews: 64,
   },
   {
-    name: 'Crayola Inspiration Art Case 140 Pieces',
-    description: 'Complete art set with crayons, markers, colored pencils and paper.',
-    brand: 'Crayola', category: 'Learning & Education', ageGroup: '4-6 Years',
-    price: 39.99, discount: 30, stock: 60,
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800',
-    images: ['https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800'],
-    bestSeller: true, rating: 4.7, numReviews: 156,
+    name: 'Wakefit Athena Mesh Office Chair',
+    description: 'Breathable mesh back, contoured seat cushion, 2D adjustable armrests and smooth-glide nylon casters. Comes with 3-year warranty.',
+    brand: 'Wakefit', category: 'Mesh Chairs', material: 'Mesh',
+    price: 8999, discount: 22, stock: 60,
+    image: 'https://images.unsplash.com/photo-1505797149-35ebcfa1c2bd?w=800',
+    images: ['https://images.unsplash.com/photo-1505797149-35ebcfa1c2bd?w=800'],
+    bestSeller: true, newArrival: true, rating: 4.5, numReviews: 187,
   },
   {
-    name: 'Wooden Educational Shape Sorter',
-    description: 'Classic wooden shape sorting toy that develops fine motor skills and shape recognition.',
-    brand: 'Funskool', category: 'Wooden Toys', ageGroup: '0-2 Years',
-    price: 19.99, discount: 0, stock: 80,
-    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800',
-    images: ['https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800'],
-    rating: 4.4, numReviews: 45,
+    name: 'Boss Chairs Premium Leather Executive Chair',
+    description: 'Top-grain bonded leather executive chair with thick padding, recline lock, padded armrests and chrome aluminium base.',
+    brand: 'Boss Chairs', category: 'Executive Chairs', material: 'Leather',
+    price: 18999, discount: 15, stock: 14,
+    image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800',
+    images: ['https://images.unsplash.com/photo-1592078615290-033ee584e267?w=800'],
+    featured: true, rating: 4.7, numReviews: 53,
   },
   {
-    name: 'Kinderkraft Moov 3-in-1 Stroller',
-    description: 'Modern, stylish baby stroller convertible to pram and car seat.',
-    brand: 'Kinderkraft', category: 'Baby & Toddler', ageGroup: '0-2 Years',
-    price: 399.99, discount: 15, stock: 12,
-    image: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800',
-    images: ['https://images.unsplash.com/photo-1519689680058-324335c77eba?w=800'],
-    featured: true, rating: 4.8, numReviews: 38,
+    name: 'Durian Theater 1-Seater Recliner',
+    description: 'Single-seater manual recliner with extra-deep cushion, footrest, and 160° recline. Premium fabric upholstery, lifetime mechanism warranty.',
+    brand: 'Durian', category: 'Recliners', material: 'Fabric',
+    price: 28999, discount: 20, stock: 8,
+    image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800',
+    images: ['https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800'],
+    featured: true, newArrival: true, rating: 4.8, numReviews: 34,
   },
   {
-    name: 'Marvel Spider-Man Action Figure 12-Inch',
-    description: 'Highly detailed Spider-Man figure with multiple points of articulation.',
-    brand: 'Marvel', category: 'Action Figures', ageGroup: '4-6 Years',
-    price: 29.99, discount: 0, stock: 45,
-    image: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800',
-    images: ['https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800'],
-    newArrival: true, rating: 4.6, numReviews: 73,
+    name: 'HOF Mid-Century Modern Accent Chair',
+    description: 'Wooden-legged accent chair with velvet upholstery, button-tufted back. Perfect statement piece for living rooms.',
+    brand: 'HOF', category: 'Accent Chairs', material: 'Wood',
+    price: 14999, discount: 25, stock: 12,
+    image: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800',
+    images: ['https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=800'],
+    newArrival: true, rating: 4.6, numReviews: 28,
+    colors: ['Mustard', 'Emerald', 'Navy'],
   },
   {
-    name: 'Space Explorer Pack of 2 Pneumatic Gun Toy',
-    description: 'Air-powered pneumatic gun toy pack with safe foam darts. BIS approved, indoor/outdoor play for kids 5+. Develops hand-eye coordination.',
-    brand: 'Other', category: 'Action Figures', ageGroup: '4-6 Years',
-    price: 17.49, discount: 20, stock: 35,
-    image: 'https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=800',
-    images: ['https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=800'],
-    bestSeller: true, rating: 4.5, numReviews: 88,
+    name: 'Nilkamal CHR2189 Dining Chair (Set of 2)',
+    description: 'Solid plastic dining chair, ergonomic curved back and broad seat. Stackable, weather-resistant, easy to clean.',
+    brand: 'Nilkamal', category: 'Dining Chairs', material: 'Plastic',
+    price: 2999, discount: 10, wholesalePrice: 2199, wholesaleMinQty: 20, stock: 120,
+    image: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800',
+    images: ['https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=800'],
+    bestSeller: true, rating: 4.3, numReviews: 156,
   },
   {
-    name: 'Street Viper Big Blaster Motorized Dart Gun (Blue)',
-    description: 'Motorized dart gun with rotating drum, soft foam darts, 60-foot firing range, rechargeable battery. Color: Blue.',
-    brand: 'Nerf', category: 'Action Figures', ageGroup: '8 Years+',
-    price: 39.99, discount: 55, stock: 22,
-    image: 'https://images.unsplash.com/photo-1595079676714-7ba11deef9bf?w=800',
-    images: ['https://images.unsplash.com/photo-1595079676714-7ba11deef9bf?w=800'],
-    featured: true, bestSeller: true, rating: 4.7, numReviews: 142,
+    name: 'Stellar Industrial Bar Stool (Pack of 2)',
+    description: 'Industrial-style bar stool with metal frame, wooden seat, footrest and height-adjustable swivel. Perfect for kitchen islands & home bars.',
+    brand: 'Stellar', category: 'Bar Stools', material: 'Metal',
+    price: 6499, discount: 30, stock: 30,
+    image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800',
+    images: ['https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=800'],
+    rating: 4.4, numReviews: 41,
   },
   {
-    name: 'High Performance Six Fire Toy Blaster',
-    description: 'Six-shot rotating-barrel toy blaster with soft darts. Realistic styling, kid-safe build. Indoor/outdoor target play.',
-    brand: 'Nerf', category: 'Action Figures', ageGroup: '6-8 Years',
-    price: 12.99, discount: 8, stock: 60,
-    image: 'https://images.unsplash.com/photo-1604079628040-94301bb21b91?w=800',
-    images: ['https://images.unsplash.com/photo-1604079628040-94301bb21b91?w=800'],
-    rating: 4.3, numReviews: 51,
+    name: 'Spacewood Solid Sheesham Wood Cafe Chair',
+    description: 'Handcrafted solid sheesham wood cafe chair with natural finish. Sturdy, timeless and built to last decades.',
+    brand: 'Spacewood', category: 'Cafe Chairs', material: 'Wood',
+    price: 5499, discount: 0, stock: 24,
+    image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
+    images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800'],
+    rating: 4.7, numReviews: 38,
   },
   {
-    name: 'Premium Metal Die-Cast Sports Racer Car (Red)',
-    description: 'Heavy metal die-cast 1:32 sports car with realistic engine sound, LED lights, opening doors. Color: Red.',
-    brand: 'Hot Wheels', category: 'Action Figures', ageGroup: '4-6 Years',
-    price: 9.99, discount: 50, stock: 70,
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800',
-    images: ['https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800'],
-    bestSeller: true, rating: 4.6, numReviews: 96,
+    name: 'AmazonBasics Folding Chair (Set of 4)',
+    description: 'Heavy-duty steel folding chair set with cushioned seat. Holds up to 113 kg. Folds flat for storage, ideal for events & extra guests.',
+    brand: 'AmazonBasics', category: 'Folding Chairs', material: 'Metal',
+    price: 4499, discount: 35, wholesalePrice: 2999, wholesaleMinQty: 10, stock: 75,
+    image: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=800',
+    images: ['https://images.unsplash.com/photo-1503602642458-232111445657?w=800'],
+    bestSeller: true, rating: 4.5, numReviews: 209,
   },
   {
-    name: 'Gear Robot Car for Kids (Blue)',
-    description: 'Transforming gear robot car with realistic mechanical detailing. Switches between car and robot mode. Color: Blue.',
-    brand: 'Transformers', category: 'Action Figures', ageGroup: '6-8 Years',
-    price: 19.99, discount: 0, stock: 28,
-    image: 'https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=800',
-    images: ['https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=800'],
-    newArrival: true, rating: 4.4, numReviews: 37,
+    name: 'Talle Tiffany Banquet Chair — Wedding Edition',
+    description: 'Elegant gold-finished tiffany chair with cushioned seat. Stackable up to 10. Designed for weddings, banquets and event halls.',
+    brand: 'Talle', category: 'Banquet Chairs', material: 'Metal',
+    price: 2499, discount: 12, wholesalePrice: 1699, wholesaleMinQty: 25, stock: 200,
+    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800',
+    images: ['https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800'],
+    featured: true, rating: 4.6, numReviews: 87,
+    colors: ['Gold', 'Silver', 'White'],
   },
   {
-    name: 'Mini Football Tabletop Portable Soccer Flicker',
-    description: 'Compact desktop soccer flicker game for two players. Portable, perfect for travel and quick action breaks.',
-    brand: 'Funskool', category: 'Action Figures', ageGroup: '8 Years+',
-    price: 19.99, discount: 50, stock: 32,
-    image: 'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800',
-    images: ['https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800'],
-    rating: 4.5, numReviews: 64,
+    name: 'Cellbell C104 Ergonomic Office Chair — Compact',
+    description: 'Affordable mesh ergonomic chair with adjustable lumbar, height and tilt-lock. Best-in-class entry-level work-from-home chair.',
+    brand: 'Cellbell', category: 'Ergonomic Chairs', material: 'Mesh',
+    price: 5999, discount: 40, stock: 65,
+    image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800',
+    images: ['https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800'],
+    bestSeller: true, rating: 4.3, numReviews: 318,
   },
   {
-    name: 'Cat Bubble Machine Toy with Glowing Lights',
-    description: 'Cat-shaped bubble blaster with LED glowing lights. Continuous bubble action — perfect for outdoor parties.',
-    brand: 'Other', category: 'Action Figures', ageGroup: '2-4 Years',
-    price: 8.49, discount: 0, stock: 80,
-    image: 'https://images.unsplash.com/photo-1560743173-567a3b5658b1?w=800',
-    images: ['https://images.unsplash.com/photo-1560743173-567a3b5658b1?w=800'],
-    newArrival: true, rating: 4.2, numReviews: 28,
+    name: 'Kepler Brooks XL Bean Bag with Beans',
+    description: 'XXL bean bag, pre-filled with high-density beans. Waterproof and tear-resistant outer cover. Perfect for kids rooms & casual lounging.',
+    brand: 'Kepler Brooks', category: 'Bean Bags', material: 'Fabric',
+    price: 2499, discount: 50, stock: 90,
+    image: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=800',
+    images: ['https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=800'],
+    bestSeller: true, newArrival: true, rating: 4.4, numReviews: 245,
+    colors: ['Black', 'Brown', 'Red', 'Blue'],
   },
   {
-    name: 'Skillmatics Guess in 10 Card Game',
-    description: 'Trivia card game that develops critical thinking. Perfect for family game night.',
-    brand: 'Skillmatics', category: 'Games', ageGroup: '6-8 Years',
-    price: 14.99, discount: 0, stock: 100,
-    image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=800',
-    images: ['https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=800'],
-    bestSeller: true, rating: 4.7, numReviews: 198,
+    name: 'Misuraa Salon Hydraulic Styling Chair',
+    description: 'Heavy-duty salon chair with hydraulic lift, 360° swivel, footrest and PU leather upholstery. Suitable for unisex salons & spas.',
+    brand: 'Misuraa', category: 'Salon Chairs', material: 'Faux Leather',
+    price: 18999, discount: 22, stock: 6,
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800',
+    images: ['https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800'],
+    featured: true, rating: 4.5, numReviews: 32,
   },
   {
-    name: 'Bburago Ferrari 1:18 Die-Cast Model',
-    description: 'Authentic Ferrari scale model with opening doors, hood and detailed interior.',
-    brand: 'Bburago', category: 'Vehicles', ageGroup: '8 Years+',
-    price: 49.99, discount: 10, stock: 18,
-    image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800',
-    images: ['https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800'],
-    rating: 4.5, numReviews: 32,
+    name: 'Innowin Outdoor Patio Lounge Chair',
+    description: 'All-weather rattan-style outdoor lounge chair with cushioned seat. UV-resistant and rust-proof aluminium frame.',
+    brand: 'Innowin', category: 'Garden Chairs', material: 'Plastic',
+    price: 8999, discount: 18, stock: 16,
+    image: 'https://images.unsplash.com/photo-1595514535215-9a5e0e8e7d9c?w=800',
+    images: ['https://images.unsplash.com/photo-1595514535215-9a5e0e8e7d9c?w=800'],
+    newArrival: true, rating: 4.5, numReviews: 19,
   },
   {
-    name: 'Pretend Play Kitchen Set Deluxe',
-    description: 'Realistic play kitchen with sounds, lights, and 30+ accessories.',
-    brand: 'Funskool', category: 'Pretend Play', ageGroup: '2-4 Years',
-    price: 149.99, discount: 20, stock: 15,
-    image: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800',
-    images: ['https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800'],
-    featured: true, rating: 4.6, numReviews: 54,
+    name: 'Sleepyhead Lounge Reading Chair with Ottoman',
+    description: 'Mid-century scoop-back lounge chair with matching ottoman. Soft fabric upholstery and solid wood legs. Ideal reading nook companion.',
+    brand: 'Sleepyhead', category: 'Lounge Chairs', material: 'Fabric',
+    price: 19999, discount: 15, stock: 11,
+    image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
+    images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800'],
+    featured: true, rating: 4.7, numReviews: 26,
   },
   {
-    name: 'Outdoor Trampoline 8FT with Safety Net',
-    description: 'Premium outdoor trampoline with full safety enclosure for hours of fun.',
-    brand: 'Funskool', category: 'Outdoor Toys', ageGroup: '6-8 Years',
-    price: 299.99, discount: 25, stock: 8,
-    image: 'https://images.unsplash.com/photo-1560859251-d563a49c5e4a?w=800',
-    images: ['https://images.unsplash.com/photo-1560859251-d563a49c5e4a?w=800'],
-    rating: 4.4, numReviews: 27,
+    name: 'Talle Reupholstery Service — Office Chair',
+    description: 'Professional reupholstery service for office & executive chairs. Choose from premium mesh, fabric or leather. Doorstep pickup in Mumbai. 7-day turnaround.',
+    brand: 'Talle', category: 'General', material: 'Cushion',
+    price: 1999, discount: 0, stock: 999,
+    image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800',
+    images: ['https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800'],
+    featured: true, bestSeller: true, rating: 4.9, numReviews: 412,
   },
   {
-    name: 'Electric Ride-On Car Mercedes',
-    description: '12V battery powered ride-on car with remote control, lights and music.',
-    brand: 'Kinderkraft', category: 'Ride Ons', ageGroup: '2-4 Years',
-    price: 249.99, discount: 15, stock: 10,
-    image: 'https://images.unsplash.com/photo-1597007051304-15387f9e0a18?w=800',
-    images: ['https://images.unsplash.com/photo-1597007051304-15387f9e0a18?w=800'],
-    featured: true, newArrival: true, rating: 4.7, numReviews: 41,
+    name: 'Talle Hydraulic Cylinder Replacement (Class-4)',
+    description: 'Heavy-duty BIFMA-certified class-4 hydraulic gas-lift cylinder. Universal fit for office & gaming chairs. Includes professional installation in Mumbai.',
+    brand: 'Talle', category: 'General', material: 'Metal',
+    price: 1299, discount: 10, wholesalePrice: 899, wholesaleMinQty: 25, stock: 300,
+    image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
+    images: ['https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800'],
+    bestSeller: true, rating: 4.7, numReviews: 168,
   },
   {
-    name: 'My First Encyclopedia Animal Atlas',
-    description: 'Beautifully illustrated children\'s encyclopedia covering animals around the world.',
-    brand: 'Funskool', category: 'Books', ageGroup: '6-8 Years',
-    price: 19.99, discount: 0, stock: 70,
-    image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800',
-    images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800'],
-    rating: 4.8, numReviews: 89,
-  },
-  {
-    name: 'Transformers Optimus Prime Figure',
-    description: 'Convertible Optimus Prime figure that transforms from robot to truck.',
-    brand: 'Transformers', category: 'Action Figures', ageGroup: '6-8 Years',
-    price: 39.99, discount: 0, stock: 35,
-    image: 'https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?w=800',
-    images: ['https://images.unsplash.com/photo-1608889335941-32ac5f2041b9?w=800'],
-    newArrival: true, rating: 4.6, numReviews: 64,
+    name: 'Talle Premium Caster Wheels (Set of 5)',
+    description: 'Smooth-glide polyurethane caster wheels — won\'t scratch hardwood floors. Universal stem fits 95% of office chairs.',
+    brand: 'Talle', category: 'General', material: 'Plastic',
+    price: 799, discount: 25, wholesalePrice: 499, wholesaleMinQty: 50, stock: 500,
+    image: 'https://images.unsplash.com/photo-1505797149-35ebcfa1c2bd?w=800',
+    images: ['https://images.unsplash.com/photo-1505797149-35ebcfa1c2bd?w=800'],
+    bestSeller: true, newArrival: true, rating: 4.6, numReviews: 233,
   },
 ];
 
-// Toyzone-style hierarchy. Mirrors frontend/src/config/departments.js.
+// Chair-shop sub-categories — mirrors frontend/src/config/departments.js.
 // Each item is a sub-category Product.category can match. Kept here so the
 // backend can upsert them as Category records without importing frontend code.
-const TOYZONE_SUBCATEGORIES = [
-  // Ride-On & Cycles
-  'Kick Scooters', 'Magic Car', 'Ride On', 'Tricycle', 'Wave Roller',
-  // Pretend & Play
-  'Doll House', 'Kitchen Sets', 'Tent House', 'Swords',
-  // Push & Pull Toy
-  'Friction Toys', 'Pull Along', 'Pull String',
-  // Action Games
-  'Toy Guns', 'Frog Games', 'Bump N Go',
-  // Baby Gear & Utility
-  'Infants', 'Bath Tub', 'Baby Walker', 'Potty Seats', 'Musical Toys', 'Kids Furniture',
-  // Sports & Outdoor
-  'Pop Catch', 'Cricket Set', 'Bowling Set', 'Basket Ball', 'Sports Toys',
-  // Toys & Games
-  'Bubble Toys', 'Walkie Talkie', 'Chairs', 'Educational Toys', 'Drum',
-  // Wooden Toys
-  'Board Games', 'Carroms', 'Tables',
-  // Rechargeable
-  'Rechargeable',
-  // Construction & Building
-  'Building Blocks', 'Cubes',
+const CHAIR_SUBCATEGORIES = [
+  // Office Chairs
+  'Executive Chairs', 'Ergonomic Chairs', 'Workstation Chairs', 'Visitor Chairs',
+  'Conference Chairs', 'Mesh Chairs',
+  // Gaming Chairs
+  'Pro Gaming Chairs', 'Racing Style Chairs', 'Streaming Chairs', 'Floor Gaming Chairs',
+  // Home & Living
+  'Recliners', 'Lounge Chairs', 'Accent Chairs', 'Rocking Chairs', 'Arm Chairs',
+  // Dining & Cafe
+  'Dining Chairs', 'Bar Stools', 'Cafe Chairs', 'Restaurant Chairs',
+  // Outdoor & Garden
+  'Patio Chairs', 'Garden Chairs', 'Folding Chairs', 'Beach Chairs',
+  // Banquet & Event
+  'Banquet Chairs', 'Wedding Chairs', 'Hotel Chairs', 'Tiffany Chairs',
+  // Kids & Study
+  'Study Chairs', 'Kids Chairs', 'Bean Bags',
+  // Salon & Medical
+  'Salon Chairs', 'Barber Chairs', 'Medical Stools', 'Wheelchairs',
+  // Repair & Refurbish
+  'Cushion Replacement', 'Hydraulic Repair', 'Wheel & Base Repair', 'Reupholstery',
+  // Chair Accessories
+  'Seat Cushions', 'Lumbar Support', 'Caster Wheels', 'Hydraulic Cylinder', 'Armrest Pads',
 ];
 
 async function ensureDefaults() {
   // Always make sure "General" category and "Other" brand exist as fallbacks for quick-add
   const generalCat = await Category.findOne({ name: 'General' });
-  if (!generalCat) await Category.create({ name: 'General', image: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600' });
+  if (!generalCat) await Category.create({ name: 'General', image: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600' });
   const otherBrand = await Brand.findOne({ name: 'Other' });
   if (!otherBrand) await Brand.create({ name: 'Other', logo: '' });
 
-  // Upsert each toyzone-style sub-category so admin sees the full list in
+  // Upsert each chair-style sub-category so admin sees the full list in
   // /admin/categories and the dropdowns. Only inserts what's missing.
   // IMPORTANT: insertMany() skips pre('save') hooks, so we set slug explicitly
   // — otherwise every new doc has slug=undefined and the unique index rejects
@@ -301,9 +300,9 @@ async function ensureDefaults() {
   if (broken.length) console.log(`🔧 Backfilled slugs on ${broken.length} category record(s)`);
 
   const existing = new Set(
-    (await Category.find({ name: { $in: TOYZONE_SUBCATEGORIES } }).select('name')).map((c) => c.name)
+    (await Category.find({ name: { $in: CHAIR_SUBCATEGORIES } }).select('name')).map((c) => c.name)
   );
-  const toAdd = TOYZONE_SUBCATEGORIES.filter((n) => !existing.has(n));
+  const toAdd = CHAIR_SUBCATEGORIES.filter((n) => !existing.has(n));
   if (toAdd.length) {
     try {
       await Category.insertMany(
@@ -332,10 +331,10 @@ async function ensureDefaults() {
   const wcCount = await WholesaleCategory.countDocuments();
   if (wcCount === 0) {
     await WholesaleCategory.insertMany([
-      { name: 'LEGO Sets',  image: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=400', link: '/shop?brand=LEGO',         order: 1 },
-      { name: 'Hot Wheels', image: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=400', link: '/shop?brand=Hot%20Wheels', order: 2 },
-      { name: 'Soft Toys',  image: 'https://images.unsplash.com/photo-1606503153255-59d8b8b6a9ec?w=400', link: '/shop?category=Dolls',     order: 3 },
-      { name: 'Educational',image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400', link: '/shop?category=Learning%20%26%20Education', order: 4 },
+      { name: 'Office Chairs',   image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400', link: '/shop?category=Executive%20Chairs', order: 1 },
+      { name: 'Gaming Chairs',   image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400', link: '/shop?category=Pro%20Gaming%20Chairs', order: 2 },
+      { name: 'Banquet Chairs',  image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400', link: '/shop?category=Banquet%20Chairs', order: 3 },
+      { name: 'Recliners',       image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400', link: '/shop?category=Recliners', order: 4 },
     ]);
     console.log('🌱 Seeded 4 wholesale category tiles');
   }
@@ -345,15 +344,15 @@ async function ensureDefaults() {
 // every server startup, even on a partially-seeded database.
 
 async function seedDefaultUsersIfMissing() {
-  const adminEmail = 'admin@toymall.com';
-  const customerEmail = 'customer@toymall.com';
+  const adminEmail = 'admin@tallefurnituremart.com';
+  const customerEmail = 'customer@tallefurnituremart.com';
   if (!(await User.findOne({ email: adminEmail }))) {
     await User.create({ name: 'Admin', email: adminEmail, password: 'admin123', isAdmin: true, emailVerified: true });
-    console.log('🌱 Created admin user (admin@toymall.com / admin123)');
+    console.log('🌱 Created admin user (admin@tallefurnituremart.com / admin123)');
   }
   if (!(await User.findOne({ email: customerEmail }))) {
     await User.create({ name: 'Demo Customer', email: customerEmail, password: 'customer123', emailVerified: true });
-    console.log('🌱 Created demo customer (customer@toymall.com / customer123)');
+    console.log('🌱 Created demo customer (customer@tallefurnituremart.com / customer123)');
   }
 }
 

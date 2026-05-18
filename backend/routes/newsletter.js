@@ -16,7 +16,7 @@ function buildWelcomeEmail(email, promoCode, clientUrl) {
   const bodyHtml = `
     <p style="margin:0 0 14px 0;font-size:15px;">Hi there,</p>
     <p style="margin:0 0 16px 0;">
-      Thanks for subscribing to Toy Mall updates! You'll be the first to hear about
+      Thanks for subscribing to Talle Furniture Mart updates! You'll be the first to hear about
       new arrivals, festive sales, and the occasional surprise we save for our list.
     </p>
     <p style="margin:0 0 12px 0;">As a small welcome gift, here's a code for your first order:</p>
@@ -34,7 +34,7 @@ function buildWelcomeEmail(email, promoCode, clientUrl) {
   const text = [
     'Hi there,',
     '',
-    'Thanks for subscribing to Toy Mall updates! You\'ll be the first to hear about new arrivals, festive sales, and the occasional surprise we save for our list.',
+    'Thanks for subscribing to Talle Furniture Mart updates! You\'ll be the first to hear about new arrivals, festive sales, and the occasional surprise we save for our list.',
     '',
     'Your welcome code:',
     `   ${promoCode}`,
@@ -45,7 +45,7 @@ function buildWelcomeEmail(email, promoCode, clientUrl) {
     'You can unsubscribe at any time:',
     unsubscribeUrl,
     '',
-    '— Team Toy Mall',
+    '— Team Talle Furniture Mart',
   ].join('\n');
 
   const html = renderEmail({
@@ -53,19 +53,19 @@ function buildWelcomeEmail(email, promoCode, clientUrl) {
     heroEmoji: '🎁',
     heroColor: '#0891b2',
     heroTitle: 'Subscription confirmed',
-    heroSubtitle: 'Welcome to the Toy Mall list',
+    heroSubtitle: 'Welcome to the Talle Furniture Mart list',
     bodyHtml,
     cta: { text: 'Browse the catalogue', url: `${clientUrl}/shop`, color: '#e53935' },
-    footerNote: `You're receiving this because you subscribed at Toy Mall. <a href="${unsubscribeUrl}" style="color:#9ca3af;text-decoration:underline;">Unsubscribe</a>.`,
+    footerNote: `You're receiving this because you subscribed at Talle Furniture Mart. <a href="${unsubscribeUrl}" style="color:#9ca3af;text-decoration:underline;">Unsubscribe</a>.`,
   });
 
   // Gmail / Yahoo / Microsoft strongly prefer marketing email that
   // declares one-click unsubscribe — without these headers they down-rank
   // the message into Promotions / Spam.
   const headers = {
-    'List-Unsubscribe': `<${unsubscribeUrl}>, <mailto:support@toymall.in?subject=Unsubscribe>`,
+    'List-Unsubscribe': `<${unsubscribeUrl}>, <mailto:support@tallefurnituremart.com?subject=Unsubscribe>`,
     'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-    'X-Mailer': 'Toy Mall',
+    'X-Mailer': 'Talle Furniture Mart',
   };
 
   return { html, text, headers };
@@ -106,7 +106,7 @@ router.post(
           to: cleanEmail,
           // Plain-language subject — no emojis, no "10% OFF" — so Gmail
           // treats it like a transactional confirmation instead of bulk mail.
-          subject: 'Subscription confirmed - Toy Mall',
+          subject: 'Subscription confirmed - Talle Furniture Mart',
           html,
           text,
           headers,

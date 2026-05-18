@@ -1,7 +1,7 @@
 {
-  "name": "toy-mall-backend",
+  "name": "talle-furniture-backend",
   "version": "1.0.0",
-  "description": "Toy Mall e-commerce backend API",
+  "description": "Talle Furniture Mart e-commerce backend API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

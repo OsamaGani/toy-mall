@@ -5,7 +5,7 @@ import { FiHome, FiBox, FiShoppingBag, FiUsers, FiTag, FiAward, FiPackage, FiMen
 const links = [
   { to: '/admin', label: 'Dashboard', icon: <FiHome />, end: true },
   { to: '/admin/products', label: 'Products', icon: <FiBox /> },
-  { to: '/admin/action-toys', label: 'Action Toys', icon: <FiTarget /> },
+  { to: '/admin/action-toys', label: 'Service & Parts', icon: <FiTarget /> },
   { to: '/admin/products/bulk', label: 'Bulk Add', icon: <FiPackage />, accent: true },
   { to: '/admin/orders', label: 'Orders', icon: <FiShoppingBag /> },
   { to: '/admin/users', label: 'Users', icon: <FiUsers /> },

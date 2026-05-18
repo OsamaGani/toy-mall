@@ -9,10 +9,9 @@ import { allSubCategoryNames } from '../../config/departments';
 import { COMMON_COLORS, colorToBackground, isLightColor } from '../../utils/colors';
 
 // Fallback list — used only if /api/categories fails or is empty.
-// Combines legacy parent-level categories with all new toyzone-style sub-categories.
-const legacyCategories = ['Construction', 'Games', 'Pretend Play', 'Learning & Education', 'Vehicles', 'Active Play', 'Wooden Toys', 'Dolls', 'Action Figures', 'Ride Ons', 'Outdoor Toys', 'Books', 'Baby & Toddler', 'Novelty Toys'];
-const fallbackCategories = Array.from(new Set([...legacyCategories, ...allSubCategoryNames])).sort();
-const ages = ['', '0-2 Years', '2-4 Years', '4-6 Years', '6-8 Years', '8 Years+', '12 Years+'];
+// Comes from the chair-shop department hierarchy in config/departments.js.
+const fallbackCategories = Array.from(new Set(allSubCategoryNames)).sort();
+const materialOptions = ['', 'Mesh', 'Leather', 'Faux Leather', 'Fabric', 'Plastic', 'Wood', 'Metal', 'Cushion'];
 
 export default function ProductForm() {
   const { id } = useParams();
@@ -31,7 +30,7 @@ export default function ProductForm() {
   // Explicit toggle for brand custom-input mode — avoids fragile sentinel values.
   const [customBrand, setCustomBrand] = useState(false);
   const [form, setForm] = useState({
-    name: '', description: '', brand: '', category: prefillCategory, ageGroup: '',
+    name: '', description: '', brand: '', category: prefillCategory, material: '',
     price: 0, discount: 0, wholesalePrice: 0, wholesaleMinQty: 0,
     stock: 0, image: '', images: [],
     featured: false, bestSeller: false, newArrival: false, onDeal: false,
@@ -61,7 +60,7 @@ export default function ProductForm() {
           const { data } = await API.get(`/products/${id}`);
           setForm({
             name: data.name, description: data.description, brand: data.brand,
-            category: data.category, ageGroup: data.ageGroup || '',
+            category: data.category, material: data.material || '',
             price: data.price, discount: data.discount,
             wholesalePrice: data.wholesalePrice || 0, wholesaleMinQty: data.wholesaleMinQty || 0,
             stock: data.stock,
@@ -306,9 +305,9 @@ export default function ProductForm() {
             )}
           </div>
           <div>
-            <label className="label">Age Group</label>
-            <select className="input" value={form.ageGroup} onChange={(e) => setForm({ ...form, ageGroup: e.target.value })}>
-              {ages.map((a) => <option key={a} value={a}>{a || '-- Any --'}</option>)}
+            <label className="label">Material</label>
+            <select className="input" value={form.material} onChange={(e) => setForm({ ...form, material: e.target.value })}>
+              {materialOptions.map((m) => <option key={m} value={m}>{m || '-- Any --'}</option>)}
             </select>
           </div>
         </div>
