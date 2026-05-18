@@ -15,7 +15,7 @@ const announcements = [
   { text: '⭐ New Models every week — Office, Gaming, Banquet, Recliners',                      href: '/shop?newArrival=true' },
   { text: '💯 BIFMA Certified — Featherlite, Godrej, Green Soul, Wakefit & more',               href: '/shop' },
   { text: '🛡 5-Year Warranty on Talle-branded chairs',                                          href: '/refund-policy' },
-  { text: '📞 Need help? Call +91 77380 28750 — we reply fast',                                  href: '/contact' },
+  { text: '📞 Need help? Call +91 93261 66875 — we reply fast',                                  href: '/contact' },
 ];
 
 // Material filter — replaces the legacy "age group" facet for the chair business.
@@ -165,7 +165,7 @@ export default function Navbar() {
         <div className="max-w-screen-2xl mx-auto px-4 py-2 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <span className="hidden sm:flex items-center gap-1"><FiTruck /> Free Delivery over ₹2,999</span>
-            <span className="hidden md:flex items-center gap-1"><FiPhone /> +91 77380 28750</span>
+            <span className="hidden md:flex items-center gap-1"><FiPhone /> +91 93261 66875</span>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/wholesale" className="hover:text-yellow-300 font-semibold">🛍 Wholesale</Link>

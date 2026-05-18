@@ -61,10 +61,10 @@ export default function ShippingLabel() {
         <div className="px-3 py-2 border-b-2 border-black text-xs">
           <p className="font-bold text-gray-500 uppercase text-[10px]">From / Pickup Address</p>
           <p className="font-bold text-sm">Talle Furniture Mart</p>
-          <p>Shop No. 4, Khairani Road</p>
-          <p>Sakinaka, Andheri East</p>
+          <p>Shop No. 5, D'Souza Sadan</p>
+          <p>Sainath Wadi, Saki Naka</p>
           <p>Mumbai — 400072</p>
-          <p>📞 +91 77380 28750</p>
+          <p>📞 +91 93261 66875</p>
         </div>
 
         {/* TO - the most prominent */}
@@ -157,7 +157,7 @@ export default function ShippingLabel() {
         {/* Footer */}
         <div className="px-3 py-2 text-[10px] text-center bg-gray-100">
           <p className="font-semibold">📦 Handle with care · Furniture</p>
-          <p className="text-gray-600">Returns to: Talle Furniture Mart, Shop No. 4, Khairani Road, Sakinaka, Andheri East, Mumbai — within 7 days</p>
+          <p className="text-gray-600">Returns to: Talle Furniture Mart, Shop No. 5, D'Souza Sadan, Saki Naka, Mumbai — within 7 days</p>
         </div>
       </div>
 

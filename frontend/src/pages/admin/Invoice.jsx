@@ -39,10 +39,10 @@ export default function Invoice() {
               <span className="text-2xl sm:text-3xl font-extrabold text-primary-500">Talle</span>
               <span className="text-2xl sm:text-3xl font-extrabold text-gray-900">Furniture</span>
             </div>
-            <p className="text-xs text-gray-600 mt-1">Shop No. 4, Khairani Road</p>
-            <p className="text-xs text-gray-600">Sakinaka, Andheri East</p>
+            <p className="text-xs text-gray-600 mt-1">Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel</p>
+            <p className="text-xs text-gray-600">Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka</p>
             <p className="text-xs text-gray-600">Mumbai — 400072, Maharashtra, India</p>
-            <p className="text-xs text-gray-600">+91 77380 28750 · support@tallefurnituremart.com</p>
+            <p className="text-xs text-gray-600">+91 93261 66875 · support@tallefurnituremart.com</p>
             <p className="text-xs text-gray-600">Proprietor: Abdul Rab · GSTIN: 27AAAAA0000A1Z5</p>
           </div>
           <div className="sm:text-right print:text-right">

@@ -3,34 +3,35 @@
 // checkout, contact page, schema.org JSON-LD, etc.
 
 // === Phones ===
-// Primary — must match Google Business Profile + Justdial + Instagram bio.
+// Primary — verified Google Business Profile listing for Talle Furniture Mart.
 // Display variant uses a thin space for readability; tel/wa links must be
 // digits-only with the country code, no spaces or punctuation.
-export const PHONE_PRIMARY_DISPLAY = '+91 77380 28750';
-export const PHONE_PRIMARY_TEL     = '+917738028750';
-export const PHONE_PRIMARY_WHATSAPP = '917738028750'; // wa.me path
+export const PHONE_PRIMARY_DISPLAY = '+91 93261 66875';
+export const PHONE_PRIMARY_TEL     = '+919326166875';
+export const PHONE_PRIMARY_WHATSAPP = '919326166875'; // wa.me path
 
-// Secondary / workshop line.
-export const PHONE_SECONDARY_DISPLAY = '+91 86557 87075';
-export const PHONE_SECONDARY_TEL     = '+918655787075';
+// Secondary / workshop line — placeholder, to be updated when owner provides.
+export const PHONE_SECONDARY_DISPLAY = '+91 93261 66875';
+export const PHONE_SECONDARY_TEL     = '+919326166875';
 
 // === Emails ===
-// Primary — branded mailbox at the business domain.
+// Primary — branded mailbox at the business domain (placeholder until provided).
 export const EMAIL_PRIMARY = 'support@tallefurnituremart.com';
 
-// Personal Gmail fallback used during launch.
+// Gmail fallback used during launch (placeholder until provided).
 export const EMAIL_GMAIL = 'tallefurnituremart@gmail.com';
 
 // === Address ===
+// From the verified Google Business Profile.
 export const STORE_NAME = 'Talle Furniture Mart';
-export const STORE_ADDRESS_STREET = 'Shop No. 4, Khairani Road, Sakinaka';
-export const STORE_ADDRESS_CITY = 'Andheri East';
+export const STORE_ADDRESS_STREET = "Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel";
+export const STORE_ADDRESS_CITY = 'Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka';
 export const STORE_ADDRESS_REGION = 'Mumbai, Maharashtra';
 export const STORE_ADDRESS_PIN = '400072';
 export const STORE_ADDRESS_FULL = `${STORE_ADDRESS_STREET}, ${STORE_ADDRESS_CITY}, ${STORE_ADDRESS_REGION} — ${STORE_ADDRESS_PIN}`;
 
 // === Hours ===
-export const STORE_HOURS = 'Mon–Sat · 10:00 AM – 9:00 PM';
+export const STORE_HOURS = 'Open 24 hours · 7 days a week';
 
 // === Helper builders ===
 export const telLink      = (display, tel) => ({ href: `tel:${tel}`, text: display });

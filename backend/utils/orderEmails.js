@@ -138,7 +138,7 @@ function cancelledMessage(order) {
             </tr>
           </table>
           <p style="margin:14px 0 0 0;font-size:12px;color:#6b7280;line-height:1.5;">
-            <strong>Don't see it after 7 days?</strong> Reply to this email or call us at +91 77380 28750 with the refund reference above — we'll trace it for you.
+            <strong>Don't see it after 7 days?</strong> Reply to this email or call us at +91 93261 66875 with the refund reference above — we'll trace it for you.
           </p>
         </div>
       `;
@@ -203,7 +203,7 @@ function cancelledTextBody(order) {
         `  ✅ Today: Refund request sent to your bank/UPI.\n` +
         `  ⏳ 1–2 days: Razorpay processes the refund.\n` +
         `  🏦 5–7 days: Money credited to your account (your bank will SMS you).\n` +
-        `\nDon't see it after 7 days? Reply to this email or call +91 77380 28750 — we'll trace it for you.`;
+        `\nDon't see it after 7 days? Reply to this email or call +91 93261 66875 — we'll trace it for you.`;
   } else if (r.status === 'pending_manual') {
     block = `\n\n⏱ REFUND BEING PROCESSED MANUALLY\nAmount: ₹${total}\n` +
             `Our team will reach out within 1–2 business days. Once initiated, the amount will reach your account in 5–7 business days from then. Apologies for the small delay.`;
@@ -328,7 +328,7 @@ function buildText(order, template, customerName, adminNote) {
     text += `Tracking Number: ${order.trackingNumber}\n`;
   }
   if (adminNote) text += `\nNote: ${adminNote}\n`;
-  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Talle Furniture Mart\nShop No. 4, Khairani Road, Sakinaka, Andheri East, Mumbai — 400072\nsupport@tallefurnituremart.com`;
+  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Talle Furniture Mart\nShop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072\nsupport@tallefurnituremart.com`;
   return text;
 }
 

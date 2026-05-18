@@ -54,7 +54,7 @@ export default function Refund() {
 
       <h2 className="text-xl font-bold mt-6 mb-2">Need help?</h2>
       <p className="text-gray-700">
-        We're here to help — email <a href="mailto:support@tallefurnituremart.com" className="text-primary-500 hover:underline">support@tallefurnituremart.com</a> or WhatsApp us at <a href="https://wa.me/917738028750" className="text-primary-500 hover:underline">+91 77380 28750</a>.
+        We're here to help — email <a href="mailto:support@tallefurnituremart.com" className="text-primary-500 hover:underline">support@tallefurnituremart.com</a> or WhatsApp us at <a href="https://wa.me/919326166875" className="text-primary-500 hover:underline">+91 93261 66875</a>.
       </p>
     </PolicyLayout>
   );

@@ -14,8 +14,8 @@ const values = [
 const stats = [
   { num: '15+',     label: 'Years in Business' },
   { num: '8,000+',  label: 'Chairs Sold' },
-  { num: '4.8★',    label: 'Justdial Rating' },
-  { num: '6-Month', label: 'Repair Warranty' },
+  { num: '4.9★',    label: 'Google Rating (213 reviews)' },
+  { num: '24×7',    label: 'Open All Days' },
 ];
 
 export default function About() {
@@ -40,7 +40,7 @@ export default function About() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extrabold mb-4">Our Story</h2>
               <p className="text-gray-700 leading-relaxed">
-                Talle Furniture Mart opened on Khairani Road, Sakinaka with one simple
+                Talle Furniture Mart opened at D'Souza Sadan, Saki Naka with one simple
                 goal: give Mumbai a chair shop where the people fitting the cylinder
                 actually know how it works. Founded by <strong>Abdul Rab</strong>, the
                 shop quickly became the place offices, banquet halls and restaurants
@@ -120,7 +120,7 @@ export default function About() {
             <Link to="/contact" className="bg-gray-900 text-white rounded-xl p-8 hover:shadow-xl transition flex items-center justify-between">
               <div>
                 <h3 className="text-2xl font-extrabold">Need a repair quote?</h3>
-                <p className="opacity-90 mt-1">Visit our Sakinaka workshop or call +91 77380 28750</p>
+                <p className="opacity-90 mt-1">Visit our Sakinaka workshop or call +91 93261 66875</p>
               </div>
               <FiArrowRight size={28} />
             </Link>

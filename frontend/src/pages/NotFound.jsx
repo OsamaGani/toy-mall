@@ -171,7 +171,7 @@ export default function NotFound() {
           </p>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4">
             <a
-              href="tel:+917738028750"
+              href="tel:+919326166875"
               className="inline-flex items-center gap-1.5 sm:gap-2 bg-white text-primary-600 hover:bg-yellow-300 hover:text-gray-900 font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow transition text-sm"
             >
               <FiPhone size={14} /> Call us

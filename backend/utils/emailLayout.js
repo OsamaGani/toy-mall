@@ -13,10 +13,10 @@
 const STORE = {
   name: 'Talle Furniture Mart',
   url: process.env.CLIENT_URL?.split(',')[0] || 'https://tallefurnituremart.com',
-  phone: '+91 77380 28750',
-  phoneTel: '+917738028750',
+  phone: '+91 93261 66875',
+  phoneTel: '+919326166875',
   email: 'support@tallefurnituremart.com',
-  addressLine: 'Shop No. 4, Khairani Road, Sakinaka, Andheri East, Mumbai — 400072',
+  addressLine: "Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072",
 };
 
 const escape = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({

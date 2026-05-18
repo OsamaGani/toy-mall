@@ -251,7 +251,7 @@ export default function Home() {
             <UspBadge icon={<FiRefreshCw />}  title="Doorstep Repair"        desc="Pickup, fix, return in Mumbai"  color="bg-orange-50 text-orange-600" link="/contact" />
           </Reveal>
           <Reveal direction="up" delay={240}>
-            <UspBadge icon={<FiHeadphones />} title="Talk to a Human"        desc="Call +91 77380 28750"           color="bg-purple-50 text-purple-600" link="/contact" />
+            <UspBadge icon={<FiHeadphones />} title="Talk to a Human"        desc="Call +91 93261 66875"           color="bg-purple-50 text-purple-600" link="/contact" />
           </Reveal>
           <Reveal direction="up" delay={320}>
             <UspBadge icon={<FiPackage />}    title="Bulk / Wholesale"       desc="Best rates for offices & halls" color="bg-pink-50 text-pink-600" link="/wholesale" />

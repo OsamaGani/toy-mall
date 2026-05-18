@@ -65,8 +65,9 @@ export default function Contact() {
               title="Visit Us"
               lines={[
                 'Talle Furniture Mart',
-                'Shop No. 4, Khairani Road',
-                'Sakinaka, Andheri East',
+                "Shop No. 5, D'Souza Sadan",
+                'near Peninsula Grand Hotel',
+                'Sainath Wadi, Saki Naka',
                 'Mumbai — 400072, Maharashtra',
               ]}
               color="text-red-500 bg-red-50"
