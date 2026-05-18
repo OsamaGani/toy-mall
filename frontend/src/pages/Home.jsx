@@ -66,14 +66,14 @@ const sideCards = [
 ];
 
 const homeCategories = [
-  { name: 'Executive Chairs',   img: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400' },
-  { name: 'Ergonomic Chairs',   img: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=400' },
-  { name: 'Pro Gaming Chairs',  img: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400' },
-  { name: 'Recliners',          img: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400' },
-  { name: 'Dining Chairs',      img: 'https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=400' },
-  { name: 'Bar Stools',         img: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=400' },
-  { name: 'Banquet Chairs',     img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400' },
-  { name: 'Bean Bags',          img: 'https://images.unsplash.com/photo-1567016526105-22da7c13161a?w=400' },
+  { name: 'Executive Chairs',     img: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400' },
+  { name: 'Premium / Ergohuman',  img: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=400' },
+  { name: 'Training Room Chairs', img: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=400' },
+  { name: 'Tandem Seating',       img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400' },
+  { name: 'Recliners',            img: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400' },
+  { name: 'L-Shaped Couch',       img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400' },
+  { name: 'Wooden Dining Tables', img: 'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=400' },
+  { name: 'Office Desks',         img: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=400' },
 ];
 
 // Trusted-by client list — real B2B customers we've manufactured for.
@@ -172,7 +172,7 @@ export default function Home() {
         title="Talle Furniture Mart · Chair Manufacturer & Repair in Mumbai · Office, Gaming, Banquet Chairs"
         description="Talle Furniture Mart — buy executive, ergonomic, gaming, dining, banquet and recliner chairs online. Trusted chair manufacturer & repair specialist in Sakinaka, Mumbai. Reupholstery, hydraulic & cushion replacement available. Free delivery over ₹2,999."
         path="/"
-        keywords="buy chairs online mumbai, office chair manufacturer mumbai, ergonomic chair india, executive chair, gaming chair india, banquet chair manufacturer, tiffany chair wholesale, recliner sofa mumbai, dining chair set, chair repair sakinaka, chair reupholstery mumbai, hydraulic chair replacement, mesh office chair, customised office chair, wooden dining chair manufacturer, restaurant chair supplier mumbai, talle furniture mart, chair shop sakinaka, wholesale chairs mumbai, banquet hall chair manufacturer, salon chair mumbai, bar stool online india, d2d chair service mumbai, coworking chair supplier"
+        keywords="buy chairs online mumbai, office chair manufacturer mumbai, ergonomic chair india, executive chair, premium ergohuman chair, cushion series chair, training room chair, tandem seating bench, gaming chair india, banquet chair manufacturer, tiffany chair wholesale, recliner sofa mumbai, 3-seater sofa mumbai, l-shaped couch, curved couch, wooden dining table sheesham, coffee table mumbai, side table set, office desk l-shape, conference table 8-seater, dining chair set, cafeteria chair stackable, chair repair sakinaka, chair reupholstery mumbai, hydraulic chair replacement, mesh office chair, customised office chair, wooden dining chair manufacturer, restaurant chair supplier mumbai, talle furniture mart, chair shop sakinaka, wholesale chairs mumbai, banquet hall chair manufacturer, salon chair mumbai, bar stool online india, d2d chair service mumbai, coworking chair supplier"
       />
       {/* Hero carousel */}
       <section className="bg-gray-50">

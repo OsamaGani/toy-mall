@@ -5,7 +5,19 @@ import Loader from '../../components/Loader';
 import toast from 'react-hot-toast';
 import { FiPlus, FiTrash2, FiUpload, FiSave, FiPackage } from 'react-icons/fi';
 
-const categories = ['Executive Chairs', 'Ergonomic Chairs', 'Workstation Chairs', 'Visitor Chairs', 'Mesh Chairs', 'Pro Gaming Chairs', 'Recliners', 'Lounge Chairs', 'Accent Chairs', 'Dining Chairs', 'Bar Stools', 'Cafe Chairs', 'Folding Chairs', 'Garden Chairs', 'Banquet Chairs', 'Salon Chairs', 'Bean Bags', 'General'];
+const categories = [
+  'Executive Chairs', 'Ergonomic Chairs', 'Workstation Chairs', 'Visitor Chairs',
+  'Mesh Chairs', 'Premium / Ergohuman', 'Cushion Series', 'Training Room Chairs',
+  'Tandem Seating', 'Pro Gaming Chairs', 'Recliners', 'Lounge Chairs',
+  'Accent Chairs', 'Dining Chairs', 'Bar Stools', 'Cafe Chairs',
+  'Cafeteria Chairs', 'Restaurant Chairs', 'Folding Chairs', 'Garden Chairs',
+  'Banquet Chairs', 'Salon Chairs', 'Bean Bags',
+  '1-Seater Sofa', '2-Seater Sofa', '3-Seater Sofa',
+  'L-Shaped Couch', 'Curved Couch', 'Lounge Couch',
+  'Wooden Dining Tables', 'Coffee Tables', 'Side Tables', 'Center Tables',
+  'Consoles', 'Bar Trolleys', 'Conference Tables', 'Office Desks',
+  'General',
+];
 const materialOptions = ['', 'Mesh', 'Leather', 'Faux Leather', 'Fabric', 'Plastic', 'Wood', 'Metal', 'Cushion'];
 
 const blankRow = () => ({
