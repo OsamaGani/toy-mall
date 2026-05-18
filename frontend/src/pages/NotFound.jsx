@@ -177,7 +177,7 @@ export default function NotFound() {
               <FiPhone size={14} /> Call us
             </a>
             <a
-              href="mailto:support@tallefurnituremart.com"
+              href="mailto:abdulrab2411@gmail.com"
               className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/15 hover:bg-white/25 backdrop-blur border border-white/30 font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg transition text-sm"
             >
               <FiMail size={14} /> Email

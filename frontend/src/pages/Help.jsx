@@ -42,6 +42,8 @@ const categories = [
     questions: [
       { q: 'What payment methods do you accept?',
         a: 'Cash on Delivery and online payments via Razorpay — UPI (GPay, PhonePe, Paytm), Credit/Debit cards, Netbanking, and Wallets.' },
+      { q: 'How do payments work for orders outside Mumbai?',
+        a: 'Mumbai &amp; nearby areas: full Cash on Delivery accepted. Outside Mumbai: 70% advance payment online, 30% balance on delivery. This covers freight while you keep some leverage until the chair arrives.' },
       { q: 'Is my card information safe?',
         a: 'Absolutely. We never store your full card details — payments are securely processed by Razorpay (PCI-DSS compliant). Our site uses HTTPS and JWT authentication.' },
       { q: 'When am I charged?',

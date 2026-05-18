@@ -25,7 +25,7 @@ router.post(
       return res.status(400).json({ message: 'Message is too long (max 5000 characters).' });
     }
 
-    const TO = process.env.CONTACT_INBOX || 'support@tallefurnituremart.com';
+    const TO = process.env.CONTACT_INBOX || 'abdulrab2411@gmail.com';
     const subjectLine = subject?.trim()
       ? `[Talle Furniture Mart Contact] ${subject.trim()}`
       : `[Talle Furniture Mart Contact] New enquiry from ${name.trim()}`;

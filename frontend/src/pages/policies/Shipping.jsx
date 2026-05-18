@@ -28,11 +28,16 @@ export default function Shipping() {
         You can track your order anytime from <strong>My Orders</strong> in your account. Once shipped, you'll receive an email with your tracking number and a link to follow the package.
       </p>
 
-      <h2 className="text-xl font-bold mt-6 mb-2">Cash on Delivery (COD)</h2>
-      <p className="text-gray-700 mb-4">COD is available on most PIN codes for orders below ₹10,000. The exact COD amount is printed on the package label so the courier can collect it accurately.</p>
+      <h2 className="text-xl font-bold mt-6 mb-2">Payment terms by location</h2>
+      <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4">
+        <li><strong>Mumbai &amp; nearby areas:</strong> Cash on Delivery accepted on most orders. Pay the full amount to the delivery person when the chair arrives.</li>
+        <li><strong>Outside Mumbai (pan-India):</strong> 70% advance payment online, 30% balance on delivery. This keeps freight costs covered while you keep some leverage until the chair is in your hands.</li>
+        <li>Online prepayment (UPI / card / netbanking via Razorpay) is welcome from any location and unlocks a smoother dispatch.</li>
+        <li>For bulk and wholesale orders, payment terms are agreed at quote time.</li>
+      </ul>
 
       <h2 className="text-xl font-bold mt-6 mb-2">If your package doesn't arrive</h2>
-      <p className="text-gray-700 mb-4">If your order hasn't arrived within the expected window, please contact us at <a href="mailto:support@tallefurnituremart.com" className="text-primary-500 hover:underline">support@tallefurnituremart.com</a> or call <a href="tel:+919326166875" className="text-primary-500 hover:underline">+91 93261 66875</a>. We'll trace it with our courier partner and resolve quickly.</p>
+      <p className="text-gray-700 mb-4">If your order hasn't arrived within the expected window, please contact us at <a href="mailto:abdulrab2411@gmail.com" className="text-primary-500 hover:underline">abdulrab2411@gmail.com</a> or call <a href="tel:+919326166875" className="text-primary-500 hover:underline">+91 93261 66875</a>. We'll trace it with our courier partner and resolve quickly.</p>
 
       <h2 className="text-xl font-bold mt-6 mb-2">Address changes</h2>
       <p className="text-gray-700">If you need to change your shipping address after placing an order, contact us within 2 hours. Once the package leaves our warehouse, we may not be able to redirect it.</p>

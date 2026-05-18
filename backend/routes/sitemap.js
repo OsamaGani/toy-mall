@@ -18,7 +18,6 @@ const STATIC_PATHS = [
   { path: '/about',            changefreq: 'monthly', priority: '0.5' },
   { path: '/contact',          changefreq: 'monthly', priority: '0.5' },
   { path: '/wholesale',        changefreq: 'monthly', priority: '0.7' },
-  { path: '/franchise',        changefreq: 'monthly', priority: '0.5' },
   { path: '/help',             changefreq: 'monthly', priority: '0.4' },
   { path: '/shipping-policy',  changefreq: 'yearly',  priority: '0.3' },
   { path: '/privacy-policy',   changefreq: 'yearly',  priority: '0.3' },

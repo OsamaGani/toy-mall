@@ -328,7 +328,7 @@ function buildText(order, template, customerName, adminNote) {
     text += `Tracking Number: ${order.trackingNumber}\n`;
   }
   if (adminNote) text += `\nNote: ${adminNote}\n`;
-  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Talle Furniture Mart\nShop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072\nsupport@tallefurnituremart.com`;
+  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Talle Furniture Mart\nShop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072\nabdulrab2411@gmail.com`;
   return text;
 }
 

@@ -242,7 +242,7 @@ export default function Home() {
       <section className="border-b bg-gradient-to-r from-gray-50 via-white to-gray-50">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-5 grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-3">
           <Reveal direction="up" delay={0}>
-            <UspBadge icon={<FiTruck />}      title="Free Mumbai Delivery"   desc="On orders over ₹2,999"          color="bg-blue-50 text-blue-600" />
+            <UspBadge icon={<FiTruck />}      title="D2D Mumbai · Pan-India" desc="Door-to-door + free over ₹2,999" color="bg-blue-50 text-blue-600" />
           </Reveal>
           <Reveal direction="up" delay={80}>
             <UspBadge icon={<FiShield />}     title="5-Year Warranty"        desc="On all Talle-branded chairs"    color="bg-emerald-50 text-emerald-600" />

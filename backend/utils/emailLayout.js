@@ -15,7 +15,7 @@ const STORE = {
   url: process.env.CLIENT_URL?.split(',')[0] || 'https://tallefurnituremart.com',
   phone: '+91 93261 66875',
   phoneTel: '+919326166875',
-  email: 'support@tallefurnituremart.com',
+  email: 'abdulrab2411@gmail.com',
   addressLine: "Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072",
 };
 

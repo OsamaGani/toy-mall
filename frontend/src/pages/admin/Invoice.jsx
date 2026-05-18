@@ -42,7 +42,7 @@ export default function Invoice() {
             <p className="text-xs text-gray-600 mt-1">Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel</p>
             <p className="text-xs text-gray-600">Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka</p>
             <p className="text-xs text-gray-600">Mumbai — 400072, Maharashtra, India</p>
-            <p className="text-xs text-gray-600">+91 93261 66875 · support@tallefurnituremart.com</p>
+            <p className="text-xs text-gray-600">+91 93261 66875 · abdulrab2411@gmail.com</p>
             <p className="text-xs text-gray-600">Proprietor: Abdul Rab · GSTIN: 27AAAAA0000A1Z5</p>
           </div>
           <div className="sm:text-right print:text-right">
@@ -177,7 +177,7 @@ export default function Invoice() {
         {/* Footer */}
         <div className="mt-10 pt-4 border-t text-center text-xs text-gray-500">
           <p className="font-semibold">Thank you for shopping with Talle Furniture Mart!</p>
-          <p className="mt-1">For returns or questions, contact support@tallefurnituremart.com within 7 days of delivery.</p>
+          <p className="mt-1">For returns or questions, contact abdulrab2411@gmail.com within 7 days of delivery.</p>
           <p className="mt-2">This is a computer-generated invoice and does not require a signature.</p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { FiMail, FiFacebook, FiInstagram, FiYoutube } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const socials = [
-  { Icon: FiMail,       href: 'mailto:support@tallefurnituremart.com',     label: 'Email' },
+  { Icon: FiMail,       href: 'mailto:abdulrab2411@gmail.com',     label: 'Email' },
   { Icon: FiFacebook,   href: 'https://facebook.com/tallefurnituremart',   label: 'Facebook' },
   { Icon: FiInstagram,  href: 'https://instagram.com/talle_furniture_mart',label: 'Instagram' },
   { Icon: FaWhatsapp,   href: 'https://wa.me/919326166875',                label: 'WhatsApp' },

@@ -5,10 +5,10 @@ import { FiAward, FiHeart, FiTruck, FiShield, FiArrowRight } from 'react-icons/f
 import SEO from '../components/SEO';
 
 const values = [
-  { icon: <FiAward />,  title: 'Craftsman-Built',     desc: 'Every Talle chair is built and inspected by craftsmen with 15+ years of seating experience — no factory shortcuts.' },
-  { icon: <FiHeart />,  title: 'Comfort First',       desc: 'We obsess over cushion density, seat depth and lumbar curve so your back thanks you eight hours into a workday.' },
-  { icon: <FiShield />, title: 'BIFMA-Grade Parts',   desc: 'Class-4 hydraulics, certified mesh, heavy-duty star bases. The components inside match what you\'d find in chairs costing 3× more.' },
-  { icon: <FiTruck />,  title: 'Mumbai Service',      desc: 'Free delivery on orders above ₹2,999, doorstep pickup for repairs, and an actual human you can call.' },
+  { icon: <FiAward />,  title: 'Office Chair Specialists', desc: 'Manufacturer of executive, ergonomic, workstation, visitor and revolving office chairs — built and inspected by craftsmen with 15+ years of seating experience.' },
+  { icon: <FiHeart />,  title: 'Customised To Order',      desc: 'Need a specific fabric, height, armrest or branding? We make chairs to your spec. Also full lines for restaurants, wooden dining sets, and bespoke seating.' },
+  { icon: <FiShield />, title: 'Repair &amp; Refurbish',   desc: 'Hydraulic replacement, cushion redo, reupholstery, wheel &amp; base fix — bring a tired chair, take home one that feels brand new.' },
+  { icon: <FiTruck />,  title: 'D2D Service Mumbai',       desc: 'Door-to-door pickup &amp; delivery across Mumbai &amp; nearby areas. Pan-India dispatch available. Real human on +91 93261 66875.' },
 ];
 
 const stats = [
@@ -28,8 +28,8 @@ export default function About() {
         keywords="talle furniture mart, chair manufacturer mumbai, chair repair sakinaka, chair shop andheri east, office chair supplier mumbai, ergonomic chair manufacturer india, banquet chair manufacturer, gaming chair shop mumbai, chair reupholstery, family run furniture shop mumbai"
       />
       <PageHeader
-        title="From a Sakinaka Workshop to Offices & Homes Across Mumbai"
-        subtitle="Talle Furniture Mart started as a one-room chair workshop. Today we manufacture, retail and repair seating for offices, banquet halls, restaurants and homes across the city — without losing the craftsman's eye for detail."
+        title="Specialist in Office Chairs & Repairs — Mumbai"
+        subtitle="Talle Furniture Mart is a Saki Naka-based manufacturer and repair workshop. All kinds of office chairs, customised seating, wooden dining sets, restaurant chairs and full D2D service across Mumbai &amp; nearby — with pan-India delivery."
         breadcrumbs={[{ label: 'About Us' }]}
       />
 

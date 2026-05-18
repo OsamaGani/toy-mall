@@ -198,7 +198,7 @@ export default function Wholesale() {
           )}
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-300">
             <span className="flex items-center gap-2"><FiPhone /> +91 93261 66875</span>
-            <span className="flex items-center gap-2"><FiMail /> support@tallefurnituremart.com</span>
+            <span className="flex items-center gap-2"><FiMail /> abdulrab2411@gmail.com</span>
           </div>
         </div>
       </section>

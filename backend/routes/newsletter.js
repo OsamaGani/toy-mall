@@ -63,7 +63,7 @@ function buildWelcomeEmail(email, promoCode, clientUrl) {
   // declares one-click unsubscribe — without these headers they down-rank
   // the message into Promotions / Spam.
   const headers = {
-    'List-Unsubscribe': `<${unsubscribeUrl}>, <mailto:support@tallefurnituremart.com?subject=Unsubscribe>`,
+    'List-Unsubscribe': `<${unsubscribeUrl}>, <mailto:abdulrab2411@gmail.com?subject=Unsubscribe>`,
     'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
     'X-Mailer': 'Talle Furniture Mart',
   };

@@ -49,7 +49,7 @@ export default function Privacy() {
       <p className="text-gray-700 mb-4">Our store is for parents and adult buyers. We don't knowingly collect data from children under 13. If you believe a child has signed up, please contact us and we'll remove the account.</p>
 
       <h2 className="text-xl font-bold mt-6 mb-2">Contact</h2>
-      <p className="text-gray-700">Privacy questions? Write to <a href="mailto:support@tallefurnituremart.com" className="text-primary-500 hover:underline">support@tallefurnituremart.com</a> or by post: Talle Furniture Mart, Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072.</p>
+      <p className="text-gray-700">Privacy questions? Write to <a href="mailto:abdulrab2411@gmail.com" className="text-primary-500 hover:underline">abdulrab2411@gmail.com</a> or by post: Talle Furniture Mart, Shop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072.</p>
     </PolicyLayout>
   );
 }

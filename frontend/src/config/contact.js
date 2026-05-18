@@ -10,16 +10,18 @@ export const PHONE_PRIMARY_DISPLAY = '+91 93261 66875';
 export const PHONE_PRIMARY_TEL     = '+919326166875';
 export const PHONE_PRIMARY_WHATSAPP = '919326166875'; // wa.me path
 
-// Secondary / workshop line — placeholder, to be updated when owner provides.
-export const PHONE_SECONDARY_DISPLAY = '+91 93261 66875';
-export const PHONE_SECONDARY_TEL     = '+919326166875';
+// Secondary line — owner's second number for direct enquiries.
+export const PHONE_SECONDARY_DISPLAY = '+91 98673 45138';
+export const PHONE_SECONDARY_TEL     = '+919867345138';
 
 // === Emails ===
-// Primary — branded mailbox at the business domain (placeholder until provided).
-export const EMAIL_PRIMARY = 'support@tallefurnituremart.com';
+// Primary — owner's working mailbox. Replace with branded support@ address
+// once a custom domain (tallefurnituremart.com) is purchased and mail is set up.
+export const EMAIL_PRIMARY = 'abdulrab2411@gmail.com';
 
-// Gmail fallback used during launch (placeholder until provided).
-export const EMAIL_GMAIL = 'tallefurnituremart@gmail.com';
+// Same mailbox for now — kept as a separate export so future code can
+// distinguish "support" vs "personal" once the branded inbox is live.
+export const EMAIL_GMAIL = 'abdulrab2411@gmail.com';
 
 // === Address ===
 // From the verified Google Business Profile.

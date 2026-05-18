@@ -38,7 +38,6 @@ const OrderDetail     = lazy(() => import('./pages/OrderDetail'));
 const Wholesale       = lazy(() => import('./pages/Wholesale'));
 const About           = lazy(() => import('./pages/About'));
 const Contact         = lazy(() => import('./pages/Contact'));
-const Franchise       = lazy(() => import('./pages/Franchise'));
 const Help            = lazy(() => import('./pages/Help'));
 const Wishlist        = lazy(() => import('./pages/Wishlist'));
 const ShippingPolicy  = lazy(() => import('./pages/policies/Shipping'));
@@ -96,7 +95,6 @@ export default function App() {
           <Route path="/wholesale" element={<Wholesale />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/franchise" element={<Franchise />} />
           <Route path="/help" element={<Help />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/shipping-policy" element={<ShippingPolicy />} />
