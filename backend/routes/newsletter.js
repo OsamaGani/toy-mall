@@ -80,7 +80,10 @@ router.post(
     if (!ok.ok) return res.status(400).json({ message: ok.reason });
 
     const cleanEmail = ok.email;
-    const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').replace(/\/$/, '');
+    // CLIENT_URL may be a comma-separated list — take the first / canonical
+    // entry so the unsubscribe link doesn't end up as
+    // 'https://new.com,https://old.com/unsubscribe?...'.
+    const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim().replace(/\/$/, '');
 
     let subscriber = await Subscriber.findOne({ email: cleanEmail });
 

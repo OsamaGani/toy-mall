@@ -328,14 +328,17 @@ function buildText(order, template, customerName, adminNote) {
     text += `Tracking Number: ${order.trackingNumber}\n`;
   }
   if (adminNote) text += `\nNote: ${adminNote}\n`;
-  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${process.env.CLIENT_URL || 'http://localhost:5173'}/order/${order._id}\n\n— Team Talle Furniture Mart\nShop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072\nabdulrab2411@gmail.com`;
+  const orderClientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim().replace(/\/$/, '');
+  text += `\nTotal: ₹${order.totalPrice.toFixed(2)}\n\nView your order: ${orderClientUrl}/order/${order._id}\n\n— Team Talle Furniture Mart\nShop No. 5, D'Souza Sadan, near Peninsula Grand Hotel, Sainath Wadi, Lokmanya Tilak Nagar, Saki Naka, Mumbai — 400072\nabdulrab2411@gmail.com`;
   return text;
 }
 
 async function sendStatusEmail(order, customerEmail, customerName, adminNote = '') {
   const template = STATUS_TEMPLATES[order.status];
   if (!template) return { sent: false, reason: 'No template for status' };
-  const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+  // CLIENT_URL may be a comma-separated list — emails always use the
+  // first / canonical URL. See routes/auth.js for the same logic.
+  const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim().replace(/\/$/, '');
   return sendEmail({
     to: customerEmail,
     subject: template.subject(order),

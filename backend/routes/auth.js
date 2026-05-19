@@ -278,7 +278,11 @@ router.post(
     user.resetPasswordExpiresAt = new Date(Date.now() + PASSWORD_RESET_TTL_MIN * 60 * 1000);
     await user.save();
 
-    const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').replace(/\/$/, '');
+    // CLIENT_URL may be a comma-separated list (e.g. 'https://new.com,https://old.com')
+    // — emails always use the FIRST entry (the canonical/current domain). Without
+    // this split, the reset link ends up as 'https://new.com,https://old.com/reset-...'
+    // which is broken.
+    const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim().replace(/\/$/, '');
     const resetUrl = `${clientUrl}/reset-password/${rawToken}`;
 
     const { renderEmail, escape } = require('../utils/emailLayout');
@@ -292,8 +296,6 @@ router.post(
         Tap the button below to choose a new one — this link works for the next
         <strong>${PASSWORD_RESET_TTL_MIN} minutes</strong>.
       </p>
-      <p style="margin:18px 0 8px 0;color:#6b7280;font-size:13px;">If the button doesn't open, copy and paste this URL into your browser:</p>
-      <p style="margin:0 0 0 0;word-break:break-all;color:#374151;font-size:12px;background:#f9fafb;padding:10px;border-radius:6px;border:1px solid #e5e7eb;font-family:'Courier New',monospace;">${escape(resetUrl)}</p>
       <p style="margin:22px 0 0 0;color:#6b7280;font-size:13px;border-top:1px solid #e5e7eb;padding-top:18px;">
         <strong style="color:#111827;">Didn't ask for a reset?</strong><br>
         Safe to ignore this email. Your password won't change unless you click the link, and the link expires automatically.
