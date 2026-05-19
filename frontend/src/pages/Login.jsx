@@ -21,36 +21,41 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-160px)] grid lg:grid-cols-2 bg-white">
-      {/* ========== LEFT — Brand showcase ========== */}
-      <div className="relative hidden lg:flex flex-col justify-between overflow-hidden bg-gradient-to-br from-primary-500 via-pink-500 to-fuchsia-600 text-white p-12">
+    <div className="min-h-[calc(100vh-160px)] grid md:grid-cols-2 bg-white">
+      {/* ========== LEFT — Brand showcase ==========
+          Visible from md (768px+) so tablets also get the nice split view
+          instead of a lonely full-width form with empty whitespace. Padding
+          and feature grid scale down on md, full treatment from lg+. */}
+      <div className="relative hidden md:flex flex-col justify-between overflow-hidden bg-gradient-to-br from-primary-500 via-pink-500 to-fuchsia-600 text-white p-8 md:p-10 lg:p-12">
         {/* Decorative blobs */}
-        <div className="absolute -top-32 -left-20 w-96 h-96 bg-yellow-300/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute -bottom-32 -right-20 w-96 h-96 bg-white/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute -top-32 -left-20 w-72 lg:w-96 h-72 lg:h-96 bg-yellow-300/20 rounded-full blur-3xl animate-float" />
+        <div className="absolute -bottom-32 -right-20 w-72 lg:w-96 h-72 lg:h-96 bg-white/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
         {/* Floating chair emojis */}
-        <span className="absolute top-20 right-16 text-6xl opacity-30 animate-float" style={{ animationDelay: '0.5s' }}>🛋</span>
-        <span className="absolute bottom-32 left-16 text-7xl opacity-25 animate-float" style={{ animationDelay: '2s' }}>🪑</span>
-        <span className="absolute top-1/2 right-32 text-5xl opacity-30 animate-float" style={{ animationDelay: '1s' }}>💼</span>
+        <span className="absolute top-16 right-10 text-5xl lg:text-6xl opacity-30 animate-float" style={{ animationDelay: '0.5s' }}>🛋</span>
+        <span className="absolute bottom-28 left-10 text-6xl lg:text-7xl opacity-25 animate-float" style={{ animationDelay: '2s' }}>🪑</span>
+        <span className="absolute top-1/2 right-24 text-4xl lg:text-5xl opacity-30 animate-float hidden lg:inline" style={{ animationDelay: '1s' }}>💼</span>
 
         <div className="relative z-10">
           <Link to="/" className="inline-flex items-center gap-1">
-            <span className="text-3xl font-extrabold">Talle</span>
-            <span className="text-3xl font-extrabold">Furniture</span>
+            <span className="text-2xl lg:text-3xl font-extrabold">Talle</span>
+            <span className="text-2xl lg:text-3xl font-extrabold">Furniture</span>
           </Link>
         </div>
 
         <div className="relative z-10 max-w-md">
-          <span className="inline-block bg-white/20 backdrop-blur text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-5">
+          <span className="inline-block bg-white/20 backdrop-blur text-[10px] lg:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4 lg:mb-5">
             Welcome back
           </span>
-          <h2 className="text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-lg">
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-lg">
             Better seating, built to last.
           </h2>
-          <p className="mt-4 text-lg text-white/90 leading-relaxed">
+          <p className="mt-3 lg:mt-4 text-base lg:text-lg text-white/90 leading-relaxed">
             Sign in to track orders, save favourites, and get exclusive member-only offers.
           </p>
 
-          <div className="mt-10 grid grid-cols-2 gap-4">
+          {/* Feature grid — hidden on md (saves vertical space on tablet),
+              shown from lg+ where the panel has more breathing room. */}
+          <div className="mt-8 lg:mt-10 hidden lg:grid grid-cols-2 gap-4">
             <Feature icon={<FiTruck />}   title="Free Mumbai delivery" desc="On orders ₹2,999+" />
             <Feature icon={<FiShield />}  title="BIFMA-grade parts"    desc="Genuine components" />
             <Feature icon={<FiPackage />} title="Doorstep repair"      desc="Pickup & drop in Mumbai" />
@@ -58,19 +63,28 @@ export default function Login() {
           </div>
         </div>
 
-        <div className="relative z-10 text-sm text-white/75">
+        <div className="relative z-10 text-xs lg:text-sm text-white/75">
           © {new Date().getFullYear()} Talle Furniture Mart · Sakinaka, Mumbai
         </div>
       </div>
 
-      {/* ========== RIGHT — Form ========== */}
-      <div className="flex flex-col justify-center px-6 py-12 sm:px-12 lg:px-16 xl:px-24 bg-white">
-        {/* Mobile-only brand bar (hidden on desktop where we have the left panel) */}
-        <div className="lg:hidden text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-1">
-            <span className="text-3xl font-extrabold text-primary-500">Talle</span>
-            <span className="text-3xl font-extrabold text-gray-900">Furniture</span>
-          </Link>
+      {/* ========== RIGHT — Form ==========
+          Padding scales: tight on phone (px-5), generous on tablet+ without
+          getting cramped at xl. min-h ensures form is vertically centred
+          even when content is short. */}
+      <div className="flex flex-col justify-center px-5 sm:px-8 md:px-10 lg:px-14 xl:px-20 py-8 sm:py-10 lg:py-12 bg-white min-h-[calc(100vh-160px)]">
+        {/* Mobile-only brand bar — has a subtle gradient bar above the
+            wordmark so the otherwise-text-only mobile screen has some
+            visual identity. Hidden from md+ where the brand panel takes
+            over on the left. */}
+        <div className="md:hidden text-center mb-6 sm:mb-8">
+          <div className="inline-block">
+            <div className="h-1 w-12 bg-gradient-to-r from-primary-500 to-pink-500 rounded-full mx-auto mb-3" />
+            <Link to="/" className="inline-flex items-center gap-1">
+              <span className="text-2xl sm:text-3xl font-extrabold text-primary-500">Talle</span>
+              <span className="text-2xl sm:text-3xl font-extrabold text-gray-900">Furniture</span>
+            </Link>
+          </div>
         </div>
 
         <div className="w-full max-w-md mx-auto">
