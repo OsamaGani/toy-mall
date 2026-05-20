@@ -19,14 +19,14 @@ const popularDestinations = [
 ];
 
 const popularCategories = [
-  { name: 'Executive Chairs',  emoji: '💼' },
-  { name: 'Ergonomic Chairs',  emoji: '🪑' },
-  { name: 'Pro Gaming Chairs', emoji: '🎮' },
-  { name: 'Recliners',         emoji: '🛋' },
-  { name: 'Dining Chairs',     emoji: '🍽' },
-  { name: 'Bar Stools',        emoji: '🍸' },
-  { name: 'Banquet Chairs',    emoji: '🎉' },
-  { name: 'Bean Bags',         emoji: '🟤' },
+  { name: 'Executive',                    emoji: '💼' },
+  { name: 'Ergonomic',                    emoji: '🪑' },
+  { name: 'Premium',                      emoji: '✨' },
+  { name: 'Designer',                     emoji: '🎨' },
+  { name: 'Gaming',                       emoji: '🎮' },
+  { name: 'Study Chair',                  emoji: '📚' },
+  { name: 'Tandem',                       emoji: '🪟' },
+  { name: 'Cafeteria',                    emoji: '🍽' },
 ];
 
 export default function NotFound() {

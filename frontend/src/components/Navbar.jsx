@@ -11,7 +11,7 @@ const announcements = [
   { text: '🚚 FREE Delivery on all orders above ₹2,999 across Mumbai',                          href: '/shipping-policy' },
   { text: '🔥 Up to 50% OFF — Mega Chair Sale',                                                 href: '/shop?discount=true' },
   { text: '🔧 Expert Chair Repair & Reupholstery — Doorstep Service in Mumbai',                 href: '/contact' },
-  { text: '⭐ New Models every week — Office, Gaming, Banquet, Recliners',                      href: '/shop?newArrival=true' },
+  { text: '⭐ New Models every week — Executive, Ergonomic, Premium, Gaming',                  href: '/shop?newArrival=true' },
   { text: '💯 Own Manufacturing — Trusted by WeWork, Roller Bearing, Upstep Academy & more',     href: '/about' },
   { text: '🛡 5-Year Warranty on Talle-branded chairs',                                          href: '/refund-policy' },
   { text: '📞 Need help? Call +91 93261 66875 — we reply fast',                                  href: '/contact' },
@@ -346,9 +346,10 @@ export default function Navbar() {
             <MobileChip to="/shop?bestSeller=true">⭐ Best Sellers</MobileChip>
             <MobileChip to="/shop?newArrival=true">✨ New</MobileChip>
             <MobileChip to="/chair-repair">🔧 Repair</MobileChip>
-            <MobileChip to="/shop?category=Executive%20Chairs">💼 Office</MobileChip>
-            <MobileChip to="/shop?category=Pro%20Gaming%20Chairs">🎮 Gaming</MobileChip>
-            <MobileChip to="/shop?category=Recliners">🛋 Recliners</MobileChip>
+            <MobileChip to="/shop?category=Executive">💼 Executive</MobileChip>
+            <MobileChip to="/shop?category=Ergonomic">🪑 Ergonomic</MobileChip>
+            <MobileChip to="/shop?category=Premium">✨ Premium</MobileChip>
+            <MobileChip to="/shop?category=Gaming">🎮 Gaming</MobileChip>
           </div>
         </nav>
       </div>
@@ -364,7 +365,7 @@ export default function Navbar() {
             <DropdownTrigger label="Clients" active={openDropdown === 'clients'} onHover={() => setOpenDropdown('clients')} />
             <DropdownTrigger label="Category" active={openDropdown === 'category'} onHover={() => setOpenDropdown('category')} />
             <DropdownTrigger label="Material" active={openDropdown === 'material'} onHover={() => setOpenDropdown('material')} />
-            <NavItem to="/shop?category=Recliners" label="Recliners" />
+            <NavItem to="/shop?category=Premium" label="Premium" />
             <NavItem to="/shop?bestSeller=true" label="⭐ Best Sellers" />
             <NavItem to="/shop?newArrival=true" label="✨ New Arrivals" />
           </ul>
@@ -507,7 +508,7 @@ export default function Navbar() {
               <li><Link to="/shop?discount=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded text-primary-500 font-semibold hover:bg-primary-50 transition">🔥 Up to 50% Off</Link></li>
               <li><Link to="/shop?bestSeller=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">⭐ Best Sellers</Link></li>
               <li><Link to="/shop?newArrival=true" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">✨ New Arrivals</Link></li>
-              <li><Link to="/shop?category=Recliners" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">🛋 Recliners</Link></li>
+              <li><Link to="/shop?category=Premium" onClick={closeMobileMenu} className="block py-2.5 px-2 rounded hover:bg-gray-50 transition">✨ Premium</Link></li>
 
               {/* Collapsible: Categories */}
               <li className="pt-1">

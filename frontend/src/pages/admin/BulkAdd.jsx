@@ -4,21 +4,11 @@ import API from '../../api/axios';
 import Loader from '../../components/Loader';
 import toast from 'react-hot-toast';
 import { FiPlus, FiTrash2, FiUpload, FiSave, FiPackage } from 'react-icons/fi';
+import { allSubCategoryNames, materials } from '../../config/departments';
 
-const categories = [
-  'Executive Chairs', 'Ergonomic Chairs', 'Workstation Chairs', 'Visitor Chairs',
-  'Mesh Chairs', 'Premium / Ergohuman', 'Cushion Series', 'Training Room Chairs',
-  'Tandem Seating', 'Pro Gaming Chairs', 'Recliners', 'Lounge Chairs',
-  'Accent Chairs', 'Dining Chairs', 'Bar Stools', 'Cafe Chairs',
-  'Cafeteria Chairs', 'Restaurant Chairs', 'Folding Chairs', 'Garden Chairs',
-  'Banquet Chairs', 'Salon Chairs', 'Bean Bags',
-  '1-Seater Sofa', '2-Seater Sofa', '3-Seater Sofa',
-  'L-Shaped Couch', 'Curved Couch', 'Lounge Couch',
-  'Wooden Dining Tables', 'Coffee Tables', 'Side Tables', 'Center Tables',
-  'Consoles', 'Bar Trolleys', 'Conference Tables', 'Office Desks',
-  'General',
-];
-const materialOptions = ['', 'Mesh', 'Leather', 'Faux Leather', 'Fabric', 'Plastic', 'Wood', 'Metal', 'Cushion'];
+// Single source — same list the storefront, navbar, and ProductForm use.
+const categories = Array.from(new Set(allSubCategoryNames)).sort();
+const materialOptions = ['', ...materials];
 
 const blankRow = () => ({
   name: '', description: '', price: '', discount: 0,

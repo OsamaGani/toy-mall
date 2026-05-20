@@ -35,13 +35,13 @@ const heroSlides = [
   },
   {
     eyebrow: 'MADE TO LAST',
-    title: 'Sofas built for everyday life',
-    subtitle: 'Kiln-dried frames, high-resilience foam, and removable covers. 5-year warranty on every Talle build.',
-    primaryCta: 'SHOP THE COLLECTION',
-    primaryLink: '/shop?category=3-Seater Sofa',
+    title: 'Premium ergonomic seating, built in Mumbai',
+    subtitle: 'BIFMA-grade builds, dynamic lumbar support and 5-year warranty on every Talle Premium chair.',
+    primaryCta: 'SHOP PREMIUM',
+    primaryLink: '/shop?category=Premium',
     secondaryCta: 'OUR STORY',
     secondaryLink: '/about',
-    image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1920&q=85&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=1920&q=85&auto=format&fit=crop',
   },
   {
     eyebrow: 'TALLE SPECIALTY',
@@ -58,19 +58,19 @@ const heroSlides = [
 const sideCards = [
   {
     eyebrow: 'WEEKEND DEAL',
-    title: 'Recliners up to 30% Off',
-    subtitle: 'Single & multi-seater recliners with manual and electric mechanisms.',
-    link: '/shop?category=Recliners',
-    image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600',
-    bg: 'bg-gradient-to-br from-amber-600 to-orange-800',
+    title: 'Gaming chairs up to 30% Off',
+    subtitle: 'Racing-style chairs with 4D armrests, full recline and lumbar support.',
+    link: '/shop?category=Gaming',
+    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600',
+    bg: 'bg-gradient-to-br from-red-500 to-rose-700',
   },
   {
     eyebrow: 'JUST LANDED',
-    title: 'Banquet & Event Chairs',
-    subtitle: 'Tiffany, Chiavari & stackable banquet chairs for weddings, halls and hotels.',
-    link: '/shop?category=Banquet Chairs',
-    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600',
-    bg: 'bg-gradient-to-br from-purple-500 to-fuchsia-700',
+    title: 'Tandem & Cafeteria Seating',
+    subtitle: 'Airport-style tandem benches and stackable cafeteria chairs for lobbies and canteens.',
+    link: '/shop?category=Tandem',
+    image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600',
+    bg: 'bg-gradient-to-br from-sky-500 to-blue-700',
   },
 ];
 
@@ -79,14 +79,14 @@ const sideCards = [
 // "Feature on Homepage" toggle on /admin/categories the rail switches to
 // the live DB-driven list (filtered + sorted by homeOrder).
 const fallbackHomeCategories = [
-  { name: 'Executive Chairs',     image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400' },
-  { name: 'Premium / Ergohuman',  image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400' },
-  { name: 'Training Room Chairs', image: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=400' },
-  { name: 'Tandem Seating',       image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=400' },
-  { name: 'Recliners',            image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400' },
-  { name: 'L-Shaped Couch',       image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=400' },
-  { name: 'Wooden Dining Tables', image: 'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=400' },
-  { name: 'Office Desks',         image: 'https://images.unsplash.com/photo-1593062096033-9a26b09da705?w=400' },
+  { name: 'Executive',                     image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400' },
+  { name: 'Ergonomic',                     image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=400' },
+  { name: 'Premium',                       image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400' },
+  { name: 'Designer',                      image: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400' },
+  { name: 'Gaming',                        image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400' },
+  { name: 'Training & Classroom Chairs',   image: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?w=400' },
+  { name: 'Tandem',                        image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=400' },
+  { name: 'Cafeteria',                     image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400' },
 ];
 
 // Trusted-by client list — real B2B customers we've manufactured for.
@@ -465,7 +465,7 @@ export default function Home() {
             <div className="relative z-10 h-full flex flex-col justify-center p-6 sm:p-10 md:p-14 max-w-xl">
               <span className="inline-block w-fit bg-yellow-300 text-gray-900 text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-4 tracking-wide">🔥 UP TO 50% OFF</span>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-lg leading-tight">Mega Chair Sale</h2>
-              <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg text-white/95">Office, Gaming, Banquet, Recliners — biggest discounts of the year</p>
+              <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg text-white/95">Executive, Ergonomic, Premium, Gaming — biggest discounts of the year</p>
               <span className="inline-flex items-center gap-2 mt-4 sm:mt-6 w-fit bg-white text-gray-900 hover:bg-yellow-300 font-bold px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-sm sm:text-base shadow-lg group-hover:scale-105 transition">
                 Shop the Sale <FiArrowRight />
               </span>
