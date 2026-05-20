@@ -580,7 +580,7 @@ export default function ProductDetail() {
           </a>
 
           <div className="mt-6 grid grid-cols-3 gap-3 text-xs text-center pt-6 border-t">
-            <Perk icon={<FiTruck />} text="Free Shipping over ₹999" />
+            <Perk icon={<FiTruck />} text="Free Mumbai delivery on ₹2,999+" />
             <Perk icon={<FiShield />} text="Secure Payment" />
             <Perk icon={<FiRefreshCw />} text="7-Day Returns" />
           </div>

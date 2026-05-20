@@ -13,8 +13,14 @@ const router = express.Router();
 // Pricing rules — KEEP IN SYNC with frontend/src/context/CartContext.jsx.
 // All authoritative pricing happens server-side; the client values are
 // display-only and never trusted.
-const SHIPPING_FEE = 50;
-const FREE_SHIPPING_THRESHOLD = 999;
+//
+// Furniture is bulky so shipping is higher than typical D2C — ₹200 flat
+// below the free-shipping threshold, free above ₹2,999. Until this fix
+// (commit pending) the backend was charging ₹50 with a ₹999 threshold
+// while the frontend cart showed ₹200 / ₹2,999 — customers were being
+// undercharged by ₹150 and the cart total didn't match the receipt.
+const SHIPPING_FEE = 200;
+const FREE_SHIPPING_THRESHOLD = 2999;
 const TAX_RATE = 0.18;
 
 const round2 = (n) => +Number(n).toFixed(2);

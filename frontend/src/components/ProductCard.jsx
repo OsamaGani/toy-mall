@@ -4,7 +4,10 @@ import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { resolveImage, PLACEHOLDER } from '../utils/imageUrl';
 
-const FREE_SHIPPING_THRESHOLD = 999;
+// Matches the CartContext + Shipping Policy + every other shipping
+// mention on the site. Backend orders.js uses the same value when
+// it computes the final shipping charge server-side.
+const FREE_SHIPPING_THRESHOLD = 2999;
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart();
