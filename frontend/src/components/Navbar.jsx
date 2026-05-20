@@ -163,7 +163,7 @@ export default function Navbar() {
       </div>
       {/* Top bar — hides when scrolled */}
       <div className={`bg-gray-900 text-white text-xs overflow-hidden transition-all duration-300 ${scrolled ? 'max-h-0' : 'max-h-10'}`}>
-        <div className="max-w-screen-2xl mx-auto px-4 py-2 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <span className="hidden sm:flex items-center gap-1"><FiTruck /> Free Delivery over ₹2,999</span>
             <span className="hidden md:flex items-center gap-1"><FiPhone /> +91 93261 66875</span>
@@ -178,15 +178,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main bar */}
+      {/* Main bar — 3-column grid (logo | search | actions). The grid lets
+          the search bar sit truly centred inside the middle column while
+          logo and actions hug their own sides. Capped at max-w-7xl with
+          generous side padding so it doesn't kiss the screen edges on
+          wide displays. */}
       <div className="border-b">
-        <div className={`max-w-screen-2xl mx-auto px-3 sm:px-4 flex items-center gap-3 sm:gap-6 transition-all duration-300 ${scrolled ? 'py-2' : 'py-2.5 sm:py-3'}`}>
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-6 transition-all duration-300 ${scrolled ? 'py-2' : 'py-2.5 sm:py-3'}`}>
           <Link to="/" className="flex items-center gap-1 flex-shrink-0">
             <span className={`font-extrabold text-primary-500 transition-all ${scrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`}>Talle</span>
             <span className={`font-extrabold text-gray-900 transition-all ${scrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`}>Furniture</span>
           </Link>
 
-          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-2xl relative">
+          <form onSubmit={handleSearch} className="hidden md:flex w-full max-w-xl mx-auto relative">
             <input
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
@@ -198,7 +202,7 @@ export default function Navbar() {
             </button>
           </form>
 
-          <div className="flex items-center gap-3 sm:gap-5 ml-auto">
+          <div className="flex items-center gap-3 sm:gap-5 justify-self-end">
             <Link to="/wishlist" className="relative hidden sm:flex flex-col items-center text-xs hover:text-primary-500">
               <FiHeart size={22} className={wishCount > 0 ? 'fill-current text-primary-500' : ''} />
               <span>Wishlist</span>
@@ -353,10 +357,16 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Categories nav */}
+      {/* Categories nav — 3-col grid (spacer | centered nav | wholesale).
+          Keeps the main nav items truly centred regardless of Wholesale's
+          width, and pins Wholesale to the right where it belongs. */}
       <nav className="hidden md:block border-b bg-gray-50 relative" onMouseLeave={() => setOpenDropdown(null)}>
-        <div className="max-w-screen-2xl mx-auto px-4">
-          <ul className="flex items-center gap-1 text-sm font-semibold flex-nowrap">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-[1fr_auto_1fr] items-center">
+          {/* Left spacer — kept empty so the middle column truly centres */}
+          <div aria-hidden />
+
+          {/* Centered nav list */}
+          <ul className="flex items-center gap-1 text-sm font-semibold flex-nowrap justify-center">
             <NavItem to="/" label={<span className="inline-flex items-center gap-1"><FiHome size={14} /> Home</span>} end />
             <NavItem to="/shop" label="All Chairs" />
             <NavItem to="/chair-repair" label="🔧 Repair" />
@@ -367,18 +377,20 @@ export default function Navbar() {
             <NavItem to="/shop?category=Recliners" label="Recliners" />
             <NavItem to="/shop?bestSeller=true" label="⭐ Best Sellers" />
             <NavItem to="/shop?newArrival=true" label="✨ New Arrivals" />
-            <li className="ml-auto">
-              <NavLink to="/wholesale" className={({ isActive }) =>
-                `inline-block whitespace-nowrap px-4 py-3 text-purple-700 font-bold hover:bg-purple-50 transition ${isActive ? 'bg-purple-50' : ''}`
-              }>🛍 Wholesale</NavLink>
-            </li>
           </ul>
+
+          {/* Right column — Wholesale always pinned to the right edge */}
+          <div className="justify-self-end">
+            <NavLink to="/wholesale" className={({ isActive }) =>
+              `inline-block whitespace-nowrap px-4 py-3 text-purple-700 font-bold hover:bg-purple-50 transition ${isActive ? 'bg-purple-50' : ''}`
+            }>🛍 Wholesale</NavLink>
+          </div>
         </div>
 
         {/* Mega menus */}
         {openDropdown === 'clients' && (
           <div className="absolute left-0 right-0 top-full bg-white shadow-xl border-t z-40 animate-fadeIn">
-            <div className="max-w-screen-2xl mx-auto px-4 py-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Companies We Manufacture For</h3>
               <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
                 {clients.map((c) => (
@@ -402,7 +414,7 @@ export default function Navbar() {
 
         {openDropdown === 'category' && (
           <div className="absolute left-0 right-0 top-full bg-white shadow-xl border-t z-40 animate-fadeIn">
-            <div className="max-w-screen-2xl mx-auto px-4 py-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-bold text-gray-900 text-lg">Shop By Department</h3>
                 <Link
@@ -446,7 +458,7 @@ export default function Navbar() {
 
         {openDropdown === 'material' && (
           <div className="absolute left-0 right-0 top-full bg-white shadow-xl border-t z-40 animate-fadeIn">
-            <div className="max-w-screen-2xl mx-auto px-4 py-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Shop by Material</h3>
               <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3">
                 {materialList.map((m) => (
