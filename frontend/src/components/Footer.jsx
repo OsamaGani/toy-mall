@@ -29,15 +29,13 @@ const Li = ({ to, href, external, children }) => (
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 mt-16">
-      {/* Main grid — five focused columns on lg, gracefully collapsing
-          to three on md and two on phone. Wider Brand + Subscribe
-          columns on the smaller breakpoints to keep the column heights
-          balanced and to avoid orphan single-link columns at narrow
-          widths. */}
-      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+      {/* Main grid — four focused columns on lg, gracefully collapsing
+          to two on md/mobile. Wider Brand + Subscribe columns on the
+          smaller breakpoints to keep column heights balanced. */}
+      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 lg:grid-cols-4 gap-8">
 
         {/* === 1. Brand column === */}
-        <div className="col-span-2 md:col-span-3 lg:col-span-1">
+        <div className="col-span-2 lg:col-span-1">
           <div className="mb-4">
             <img src="/logo-light.svg" alt="Talle Furniture Mart" className="h-12 w-auto" />
           </div>
@@ -49,7 +47,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* === 2. Shop column === */}
+        {/* === 2. Shop column — products + categories === */}
         <div>
           <h3 className="font-bold text-white mb-3">Shop</h3>
           <LinkList>
@@ -57,7 +55,6 @@ export default function Footer() {
             <Li to="/shop?category=Executive">Executive Chairs</Li>
             <Li to="/shop?category=Ergonomic">Ergonomic Chairs</Li>
             <Li to="/shop?category=Premium">Premium</Li>
-            <Li to="/shop?category=Designer">Designer</Li>
             <Li to="/shop?category=Gaming">Gaming Chairs</Li>
             <Li to="/shop?bestSeller=true">Best Sellers</Li>
             <Li to="/shop?newArrival=true">New Arrivals</Li>
@@ -65,36 +62,24 @@ export default function Footer() {
           </LinkList>
         </div>
 
-        {/* === 3. Services column === */}
+        {/* === 3. Services & Help column — services first, then support === */}
         <div>
-          <h3 className="font-bold text-white mb-3">Services</h3>
+          <h3 className="font-bold text-white mb-3">Services &amp; Help</h3>
           <LinkList>
             <Li to="/chair-repair">Chair Repair</Li>
             <Li to="/chair-repair">Reupholstery</Li>
             <Li to="/contact">Custom Manufacturing</Li>
             <Li to="/contact">Bulk Office Orders</Li>
-            <Li to="/contact">Hydraulic Replacement</Li>
-            <Li to="/shipping-policy">D2D Doorstep Service</Li>
-          </LinkList>
-        </div>
-
-        {/* === 4. Help & Company column === */}
-        <div>
-          <h3 className="font-bold text-white mb-3">Help &amp; Company</h3>
-          <LinkList>
             <Li to="/about">About Us</Li>
             <Li to="/contact">Contact</Li>
             <Li to="/help">Help / FAQs</Li>
             <Li to="/orders">Track Order</Li>
-            <Li to="/wishlist">My Wishlist</Li>
-            <Li to="/profile">My Account</Li>
-            <Li href="tel:+919326166875">Call Support</Li>
             <Li href="https://wa.me/919326166875" external>WhatsApp Us</Li>
           </LinkList>
         </div>
 
-        {/* === 5. Subscribe + contact column === */}
-        <div className="col-span-2 md:col-span-3 lg:col-span-1">
+        {/* === 4. Subscribe + contact column === */}
+        <div className="col-span-2 lg:col-span-1">
           <h3 className="font-bold text-white mb-3">Stay in the loop</h3>
           <p className="text-sm mb-3">Get latest deals and offers in your inbox.</p>
           <NewsletterForm variant="dark" source="footer" />
