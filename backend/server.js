@@ -73,12 +73,22 @@ const ALLOWED_ORIGINS = (process.env.CLIENT_URL || 'http://localhost:5173')
   .map((s) => s.trim().replace(/\/$/, ''))
   .filter(Boolean);
 
+// Wildcard patterns — any *.pages.dev subdomain (every Cloudflare Pages
+// alias the storefront might be deployed under) and any localhost port.
+// Lets us add new pages.dev aliases without touching the Render env var.
+const ALLOWED_PATTERNS = [
+  /^https:\/\/[a-z0-9-]+\.pages\.dev$/i,           // Cloudflare Pages
+  /^http:\/\/localhost(:\d+)?$/i,                  // Local dev
+  /^http:\/\/127\.0\.0\.1(:\d+)?$/i,               // Local dev (IP)
+];
+
 app.use(cors({
   origin: (origin, cb) => {
     // Allow same-origin / curl / mobile apps (no Origin header)
     if (!origin) return cb(null, true);
     const normalized = origin.replace(/\/$/, '');
     if (ALLOWED_ORIGINS.includes(normalized)) return cb(null, true);
+    if (ALLOWED_PATTERNS.some((re) => re.test(normalized))) return cb(null, true);
     return cb(new Error(`CORS blocked: ${origin}`));
   },
   credentials: false, // tokens travel in Authorization header, not cookies
