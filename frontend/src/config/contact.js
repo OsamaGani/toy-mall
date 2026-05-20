@@ -35,6 +35,13 @@ export const STORE_ADDRESS_FULL = `${STORE_ADDRESS_STREET}, ${STORE_ADDRESS_CITY
 // === Hours ===
 export const STORE_HOURS = 'Open 24 hours · 7 days a week';
 
+// === Social profiles ===
+// Single source of truth — every social-icon set on the site reads from
+// these so the URLs never drift between footer / contact / share buttons.
+export const INSTAGRAM_URL = 'https://www.instagram.com/talle_furniture_mart/';
+export const FACEBOOK_URL  = 'https://facebook.com/tallefurnituremart';
+export const YOUTUBE_URL   = 'https://youtube.com';
+
 // === Helper builders ===
 export const telLink      = (display, tel) => ({ href: `tel:${tel}`, text: display });
 export const waLink       = (msg = 'Hi Talle Furniture Mart! I have a question about your chairs.') =>

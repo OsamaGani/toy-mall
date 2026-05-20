@@ -1,12 +1,19 @@
 import { FiMail, FiFacebook, FiInstagram, FiYoutube } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import {
+  EMAIL_PRIMARY, INSTAGRAM_URL, FACEBOOK_URL, YOUTUBE_URL,
+  PHONE_PRIMARY_WHATSAPP, mailtoLink,
+} from '../config/contact';
 
+// All URLs/handles come from config/contact.js so updating Instagram /
+// Facebook / YouTube / WhatsApp / email in one place updates the
+// footer, contact page, and every other social-icon set on the site.
 const socials = [
-  { Icon: FiMail,       href: 'mailto:abdulrab2411@gmail.com',     label: 'Email' },
-  { Icon: FiFacebook,   href: 'https://facebook.com/tallefurnituremart',   label: 'Facebook' },
-  { Icon: FiInstagram,  href: 'https://instagram.com/talle_furniture_mart',label: 'Instagram' },
-  { Icon: FaWhatsapp,   href: 'https://wa.me/919326166875',                label: 'WhatsApp' },
-  { Icon: FiYoutube,    href: 'https://youtube.com',                       label: 'YouTube' },
+  { Icon: FiMail,       href: mailtoLink(EMAIL_PRIMARY),            label: 'Email' },
+  { Icon: FiFacebook,   href: FACEBOOK_URL,                         label: 'Facebook' },
+  { Icon: FiInstagram,  href: INSTAGRAM_URL,                        label: 'Instagram' },
+  { Icon: FaWhatsapp,   href: `https://wa.me/${PHONE_PRIMARY_WHATSAPP}`, label: 'WhatsApp' },
+  { Icon: FiYoutube,    href: YOUTUBE_URL,                          label: 'YouTube' },
 ];
 
 export default function FollowUs({ dark = false }) {
