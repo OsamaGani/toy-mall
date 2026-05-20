@@ -7,158 +7,328 @@
   <title>Talle Furniture — Logo Options Preview</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Playfair+Display:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #fafafa;
+      --card: #ffffff;
+      --line: #e5e7eb;
+      --ink: #111827;
+      --muted: #6b7280;
+      --accent: #e53935;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f9fafb;
-      color: #111827;
-      line-height: 1.5;
-      padding: 32px 16px 80px;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      padding: 56px 16px 96px;
+      -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 1100px; margin: 0 auto; }
+    .container { max-width: 1180px; margin: 0 auto; }
+    .hero {
+      max-width: 720px;
+      margin-bottom: 48px;
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
     h1 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 36px;
+      font-size: 44px;
       font-weight: 800;
-      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      line-height: 1.1;
     }
-    .intro {
-      color: #6b7280;
-      margin-bottom: 32px;
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
       max-width: 640px;
     }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin: 56px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
     .option {
-      background: #fff;
-      border: 1px solid #e5e7eb;
+      background: var(--card);
+      border: 1px solid var(--line);
       border-radius: 16px;
       margin-bottom: 24px;
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s;
     }
+    .option:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+
     .option-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 24px;
-      border-bottom: 1px solid #f3f4f6;
-      background: #fafbfc;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--line);
     }
     .option-header h2 {
-      font-size: 18px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
       font-weight: 700;
+      letter-spacing: -0.3px;
     }
-    .option-header .label {
-      background: #fee2e2;
-      color: #b91c1c;
-      font-size: 11px;
+    .option-header .num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-right: 14px;
+      width: 38px;
+      text-align: right;
+    }
+    .header-left { display: flex; align-items: center; }
+    .header-right { display: flex; gap: 8px; }
+    .chip {
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 4px 10px;
+      padding: 5px 11px;
       border-radius: 999px;
+      background: #f3f4f6;
+      color: var(--ink);
     }
+    .chip.accent { background: #fee2e2; color: #b91c1c; }
+    .chip.dark   { background: #111827; color: #fff; }
+
     .preview-bg {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1px;
-      background: #e5e7eb;
+      background: var(--line);
     }
     @media (max-width: 720px) {
       .preview-bg { grid-template-columns: 1fr; }
     }
     .preview-cell {
-      padding: 32px;
+      padding: 40px 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 140px;
+      min-height: 160px;
     }
     .preview-cell.light { background: #ffffff; }
-    .preview-cell.dark  { background: #1f2937; }
-    .preview-cell img { max-width: 100%; height: auto; }
-    .description {
-      padding: 16px 24px;
-      color: #374151;
-      font-size: 14px;
-      border-top: 1px solid #f3f4f6;
-      background: #fafbfc;
+    .preview-cell.dark  { background: #0f1623; }
+    .preview-cell.dark img { filter: invert(1) hue-rotate(180deg); }
+    .preview-cell img {
+      max-width: 100%;
+      height: auto;
+      max-height: 110px;
     }
-    .description b { color: #111827; }
-    footer {
+
+    .details {
+      padding: 20px 24px 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      font-size: 13.5px;
+      background: #fcfcfd;
+      border-top: 1px solid var(--line);
+    }
+    @media (max-width: 720px) {
+      .details { grid-template-columns: 1fr; }
+    }
+    .detail label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .detail p { color: var(--ink); }
+
+    .footer-note {
+      margin-top: 56px;
+      padding: 32px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 16px;
       text-align: center;
-      margin-top: 48px;
-      padding: 24px;
-      background: #fff;
-      border-radius: 12px;
-      color: #6b7280;
-      font-size: 14px;
     }
-    footer b { color: #111827; }
+    .footer-note p {
+      font-size: 15px;
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .footer-note b { color: var(--accent); font-weight: 700; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Logo design options</h1>
-    <p class="intro">
-      Three SVG concepts for the Talle Furniture Mart wordmark. Each one is shown on a white background (how it appears in the navbar) and a dark background (how it appears in the footer / shipping label). Pick the one that feels right.
-    </p>
+    <div class="hero">
+      <p class="eyebrow">Brand Identity</p>
+      <h1>Six logo directions for Talle Furniture Mart</h1>
+      <p>Each option is shown on a white background (navbar context) and on a dark background (footer / shipping label context). They're all pure SVG — sharp at every size, print-safe, easy to tweak. Pick the one you want and I'll wire it in everywhere the text logo currently appears.</p>
+    </div>
+
+    <h3 class="section-title">Refined classics</h3>
 
     <!-- Option 1 -->
     <div class="option">
       <div class="option-header">
-        <h2>Option 1 — Chair icon + horizontal wordmark</h2>
-        <span class="label">Modern</span>
+        <div class="header-left">
+          <span class="num">1</span>
+          <h2>Architectural mark + wordmark</h2>
+        </div>
+        <div class="header-right">
+          <span class="chip">Modern</span>
+        </div>
       </div>
       <div class="preview-bg">
         <div class="preview-cell light"><img src="./logo-1-chair-icon.svg" alt="Option 1 light"></div>
         <div class="preview-cell dark"><img src="./logo-1-chair-icon.svg" alt="Option 1 dark"></div>
       </div>
-      <div class="description">
-        <b>What it is:</b> A stylised office-chair silhouette in a rounded red square next to the TALLE wordmark.
-        <b>Best for:</b> the navbar header, app icons, social-media avatars.
-        <b>Vibe:</b> friendly, modern, clearly "we sell chairs".
+      <div class="details">
+        <div class="detail"><label>Anatomy</label><p>Stylised chair line in a charcoal rounded square + tracked TALLE wordmark + thin rule + FURNITURE MART sub-line. Red accent dot used as a precision detail, not as a fill.</p></div>
+        <div class="detail"><label>Best for</label><p>Navbar header, app icon, social media avatar, email signatures. Reads cleanly even at favicon size.</p></div>
+        <div class="detail"><label>Vibe</label><p>Confident · architectural · single weight · no decoration. Furniture-design firm energy, not retail.</p></div>
       </div>
     </div>
 
     <!-- Option 2 -->
     <div class="option">
       <div class="option-header">
-        <h2>Option 2 — Pure wordmark, no icon</h2>
-        <span class="label">Minimal</span>
+        <div class="header-left">
+          <span class="num">2</span>
+          <h2>Editorial wordmark only</h2>
+        </div>
+        <div class="header-right">
+          <span class="chip">Minimal</span>
+        </div>
       </div>
       <div class="preview-bg">
         <div class="preview-cell light"><img src="./logo-2-wordmark.svg" alt="Option 2 light"></div>
         <div class="preview-cell dark"><img src="./logo-2-wordmark.svg" alt="Option 2 dark"></div>
       </div>
-      <div class="description">
-        <b>What it is:</b> Bold serif TALLE wordmark with a sub-line and a small "Saki Naka · Mumbai · Est. 2010 · Chair Specialists" tagline block.
-        <b>Best for:</b> printed invoices, business cards, newsletters.
-        <b>Vibe:</b> editorial, premium, like a luxury furniture house.
+      <div class="details">
+        <div class="detail"><label>Anatomy</label><p>Pure Playfair Display "Talle" in display weight + hairline rule + tracked FURNITURE MART small caps. Single red dot as accent, nothing else.</p></div>
+        <div class="detail"><label>Best for</label><p>Printed invoices, business cards, newsletters, magazine-style headers. Doesn't compete with hero imagery.</p></div>
+        <div class="detail"><label>Vibe</label><p>Quiet · luxury · editorial — like a high-end furniture house catalogue. Maximum confidence with minimum ink.</p></div>
       </div>
     </div>
 
     <!-- Option 3 -->
     <div class="option">
       <div class="option-header">
-        <h2>Option 3 — Workshop badge + wordmark</h2>
-        <span class="label">Heritage</span>
+        <div class="header-left">
+          <span class="num">3</span>
+          <h2>Heritage seal + wordmark</h2>
+        </div>
+        <div class="header-right">
+          <span class="chip">Heritage</span>
+          <span class="chip accent">Brass</span>
+        </div>
       </div>
       <div class="preview-bg">
         <div class="preview-cell light"><img src="./logo-3-badge.svg" alt="Option 3 light"></div>
         <div class="preview-cell dark"><img src="./logo-3-badge.svg" alt="Option 3 dark"></div>
       </div>
-      <div class="description">
-        <b>What it is:</b> A round red badge with a big "T" monogram and curved "FURNITURE MART · EST. 2010 · MUMBAI" text on the rim, paired with the wordmark.
-        <b>Best for:</b> the shipping-label stamp, the about-page header, hangtag stickers.
-        <b>Vibe:</b> craftsman workshop, real shop, hand-stamped feel.
+      <div class="details">
+        <div class="detail"><label>Anatomy</label><p>Three-ring brass seal with "T" monogram and curved "TALLE FURNITURE MART · EST. 2010 · MUMBAI" text on the rim. Brass gradient (not red) for warmth + maturity.</p></div>
+        <div class="detail"><label>Best for</label><p>Shipping label stamp, invoice header, About page, hangtag stickers, certificate of warranty.</p></div>
+        <div class="detail"><label>Vibe</label><p>Royal Warrant · craftsman maison · established. Earns trust before the first chair leaves the workshop.</p></div>
       </div>
     </div>
 
-    <footer>
-      <p>Tell me which option you want — <b>Option 1</b>, <b>Option 2</b>, or <b>Option 3</b> — and I'll wire it into every place the text logo currently appears (navbar, footer, login, register, forgot password, reset password, invoice, shipping label).</p>
-    </footer>
+    <h3 class="section-title">Premium new concepts</h3>
+
+    <!-- Option 4 -->
+    <div class="option">
+      <div class="option-header">
+        <div class="header-left">
+          <span class="num">4</span>
+          <h2>Bold sans wordmark with terminal dot</h2>
+        </div>
+        <div class="header-right">
+          <span class="chip">Confident</span>
+          <span class="chip dark">Steelcase-style</span>
+        </div>
+      </div>
+      <div class="preview-bg">
+        <div class="preview-cell light"><img src="./logo-4-bold-sans.svg" alt="Option 4 light"></div>
+        <div class="preview-cell dark"><img src="./logo-4-bold-sans.svg" alt="Option 4 dark"></div>
+      </div>
+      <div class="details">
+        <div class="detail"><label>Anatomy</label><p>TALLE set in Poppins Black, ultra-tight letter spacing, followed by a precise red dot as a full-stop. "CHAIR SPECIALISTS · MUMBAI" sub-line, tracked and quiet.</p></div>
+        <div class="detail"><label>Best for</label><p>Big bold placements — billboards, the navbar, social-media cover photos, packaging. The dot adds personality without adding clutter.</p></div>
+        <div class="detail"><label>Vibe</label><p>Confident · contemporary · declarative. Inspired by Steelcase / Vitra / Hay identity work.</p></div>
+      </div>
+    </div>
+
+    <!-- Option 5 -->
+    <div class="option">
+      <div class="option-header">
+        <div class="header-left">
+          <span class="num">5</span>
+          <h2>Lowercase serif + chair monogram</h2>
+        </div>
+        <div class="header-right">
+          <span class="chip">Soft</span>
+          <span class="chip dark">Knoll-style</span>
+        </div>
+      </div>
+      <div class="preview-bg">
+        <div class="preview-cell light"><img src="./logo-5-lowercase-serif.svg" alt="Option 5 light"></div>
+        <div class="preview-cell dark"><img src="./logo-5-lowercase-serif.svg" alt="Option 5 dark"></div>
+      </div>
+      <div class="details">
+        <div class="detail"><label>Anatomy</label><p>Charcoal square monogram containing a single-line chair drawing topped with a small red dot. "talle" in lowercase Playfair beside it — softer and more domestic than uppercase.</p></div>
+        <div class="detail"><label>Best for</label><p>Brands aiming to feel approachable rather than corporate — boutique furniture houses, B2C-leaning placements, Instagram bio, gift cards.</p></div>
+        <div class="detail"><label>Vibe</label><p>Soft · domestic · refined. Inspired by Knoll, Carl Hansen, &Tradition.</p></div>
+      </div>
+    </div>
+
+    <!-- Option 6 -->
+    <div class="option">
+      <div class="option-header">
+        <div class="header-left">
+          <span class="num">6</span>
+          <h2>T-monogram chair construction</h2>
+        </div>
+        <div class="header-right">
+          <span class="chip">Clever</span>
+          <span class="chip accent">Negative space</span>
+        </div>
+      </div>
+      <div class="preview-bg">
+        <div class="preview-cell light"><img src="./logo-6-t-monogram.svg" alt="Option 6 light"></div>
+        <div class="preview-cell dark"><img src="./logo-6-t-monogram.svg" alt="Option 6 dark"></div>
+      </div>
+      <div class="details">
+        <div class="detail"><label>Anatomy</label><p>The white "T" inside the charcoal square is also a chair silhouette — the horizontal is the seat, the vertical is the back. Two red dots underneath read as castor wheels. Letter, chair, and base in one mark.</p></div>
+        <div class="detail"><label>Best for</label><p>Standalone mark when you don't have room for the full wordmark — favicon, profile picture, embroidery on packaging, embossing on business cards.</p></div>
+        <div class="detail"><label>Vibe</label><p>Clever · architectural · scales infinitely. Negative-space play, instantly memorable.</p></div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <p>Tell me which option you want — <b>1, 2, 3, 4, 5</b>, or <b>6</b> — and I'll wire it into every place the text logo currently appears (Navbar, Footer, Login, Register, Forgot/Reset Password, Admin Invoice, Shipping Label). You can also mix &amp; match — eg. "Option 4 for the navbar, Option 3 for the invoice".</p>
+    </div>
   </div>
 </body>
 </html>

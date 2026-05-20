@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96">
+  <!-- Option 6: Geometric T-monogram (chair-leg construction)
+       The "T" is constructed from the silhouette of a chair — the cross
+       bar is the seat, the vertical is the back. Negative-space play
+       between the letter and the object. Inspired by FontWerk / IDEO
+       brand work. Architectural, clever, scales to favicon. -->
+
+  <!-- The mark: a perfect square in deep charcoal -->
+  <rect x="6" y="6" width="84" height="84" rx="6" fill="#111827"/>
+
+  <!-- The "T" carved out in white, drawn as a chair:
+       horizontal bar = chair seat with extending arms,
+       vertical bar = chair back. -->
+  <g fill="#ffffff">
+    <!-- Horizontal bar (the chair seat / top of T) -->
+    <rect x="20" y="30" width="56" height="10" rx="1"/>
+    <!-- Vertical stem (the chair back / stem of T) -->
+    <rect x="42" y="30" width="12" height="42" rx="1"/>
+  </g>
+
+  <!-- Two small castor dots at the bottom — reads as a chair base -->
+  <circle cx="44" cy="78" r="2.2" fill="#e53935"/>
+  <circle cx="52" cy="78" r="2.2" fill="#e53935"/>
+
+  <!-- Wordmark — bold uppercase, tight, modern -->
+  <text x="108" y="50"
+        font-family="'Poppins', 'Helvetica Neue', sans-serif"
+        font-size="34"
+        font-weight="800"
+        letter-spacing="2"
+        fill="#111827">TALLE</text>
+
+  <!-- Hairline rule under the wordmark -->
+  <line x1="110" y1="60" x2="220" y2="60" stroke="#e53935" stroke-width="2"/>
+
+  <!-- Sub-line: tracked, all caps, balanced -->
+  <text x="110" y="78"
+        font-family="'Poppins', 'Helvetica Neue', sans-serif"
+        font-size="9"
+        font-weight="700"
+        letter-spacing="5"
+        fill="#111827">FURNITURE MART</text>
+</svg>

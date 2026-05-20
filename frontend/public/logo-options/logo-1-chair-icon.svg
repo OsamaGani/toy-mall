@@ -1,39 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
-  <!-- Option 1: Chair icon + horizontal wordmark
-       Primary use: navbar, header, marketing email banners.
-       Crisp at every size, no raster artefacts on retina. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96">
+  <!-- Option 1 (refined): Architectural chair mark + wordmark
+       Inspired by Herman Miller / Steelcase identity work. Single weight,
+       geometric, no decoration. Reads instantly at favicon size. -->
 
-  <!-- Chair silhouette in a rounded red square -->
-  <rect x="4" y="4" width="72" height="72" rx="14" fill="#e53935"/>
-  <!-- Stylised executive chair: back, seat, base, hydraulic stem -->
-  <g fill="#ffffff" stroke="none">
-    <!-- Chair back (tall rectangle with rounded top) -->
-    <rect x="28" y="16" width="24" height="28" rx="4"/>
-    <!-- Chair seat -->
-    <rect x="22" y="42" width="36" height="6" rx="2"/>
-    <!-- Hydraulic stem -->
-    <rect x="38" y="48" width="4" height="10"/>
-    <!-- 5-star base spokes -->
-    <path d="M22 64 L40 56 L58 64 L52 66 L40 60 L28 66 Z"/>
-    <!-- Castor wheels -->
-    <circle cx="22" cy="64" r="2.5"/>
-    <circle cx="58" cy="64" r="2.5"/>
-    <circle cx="40" cy="66" r="2.5"/>
+  <!-- Outer mark: rounded square, deep charcoal not red — premium feel -->
+  <rect x="6" y="6" width="84" height="84" rx="12" fill="#111827"/>
+
+  <!-- Stylised chair: a single bold "h" silhouette where the down-stroke
+       is the chair back and the curve is the seat. Geometric, no shading. -->
+  <g fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter">
+    <!-- chair back -->
+    <line x1="36" y1="24" x2="36" y2="64"/>
+    <!-- seat (horizontal) -->
+    <line x1="36" y1="56" x2="62" y2="56"/>
+    <!-- front leg -->
+    <line x1="62" y1="56" x2="62" y2="72"/>
+    <!-- floor base line (subtle) -->
   </g>
+  <!-- Single red accent dot — the brand colour as a precision detail -->
+  <circle cx="36" cy="20" r="3.5" fill="#e53935"/>
 
-  <!-- TALLE wordmark in red -->
-  <text x="88" y="42"
-        font-family="'Playfair Display', Georgia, serif"
-        font-size="36"
-        font-weight="800"
-        letter-spacing="1"
-        fill="#e53935">TALLE</text>
-
-  <!-- FURNITURE MART subtitle in gray -->
-  <text x="88" y="62"
+  <!-- TALLE wordmark — black, tracked, geometric -->
+  <text x="108" y="50"
         font-family="'Poppins', 'Helvetica Neue', sans-serif"
-        font-size="11"
-        font-weight="700"
+        font-size="34"
+        font-weight="800"
         letter-spacing="4"
+        fill="#111827">TALLE</text>
+
+  <!-- FURNITURE MART rule + sub-line, tight kerning -->
+  <line x1="110" y1="60" x2="222" y2="60" stroke="#111827" stroke-width="1.5"/>
+  <text x="110" y="78"
+        font-family="'Poppins', 'Helvetica Neue', sans-serif"
+        font-size="10"
+        font-weight="600"
+        letter-spacing="5"
         fill="#374151">FURNITURE MART</text>
 </svg>

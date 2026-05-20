@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96">
+  <!-- Option 4: Bold sans wordmark with terminal accent
+       Inspired by Steelcase / Vitra / Hay. Heavy weight, precision
+       letterforms, deliberate trailing dot — a confident declarative mark.
+       The whole logo is the wordmark — no icon, no subtitle. -->
+
+  <!-- TALLE in heaviest weight, very tight letter spacing -->
+  <text x="20" y="62"
+        font-family="'Poppins', 'Helvetica Neue', sans-serif"
+        font-size="58"
+        font-weight="900"
+        letter-spacing="-2"
+        fill="#111827">TALLE</text>
+
+  <!-- The terminal red dot — this is the entire brand colour, used like
+       a full-stop. Confident and minimal. -->
+  <circle cx="194" cy="58" r="6" fill="#e53935"/>
+
+  <!-- Optional sub-line, tracked small caps, very subtle -->
+  <text x="22" y="82"
+        font-family="'Poppins', 'Helvetica Neue', sans-serif"
+        font-size="9"
+        font-weight="600"
+        letter-spacing="6"
+        fill="#6b7280">CHAIR  SPECIALISTS  ·  MUMBAI</text>
+</svg>
