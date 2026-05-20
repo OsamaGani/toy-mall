@@ -6,7 +6,7 @@
 // helper rewrites them to point at the API host.
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
-// API_URL looks like "https://talle-furniture-mart.onrender.com/api" — strip the trailing
+// API_URL looks like "https://toy-mall.onrender.com/api" — strip the trailing
 // /api to get the bare server origin used for static /uploads files.
 const API_ORIGIN = API_URL.replace(/\/api\/?$/, '');
 
