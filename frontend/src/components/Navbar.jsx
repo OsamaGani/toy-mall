@@ -230,14 +230,23 @@ export default function Navbar() {
       <div className="border-b">
         <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-[auto_1fr_auto] items-center gap-4 sm:gap-6 transition-all duration-300 ${scrolled ? 'py-2' : 'py-2.5 sm:py-3'}`}>
           {/* Brand logo — SVG wordmark + architectural chair mark. Height
-              shrinks slightly when the page is scrolled so the sticky nav
-              stays compact without re-flowing the row. The SVG itself
-              keeps its 3.75:1 aspect ratio so width follows the height. */}
+              steps up on tablet/desktop because the navbar has plenty of
+              horizontal space to fill. Shrinks slightly when the page is
+              scrolled so the sticky nav stays compact. The SVG keeps its
+              280:88 (~3.18:1) aspect ratio so width follows the height.
+
+              Sizing ladder (height in px, only Tailwind defaults):
+                 mobile  <640  →  scrolled 36 / default 40
+                 sm      640+  →  scrolled 40 / default 48
+                 md      768+  →  scrolled 48 / default 56
+                 lg     1024+  →  scrolled 56 / default 64
+              At lg+ the logo renders ~204 px wide — visually substantial
+              without crowding the search bar. */}
           <Link to="/" className="flex items-center flex-shrink-0" aria-label="Talle Furniture Mart — home">
             <img
               src="/logo.svg"
               alt="Talle Furniture Mart"
-              className={`w-auto transition-all ${scrolled ? 'h-9 sm:h-10' : 'h-10 sm:h-12'}`}
+              className={`w-auto transition-all ${scrolled ? 'h-9 sm:h-10 md:h-12 lg:h-14' : 'h-10 sm:h-12 md:h-14 lg:h-16'}`}
             />
           </Link>
 
