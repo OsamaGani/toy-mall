@@ -1,25 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296 86" width="296" height="86">
   <!-- Talle Furniture Mart — light variant (white wordmark on dark bg).
-       Same architecture as /logo.svg but inverted for footer / dark
-       gradient panels (Login/Register left side, ForgotPassword and
-       ResetPassword header band). The mark itself stays a charcoal
-       square — charcoal reads cleanly on every brand background and
-       keeps the visual identity consistent across both variants. -->
+       viewBox tightened to match /logo.svg exactly so it never reports
+       phantom width in the footer / login left panel / shipping label. -->
 
   <!-- Mark: rounded charcoal square — same as primary -->
-  <rect x="6" y="6" width="84" height="84" rx="12" fill="#111827"/>
+  <rect x="0" y="0" width="86" height="86" rx="12" fill="#111827"/>
 
   <!-- Single-line chair drawing in white -->
   <g fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter">
-    <line x1="36" y1="24" x2="36" y2="64"/>
-    <line x1="36" y1="56" x2="62" y2="56"/>
-    <line x1="62" y1="56" x2="62" y2="72"/>
+    <line x1="30" y1="20" x2="30" y2="60"/>
+    <line x1="30" y1="52" x2="56" y2="52"/>
+    <line x1="56" y1="52" x2="56" y2="68"/>
   </g>
-  <!-- Red accent dot — slightly brighter so it still pops on red/pink bg -->
-  <circle cx="36" cy="20" r="3.5" fill="#ffffff"/>
+  <!-- Red accent dot stays red on the dark variant too, since the brand
+       colour pops cleanly against the charcoal mark on every background. -->
+  <circle cx="30" cy="16" r="3.5" fill="#e53935"/>
 
   <!-- TALLE wordmark — white -->
-  <text x="108" y="50"
+  <text x="102" y="45"
         font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif"
         font-size="34"
         font-weight="800"
@@ -27,8 +25,8 @@
         fill="#ffffff">TALLE</text>
 
   <!-- FURNITURE MART rule + sub-line in white / soft grey -->
-  <line x1="110" y1="60" x2="222" y2="60" stroke="#ffffff" stroke-width="1.5"/>
-  <text x="110" y="78"
+  <line x1="104" y1="55" x2="216" y2="55" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="104" y="73"
         font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif"
         font-size="10"
         font-weight="600"
