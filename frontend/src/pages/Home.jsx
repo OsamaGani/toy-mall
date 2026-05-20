@@ -23,16 +23,15 @@ import { ProductRowSkeleton } from '../components/ProductCardSkeleton';
 const heroSlides = [
   {
     eyebrow: 'NEW SEASON',
-    title: 'Seating built for the way you work',
-    subtitle: 'Executive, ergonomic and premium office chairs — designed and manufactured in our Saki Naka workshop.',
+    title: 'Furniture that grows with your home',
+    subtitle: 'Discover handcrafted pieces in solid wood, mesh, leather and warm metals — made in our Saki Naka workshop.',
     primaryCta: 'SHOP THE COLLECTION',
     primaryLink: '/shop',
     secondaryCta: 'OUR STORY',
     secondaryLink: '/about',
-    // Wide office workspace shot — modern open-plan office with task
-    // chairs lining a long workbench. Matches the new FC-style
-    // office-only catalogue and reads as our day-one customer base.
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85&auto=format&fit=crop',
+    // Wide interior lifestyle shot — living room with sofa, side table,
+    // wall art. Keeps the chair business in a "home setting" frame.
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=85&auto=format&fit=crop',
   },
   {
     eyebrow: 'MADE TO LAST',
@@ -42,8 +41,6 @@ const heroSlides = [
     primaryLink: '/shop?category=Premium',
     secondaryCta: 'OUR STORY',
     secondaryLink: '/about',
-    // Close-up ergonomic mesh chair in a daylit office — keeps the
-    // focus on the product itself, hero-image style.
     image: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=1920&q=85&auto=format&fit=crop',
   },
   {
@@ -54,9 +51,7 @@ const heroSlides = [
     primaryLink: '/chair-repair',
     secondaryCta: 'CALL +91 93261 66875',
     secondaryLink: 'tel:+919326166875',
-    // Workshop bench / tools photo — frames the "repair specialist"
-    // pitch better than a generic chair shot.
-    image: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=1920&q=85&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1920&q=85&auto=format&fit=crop',
   },
 ];
 
