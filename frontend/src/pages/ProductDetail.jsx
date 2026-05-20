@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { FiShoppingCart, FiHeart, FiStar, FiTruck, FiShield, FiRefreshCw, FiChevronLeft, FiChevronRight, FiMapPin, FiCheckCircle, FiShare2, FiCheck, FiZap, FiMessageCircle, FiClock } from 'react-icons/fi';
+import { FiShoppingCart, FiHeart, FiStar, FiTruck, FiShield, FiRefreshCw, FiChevronLeft, FiChevronRight, FiMapPin, FiCheckCircle, FiShare2, FiCheck, FiZap, FiMessageCircle } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useWishlist } from '../context/WishlistContext';
 import { resolveImage } from '../utils/imageUrl';
@@ -533,20 +533,6 @@ export default function ProductDetail() {
               </tbody>
             </table>
           </div>
-
-          {/* Order ETA — shows a default delivery window even before the
-              customer enters a PIN. Three working days out gives a safe
-              estimate; the PIN check below refines it for their pincode. */}
-          {product.stock > 0 && !pinCheck?.etaText && (
-            <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 font-semibold max-w-full">
-              <FiClock size={12} className="flex-shrink-0" />
-              <span className="truncate">
-                <span className="xs:hidden">Delivery by </span>
-                <span className="hidden xs:inline">Order today · Delivery by </span>
-                {new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
-              </span>
-            </div>
-          )}
 
           {product.stock > 0 ? (
             <div className="mt-5 flex items-center gap-1.5 flex-wrap sm:flex-nowrap">
