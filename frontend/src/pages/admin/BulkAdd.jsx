@@ -144,7 +144,7 @@ export default function BulkAdd() {
       </div>
 
       {/* Step 1: Shared settings */}
-      <div className="bg-primary-50 border-2 border-purple-200 rounded-xl p-5 mb-6">
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-xl p-5 mb-6">
         <div className="flex items-center gap-2 mb-3">
           <span className="bg-purple-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">1</span>
           <h2 className="font-bold">Common settings (apply to all products below)</h2>

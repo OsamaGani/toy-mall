@@ -45,7 +45,7 @@ export default function ResetPassword() {
 
       <div className="relative w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-xl ring-1 ring-black/5 overflow-hidden">
-          <div className="bg-primary-500 px-6 py-7 text-center text-white">
+          <div className="bg-gradient-to-r from-primary-500 to-pink-500 px-6 py-7 text-center text-white">
             <Link to="/" className="inline-flex items-center gap-1 mb-3">
               <span className="text-2xl font-extrabold">Talle</span>
               <span className="text-2xl font-extrabold">Furniture</span>
@@ -68,7 +68,7 @@ export default function ResetPassword() {
                 </p>
                 <button
                   onClick={() => navigate('/login')}
-                  className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-lg shadow-md transition flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-primary-500 to-pink-500 hover:from-primary-600 hover:to-pink-600 text-white font-bold py-3 rounded-lg shadow-md transition flex items-center justify-center gap-2"
                 >
                   Sign in <FiArrowRight />
                 </button>
@@ -105,7 +105,7 @@ export default function ResetPassword() {
                 <button
                   type="submit"
                   disabled={submitting || !pwStrongEnough || !passwordsMatch}
-                  className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3.5 rounded-lg shadow-lg disabled:opacity-60 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 group"
+                  className="w-full bg-gradient-to-r from-primary-500 to-pink-500 hover:from-primary-600 hover:to-pink-600 text-white font-bold py-3.5 rounded-lg shadow-lg disabled:opacity-60 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 group"
                 >
                   {submitting ? 'Saving…' : (<>Reset password <FiArrowRight className="group-hover:translate-x-1 transition" /></>)}
                 </button>

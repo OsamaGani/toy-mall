@@ -63,7 +63,7 @@ export default function NotFound() {
           <span className="hidden sm:inline animate-bounce" style={{ animationDelay: '0.6s' }}>🍽</span>
         </div>
 
-        <h1 className="text-7xl sm:text-[110px] md:text-[180px] leading-none font-black tracking-tighter text-primary-500">
+        <h1 className="text-7xl sm:text-[110px] md:text-[180px] leading-none font-black tracking-tighter bg-gradient-to-r from-primary-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
           404
         </h1>
         <p className="text-lg sm:text-2xl md:text-3xl font-extrabold text-gray-900 mt-2 px-2">
@@ -163,7 +163,7 @@ export default function NotFound() {
       </section>
 
       {/* === HELP STRIP === */}
-      <section className="bg-primary-500 text-white">
+      <section className="bg-gradient-to-r from-primary-500 to-pink-500 text-white">
         <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8 text-center">
           <p className="text-base sm:text-xl font-bold">Still can't find what you need?</p>
           <p className="opacity-95 text-xs sm:text-sm mt-1 px-4">

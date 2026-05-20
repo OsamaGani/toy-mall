@@ -3,7 +3,7 @@ import { FiHome, FiChevronRight } from 'react-icons/fi';
 
 export default function PageHeader({ title, subtitle, breadcrumbs = [] }) {
   return (
-    <div className="bg-primary-500 text-white">
+    <div className="bg-gradient-to-r from-primary-500 to-pink-500 text-white">
       <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
         <nav className="text-sm opacity-90 flex items-center gap-1 mb-3 flex-wrap">
           <Link to="/" className="hover:underline flex items-center gap-1"><FiHome size={12} /> Home</Link>

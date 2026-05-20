@@ -70,7 +70,7 @@ const sideCards = [
     subtitle: 'Tiffany, Chiavari & stackable banquet chairs for weddings, halls and hotels.',
     link: '/shop?category=Banquet Chairs',
     image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600',
-    bg: 'bg-stone-800',
+    bg: 'bg-gradient-to-br from-purple-500 to-fuchsia-700',
   },
 ];
 
@@ -425,7 +425,7 @@ export default function Home() {
 
       {/* Wholesale promo banner */}
       <section className="max-w-7xl mx-auto px-4 py-12">
-        <Link to="/wholesale" className="block relative overflow-hidden rounded-2xl bg-primary-500 text-white p-8 md:p-12 hover:shadow-2xl transition group">
+        <Link to="/wholesale" className="block relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-700 via-pink-600 to-primary-500 text-white p-8 md:p-12 hover:shadow-2xl transition group">
           <div className="grid md:grid-cols-2 gap-6 items-center relative z-10">
             <div>
               <span className="inline-block bg-yellow-400 text-gray-900 text-xs font-extrabold px-3 py-1 rounded-full mb-3">FOR SHOPS &amp; RESELLERS</span>
@@ -457,7 +457,7 @@ export default function Home() {
           <Reveal direction="left" className="lg:col-span-2">
           <Link
             to="/shop?discount=true"
-            className="block relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group min-h-[260px] sm:min-h-[320px] md:min-h-[380px] bg-primary-500 text-white"
+            className="block relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group min-h-[260px] sm:min-h-[320px] md:min-h-[380px] bg-gradient-to-br from-primary-500 via-pink-500 to-purple-600 text-white"
           >
             <img src="https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=1600" className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-30 group-hover:scale-105 transition duration-500" alt="" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>

@@ -55,7 +55,7 @@ export default function About() {
                 and a shop owner who personally signs off on every repair.</strong>
               </p>
               <div className="mt-5 inline-flex items-center gap-3 bg-primary-50 border border-primary-200 rounded-xl px-4 py-3">
-                <span className="w-10 h-10 rounded-full bg-primary-500 text-white font-extrabold flex items-center justify-center">A</span>
+                <span className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-pink-500 text-white font-extrabold flex items-center justify-center">A</span>
                 <div>
                   <p className="font-bold text-sm text-gray-900">Abdul Rab</p>
                   <p className="text-xs text-gray-500">Founder &amp; Master Craftsman</p>
@@ -70,7 +70,7 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <section className="bg-primary-500 text-white">
+      <section className="bg-gradient-to-r from-primary-500 to-pink-500 text-white">
         <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {stats.map((s) => (
             <div key={s.label}>
@@ -108,7 +108,7 @@ export default function About() {
       <section className="bg-gray-50 border-y">
         <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-6">
           <Reveal direction="left">
-            <Link to="/wholesale" className="bg-primary-500 text-white rounded-xl p-8 hover:shadow-xl transition flex items-center justify-between">
+            <Link to="/wholesale" className="bg-gradient-to-r from-purple-600 to-primary-500 text-white rounded-xl p-8 hover:shadow-xl transition flex items-center justify-between">
               <div>
                 <h3 className="text-2xl font-extrabold">Outfitting an office?</h3>
                 <p className="opacity-90 mt-1">Open a wholesale account for the best rates</p>

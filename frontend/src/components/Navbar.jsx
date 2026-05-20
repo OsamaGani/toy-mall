@@ -135,7 +135,7 @@ export default function Navbar() {
   return (
     <header className={`sticky top-0 z-50 bg-white transition-all duration-300 ${scrolled ? 'shadow-xl' : 'shadow-sm'}`}>
       {/* Scrolling announcements strip — hides when scrolled, pauses on hover */}
-      <div className={`overflow-hidden transition-all duration-300 bg-primary-500 text-white text-[11px] sm:text-xs font-semibold ${scrolled ? 'max-h-0' : 'max-h-9'}`}>
+      <div className={`overflow-hidden transition-all duration-300 bg-gradient-to-r from-purple-600 via-pink-600 to-primary-500 text-white text-[11px] sm:text-xs font-semibold ${scrolled ? 'max-h-0' : 'max-h-9'}`}>
         <div className="relative flex w-full overflow-hidden py-2 group">
           {/* Two identical tracks placed side-by-side; together they animate from
               translateX(0) to translateX(-50%) which lines copy #2 up exactly
@@ -225,7 +225,7 @@ export default function Navbar() {
                   {user ? (
                     <>
                       {/* Logged-in header with avatar circle */}
-                      <div className="px-5 py-4 bg-primary-500 text-white">
+                      <div className="px-5 py-4 bg-gradient-to-br from-primary-500 via-pink-500 to-fuchsia-600 text-white">
                         <div className="flex items-center gap-3">
                           <div className="w-12 h-12 rounded-full bg-white/25 backdrop-blur ring-2 ring-white/40 flex items-center justify-center text-xl font-extrabold flex-shrink-0">
                             {user.name?.[0]?.toUpperCase() || '👤'}
@@ -269,7 +269,7 @@ export default function Navbar() {
                   ) : (
                     <>
                       {/* Logged-out header */}
-                      <div className="px-5 py-5 bg-primary-500 text-white text-center">
+                      <div className="px-5 py-5 bg-gradient-to-br from-primary-500 via-pink-500 to-fuchsia-600 text-white text-center">
                         <div className="w-14 h-14 mx-auto rounded-full bg-white/25 backdrop-blur ring-2 ring-white/40 flex items-center justify-center text-2xl mb-2">
                           👋
                         </div>
@@ -280,7 +280,7 @@ export default function Navbar() {
                         <Link
                           to="/login"
                           onClick={() => setOpenUser(false)}
-                          className="block w-full text-center bg-primary-500 hover:bg-primary-600 text-white font-bold py-2.5 rounded-lg shadow-md hover:shadow-lg transition active:scale-[0.98]"
+                          className="block w-full text-center bg-gradient-to-r from-primary-500 to-pink-500 hover:from-primary-600 hover:to-pink-600 text-white font-bold py-2.5 rounded-lg shadow-md hover:shadow-lg transition active:scale-[0.98]"
                         >
                           Sign In
                         </Link>
@@ -335,7 +335,7 @@ export default function Navbar() {
             for the most common destinations. Mirrors the Flipkart /
             Myntra / Meesho mobile pattern. Hidden on md+ where the full
             categories nav is visible. */}
-        <nav className="md:hidden border-t bg-primary-50">
+        <nav className="md:hidden border-t bg-gradient-to-r from-primary-50 via-pink-50 to-amber-50">
           <div
             className="flex items-center gap-1 overflow-x-auto px-3 py-2 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none' }}

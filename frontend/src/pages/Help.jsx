@@ -175,7 +175,7 @@ export default function Help() {
       </section>
 
       {/* Still need help */}
-      <section className="bg-primary-500 text-white">
+      <section className="bg-gradient-to-r from-primary-500 to-pink-500 text-white">
         <div className="max-w-3xl mx-auto px-4 py-10 text-center">
           <FiMessageCircle className="mx-auto mb-3" size={40} />
           <h2 className="text-2xl md:text-3xl font-extrabold">Still need help?</h2>

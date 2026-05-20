@@ -69,7 +69,7 @@ export async function openRazorpayCheckout({
       image: '/logo.png',
       order_id: razorpayOrderId,
       prefill,
-      theme: { color: '#1f1d1b' },
+      theme: { color: '#e53935' },
       // Tell Razorpay which methods to surface most prominently.
       // UPI is shown first because Indian customers prefer it (GPay,
       // PhonePe, Paytm all appear inside the UPI tab automatically).

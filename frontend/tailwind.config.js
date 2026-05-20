@@ -16,27 +16,14 @@ export default {
     },
     extend: {
       colors: {
-        // PRIMARY = warm charcoal / near-black. Every CTA, focus ring,
-        // active state, etc. that used to be brand-red is now a tasteful
-        // dark grey — the West Elm / Article / futuristicconcepts.in
-        // palette the user asked for. Red is no longer the brand colour;
-        // it's reserved for genuine SALE / promo tags only (see `sale`).
         primary: {
-          50:  '#f7f5f2',  // warm off-white surface (cards, hover bgs)
-          100: '#ebe7e1',  // light divider
-          200: '#d8d2c8',  // muted border
-          500: '#1f1d1b',  // main CTA / brand colour
-          600: '#0f0e0c',  // hover state for primary
-          700: '#000000',
+          50: '#fff5f5',
+          100: '#ffe0e0',
+          500: '#e53935',
+          600: '#d32f2f',
+          700: '#b71c1c',
         },
-        // ACCENT = warm champagne / tan. Used for eyebrows, small icons,
-        // hover hints — the subtle 'editorial' colour every premium
-        // retail site leans on.
-        accent: '#b8956a',
-        // SALE = a real red, kept ONLY for explicit promo / discount /
-        // limited-time markers (discount badges, 50% Off pill in nav,
-        // 'today's deals' tag). Use `bg-sale text-white` etc. directly.
-        sale: '#dc2626',
+        accent: '#ffd54f',
       },
       fontFamily: {
         sans: ['Poppins', 'system-ui', 'sans-serif'],
