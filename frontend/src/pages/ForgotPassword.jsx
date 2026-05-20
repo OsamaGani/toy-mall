@@ -26,10 +26,10 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-160px)] flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12 overflow-hidden bg-gradient-to-br from-pink-50 via-white to-primary-50">
+    <div className="relative min-h-[calc(100vh-160px)] flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12 overflow-hidden bg-primary-50">
       {/* Decorative blobs — sized smaller on phone so they don't dominate */}
       <div className="absolute -top-24 -left-20 w-56 sm:w-72 h-56 sm:h-72 bg-primary-200/40 rounded-full blur-3xl animate-float" />
-      <div className="absolute -bottom-24 -right-20 w-56 sm:w-72 h-56 sm:h-72 bg-pink-200/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute -bottom-24 -right-20 w-56 sm:w-72 h-56 sm:h-72 bg-primary-200/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
 
       {/* Card scales up gently on tablet+ — phone gets max-w-md (the
           natural card width on small screens), tablet gets max-w-lg for
@@ -37,7 +37,7 @@ export default function ForgotPassword() {
       <div className="relative w-full max-w-md sm:max-w-lg">
         <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl ring-1 ring-black/5 overflow-hidden">
           {/* Header band with brand + page title. Padding scales on sm+. */}
-          <div className="bg-gradient-to-r from-primary-500 to-pink-500 px-5 sm:px-8 py-6 sm:py-8 text-center text-white">
+          <div className="bg-primary-500 px-5 sm:px-8 py-6 sm:py-8 text-center text-white">
             <Link to="/" className="inline-flex items-center gap-1 mb-2 sm:mb-3">
               <span className="text-xl sm:text-2xl font-extrabold">Talle</span>
               <span className="text-xl sm:text-2xl font-extrabold">Furniture</span>
@@ -99,7 +99,7 @@ export default function ForgotPassword() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-gradient-to-r from-primary-500 to-pink-500 hover:from-primary-600 hover:to-pink-600 text-white font-bold py-3 sm:py-3.5 rounded-lg shadow-lg shadow-primary-500/30 hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 group"
+                    className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 sm:py-3.5 rounded-lg shadow-lg shadow-primary-500/30 hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed transition flex items-center justify-center gap-2 group"
                   >
                     {submitting ? 'Sending…' : (<>Send reset link <FiArrowRight className="group-hover:translate-x-1 transition" /></>)}
                   </button>

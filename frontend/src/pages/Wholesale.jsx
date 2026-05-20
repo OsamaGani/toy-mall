@@ -55,7 +55,7 @@ export default function Wholesale() {
         keywords="wholesale chairs mumbai, bulk office chairs supplier, banquet chair manufacturer, restaurant chair wholesaler mumbai, b2b chair supplier mumbai, gst invoice wholesale chairs, office chair distributor sakinaka, hotel chair manufacturer, coworking chair supplier, tandem seating bulk, conference table supplier, training room chair bulk, customised office chair manufacturer"
       />
       {/* Hero */}
-      <section className="bg-gradient-to-br from-purple-700 via-pink-600 to-primary-500 text-white">
+      <section className="bg-primary-500 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-8 items-center">
           <div>
             <span className="inline-block bg-yellow-400 text-gray-900 text-xs font-extrabold px-3 py-1 rounded-full mb-4">FOR OFFICES, HALLS &amp; RESELLERS</span>
@@ -130,7 +130,7 @@ export default function Wholesale() {
             ].map((s, i) => (
               <Reveal key={s.step} direction="up" delay={i * 120}>
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-600 to-primary-500 text-white rounded-full flex items-center justify-center text-2xl font-extrabold shadow-lg mb-3">{s.step}</div>
+                  <div className="w-16 h-16 mx-auto bg-primary-500 text-white rounded-full flex items-center justify-center text-2xl font-extrabold shadow-lg mb-3">{s.step}</div>
                   <h3 className="font-bold">{s.title}</h3>
                   <p className="text-gray-600 text-sm mt-1">{s.desc}</p>
                 </div>
@@ -169,7 +169,7 @@ export default function Wholesale() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-gradient-to-r from-purple-600 to-primary-500 text-white">
+      <section className="bg-primary-500 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">Trusted by 300+ Mumbai Businesses</h2>
           <div className="grid md:grid-cols-3 gap-6">

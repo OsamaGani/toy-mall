@@ -119,7 +119,7 @@ export default function Cart() {
             <div className="px-5 py-3 border-t bg-gray-50">
               <button
                 onClick={() => navigate('/checkout')}
-                className="w-full bg-gradient-to-r from-primary-500 to-pink-500 hover:from-primary-600 hover:to-pink-600 text-white font-bold py-3 rounded-lg shadow-lg shadow-primary-500/30 hover:shadow-xl transition flex items-center justify-center gap-2"
+                className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-lg shadow-lg shadow-primary-500/30 hover:shadow-xl transition flex items-center justify-center gap-2"
               >
                 Proceed to Checkout →
               </button>

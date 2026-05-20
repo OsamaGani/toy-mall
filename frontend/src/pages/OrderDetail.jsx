@@ -442,7 +442,7 @@ function PayNowBanner({ orderId, total, onPaid }) {
     }
   };
   return (
-    <div className="mt-5 bg-gradient-to-r from-primary-500 to-pink-500 text-white rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-lg">
+    <div className="mt-5 bg-primary-500 text-white rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-lg">
       <div className="flex-1">
         <p className="font-extrabold text-lg flex items-center gap-2">💳 Complete your payment</p>
         <p className="text-sm text-white/90 mt-1">

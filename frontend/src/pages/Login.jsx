@@ -26,7 +26,7 @@ export default function Login() {
           Visible from md (768px+) so tablets also get the nice split view
           instead of a lonely full-width form with empty whitespace. Padding
           and feature grid scale down on md, full treatment from lg+. */}
-      <div className="relative hidden md:flex flex-col justify-between overflow-hidden bg-gradient-to-br from-primary-500 via-pink-500 to-fuchsia-600 text-white p-8 md:p-10 lg:p-12">
+      <div className="relative hidden md:flex flex-col justify-between overflow-hidden bg-primary-500 text-white p-8 md:p-10 lg:p-12">
         {/* Decorative blobs */}
         <div className="absolute -top-32 -left-20 w-72 lg:w-96 h-72 lg:h-96 bg-yellow-300/20 rounded-full blur-3xl animate-float" />
         <div className="absolute -bottom-32 -right-20 w-72 lg:w-96 h-72 lg:h-96 bg-white/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
@@ -79,7 +79,7 @@ export default function Login() {
             over on the left. */}
         <div className="md:hidden text-center mb-6 sm:mb-8">
           <div className="inline-block">
-            <div className="h-1 w-12 bg-gradient-to-r from-primary-500 to-pink-500 rounded-full mx-auto mb-3" />
+            <div className="h-1 w-12 bg-primary-500 rounded-full mx-auto mb-3" />
             <Link to="/" className="inline-flex items-center gap-1">
               <span className="text-2xl sm:text-3xl font-extrabold text-primary-500">Talle</span>
               <span className="text-2xl sm:text-3xl font-extrabold text-gray-900">Furniture</span>
@@ -140,7 +140,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-primary-500 to-pink-500 hover:from-primary-600 hover:to-pink-600 text-white font-bold py-3.5 rounded-lg shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2 group"
+              className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3.5 rounded-lg shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2 group"
             >
               {loading
                 ? 'Signing in…'
