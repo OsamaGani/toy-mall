@@ -250,10 +250,12 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Search fills the entire middle grid column — no max-width cap
-              so it doesn't leave empty gaps on either side. The 3-col grid
-              ensures it still sits centred between logo and actions. */}
-          <form onSubmit={handleSearch} className="hidden md:flex w-full relative">
+          {/* Search bar — capped width so it doesn't stretch awkwardly
+              across full-screen-width navbars. mx-auto centres it inside
+              the 1fr grid column, so on ultra-wide displays it sits in
+              the middle with equal space on either side instead of
+              ballooning into a 1000+ px wide input. */}
+          <form onSubmit={handleSearch} className="hidden md:flex w-full max-w-2xl mx-auto relative">
             <input
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
