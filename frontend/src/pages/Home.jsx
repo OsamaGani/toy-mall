@@ -41,11 +41,11 @@ const heroSlides = [
     primaryLink: '/shop?category=Premium',
     secondaryCta: 'OUR STORY',
     secondaryLink: '/about',
-    // Previous photo (1505843490701) got removed from Unsplash and 404'd
-    // — the slide showed pure-black because the <img> failed to load and
-    // only the dark gradient overlay remained. Swapped to the executive-
-    // chair shot we already use elsewhere in the catalogue.
-    image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=1920&q=85&auto=format&fit=crop',
+    // Same wide interior lifestyle shot as slide 1 — keeps the carousel
+    // visually cohesive so each slide reads as the same furniture line,
+    // only the copy + CTA change between them. The previous close-up
+    // chair photo here had been 404'ing from Unsplash anyway.
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=85&auto=format&fit=crop',
   },
   {
     eyebrow: 'TALLE SPECIALTY',
