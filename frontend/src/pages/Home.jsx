@@ -460,7 +460,11 @@ export default function Home() {
             to="/shop?discount=true"
             className="block relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition group min-h-[260px] sm:min-h-[320px] md:min-h-[380px] bg-gradient-to-br from-primary-500 via-pink-500 to-purple-600 text-white"
           >
-            <img src="https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=1600" className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-30 group-hover:scale-105 transition duration-500" alt="" />
+            {/* Background — wide office workspace shot with task chairs.
+                Replaces the legacy toy-train-track photo from before the
+                rebrand. Held at 25% opacity behind the magenta gradient so
+                the chair silhouettes show through without fighting the copy. */}
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600" className="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-30 group-hover:scale-105 transition duration-500" alt="" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent"></div>
             <div className="relative z-10 h-full flex flex-col justify-center p-6 sm:p-10 md:p-14 max-w-xl">
               <span className="inline-block w-fit bg-yellow-300 text-gray-900 text-[10px] sm:text-xs font-extrabold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-4 tracking-wide">🔥 UP TO 50% OFF</span>

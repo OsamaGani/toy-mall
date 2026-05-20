@@ -2,24 +2,28 @@ import { useState } from 'react';
 import { FiPlay, FiX } from 'react-icons/fi';
 import Reveal from './Reveal';
 
+// Chair-related demo videos. These are publicly-available YouTube videos
+// chosen as stand-ins until Abdul uploads Talle's own workshop / product
+// reels. To swap one out, just paste the new video's 11-character YouTube
+// ID into youtubeId (the part after "v=" in the URL).
 const videos = [
   {
-    title: 'LEGO Build & Play',
-    desc: 'Watch how LEGO classic bricks turn into magical creations',
-    thumb: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=800',
-    youtubeId: 'kbDmQwHmuW0',
+    title: 'Inside the Chair Workshop',
+    desc: 'Watch how an office chair is built — frame, mesh, hydraulic & base',
+    thumb: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800',
+    youtubeId: 'p1nUFGCO0RY',
   },
   {
-    title: 'Hot Wheels Action',
-    desc: 'Speed, stunts, and die-cast cars in action',
-    thumb: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800',
-    youtubeId: 'EpGI0hzZxOI',
+    title: 'Ergonomic Setup Guide',
+    desc: 'How to dial in your chair for an 8-hour workday — lumbar, height, tilt',
+    thumb: 'https://images.unsplash.com/photo-1505843490701-5be5d1b31f8f?w=800',
+    youtubeId: 'F8_ME4VwTiw',
   },
   {
-    title: 'Magna-Tiles STEM Fun',
-    desc: 'Magnetic 3D building for creative young minds',
-    thumb: 'https://images.unsplash.com/photo-1558877385-81a1c7e67d72?w=800',
-    youtubeId: 'OZ_3p4IzL00',
+    title: 'Gaming Chair Walkthrough',
+    desc: 'Racing-style features explained — 4D armrests, recline lock & footrest',
+    thumb: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800',
+    youtubeId: 'ck46cWxq5Tw',
   },
 ];
 
