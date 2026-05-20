@@ -17,33 +17,80 @@ const announcements = [
   { text: '📞 Need help? Call +91 93261 66875 — we reply fast',                                  href: '/contact' },
 ];
 
-// Material filter — replaces the legacy "age group" facet for the chair business.
-const materialList = [
-  { name: 'Mesh',         emoji: '🕸' },
-  { name: 'Leather',      emoji: '🟫' },
-  { name: 'Faux Leather', emoji: '🪑' },
-  { name: 'Fabric',       emoji: '🧵' },
-  { name: 'Plastic',      emoji: '🧴' },
-  { name: 'Wood',         emoji: '🪵' },
-  { name: 'Metal',        emoji: '⚙' },
-  { name: 'Cushion',      emoji: '🛋' },
+// Material filter — replaces the legacy "age group" facet for the chair
+// business. Grouped into 3 sections so the mega-menu mirrors the Category
+// dropdown's department-grouped layout (Soft / Premium Upholstery / Solid).
+const materialGroups = [
+  {
+    name: 'Soft & Breathable',
+    emoji: '🕸',
+    items: [
+      { name: 'Mesh',         emoji: '🕸' },
+      { name: 'Fabric',       emoji: '🧵' },
+    ],
+  },
+  {
+    name: 'Premium Upholstery',
+    emoji: '🟫',
+    items: [
+      { name: 'Leather',      emoji: '🟫' },
+      { name: 'Faux Leather', emoji: '🪑' },
+      { name: 'Cushion',      emoji: '🛋' },
+    ],
+  },
+  {
+    name: 'Solid Frame',
+    emoji: '🪵',
+    items: [
+      { name: 'Wood',         emoji: '🪵' },
+      { name: 'Metal',        emoji: '⚙' },
+      { name: 'Plastic',      emoji: '🧴' },
+    ],
+  },
 ];
+// Flat list — kept for the mobile drawer accordion which doesn't have room
+// for the department-style section headers.
+const materialList = materialGroups.flatMap((g) => g.items);
 
-// Clients — real B2B customers we manufacture chairs for. Talle is the only
-// brand (we do our own manufacturing), so this list is shown as "Clients"
-// in the navbar, not "Brands". Replace these with more real clients as
-// the list grows.
-const clients = [
-  { name: 'WeWork',           color: 'bg-slate-900' },
-  { name: 'Roller Bearing',   color: 'bg-amber-700' },
-  { name: 'Upstep Academy',   color: 'bg-blue-700' },
-  { name: 'Respo Financial',  color: 'bg-emerald-700' },
-  { name: 'Coworking Spaces', color: 'bg-purple-600' },
-  { name: 'Coaching Hubs',    color: 'bg-rose-600' },
-  { name: 'Restaurants',      color: 'bg-orange-600' },
-  { name: 'Banquet Halls',    color: 'bg-fuchsia-700' },
-  { name: 'Mumbai Offices',   color: 'bg-cyan-700' },
+// Clients — real B2B customers we manufacture chairs for. Grouped by
+// industry so the mega-menu mirrors the Category dropdown's department-
+// grouped layout (Coworking / Education / Finance / F&B & Events).
+const clientGroups = [
+  {
+    name: 'Coworking & Offices',
+    emoji: '🏢',
+    items: [
+      { name: 'WeWork',           color: 'bg-slate-900' },
+      { name: 'Coworking Spaces', color: 'bg-purple-600' },
+      { name: 'Mumbai Offices',   color: 'bg-cyan-700' },
+    ],
+  },
+  {
+    name: 'Education',
+    emoji: '🎓',
+    items: [
+      { name: 'Upstep Academy',   color: 'bg-blue-700' },
+      { name: 'Coaching Hubs',    color: 'bg-rose-600' },
+    ],
+  },
+  {
+    name: 'Finance & Industrial',
+    emoji: '💼',
+    items: [
+      { name: 'Respo Financial',  color: 'bg-emerald-700' },
+      { name: 'Roller Bearing',   color: 'bg-amber-700' },
+    ],
+  },
+  {
+    name: 'F&B & Events',
+    emoji: '🍽',
+    items: [
+      { name: 'Restaurants',      color: 'bg-orange-600' },
+      { name: 'Banquet Halls',    color: 'bg-fuchsia-700' },
+    ],
+  },
 ];
+const clients = clientGroups.flatMap((g) => g.items);
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -375,23 +422,46 @@ export default function Navbar() {
         {openDropdown === 'clients' && (
           <div className="absolute left-0 right-0 top-full bg-white shadow-xl border-t z-40 animate-fadeIn">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Companies We Manufacture For</h3>
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
-                {clients.map((c) => (
-                  <Link
-                    key={c.name}
-                    to="/about"
-                    onClick={() => setOpenDropdown(null)}
-                    className="group flex flex-col items-center text-center"
-                  >
-                    <div className={`${c.color} w-16 h-16 rounded-full flex items-center justify-center text-white font-extrabold text-lg shadow-md group-hover:scale-110 group-hover:shadow-lg transition`}>
-                      {c.name[0]}
+              {/* Header — matches the Category dropdown's "Shop By Department"
+                  treatment: bold large title on the left, primary-coloured
+                  "view all" link on the right. */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-bold text-gray-900 text-lg">Companies We Manufacture For</h3>
+                <Link
+                  to="/about"
+                  onClick={() => setOpenDropdown(null)}
+                  className="text-primary-500 hover:underline text-sm font-medium"
+                >
+                  Read our story →
+                </Link>
+              </div>
+              {/* Industry-grouped columns. Each group has a header (emoji +
+                  bold name) followed by a list of clients underneath — same
+                  shape as the Category mega-menu's department columns. */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-5">
+                {clientGroups.map((g) => (
+                  <div key={g.name}>
+                    <div className="flex items-center gap-2 font-bold text-gray-900 mb-2">
+                      <span className="text-base">{g.emoji}</span>
+                      <span className="text-sm leading-tight">{g.name}</span>
                     </div>
-                    <span className="mt-2 text-xs font-medium group-hover:text-primary-500">{c.name}</span>
-                  </Link>
+                    <ul className="space-y-1.5 pl-1">
+                      {g.items.map((c) => (
+                        <li key={c.name}>
+                          <Link
+                            to="/about"
+                            onClick={() => setOpenDropdown(null)}
+                            className="inline-flex items-center gap-2 text-xs text-gray-600 hover:text-primary-500 hover:underline transition"
+                          >
+                            <span className={`${c.color} w-2 h-2 rounded-full flex-shrink-0`} />
+                            {c.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
               </div>
-              <Link to="/about" onClick={() => setOpenDropdown(null)} className="block text-center mt-4 text-primary-500 font-semibold hover:underline text-sm">Read our story →</Link>
             </div>
           </div>
         )}
@@ -443,18 +513,43 @@ export default function Navbar() {
         {openDropdown === 'material' && (
           <div className="absolute left-0 right-0 top-full bg-white shadow-xl border-t z-40 animate-fadeIn">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              <h3 className="font-bold mb-3 text-gray-500 uppercase text-xs">Shop by Material</h3>
-              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3">
-                {materialList.map((m) => (
-                  <Link
-                    key={m.name}
-                    to={`/shop?material=${encodeURIComponent(m.name)}`}
-                    onClick={() => setOpenDropdown(null)}
-                    className="border-2 border-gray-200 hover:border-primary-500 rounded-lg p-4 text-center hover:shadow-md transition group"
-                  >
-                    <div className="text-3xl mb-1 group-hover:scale-110 transition">{m.emoji}</div>
-                    <p className="text-sm font-semibold group-hover:text-primary-500">{m.name}</p>
-                  </Link>
+              {/* Header — matches the Category dropdown: bold lg title on
+                  left + primary-coloured "view all" link on the right. */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-bold text-gray-900 text-lg">Shop By Material</h3>
+                <Link
+                  to="/shop"
+                  onClick={() => setOpenDropdown(null)}
+                  className="text-primary-500 hover:underline text-sm font-medium"
+                >
+                  View all chairs →
+                </Link>
+              </div>
+              {/* Grouped material columns — Soft & Breathable / Premium
+                  Upholstery / Solid Frame. Same shape as the Category
+                  mega-menu's department columns. */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-5">
+                {materialGroups.map((g) => (
+                  <div key={g.name}>
+                    <div className="flex items-center gap-2 font-bold text-gray-900 mb-2">
+                      <span className="text-base">{g.emoji}</span>
+                      <span className="text-sm leading-tight">{g.name}</span>
+                    </div>
+                    <ul className="space-y-1.5 pl-1">
+                      {g.items.map((m) => (
+                        <li key={m.name}>
+                          <Link
+                            to={`/shop?material=${encodeURIComponent(m.name)}`}
+                            onClick={() => setOpenDropdown(null)}
+                            className="inline-flex items-center gap-2 text-xs text-gray-600 hover:text-primary-500 hover:underline transition"
+                          >
+                            <span className="text-sm">{m.emoji}</span>
+                            {m.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
               </div>
             </div>
