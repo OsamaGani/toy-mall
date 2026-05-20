@@ -4,8 +4,14 @@ import API from '../../api/axios';
 import Loader from '../../components/Loader';
 import ImageUploader from '../../components/ImageUploader';
 import toast from 'react-hot-toast';
-import { FiTrash2, FiPlus, FiEdit2, FiSearch, FiHome, FiStar, FiPackage, FiExternalLink } from 'react-icons/fi';
+import { FiTrash2, FiPlus, FiEdit2, FiSearch, FiHome, FiStar, FiPackage, FiExternalLink, FiAlertTriangle, FiRefreshCw, FiCheckCircle } from 'react-icons/fi';
 import { PLACEHOLDER } from '../../utils/imageUrl';
+import { allSubCategoryNames } from '../../config/departments';
+
+// Canonical category list — mirrors futuristicconcepts.in via departments.js.
+// Anything in the DB that is NOT in this set is flagged as legacy so the
+// admin can spot leftovers from the old toy / mixed-furniture catalog.
+const CANONICAL = new Set(allSubCategoryNames);
 
 export default function AdminCategories() {
   const [list, setList] = useState([]);
@@ -131,6 +137,67 @@ export default function AdminCategories() {
     catch (err) { toast.error('Failed'); }
   };
 
+  // Categories already in the DB by name — used to figure out which
+  // canonical FC categories are missing and need creating.
+  const dbNames = new Set(list.map((c) => c.name));
+  const missingCanonical = allSubCategoryNames.filter((n) => !dbNames.has(n));
+  const legacyRows = list.filter((c) => !CANONICAL.has(c.name));
+
+  // One-click "Sync canonical": creates any FC-style category that
+  // doesn't yet exist in the DB. Idempotent — clicking it twice does
+  // nothing the second time.
+  const [syncing, setSyncing] = useState(false);
+  const syncCanonical = async () => {
+    if (missingCanonical.length === 0) {
+      toast('All canonical categories already exist', { icon: '✓' });
+      return;
+    }
+    if (!confirm(`Add ${missingCanonical.length} missing canonical categor${missingCanonical.length === 1 ? 'y' : 'ies'} from futuristicconcepts.in set?`)) return;
+    setSyncing(true);
+    let ok = 0, fail = 0;
+    for (let i = 0; i < missingCanonical.length; i += 6) {
+      const batch = missingCanonical.slice(i, i + 6);
+      const results = await Promise.allSettled(
+        batch.map((name) => API.post('/categories', { name }))
+      );
+      for (const r of results) (r.status === 'fulfilled' ? ok++ : fail++);
+    }
+    setSyncing(false);
+    if (ok > 0) toast.success(`Created ${ok} canonical categor${ok === 1 ? 'y' : 'ies'}`);
+    if (fail > 0) toast.error(`${fail} create${fail === 1 ? '' : 's'} failed (probably duplicates)`);
+    load();
+  };
+
+  // One-click "Delete legacy": removes every category whose name is NOT in
+  // the canonical FC list. Products that reference deleted categories keep
+  // their string value (Product.category is a free-text field) so nothing
+  // breaks — they just won't have a matching tile anymore.
+  const [purgeLegacy, setPurgeLegacy] = useState(false);
+  const deleteAllLegacy = async () => {
+    if (legacyRows.length === 0) {
+      toast('No legacy categories to clean', { icon: '✓' });
+      return;
+    }
+    const productsAffected = legacyRows.reduce((sum, c) => sum + (counts[c.name] || 0), 0);
+    const warning = productsAffected > 0
+      ? `\n\n⚠ ${productsAffected} product${productsAffected === 1 ? '' : 's'} still reference${productsAffected === 1 ? 's' : ''} these categories — they'll keep the string but lose their category tile.`
+      : '';
+    if (!confirm(`Delete ${legacyRows.length} legacy categor${legacyRows.length === 1 ? 'y' : 'ies'} (not in the futuristicconcepts.in set)?${warning}`)) return;
+    setPurgeLegacy(true);
+    let ok = 0, fail = 0;
+    for (let i = 0; i < legacyRows.length; i += 6) {
+      const batch = legacyRows.slice(i, i + 6);
+      const results = await Promise.allSettled(
+        batch.map((c) => API.delete(`/categories/${c._id}`))
+      );
+      for (const r of results) (r.status === 'fulfilled' ? ok++ : fail++);
+    }
+    setPurgeLegacy(false);
+    if (ok > 0) toast.success(`Deleted ${ok} legacy categor${ok === 1 ? 'y' : 'ies'}`);
+    if (fail > 0) toast.error(`${fail} delete${fail === 1 ? '' : 's'} failed`);
+    load();
+  };
+
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
@@ -145,6 +212,69 @@ export default function AdminCategories() {
           />
         </div>
       </div>
+
+      {/* Canonical-sync banner — surfaces when the DB is out of sync with the
+          futuristicconcepts.in category set defined in departments.js.
+          One click adds missing canonical categories; another deletes any
+          legacy left-over rows that aren't in the set anymore. */}
+      {(missingCanonical.length > 0 || legacyRows.length > 0) && (
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-4">
+          <div className="flex flex-wrap items-start gap-3 justify-between">
+            <div className="flex items-start gap-2 min-w-0">
+              <FiAlertTriangle className="text-amber-600 flex-shrink-0 mt-0.5" size={18} />
+              <div>
+                <p className="font-bold text-amber-900 text-sm">
+                  Category list out of sync with the canonical set
+                </p>
+                <p className="text-xs text-amber-800 mt-0.5 leading-snug">
+                  {missingCanonical.length > 0 && (
+                    <><strong>{missingCanonical.length}</strong> canonical categor{missingCanonical.length === 1 ? 'y is' : 'ies are'} missing from the DB. </>
+                  )}
+                  {legacyRows.length > 0 && (
+                    <><strong>{legacyRows.length}</strong> legacy categor{legacyRows.length === 1 ? 'y is' : 'ies are'} in the DB but not in the canonical list.</>
+                  )}
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              {missingCanonical.length > 0 && (
+                <button
+                  onClick={syncCanonical}
+                  disabled={syncing}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded text-xs inline-flex items-center gap-1.5 shadow disabled:opacity-60"
+                  title={`Adds: ${missingCanonical.join(', ')}`}
+                >
+                  <FiRefreshCw className={syncing ? 'animate-spin' : ''} />
+                  {syncing ? 'Adding…' : `Add ${missingCanonical.length} missing`}
+                </button>
+              )}
+              {legacyRows.length > 0 && (
+                <button
+                  onClick={deleteAllLegacy}
+                  disabled={purgeLegacy}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-2 rounded text-xs inline-flex items-center gap-1.5 shadow disabled:opacity-60"
+                  title={`Deletes: ${legacyRows.map((c) => c.name).join(', ')}`}
+                >
+                  <FiTrash2 />
+                  {purgeLegacy ? 'Deleting…' : `Delete ${legacyRows.length} legacy`}
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* "All clean" confirmation — green pulse so the admin knows the DB
+          matches the canonical futuristicconcepts.in set. Hidden when the
+          banner above is showing actions to take. */}
+      {missingCanonical.length === 0 && legacyRows.length === 0 && list.length > 0 && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2.5 mb-4 inline-flex items-center gap-2">
+          <FiCheckCircle className="text-emerald-600" />
+          <p className="text-sm font-semibold text-emerald-800">
+            Category list matches the canonical futuristicconcepts.in set
+          </p>
+        </div>
+      )}
 
       {/* Bulk-action toolbar — only renders when at least one is ticked. */}
       {selected.size > 0 && (
@@ -205,7 +335,17 @@ export default function AdminCategories() {
                       <img src={c.image || PLACEHOLDER} className="w-10 h-10 rounded object-cover" alt="" />
                     </td>
                     <td>
-                      <p className="font-medium">{c.name}</p>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <p className="font-medium">{c.name}</p>
+                        {!CANONICAL.has(c.name) && (
+                          <span
+                            title="Not in the canonical futuristicconcepts.in category set — safe to delete unless you still want to sell this."
+                            className="inline-flex items-center gap-1 bg-amber-100 text-amber-700 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide"
+                          >
+                            <FiAlertTriangle size={9} /> Legacy
+                          </span>
+                        )}
+                      </div>
                       <p className="text-[10px] text-gray-400 font-mono">{c.slug}</p>
                     </td>
                     <td className="text-center">
