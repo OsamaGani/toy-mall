@@ -190,7 +190,10 @@ export default function Navbar() {
             <span className={`font-extrabold text-gray-900 transition-all ${scrolled ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}`}>Furniture</span>
           </Link>
 
-          <form onSubmit={handleSearch} className="hidden md:flex w-full max-w-xl mx-auto relative">
+          {/* Search fills the entire middle grid column — no max-width cap
+              so it doesn't leave empty gaps on either side. The 3-col grid
+              ensures it still sits centred between logo and actions. */}
+          <form onSubmit={handleSearch} className="hidden md:flex w-full relative">
             <input
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
